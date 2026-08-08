@@ -24,13 +24,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://miguelalbornoz.com"),
+  metadataBase: new URL("https://miguel-albornoz.vercel.app"),
   title: "Miguel Albornoz | Ecosistemas Digitales",
   description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
   openGraph: {
     title: "Miguel Albornoz | Ecosistemas Digitales",
     description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
-    url: "https://miguelalbornoz.com",
+    url: "https://miguel-albornoz.vercel.app",
     siteName: "Miguel Albornoz",
     locale: "es_ES",
     type: "website",
