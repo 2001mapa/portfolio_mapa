@@ -11,7 +11,7 @@ export function CustomCursor() {
   const haloRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const checkMobile = window.matchMedia("(hover: none)").matches;
+    const checkMobile = typeof window !== 'undefined' && (window.matchMedia("(hover: none)").matches || window.matchMedia("(pointer: coarse)").matches || ('ontouchstart' in window) || navigator.maxTouchPoints > 0);
     setIsMobile(checkMobile);
 
     if (checkMobile) return;

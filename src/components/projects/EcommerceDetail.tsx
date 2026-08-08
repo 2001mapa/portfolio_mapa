@@ -144,14 +144,14 @@ export function EcommerceDetail() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.8 }}
-                  className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-[#151310]/80 backdrop-blur-md border border-[#c5a67c]/30 rounded-2xl p-4 flex items-center gap-4 drop-shadow-2xl"
+                  className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-[#151310]/80 backdrop-blur-md border border-[#c5a67c]/30 rounded-xl md:rounded-2xl p-2 md:p-4 flex items-center gap-2 md:gap-4 drop-shadow-2xl scale-90 md:scale-100 origin-bottom-right"
                >
-                  <div className="w-10 h-10 rounded-full bg-[#c5a67c]/20 flex items-center justify-center text-[#c5a67c] font-bold text-lg">
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#c5a67c]/20 flex items-center justify-center text-[#c5a67c] font-bold text-sm md:text-lg">
                     $
                   </div>
                   <div className="flex flex-col font-[family-name:var(--font-ibm-plex-mono)]">
-                    <span className="text-xs text-[#a39481] uppercase tracking-wider">Tasa de Conversión</span>
-                    <span className="text-[#e8e4db] font-bold">+200% Incremento</span>
+                    <span className="text-[9px] md:text-xs text-[#a39481] uppercase tracking-wider">Tasa de Conversión</span>
+                    <span className="text-xs md:text-base text-[#e8e4db] font-bold">+200% Incremento</span>
                   </div>
                </motion.div>
             </motion.div>
