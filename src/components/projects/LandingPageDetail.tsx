@@ -1,0 +1,284 @@
+"use client";
+
+import Link from "next/link";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+export function LandingPageDetail() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
+  return (
+    <div className="w-full flex flex-col relative bg-[#1c140d] text-[#e0cfba]">
+      {/* Scroll Progress Bar */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-1 bg-[#d37039] z-50 origin-left"
+        style={{ scaleX: scrollYProgress }}
+      />
+
+      {/* Dark Brown Header with Parallax */}
+      <div ref={heroRef} className="relative w-full min-h-[50vh] overflow-hidden flex items-start pt-32 md:pt-40">
+        <motion.div 
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative w-full px-6 md:px-12 z-10"
+        >
+          <div className="max-w-[1400px] mx-auto w-full relative h-full flex flex-col items-center justify-center pt-16 md:pt-0">
+            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#a58971] hover:text-[#e0cfba] transition-colors z-50">
+              ← REGRESAR AL HUB
+            </Link>
+            
+            <div className="flex flex-col items-center justify-center">
+              <div className="overflow-hidden mb-2 md:mb-4">
+                <motion.h1 
+                  initial={{ rotate: 5, y: 100, opacity: 0 }}
+                  animate={{ rotate: 0, y: 0, opacity: 1 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-[48px] md:text-[80px] leading-[0.9] tracking-[-1px] md:tracking-[-2px] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)] text-center"
+                >
+                  LANDING
+                </motion.h1>
+              </div>
+              <div className="overflow-hidden">
+                <motion.h1 
+                  initial={{ rotate: -5, y: 100, opacity: 0 }}
+                  animate={{ rotate: 0, y: 0, opacity: 1 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                  className="text-[40px] md:text-[64px] leading-[0.9] tracking-[-1px] font-medium uppercase text-[#d37039] font-[family-name:var(--font-abc-gravity-variable)] text-center"
+                >
+                  EXPERIENCES
+                </motion.h1>
+              </div>
+            </div>
+            
+            {/* Scroll Indicator */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 1 }}
+              className="flex flex-col items-center gap-3 text-[#a58971] z-20 pointer-events-none mt-16"
+            >
+              <span className="font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-[0.2em] uppercase">Descubre Más</span>
+              <motion.div 
+                animate={{ y: [0, 15, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                className="w-[1px] h-12 bg-gradient-to-b from-[#d37039] to-transparent"
+              />
+            </motion.div>
+          </div>
+        </motion.div>
+        {/* Parallax Background */}
+        <motion.div style={{ y: heroY }} className="absolute inset-0 bg-[#2a1e15] opacity-30 z-0"></motion.div>
+      </div>
+
+      {/* Body */}
+      <main className="relative z-20 w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
+        <div className="max-w-[1200px] mx-auto flex flex-col gap-24 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
+          
+          {/* Section 1 & 2: Project Info & Brief */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col gap-8 max-w-[1200px]"
+          >
+            <div className="flex items-center gap-4 text-[#d37039] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
+              <span>Presentación del Proyecto</span>
+              <span className="w-12 h-[1px] bg-[#d37039]"></span>
+              <span>Café Origen</span>
+            </div>
+            
+            <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#e0cfba] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
+              El Arte de Vender <br className="hidden md:block"/> con Estética y Precisión
+            </h2>
+            
+            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#a58971]">
+              <div className="flex-1 flex flex-col gap-6">
+                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">1. ¿De qué trata la web?</h3>
+                <p>
+                  <strong>Café Origen</strong> es una Landing Page (página de aterrizaje) diseñada para una cafetería de especialidad y panadería artesanal de alta gama en Medellín. No es un E-commerce tradicional, sino una <strong>vitrina digital inmersiva</strong> diseñada para atraer clientes físicos al local, educarlos sobre la calidad del producto y permitirles explorar la oferta gastronómica como si leyeran una revista de estilo de vida.
+                </p>
+                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight mt-4">2. El Brief del Cliente</h3>
+                <p>
+                  El cliente quería abandonar un diseño anterior que se sentía "muy genérico y generado por IA". Buscaba una estética <strong>cruda, cálida, editorial y humana</strong>.
+                </p>
+                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
+                  <li><strong>Cero artificialidad:</strong> Sin sombras paralelas, gradientes exagerados, ni botones invasivos.</li>
+                  <li><strong>Sofisticación Tipográfica:</strong> Contraste fuerte entre tipografía Serif (clásica/elegante) y Monospace (técnica) para datos precisos.</li>
+                  <li><strong>Objetivo Emocional:</strong> Que el visitante "sintiera el aroma del café" solo con hacer scroll, destacando su panadería de masa madre.</li>
+                </ul>
+              </div>
+
+              <div className="flex-1 flex flex-col gap-6">
+                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">3. Arquitectura Visual</h3>
+                <p>Para orquestar esta historia en una sola página (<code>page.tsx</code>), construimos:</p>
+                <ul className="flex flex-col gap-4">
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#d37039] mt-1 text-sm">✦</span> 
+                    <span><strong>Portada de Impacto:</strong> Una primera impresión masiva con el título "El Origen del Buen Café" sobre un fondo inmersivo.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#d37039] mt-1 text-sm">✦</span> 
+                    <span><strong>Historia Visual:</strong> Imágenes a pantalla completa que se entrelazan con el texto de forma elegante para contar el origen de la Finca.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-[#d37039] mt-1 text-sm">✦</span> 
+                    <span><strong>Catálogo y Menús Tipográficos:</strong> Cuadrícula elegante de granos (Geisha, Bourbon) y menús estilo restaurante de alta cocina con líneas punteadas dinámicas.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Desktop Video Showcase with Social Proof */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="w-full aspect-video bg-[#2a1e15] rounded-[24px] md:rounded-[40px] border border-[#d37039]/20 shadow-[0_0_60px_rgba(211,112,57,0.1)] overflow-hidden flex items-center justify-center relative group"
+          >
+             <video 
+               src="/videos/landing-page.mp4" 
+               autoPlay loop muted playsInline 
+               className="w-full h-full object-cover" 
+             />
+             
+             {/* Social Proof Metric */}
+             <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8 }}
+                className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-[#1c140d]/80 backdrop-blur-md border border-[#d37039]/30 rounded-2xl p-4 flex items-center gap-4 drop-shadow-2xl"
+             >
+                <div className="w-10 h-10 rounded-full bg-[#d37039]/20 flex items-center justify-center text-[#d37039] font-bold">
+                  99
+                </div>
+                <div className="flex flex-col font-[family-name:var(--font-ibm-plex-mono)]">
+                  <span className="text-xs text-[#a58971] uppercase tracking-wider">Performance</span>
+                  <span className="text-[#e0cfba] font-bold">Lighthouse Score</span>
+                </div>
+             </motion.div>
+          </motion.div>
+
+          {/* Mobile Video & Engineering Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center max-w-[1200px] mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="mx-auto w-full max-w-[360px] relative drop-shadow-[0_0_40px_rgba(211,112,57,0.3)] flex items-center justify-center rounded-[40px] overflow-hidden border-[6px] md:border-[8px] border-[#2a1e15] bg-[#1c140d]"
+            >
+               <video 
+                 src="/videos/landing-mobile.mp4" 
+                 autoPlay loop muted playsInline 
+                 className="w-full h-auto rounded-[32px]" 
+               />
+            </motion.div>
+            
+            <div className="flex flex-col justify-center gap-6">
+              <motion.h2 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-[32px] md:text-[48px] leading-[1.0] tracking-[-1.5px] uppercase text-[#d37039] font-medium font-[family-name:var(--font-abc-gravity-variable)]"
+              >
+                4. Ingeniería Mobile-First
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-body-lg text-[#a58971]"
+              >
+                Para que esta experiencia no se rompiera en un celular y se sintiera como una <strong>App Nativa</strong>, implementamos cuatro estrategias técnicas rigurosas:
+              </motion.p>
+              
+              <div className="flex flex-col gap-4 mt-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
+                >
+                  <h4 className="text-[#e0cfba] font-bold mb-1">1. Lectura sin Esfuerzo</h4>
+                  <p className="text-[#a58971] text-sm">Los textos se adaptan mágicamente a cualquier pantalla. Tus clientes jamás tendrán que hacer "zoom" con los dedos para poder leer tu oferta.</p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
+                >
+                  <h4 className="text-[#e0cfba] font-bold mb-1">2. Control de Pantalla</h4>
+                  <p className="text-[#a58971] text-sm">Eliminamos los molestos desplazamientos horizontales accidentales. La navegación se siente sólida y firme, guiando al usuario hacia la compra.</p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
+                >
+                  <h4 className="text-[#e0cfba] font-bold mb-1">3. Botones para Pulgares</h4>
+                  <p className="text-[#a58971] text-sm">Ubicamos la botonera principal en la parte inferior de la pantalla, justo donde descansa el pulgar del usuario, al igual que en Instagram o WhatsApp.</p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
+                >
+                  <h4 className="text-[#e0cfba] font-bold mb-1">4. Sensación de Velocidad</h4>
+                  <p className="text-[#a58971] text-sm">La página se anticipa al usuario y carga el contenido justo antes de que haga scroll, creando una sensación de inmersión y velocidad extrema.</p>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+
+          {/* Invitation CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="w-full mt-12 bg-gradient-to-br from-[#2a1e15] to-[#1c140d] border border-[#d37039]/40 rounded-3xl p-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(211,112,57,0.15)]"
+          >
+            <h2 className="text-[40px] md:text-[64px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#e0cfba] uppercase">
+              ¿Listo para tu propio <br /> <span className="text-[#d37039]">cambio radical?</span>
+            </h2>
+            <p className="text-body-lg text-[#a58971] max-w-[600px]">
+              Al igual que Café Origen, tu negocio no merece una plantilla genérica. Construimos experiencias digitales crudas, rentables y diseñadas con ingeniería milimétrica para vender.
+            </p>
+            <Link 
+              href="/#contact"
+              className="mt-4 bg-[#d37039] text-[#1c140d] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(211,112,57,0.4)] hover:shadow-[0_0_50px_rgba(211,112,57,0.6)] hover:bg-[#e67a3e] hover:text-white transition-all hover:-translate-y-1"
+            >
+              Diseñar mi Experiencia
+            </Link>
+            
+            <Link 
+              href="/work/catalogo"
+              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a58971] hover:text-[#d37039] transition-colors border-b border-transparent hover:border-[#d37039] pb-1"
+            >
+              SIGUIENTE PROYECTO: CATÁLOGO DIGITAL →
+            </Link>
+          </motion.div>
+
+        </div>
+      </main>
+    </div>
+  );
+}
