@@ -22,7 +22,7 @@ export const projectTypes: ProjectTypeData[] = [
   { id: "linktree", label: "Linktree Premium", desc: "Plan Básico: Tu ecosistema de enlaces. Hasta 3 enlaces, fondo a medida y logo de empresa. Ideal para presencia mínima rápida.", minPrice: 80000, maxPrice: 80000 },
   { id: "landing", label: "Landing Page", desc: "Tu sitio web de alto rendimiento. Incluye diseño persuasivo, carga instantánea y optimización para captar clientes.", minPrice: 150000, maxPrice: 300000 },
   { id: "catalogo", label: "Tienda / Catálogo", desc: "Digitaliza tu negocio. Incluye catálogo de productos, gestión de inventario básica y un panel administrador para que controles todo fácilmente.", minPrice: 400000, maxPrice: 600000 },
-  { id: "erp", label: "Sistema ERP", desc: "Nivel 1 (Operativo): Control de stock, registro de ventas, caja diaria y roles básicos. Protege tu operatividad sin tocar contabilidad profunda.", minPrice: 1500000, maxPrice: 2500000 },
+  { id: "erp", label: "Sistema ERP", desc: "Nivel 1 (Operativo): Control de stock, registro de ventas, caja diaria y roles básicos. Protege tu operatividad sin tocar contabilidad profunda.", minPrice: 2000000, maxPrice: 3000000 },
 ];
 
 export const commonExtras: QuestionData[] = [
@@ -49,10 +49,9 @@ export const questionBanks: Record<ProjectType, QuestionData[]> = {
     ...commonExtras
   ],
   erp: [
-    { id: "erp_nivel2", type: "toggle", title: "Nivel 2", label: "¿Gestión Financiera Avanzada?", desc: "Cuentas por cobrar/pagar, cierres automatizados, reportes P&G y control multibodega.", minPrice: 2000000, maxPrice: 2500000 },
-    { id: "erp_nivel3", type: "toggle", title: "Nivel 3", label: "¿ERP Contable Empresarial?", desc: "Integración de facturación electrónica, asientos contables, cálculo de impuestos, nómina y comisiones.", minPrice: 3000000, maxPrice: 4000000 },
-    { id: "erp_crm", type: "toggle", title: "Clientes", label: "¿Módulo CRM Integrado?", desc: "Seguimiento de clientes, historial de compras y embudos de venta personalizados.", minPrice: 400000, maxPrice: 700000 },
-    ...commonExtras
+    { id: "erp_nivel2", type: "toggle", title: "Nivel 2", label: "¿Gestión Financiera Avanzada?", desc: "Cuentas por cobrar/pagar, cierres automatizados, reportes P&G y control multibodega.", minPrice: 2500000, maxPrice: 3500000 },
+    { id: "erp_nivel3", type: "toggle", title: "Nivel 3", label: "¿ERP Contable Empresarial?", desc: "Integración de facturación electrónica, asientos contables, cálculo de impuestos, nómina y comisiones.", minPrice: 3500000, maxPrice: 5000000 },
+    { id: "erp_crm", type: "toggle", title: "Clientes", label: "¿Módulo CRM Integrado?", desc: "Seguimiento de clientes, historial de compras y embudos de venta personalizados.", minPrice: 600000, maxPrice: 1000000 }
   ]
 };
 
