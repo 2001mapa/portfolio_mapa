@@ -112,7 +112,7 @@ export function PricingSection() {
         style={{ opacity: flash ? 0.3 : 0, mixBlendMode: 'overlay' }}
       ></div>
 
-      <div className="max-w-[1400px] w-full mx-auto px-6 relative z-10 flex flex-col xl:flex-row gap-12 xl:gap-16 items-center">
+      <div className="max-w-[1400px] w-full mx-auto px-6 relative z-10 flex flex-col xl:flex-row gap-4 xl:gap-16 items-center">
         
         {/* Currency Switcher */}
         <div className="w-full flex justify-end xl:absolute xl:-top-8 xl:right-6 z-50 xl:w-auto pt-4 xl:pt-0">

@@ -29,7 +29,7 @@ export function PricingQuiz({
   currency
 }: PricingQuizProps) {
   return (
-    <div className="w-full xl:w-[50%] flex flex-col gap-8 min-h-[550px] justify-center relative">
+    <div className="w-full xl:w-[50%] flex flex-col gap-4 xl:gap-8 min-h-[250px] xl:min-h-[550px] justify-center relative">
 
 
       <div className="relative w-full flex-1">

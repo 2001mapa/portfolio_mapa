@@ -58,7 +58,7 @@ export function PricingReactor({
   currency: 'COP' | 'USD';
 }) {
   return (
-    <div className="w-full xl:w-[50%] h-[300px] xl:h-[600px] flex flex-col justify-center items-center relative z-10">
+    <div className="w-full xl:w-[50%] h-[300px] xl:h-[600px] flex flex-col justify-center items-center relative z-10 pb-16 xl:pb-0">
       
       {/* Pedestal de luz bajo el átomo */}
       <motion.div 
