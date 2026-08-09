@@ -7,7 +7,15 @@ import { AliadosSection } from "@/components/AliadosSection";
 import { ContactSection } from "@/components/ContactSection";
 import { PricingSection } from "@/components/PricingSection";
 
+import MaintenanceScreen from "@/components/MaintenanceScreen";
+
+const IS_MAINTENANCE_MODE = true;
+
 export default function Home() {
+  if (IS_MAINTENANCE_MODE) {
+    return <MaintenanceScreen />;
+  }
+
   return (
     <>
       <div className="w-full flex flex-col divide-y divide-white/5 bg-obsidian pt-12 md:pt-24">
