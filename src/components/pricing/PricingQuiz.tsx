@@ -29,7 +29,7 @@ export function PricingQuiz({
   currency
 }: PricingQuizProps) {
   return (
-    <div className="w-full xl:w-[50%] flex flex-col gap-4 xl:gap-8 min-h-[250px] xl:min-h-[550px] justify-center relative">
+    <div className="w-full xl:w-[50%] flex flex-col gap-2 xl:gap-8 min-h-[120px] xl:min-h-[550px] justify-center relative">
 
 
       <div className="relative w-full flex-1">
@@ -49,7 +49,7 @@ export function PricingQuiz({
                 ¿Qué tipo de solución digital necesitas construir?
               </h3>
               
-              <div className="flex flex-col gap-4 mt-auto">
+              <div className="flex flex-col gap-4 mt-4 xl:mt-auto">
                 {projectTypes.map(pt => (
                   <button 
                     key={pt.id}
@@ -92,7 +92,7 @@ export function PricingQuiz({
               </p>
               
               {activeQuestions[currentStep].type === "counter" ? (
-                <div className="flex flex-col sm:flex-row gap-4 mt-auto pt-6">
+                <div className="flex flex-col sm:flex-row gap-4 mt-4 xl:mt-auto xl:pt-6">
                   <div className="flex items-center justify-between gap-4 bg-white/5 border border-graphite rounded-xl p-2 w-full sm:w-auto">
                     <button onClick={() => setCounterValue(Math.max(1, counterValue - 1))} className="w-12 h-12 flex justify-center items-center text-white text-2xl hover:bg-white/10 rounded-lg transition-colors">-</button>
                     <span className="font-[family-name:var(--font-ibm-plex-mono)] text-white text-2xl font-bold w-12 text-center">{counterValue}</span>
@@ -114,7 +114,7 @@ export function PricingQuiz({
                   </button>
                 </div>
               ) : (
-                <div className="flex gap-4 mt-auto pt-6">
+                <div className="flex gap-4 mt-4 xl:mt-auto xl:pt-6">
                   <button 
                     onClick={() => handleAnswer(true)}
                     className="flex-1 flex flex-col items-center justify-center bg-white text-obsidian py-4 rounded-xl hover:bg-[#E8D4A6] transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(232,212,166,0.4)]"

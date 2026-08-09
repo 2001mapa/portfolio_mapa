@@ -58,7 +58,7 @@ export function PricingReactor({
   currency: 'COP' | 'USD';
 }) {
   return (
-    <div className="w-full xl:w-[50%] h-[300px] xl:h-[600px] flex flex-col justify-center items-center relative z-10 pb-16 xl:pb-0">
+    <div className="w-full xl:w-[50%] h-[220px] xl:h-[600px] flex flex-col justify-center items-center relative z-10 pb-16 xl:pb-0">
       
       {/* Pedestal de luz bajo el átomo */}
       <motion.div 
@@ -71,7 +71,7 @@ export function PricingReactor({
 
       {/* Temblor Aplicado a este contenedor al impactar */}
       <motion.div 
-        className="relative w-full h-[300px] xl:h-[500px] flex justify-center items-center scale-75 xl:scale-100"
+        className="relative w-full h-[220px] xl:h-[500px] flex justify-center items-center scale-75 xl:scale-100"
         animate={shake ? { x: [-15, 15, -15, 15, -8, 8, 0], y: [-8, 8, -8, 8, 0] } : {}}
         transition={{ duration: 0.3 }}
       >
