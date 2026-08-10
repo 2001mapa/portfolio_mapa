@@ -9,6 +9,11 @@ export default function DocumentosPage() {
   const [projectName, setProjectName] = useState('E-commerce Nivel 2');
   const [projectValue, setProjectValue] = useState('3000000');
   
+  // Campos personalizables de la propuesta
+  const [solutionText, setSolutionText] = useState('Una infraestructura digital de alto rendimiento diseñada para automatizar ventas 24/7 y centralizar la administración.');
+  const [deliverablesText, setDeliverablesText] = useState('Diseño UI de alto impacto.\nDesarrollo frontend ultrarrápido.\nEnlace directo con WhatsApp.\nPanel administrativo básico.');
+  const [timelineText, setTimelineText] = useState('Fase 1 (Diseño): 3-5 días.\nFase 2 (Programación): 7-10 días.\nFase 3 (Lanzamiento): 2-3 días.');
+  
   const handlePrint = () => {
     window.print();
   };
@@ -51,6 +56,23 @@ export default function DocumentosPage() {
           </div>
         </div>
 
+        {docType === 'cotizacion' && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/10 pt-6 mt-2">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">La Solución Propuesta</label>
+              <textarea value={solutionText} onChange={e => setSolutionText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Entregables (Uno por línea)</label>
+              <textarea value={deliverablesText} onChange={e => setDeliverablesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Cronograma (Uno por línea)</label>
+              <textarea value={timelineText} onChange={e => setTimelineText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+            </div>
+          </div>
+        )}
+
         <button onClick={handlePrint} className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-center items-center gap-2 mt-4">
           <Download size={18} /> Descargar PDF
         </button>
@@ -78,26 +100,25 @@ export default function DocumentosPage() {
             
             <div>
               <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">1. LA SOLUCIÓN PROPUESTA</h3>
-              <p>Desarrollaremos un <strong>{projectName}</strong>, una infraestructura digital de alto rendimiento diseñada para automatizar ventas 24/7 y centralizar la administración del negocio de <strong>{clientName}</strong>.</p>
+              <p>Desarrollaremos un <strong>{projectName}</strong>. {solutionText}</p>
             </div>
 
             <div>
               <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">2. ALCANCE Y ENTREGABLES TÉCNICOS</h3>
               <ul className="list-disc pl-5 flex flex-col gap-2">
-                <li>Diseño de interfaz de usuario (UI) de alto impacto y optimizada para conversión (Mobile-First).</li>
-                <li>Desarrollo frontend con tiempos de carga ultrarrápidos utilizando arquitectura moderna.</li>
-                <li>Enlace directo con motores de mensajería (WhatsApp) y protección anti-spam.</li>
-                <li>Panel administrativo o integraciones pertinentes al alcance del proyecto.</li>
+                {deliverablesText.split('\n').map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">3. CRONOGRAMA ESTIMADO</h3>
               <p className="mb-2">El tiempo comienza a correr tras la entrega total del material (textos, logos, imágenes) y el pago del anticipo.</p>
-              <ul className="list-disc pl-5">
-                <li><strong>Fase 1 (Arquitectura y Diseño):</strong> 3-5 días hábiles.</li>
-                <li><strong>Fase 2 (Programación y Conexiones):</strong> 7-10 días hábiles.</li>
-                <li><strong>Fase 3 (Pruebas y Lanzamiento):</strong> 2-3 días hábiles.</li>
+              <ul className="list-disc pl-5 flex flex-col gap-1">
+                {timelineText.split('\n').map((item, index) => (
+                  <li key={index}><strong>{item.split(':')[0]}:</strong> {item.split(':')[1] || ''}</li>
+                ))}
               </ul>
             </div>
 
