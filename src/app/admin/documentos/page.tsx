@@ -10,9 +10,12 @@ export default function DocumentosPage() {
   const [projectValue, setProjectValue] = useState('3000000');
   
   // Campos personalizables de la propuesta
+  const [problemText, setProblemText] = useState('Actualmente el proceso de ventas es manual, se pierde tiempo respondiendo mensajes y no hay un sistema centralizado.');
   const [solutionText, setSolutionText] = useState('Una infraestructura digital de alto rendimiento diseñada para automatizar ventas 24/7 y centralizar la administración.');
   const [deliverablesText, setDeliverablesText] = useState('Diseño UI de alto impacto.\nDesarrollo frontend ultrarrápido.\nEnlace directo con WhatsApp.\nPanel administrativo básico.');
+  const [optionalModulesText, setOptionalModulesText] = useState('Dominio y Hosting anual: $ 150.000\nMantenimiento mensual: $ 80.000');
   const [timelineText, setTimelineText] = useState('Fase 1 (Diseño): 3-5 días.\nFase 2 (Programación): 7-10 días.\nFase 3 (Lanzamiento): 2-3 días.');
+  const [validityDays, setValidityDays] = useState('15');
   
   const handlePrint = () => {
     window.print();
@@ -42,7 +45,7 @@ export default function DocumentosPage() {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Tipo de Documento</label>
+            <label className="text-xs text-slate uppercase tracking-widest">Tipo</label>
             <select value={docType} onChange={e => setDocType(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
               <option value="cotizacion">Propuesta Comercial</option>
               <option value="contrato">Contrato de Servicios</option>
@@ -53,11 +56,11 @@ export default function DocumentosPage() {
             <input type="text" value={clientName} onChange={e => setClientName(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Servicio</label>
+            <label className="text-xs text-slate uppercase tracking-widest">Servicio Base</label>
             <input type="text" value={projectName} onChange={e => setProjectName(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Valor Total (COP)</label>
+            <label className="text-xs text-slate uppercase tracking-widest">Valor Base (COP)</label>
             <input type="number" value={projectValue} onChange={e => setProjectValue(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
           </div>
         </div>
@@ -65,15 +68,27 @@ export default function DocumentosPage() {
         {docType === 'cotizacion' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/10 pt-6 mt-2">
             <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest">La Solución Propuesta</label>
-              <textarea value={solutionText} onChange={e => setSolutionText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+              <label className="text-xs text-slate uppercase tracking-widest text-orange-400">El Problema / Dolor</label>
+              <textarea value={problemText} onChange={e => setProblemText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest">Entregables (Uno por línea)</label>
+              <label className="text-xs text-slate uppercase tracking-widest text-green-400">La Solución Propuesta</label>
+              <textarea value={solutionText} onChange={e => setSolutionText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest text-blue-400">Validez (Días)</label>
+              <input type="number" value={validityDays} onChange={e => setValidityDays(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Entregables Principales</label>
               <textarea value={deliverablesText} onChange={e => setDeliverablesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest">Cronograma (Uno por línea)</label>
+              <label className="text-xs text-slate uppercase tracking-widest">Módulos Opcionales</label>
+              <textarea value={optionalModulesText} onChange={e => setOptionalModulesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" placeholder="Deja vacío si no hay opcionales" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Cronograma Fases</label>
               <textarea value={timelineText} onChange={e => setTimelineText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
             </div>
           </div>
@@ -105,12 +120,13 @@ export default function DocumentosPage() {
             <h2 className="text-2xl font-black font-[family-name:var(--font-die-grotesk-b)] uppercase text-center mb-4">Propuesta Comercial Formal</h2>
             
             <div>
-              <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">1. LA SOLUCIÓN PROPUESTA</h3>
+              <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">1. DIAGNÓSTICO Y SOLUCIÓN</h3>
+              <p className="mb-2 text-gray-700 italic">"{problemText}"</p>
               <p>Desarrollaremos un <strong>{projectName}</strong>. {solutionText}</p>
             </div>
 
             <div>
-              <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">2. ALCANCE Y ENTREGABLES TÉCNICOS</h3>
+              <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">2. ALCANCE TÉCNICO Y ENTREGABLES</h3>
               <ul className="list-disc pl-5 flex flex-col gap-2">
                 {deliverablesText.split('\n').map((item, index) => (
                   <li key={index}>{item}</li>
@@ -119,8 +135,8 @@ export default function DocumentosPage() {
             </div>
 
             <div>
-              <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">3. CRONOGRAMA ESTIMADO</h3>
-              <p className="mb-2">El tiempo comienza a correr tras la entrega total del material (textos, logos, imágenes) y el pago del anticipo.</p>
+              <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">3. CRONOGRAMA DE EJECUCIÓN</h3>
+              <p className="mb-2">El tiempo comienza a correr tras la entrega total de insumos y el pago del anticipo.</p>
               <ul className="list-disc pl-5 flex flex-col gap-1">
                 {timelineText.split('\n').map((item, index) => (
                   <li key={index}><strong>{item.split(':')[0]}:</strong> {item.split(':')[1] || ''}</li>
@@ -134,21 +150,28 @@ export default function DocumentosPage() {
                 <thead>
                   <tr className="bg-gray-100">
                     <th className="p-3 border border-gray-300">Descripción del Servicio</th>
-                    <th className="p-3 border border-gray-300 w-1/4">Valor Total</th>
+                    <th className="p-3 border border-gray-300 w-1/3">Valor (COP)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="p-3 border border-gray-300 font-bold">{projectName} - Desarrollo y Despliegue</td>
-                    <td className="p-3 border border-gray-300 font-bold">{formatCurrency(projectValue)}</td>
+                    <td className="p-3 border border-gray-300 font-bold">{projectName} - Desarrollo Base</td>
+                    <td className="p-3 border border-gray-300 font-bold text-lg">{formatCurrency(projectValue)}</td>
                   </tr>
+                  {optionalModulesText.trim() !== '' && optionalModulesText.split('\n').map((item, index) => (
+                    <tr key={index} className="text-gray-500 text-xs">
+                      <td className="p-3 border border-gray-300 italic">+ Opcional: {item.split(':')[0]}</td>
+                      <td className="p-3 border border-gray-300">{item.split(':')[1] || ''}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
 
             <div className="mt-8 p-6 bg-gray-50 border border-gray-200 break-inside-avoid">
-              <h3 className="font-bold text-lg mb-2">SIGUIENTES PASOS</h3>
-              <p>Para iniciar formalmente el proyecto y agendar el espacio en el calendario de desarrollo, requerimos la aprobación de esta propuesta y el pago del 50% de anticipo (<strong>{halfValue}</strong>). Esta cotización tiene una validez de 15 días calendario.</p>
+              <h3 className="font-bold text-lg mb-2">CONDICIONES Y SIGUIENTES PASOS</h3>
+              <p>Para agendar el espacio en el calendario de desarrollo, requerimos la aprobación de esta propuesta y el pago del <strong>50% de anticipo ({halfValue})</strong>. El 50% restante se abona contra entrega final.</p>
+              <p className="text-xs text-gray-500 mt-2">* Esta propuesta tiene una validez técnica y comercial de <strong>{validityDays} días calendario</strong>.</p>
             </div>
           </div>
         )}
