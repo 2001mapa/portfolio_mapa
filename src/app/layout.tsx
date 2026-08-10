@@ -44,6 +44,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { Toaster } from 'sonner';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -64,6 +66,7 @@ export default function RootLayout({
         </main>
 
         <GlobalFooter />
+        <Toaster theme="dark" position="bottom-right" toastOptions={{ style: { background: '#1c1a17', border: '1px solid rgba(255,255,255,0.1)', color: '#eae5d9' } }} />
       </body>
     </html>
   );

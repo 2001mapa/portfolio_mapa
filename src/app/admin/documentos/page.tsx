@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { FileText, Download } from 'lucide-react';
+import Image from 'next/image';
 import { supabase } from '@/lib/supabase';
+import { toast } from 'sonner';
 
 type Project = {
   id: string;
@@ -164,8 +166,12 @@ export default function DocumentosPage() {
                   status: 'cotizando'
                 }]);
                 if (!error) {
-                  alert('¡Lead guardado exitosamente en tu Kanban!');
-                  window.location.reload();
+                  toast.success('Lead guardado exitosamente en el Kanban', {
+                    description: 'Puedes hacerle seguimiento desde tu Gestor de Proyectos.'
+                  });
+                  // Optionally clear form or just let him keep the data for PDF printing
+                } else {
+                  toast.error('Error al guardar el Lead');
                 }
               }}
               className="flex-1 bg-[#141210] border border-green-500/50 text-green-400 px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-green-500/10 transition-colors flex justify-center items-center gap-2"

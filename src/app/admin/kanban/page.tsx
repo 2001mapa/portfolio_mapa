@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Plus, Trash2, Edit2, Archive, ArchiveRestore } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 
 type Project = {
   id: string;
@@ -62,18 +63,28 @@ export default function KanbanPage() {
   };
 
   const handleArchive = async (projectId: string) => {
-    if(confirm('¿Estás seguro de archivar este proyecto? Desaparecerá del Kanban pero seguirá en tus Finanzas.')) {
-      handleStatusChange(projectId, 'archivado');
-    }
+    toast('¿Archivar este proyecto?', {
+      description: 'Desaparecerá del Kanban pero seguirá en tus Finanzas.',
+      action: {
+        label: 'Archivar',
+        onClick: () => handleStatusChange(projectId, 'archivado')
+      },
+      cancel: { label: 'Cancelar', onClick: () => {} }
+    });
   };
 
   const handleDelete = async (projectId: string) => {
-    if(confirm('¿Estás seguro de eliminar este proyecto? Esta acción no se puede deshacer.')) {
-      const { error } = await supabase.from('projects').delete().eq('id', projectId);
-      if (!error) {
-        fetchProjects();
-      }
-    }
+    toast.error('¿Eliminar permanentemente?', {
+      description: 'Esta acción no se puede deshacer.',
+      action: {
+        label: 'Eliminar',
+        onClick: async () => {
+          const { error } = await supabase.from('projects').delete().eq('id', projectId);
+          if (!error) fetchProjects();
+        }
+      },
+      cancel: { label: 'Cancelar', onClick: () => {} }
+    });
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -283,9 +294,14 @@ export default function KanbanPage() {
                     <div className="flex gap-2">
                       <button 
                         onClick={() => {
-                          if(confirm('¿Restaurar este proyecto a "Entregado"? Volverá a aparecer en el Kanban.')) {
-                            handleStatusChange(project.id, 'entregado');
-                          }
+                          toast('¿Restaurar este proyecto?', {
+                            description: 'Volverá a aparecer en tu tablero Kanban en la columna Entregado.',
+                            action: {
+                              label: 'Restaurar',
+                              onClick: () => handleStatusChange(project.id, 'entregado')
+                            },
+                            cancel: { label: 'Cancelar', onClick: () => {} }
+                          });
                         }} 
                         className="text-slate hover:text-green-400 p-2 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" title="Restaurar al Kanban"
                       >
