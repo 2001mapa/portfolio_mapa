@@ -23,6 +23,7 @@ export default function KanbanPage() {
   // Form states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [showArchived, setShowArchived] = useState(false);
   const [formData, setFormData] = useState({
     client_name: '',
     project_name: '',
@@ -31,12 +32,16 @@ export default function KanbanPage() {
     status: 'cotizando'
   });
 
-  const columns = [
+  const baseColumns = [
     { id: 'cotizando', title: 'Cotizando / Leads', color: 'border-blue-500/50', bg: 'bg-blue-500/10 text-blue-400' },
     { id: 'desarrollo', title: 'En Desarrollo', color: 'border-orange-500/50', bg: 'bg-orange-500/10 text-orange-400' },
     { id: 'revision', title: 'En Revisión', color: 'border-yellow-500/50', bg: 'bg-yellow-500/10 text-yellow-400' },
     { id: 'entregado', title: 'Entregado', color: 'border-green-500/50', bg: 'bg-green-500/10 text-green-400' },
   ];
+
+  const columns = showArchived 
+    ? [...baseColumns, { id: 'archivado', title: 'Archivados', color: 'border-slate/50', bg: 'bg-white/5 text-slate' }]
+    : baseColumns;
 
   const fetchProjects = async () => {
     setLoading(true);
@@ -125,12 +130,20 @@ export default function KanbanPage() {
           <h1 className="text-3xl font-[family-name:var(--font-die-grotesk-b)] mb-2">Gestor de Proyectos</h1>
           <p className="text-slate text-sm">Arrastra o mueve los clientes según su fase de desarrollo.</p>
         </div>
-        <button 
-          onClick={() => setIsModalOpen(true)}
-          className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-white transition-colors uppercase tracking-widest text-sm"
-        >
-          <Plus size={18} /> Nuevo Proyecto
-        </button>
+        <div className="flex gap-4">
+          <button 
+            onClick={() => setShowArchived(!showArchived)}
+            className={`px-4 py-3 rounded-xl font-bold flex items-center gap-2 transition-colors uppercase tracking-widest text-sm border ${showArchived ? 'bg-white/10 border-white/20 text-white' : 'border-white/10 text-slate hover:text-white'}`}
+          >
+            <Archive size={18} /> {showArchived ? 'Ocultar Archivados' : 'Ver Archivados'}
+          </button>
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-white transition-colors uppercase tracking-widest text-sm"
+          >
+            <Plus size={18} /> Nuevo Proyecto
+          </button>
+        </div>
       </div>
 
       <div className="flex gap-6 overflow-x-auto pb-4 h-full scrollbar-hide">
