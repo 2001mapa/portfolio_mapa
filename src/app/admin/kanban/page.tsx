@@ -132,12 +132,12 @@ export default function KanbanPage() {
 
   return (
     <div className="flex flex-col gap-8 h-full">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-[family-name:var(--font-die-grotesk-b)] mb-2">Gestor de Proyectos</h1>
+          <h1 className="text-2xl md:text-3xl font-[family-name:var(--font-die-grotesk-b)] mb-2">Gestor de Proyectos</h1>
           <p className="text-slate text-sm">Arrastra o mueve los clientes según su fase de desarrollo.</p>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
           <button 
             onClick={() => setShowArchived(true)}
             className={`px-4 py-3 rounded-xl font-bold flex items-center gap-2 transition-colors uppercase tracking-widest text-sm border border-white/10 text-slate hover:text-white`}

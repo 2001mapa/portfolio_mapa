@@ -77,13 +77,13 @@ export default function DocumentosPage() {
       
       {/* NO PRINT AREA: Controls */}
       <div className="print:hidden flex flex-col gap-6 bg-[#141210] border border-white/5 rounded-2xl p-6">
-        <div className="flex justify-between items-start">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4">
           <div>
             <h1 className="text-2xl font-[family-name:var(--font-die-grotesk-b)] mb-2">Generador de Documentos</h1>
             <p className="text-slate text-sm">Llena los datos manualmente o impórtalos de un proyecto existente.</p>
           </div>
           
-          <div className="flex flex-col gap-2 min-w-[250px]">
+          <div className="flex flex-col gap-2 w-full md:w-auto md:min-w-[250px]">
             <label className="text-xs text-slate uppercase tracking-widest text-green-400">Vincular Proyecto Existente</label>
             <select value={selectedProjectId} onChange={e => handleProjectSelect(e.target.value)} className="bg-white/5 border border-white/10 rounded-lg p-3 text-bone focus:border-bone transition-colors">
               <option value="" className="text-black">-- Escribir manualmente --</option>
