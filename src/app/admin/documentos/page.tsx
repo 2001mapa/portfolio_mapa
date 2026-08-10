@@ -84,9 +84,9 @@ export default function DocumentosPage() {
           <div className="flex flex-col gap-2 min-w-[250px]">
             <label className="text-xs text-slate uppercase tracking-widest text-green-400">Vincular Proyecto Existente</label>
             <select value={selectedProjectId} onChange={e => handleProjectSelect(e.target.value)} className="bg-white/5 border border-white/10 rounded-lg p-3 text-bone focus:border-bone transition-colors">
-              <option value="">-- Escribir manualmente --</option>
+              <option value="" className="text-black">-- Escribir manualmente --</option>
               {projects.map(p => (
-                <option key={p.id} value={p.id}>{p.client_name} - {p.project_name}</option>
+                <option key={p.id} value={p.id} className="text-black">{p.client_name} - {p.project_name}</option>
               ))}
             </select>
           </div>
