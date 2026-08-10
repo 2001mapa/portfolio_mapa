@@ -148,9 +148,32 @@ export default function DocumentosPage() {
           </div>
         )}
 
-        <button onClick={handlePrint} className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-center items-center gap-2 mt-4">
-          <Download size={18} /> Descargar PDF
-        </button>
+        <div className="flex gap-4 mt-4">
+          <button onClick={handlePrint} className="flex-1 bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-center items-center gap-2">
+            <Download size={18} /> Descargar PDF
+          </button>
+          
+          {!selectedProjectId && (
+            <button 
+              onClick={async () => {
+                const { error } = await supabase.from('projects').insert([{
+                  client_name: clientName,
+                  project_name: projectName,
+                  total_value: Number(projectValue) || 0,
+                  amount_paid: Number(amountPaid) || 0,
+                  status: 'cotizando'
+                }]);
+                if (!error) {
+                  alert('¡Lead guardado exitosamente en tu Kanban!');
+                  window.location.reload();
+                }
+              }}
+              className="flex-1 bg-[#141210] border border-green-500/50 text-green-400 px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-green-500/10 transition-colors flex justify-center items-center gap-2"
+            >
+              <FileText size={18} /> Guardar Lead en Kanban
+            </button>
+          )}
+        </div>
       </div>
 
       {/* PRINT AREA: The actual Document */}

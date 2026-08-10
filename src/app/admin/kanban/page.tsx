@@ -22,6 +22,7 @@ export default function KanbanPage() {
 
   // Form states
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     client_name: '',
     project_name: '',
@@ -68,13 +69,23 @@ export default function KanbanPage() {
     }
   };
 
-  const handleCreate = async (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.from('projects').insert([formData]);
-    if (!error) {
-      setIsModalOpen(false);
-      setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' });
-      fetchProjects();
+    if (editingId) {
+      const { error } = await supabase.from('projects').update(formData).eq('id', editingId);
+      if (!error) {
+        setIsModalOpen(false);
+        setEditingId(null);
+        setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' });
+        fetchProjects();
+      }
+    } else {
+      const { error } = await supabase.from('projects').insert([formData]);
+      if (!error) {
+        setIsModalOpen(false);
+        setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' });
+        fetchProjects();
+      }
     }
   };
 
@@ -148,9 +159,27 @@ export default function KanbanPage() {
                       <h4 className="font-bold font-[family-name:var(--font-die-grotesk-b)] text-lg text-bone leading-tight">
                         {project.project_name}
                       </h4>
-                      <button onClick={() => handleDelete(project.id)} className="text-slate hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Trash2 size={16} />
-                      </button>
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={() => {
+                            setFormData({
+                              client_name: project.client_name,
+                              project_name: project.project_name,
+                              total_value: project.total_value,
+                              amount_paid: project.amount_paid,
+                              status: project.status
+                            });
+                            setEditingId(project.id);
+                            setIsModalOpen(true);
+                          }} 
+                          className="text-slate hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Edit2 size={16} />
+                        </button>
+                        <button onClick={() => handleDelete(project.id)} className="text-slate hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
                     </div>
                     <p className="text-sm text-slate mb-4 font-[family-name:var(--font-ibm-plex-mono)]">{project.client_name}</p>
                     
@@ -172,12 +201,12 @@ export default function KanbanPage() {
         ))}
       </div>
 
-      {/* Modal Creación */}
+      {/* Modal Creación / Edición */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-[#141210] border border-white/10 rounded-2xl p-8 max-w-md w-full shadow-2xl">
-            <h2 className="text-2xl font-[family-name:var(--font-die-grotesk-b)] mb-6">Nuevo Proyecto</h2>
-            <form onSubmit={handleCreate} className="flex flex-col gap-4">
+            <h2 className="text-2xl font-[family-name:var(--font-die-grotesk-b)] mb-6">{editingId ? 'Editar Proyecto' : 'Nuevo Proyecto'}</h2>
+            <form onSubmit={handleSave} className="flex flex-col gap-4">
               <div>
                 <label className="text-xs text-slate uppercase tracking-widest block mb-2">Cliente / Empresa</label>
                 <input required type="text" value={formData.client_name} onChange={e => setFormData({...formData, client_name: e.target.value})} className="w-full bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone" />
@@ -197,8 +226,8 @@ export default function KanbanPage() {
                 </div>
               </div>
               <div className="flex justify-end gap-4 mt-4">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-6 py-3 rounded-xl text-slate hover:text-white">Cancelar</button>
-                <button type="submit" className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors">Crear</button>
+                <button type="button" onClick={() => { setIsModalOpen(false); setEditingId(null); setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' }); }} className="px-6 py-3 rounded-xl text-slate hover:text-white">Cancelar</button>
+                <button type="submit" className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors">{editingId ? 'Guardar Cambios' : 'Crear'}</button>
               </div>
             </form>
           </motion.div>
