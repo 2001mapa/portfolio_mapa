@@ -126,7 +126,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="flex flex-col gap-12 lg:w-1/3"
+            className="flex flex-col gap-12 lg:w-1/3 order-2 lg:order-1"
           >
             <div>
               <p className="font-[family-name:var(--font-ibm-plex-mono)] text-caption uppercase tracking-widest text-[#E8D4A6] mb-4">Línea Directa</p>
@@ -164,7 +164,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="lg:w-2/3 max-w-[700px] w-full"
+            className="w-full lg:w-2/3 max-w-[700px] order-1 lg:order-2"
           >
             <form onSubmit={handleSubmit} className="flex flex-col gap-12">
               
