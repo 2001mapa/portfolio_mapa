@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Plus, Trash2, Edit2 } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 type Project = {
@@ -18,6 +18,7 @@ type Project = {
 export default function KanbanPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [draggedId, setDraggedId] = useState<string | null>(null);
 
   // Form states
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,9 +51,11 @@ export default function KanbanPage() {
   }, []);
 
   const handleStatusChange = async (projectId: string, newStatus: string) => {
+    // Optimistic UI update
+    setProjects(prev => prev.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
     const { error } = await supabase.from('projects').update({ status: newStatus }).eq('id', projectId);
-    if (!error) {
-      fetchProjects();
+    if (error) {
+      fetchProjects(); // Revert on error
     }
   };
 
@@ -79,6 +82,25 @@ export default function KanbanPage() {
     return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amount);
   };
 
+  // Drag and drop handlers
+  const handleDragStart = (e: React.DragEvent, id: string) => {
+    setDraggedId(id);
+    e.dataTransfer.setData('projectId', id);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent, statusId: string) => {
+    e.preventDefault();
+    const projectId = e.dataTransfer.getData('projectId');
+    if (projectId && projectId !== '') {
+      handleStatusChange(projectId, statusId);
+      setDraggedId(null);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-8 h-full">
       <div className="flex justify-between items-center">
@@ -94,9 +116,14 @@ export default function KanbanPage() {
         </button>
       </div>
 
-      <div className="flex gap-6 overflow-x-auto pb-4 h-full">
+      <div className="flex gap-6 overflow-x-auto pb-4 h-full scrollbar-hide">
         {columns.map(col => (
-          <div key={col.id} className="flex-1 min-w-[300px] flex flex-col gap-4">
+          <div 
+            key={col.id} 
+            onDragOver={handleDragOver}
+            onDrop={(e) => handleDrop(e, col.id)}
+            className="flex-1 min-w-[240px] max-w-[320px] flex flex-col gap-4"
+          >
             <div className={`p-3 rounded-lg border border-white/5 bg-[#141210] flex justify-between items-center`}>
               <h3 className="font-bold tracking-tight uppercase text-sm text-slate">{col.title}</h3>
               <span className={`text-xs px-2 py-1 rounded-full ${col.bg}`}>
@@ -110,10 +137,12 @@ export default function KanbanPage() {
               ) : (
                 projects.filter(p => p.status === col.id).map(project => (
                   <motion.div 
+                    draggable
+                    onDragStart={(e: any) => handleDragStart(e, project.id)}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     key={project.id} 
-                    className={`bg-[#1c1a17] border-l-4 ${col.color} border-y border-r border-y-white/5 border-r-white/5 rounded-r-xl p-5 shadow-lg group`}
+                    className={`bg-[#1c1a17] border-l-4 ${col.color} border-y border-r border-y-white/5 border-r-white/5 rounded-r-xl p-5 shadow-lg group cursor-grab active:cursor-grabbing hover:bg-[#25221e] transition-colors ${draggedId === project.id ? 'opacity-50' : 'opacity-100'}`}
                   >
                     <div className="flex justify-between items-start mb-2">
                       <h4 className="font-bold font-[family-name:var(--font-die-grotesk-b)] text-lg text-bone leading-tight">
@@ -125,7 +154,7 @@ export default function KanbanPage() {
                     </div>
                     <p className="text-sm text-slate mb-4 font-[family-name:var(--font-ibm-plex-mono)]">{project.client_name}</p>
                     
-                    <div className="flex justify-between text-xs text-slate mb-4 border-t border-white/5 pt-4">
+                    <div className="flex justify-between text-xs text-slate border-t border-white/5 pt-4">
                       <div className="flex flex-col gap-1">
                         <span className="uppercase text-[10px] tracking-widest opacity-50">Total</span>
                         <span className="font-bold">{formatCurrency(project.total_value)}</span>
@@ -135,14 +164,6 @@ export default function KanbanPage() {
                         <span className="font-bold text-green-400">{formatCurrency(project.amount_paid)}</span>
                       </div>
                     </div>
-
-                    <select 
-                      value={project.status}
-                      onChange={(e) => handleStatusChange(project.id, e.target.value)}
-                      className="w-full bg-obsidian border border-white/10 rounded text-xs p-2 text-slate focus:outline-none focus:border-bone"
-                    >
-                      {columns.map(c => <option key={c.id} value={c.id}>Mover a: {c.title}</option>)}
-                    </select>
                   </motion.div>
                 ))
               )}
