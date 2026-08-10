@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Plus, Trash2, Edit2, Archive } from 'lucide-react';
+import { Plus, Trash2, Edit2, Archive, ArchiveRestore } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 type Project = {
@@ -32,16 +32,12 @@ export default function KanbanPage() {
     status: 'cotizando'
   });
 
-  const baseColumns = [
+  const columns = [
     { id: 'cotizando', title: 'Cotizando / Leads', color: 'border-blue-500/50', bg: 'bg-blue-500/10 text-blue-400' },
     { id: 'desarrollo', title: 'En Desarrollo', color: 'border-orange-500/50', bg: 'bg-orange-500/10 text-orange-400' },
     { id: 'revision', title: 'En Revisión', color: 'border-yellow-500/50', bg: 'bg-yellow-500/10 text-yellow-400' },
     { id: 'entregado', title: 'Entregado', color: 'border-green-500/50', bg: 'bg-green-500/10 text-green-400' },
   ];
-
-  const columns = showArchived 
-    ? [...baseColumns, { id: 'archivado', title: 'Archivados', color: 'border-slate/50', bg: 'bg-white/5 text-slate' }]
-    : baseColumns;
 
   const fetchProjects = async () => {
     setLoading(true);
@@ -132,10 +128,10 @@ export default function KanbanPage() {
         </div>
         <div className="flex gap-4">
           <button 
-            onClick={() => setShowArchived(!showArchived)}
-            className={`px-4 py-3 rounded-xl font-bold flex items-center gap-2 transition-colors uppercase tracking-widest text-sm border ${showArchived ? 'bg-white/10 border-white/20 text-white' : 'border-white/10 text-slate hover:text-white'}`}
+            onClick={() => setShowArchived(true)}
+            className={`px-4 py-3 rounded-xl font-bold flex items-center gap-2 transition-colors uppercase tracking-widest text-sm border border-white/10 text-slate hover:text-white`}
           >
-            <Archive size={18} /> {showArchived ? 'Ocultar Archivados' : 'Ver Archivados'}
+            <Archive size={18} /> Ver Archivados ({projects.filter(p => p.status === 'archivado').length})
           </button>
           <button 
             onClick={() => setIsModalOpen(true)}
@@ -252,6 +248,60 @@ export default function KanbanPage() {
                 <button type="submit" className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors">{editingId ? 'Guardar Cambios' : 'Crear'}</button>
               </div>
             </form>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Modal Archivados */}
+      {showArchived && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-[#141210] border border-white/10 rounded-2xl p-8 max-w-2xl w-full shadow-2xl flex flex-col h-[80vh]">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-[family-name:var(--font-die-grotesk-b)] flex items-center gap-2">
+                <Archive size={24} className="text-slate" /> 
+                Proyectos Archivados
+              </h2>
+              <button onClick={() => setShowArchived(false)} className="text-slate hover:text-white uppercase tracking-widest text-xs font-bold px-4 py-2 bg-white/5 rounded-lg">Cerrar</button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto pr-2 scrollbar-hide flex flex-col gap-4">
+              {projects.filter(p => p.status === 'archivado').length === 0 ? (
+                <div className="text-slate text-center py-20 opacity-50 flex flex-col items-center gap-4">
+                  <Archive size={48} />
+                  <p>No tienes proyectos archivados todavía.</p>
+                </div>
+              ) : (
+                projects.filter(p => p.status === 'archivado').map(project => (
+                  <div key={project.id} className="bg-[#1c1a17] border border-white/5 rounded-xl p-5 flex justify-between items-center group">
+                    <div>
+                      <h4 className="font-bold font-[family-name:var(--font-die-grotesk-b)] text-lg text-bone leading-tight">
+                        {project.project_name}
+                      </h4>
+                      <p className="text-sm text-slate mb-1 font-[family-name:var(--font-ibm-plex-mono)]">{project.client_name}</p>
+                      <span className="text-xs text-green-400 font-bold">{formatCurrency(project.amount_paid)} cobrado</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={() => {
+                          if(confirm('¿Restaurar este proyecto a "Entregado"? Volverá a aparecer en el Kanban.')) {
+                            handleStatusChange(project.id, 'entregado');
+                          }
+                        }} 
+                        className="text-slate hover:text-green-400 p-2 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" title="Restaurar al Kanban"
+                      >
+                        <ArchiveRestore size={18} />
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(project.id)} 
+                        className="text-slate hover:text-red-400 p-2 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" title="Eliminar Permanentemente"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
           </motion.div>
         </div>
       )}
