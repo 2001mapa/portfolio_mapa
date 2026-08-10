@@ -12,7 +12,7 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="relative w-full bg-[#151310] text-[#e8e4db] py-24 md:py-[120px] overflow-hidden">
+    <section id="services" className="relative w-full bg-[#151310] text-[#e8e4db] py-12 md:py-[120px] overflow-hidden">
       
       {/* Luz tenue focal */}
       <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[30vw] h-[30vw] bg-[#c5a67c]/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -20,7 +20,7 @@ export function ServicesSection() {
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col gap-16 relative z-10">
         
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row gap-8 justify-between items-end mb-8 border-b border-[#2a261a] pb-12">
+        <div className="flex flex-col md:flex-row gap-8 justify-between items-end mb-8 border-b border-[#2a261a] pb-6 md:pb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export function ServicesSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="pb-12 md:pl-[84px] max-w-[800px] flex flex-col gap-6">
+                      <div className="pb-6 md:pb-12 md:pl-[84px] max-w-[800px] flex flex-col gap-6">
                         <p className="text-xl md:text-2xl text-[#c5a67c] font-medium">
                           {hab.desc}
                         </p>

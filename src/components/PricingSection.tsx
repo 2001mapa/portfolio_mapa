@@ -97,7 +97,7 @@ export function PricingSection() {
   };
 
   return (
-    <section id="pricing" className="relative w-full min-h-screen bg-obsidian text-bone py-24 md:py-[120px] overflow-hidden flex items-center">
+    <section id="pricing" className="relative w-full min-h-screen bg-obsidian text-bone py-12 md:py-[120px] overflow-hidden flex items-center">
       
       {/* Luz Ambiental Masiva que ilumina toda la sección y las tarjetas de preguntas */}
       <motion.div 

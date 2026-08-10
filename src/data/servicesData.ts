@@ -17,7 +17,7 @@ export const habilidades: HabilidadData[] = [
   {
     title: "Velocidad Extrema",
     desc: "Interfaces ultra rápidas que retienen a tus usuarios y evitan abandonos.",
-    benefits: "El diseño vende, pero la velocidad retiene. Uso tecnología de ultra-rendimiento (Next.js) para crear páginas que cargan en milisegundos y responden al instante. Tus clientes disfrutarán navegar, confiarán en tu marca y terminarán comprando sin frustraciones.",
+    benefits: "El diseño vende, pero la velocidad retiene. Uso herramientas de última generación para crear páginas que cargan al instante, evitando que tus clientes se desesperen y se vayan a la competencia. Tus clientes disfrutarán navegar, confiarán en tu marca y terminarán comprando sin frustraciones.",
     color: "bg-cyan-400", // Turquesa
     hex: "rgba(34, 211, 238, 0.4)"
   },
@@ -29,23 +29,23 @@ export const habilidades: HabilidadData[] = [
     hex: "rgba(52, 211, 153, 0.4)"
   },
   {
-    title: "Disponibilidad 99.9%",
+    title: "Siempre Abierto (24/7)",
     desc: "Tu página siempre en línea, a prueba de caídas y alto tráfico.",
-    benefits: "Si tu web se cae durante una campaña, pierdes dinero. Despliego tu proyecto en servidores de élite distribuidos globalmente. Esto garantiza que tu sitio soporte miles de visitas simultáneas y cargue al instante, sin importar en qué país esté tu cliente.",
+    benefits: "Si tu web se cae durante una campaña, pierdes dinero. Alojamos tu tienda en plataformas de talla mundial para garantizar que soporte miles de visitas al mismo tiempo sin colapsar ni ponerse lenta. Garantizamos que tu negocio siempre esté disponible.",
     color: "bg-purple-500", // Amatista
     hex: "rgba(168, 85, 247, 0.4)"
   },
   {
     title: "Posicionamiento Google",
     desc: "Estrategias de código para que te encuentren primero en las búsquedas.",
-    benefits: "De nada sirve el mejor producto del mundo si nadie lo encuentra. Aplico técnicas avanzadas de código estructural (SEO) para que Google se enamore de tu sitio. Empieza a dominar los primeros resultados de búsqueda y atrae clientes que ya están listos para comprar.",
+    benefits: "De nada sirve el mejor producto del mundo si nadie lo encuentra. Aplico estrategias comprobadas para que Google destaque tu negocio. Así dominas los primeros resultados y atraes clientes que ya están listos para comprar.",
     color: "bg-amber-500", // Ámbar
     hex: "rgba(245, 158, 11, 0.4)"
   },
   {
     title: "Recuperación de Clientes",
     desc: "Rastreamos a los que se fueron para que vuelvan y compren.",
-    benefits: "El 98% de los visitantes no compra la primera vez. Instalo los rastreadores (píxeles) de Facebook y Google para identificar a los que se fueron, y los perseguimos visualmente con anuncios en otras páginas hasta que vuelven a tu tienda. Multiplica tu retorno de inversión.",
+    benefits: "El 98% de los visitantes no compra la primera vez. Conectamos herramientas de Facebook y Google para identificar a los visitantes que no compraron, mostrándoles anuncios atractivos hasta que regresen. Multiplica tu retorno de inversión.",
     color: "bg-pink-500", // Magenta
     hex: "rgba(236, 72, 153, 0.4)"
   },

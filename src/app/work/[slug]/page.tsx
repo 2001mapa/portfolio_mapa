@@ -1,3 +1,4 @@
+import { LinktreeDetail } from "@/components/projects/LinktreeDetail";
 import { LandingPageDetail } from "@/components/projects/LandingPageDetail";
 import { CatalogoDetail } from "@/components/projects/CatalogoDetail";
 import { EcommerceDetail } from "@/components/projects/EcommerceDetail";
@@ -12,6 +13,8 @@ export default async function WorkDetail(props: Props) {
   const { slug } = params;
 
   switch (slug) {
+    case "linktree":
+      return <LinktreeDetail />;
     case "landing-page":
       return <LandingPageDetail />;
     case "catalogo":

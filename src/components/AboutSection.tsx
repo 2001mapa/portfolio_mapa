@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export function AboutSection() {
   return (
-    <section id="about" className="w-full bg-obsidian text-bone py-24 md:py-[120px]">
+    <section id="about" className="w-full bg-obsidian text-bone py-12 md:py-[120px]">
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row gap-12 items-center">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}

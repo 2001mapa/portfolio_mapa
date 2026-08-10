@@ -1,24 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 
 export function EcommerceDetail() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: heroProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const headerScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const headerScale = useTransform(heroProgress, [0, 1], [1, 1.2]);
+
+  // Global page scroll for the progress bar
+  const { scrollYProgress: globalProgress } = useScroll();
+  const scaleX = useSpring(globalProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
     <div className="w-full flex flex-col relative bg-[#151310] text-[#e8e4db]">
-      {/* Scroll Progress Bar */}
+      {/* Global Scroll Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-[#c5a67c] z-50 origin-left"
-        style={{ scaleX: scrollYProgress }}
+        style={{ scaleX }}
       />
 
       {/* Hero Header */}
@@ -81,7 +89,7 @@ export function EcommerceDetail() {
       </div>
 
       <main className="w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
-        <div className="max-w-[1200px] mx-auto flex flex-col gap-32 font-[family-name:var(--font-die-grotesk-b)]">
+        <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
           
           {/* SECTION 1: Desktop Video & Case Study */}
           <div className="flex flex-col gap-12">
@@ -109,7 +117,7 @@ export function EcommerceDetail() {
                   <ul className="flex flex-col gap-3">
                     <li className="flex items-start gap-3">
                       <span className="text-[#c5a67c] mt-1 text-sm">✦</span> 
-                      <span><strong>Estética de Lujo (Premium UI):</strong> Colores curados, animaciones sutiles y transiciones fluidas que elevan la percepción de tu marca.</span>
+                      <span><strong>Diseño de Alta Gama:</strong> Colores curados, animaciones sutiles y transiciones fluidas que elevan la percepción de tu marca.</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-[#c5a67c] mt-1 text-sm">✦</span> 
@@ -225,11 +233,11 @@ export function EcommerceDetail() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mt-8 w-full max-w-[1000px]">
                 <div className="bg-[#1a1815] p-6 rounded-2xl border border-[#c5a67c]/10">
                   <h4 className="text-[#c5a67c] font-bold mb-2">Inventario Blindado</h4>
-                  <p className="text-[#a39481] text-sm">El Kardex descuenta stock automáticamente con cada venta o devolución física/digital. Cero descuadres.</p>
+                  <p className="text-[#a39481] text-sm">El sistema de inventario descuenta stock automáticamente con cada venta o devolución física/digital. Cero descuadres.</p>
                 </div>
                 <div className="bg-[#1a1815] p-6 rounded-2xl border border-[#c5a67c]/10">
                   <h4 className="text-[#c5a67c] font-bold mb-2">Motor Contable</h4>
-                  <p className="text-[#a39481] text-sm">Cada movimiento dispara asientos contables hacia el Libro Mayor usando el PUC. Olvídate de los cierres manuales.</p>
+                  <p className="text-[#a39481] text-sm">Cada movimiento queda registrado automáticamente para tus reportes de ventas. Olvídate de los cierres de caja manuales.</p>
                 </div>
                 <div className="bg-[#1a1815] p-6 rounded-2xl border border-[#c5a67c]/10">
                   <h4 className="text-[#c5a67c] font-bold mb-2">Reportes al Instante</h4>
@@ -265,7 +273,7 @@ export function EcommerceDetail() {
                 🛡️ Arquitectura de Clase Mundial
               </h3>
               <p className="text-body-lg text-[#a39481] mb-8">
-                Todo esto corre sobre la misma tecnología que utilizan las empresas más grandes del mundo: servidores ultrarrápidos en la nube con <strong>seguridad de nivel bancario</strong> para cifrar los datos de extremo a extremo.
+                Todo esto corre sobre la misma tecnología que utilizan las empresas más grandes del mundo: servidores ultrarrápidos en la nube con <strong>seguridad anti-fraude</strong> que protege la información de tus clientes.
               </p>
               <div className="inline-block bg-[#1a1815] border border-[#c5a67c] text-[#c5a67c] px-6 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] tracking-wider text-sm">
                 MENOS TRABAJO MANUAL, MÁS VENTAS CERRADAS
@@ -278,7 +286,7 @@ export function EcommerceDetail() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="w-full mt-4 bg-gradient-to-br from-[#1a1815] to-[#151310] border border-[#c5a67c]/40 rounded-3xl p-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(197,166,124,0.15)]"
+            className="w-full mt-4 bg-gradient-to-br from-[#1a1815] to-[#151310] border border-[#c5a67c]/40 rounded-3xl px-6 py-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(197,166,124,0.15)]"
           >
             <h2 className="text-[40px] md:text-[64px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#e8e4db] uppercase">
               Digitaliza tu <br /> <span className="text-[#c5a67c]">operación completa.</span>

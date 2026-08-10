@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
 
 export function CatalogoDetail() {
@@ -11,12 +11,18 @@ export function CatalogoDetail() {
     offset: ["start start", "end end"],
   });
 
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <div ref={containerRef} className="w-full min-h-screen flex flex-col relative bg-[#131c15] text-[#d6e0d8]">
       {/* Scroll Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-[#4a7c59] z-50 origin-left"
-        style={{ scaleX: scrollYProgress }}
+        style={{ scaleX }}
       />
 
       <div className="relative w-full min-h-[50vh] overflow-hidden flex items-start pt-32 md:pt-40 border-b border-[#2b3a2e] z-20">
@@ -78,7 +84,7 @@ export function CatalogoDetail() {
       </div>
 
       <main className="w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
-        <div className="max-w-[1200px] mx-auto flex flex-col gap-24 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
+        <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
           
           {/* Section 1: La Visión del Cliente */}
           <motion.div 
@@ -98,46 +104,54 @@ export function CatalogoDetail() {
               Belleza Natural, <br className="hidden md:block"/> Experiencia Digital
             </h2>
             
-            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#7a9982]">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#7a9982] mt-8 md:mt-12">
               <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">1. La Visión del Cliente (El "Por Qué")</h3>
+                <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Problema: Catálogos en PDF</h3>
                 <p>
-                  El cliente no quería simplemente "vender productos por internet". Su necesidad principal era <strong>transmitir un sentimiento</strong>: el alivio y la quietud que se siente al entrar a un invernadero al amanecer. 
+                  Enviar tu inventario en un PDF estático por WhatsApp es frustrante para el cliente. No puede buscar, no puede filtrar y la experiencia de compra se vuelve lenta y tediosa.
                 </p>
                 <p>
-                  Quería expresar que sus productos no son cosmética industrial producida en masa, sino <strong>"atmósferas" y "remedios"</strong> creados mediante una alquimia lenta. El objetivo era que la página web misma fuera un refugio visual que calmara la mente del visitante antes incluso de comprar el producto.
+                  Peor aún, tienes que actualizar el archivo manualmente cada vez que cambia un precio o se agota un producto, y al final pierdes ventas por la cantidad de fricción en el proceso.
                 </p>
-                <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight mt-4">Directrices de Diseño</h3>
-                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                  <li><strong>Minimalismo Orgánico:</strong> Uso de fondos blancos puros contrastados con un verde botánico específico y tipografía negra entintada.</li>
-                  <li><strong>Arquitectura de Líneas:</strong> Sin sombras pesadas ni cajas genéricas. Todo definido por bordes finos de <code>1px</code>, dando un aspecto de "documento de laboratorio botánico".</li>
-                  <li><strong>Tipografía Premium:</strong> Combinación de Serif para títulos artísticos y Grotesk para datos técnicos y legibilidad moderna.</li>
-                </ul>
               </div>
 
               <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">2. Contenido y Arquitectura</h3>
-                <p>La plataforma se estructuró en secciones clave, cada una diseñada como una experiencia interactiva:</p>
-                <ul className="flex flex-col gap-4">
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#4a7c59] mt-1 text-sm">✦</span> 
-                    <span><strong>Inicio (Hero & Home):</strong> Te sumerge en la <em>Galería de Convergencia</em>, un árbol dibujado matemáticamente que crece con el scroll.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#4a7c59] mt-1 text-sm">✦</span> 
-                    <span><strong>El Catálogo (Archivo):</strong> Una tienda libre de desorden con filtros por categorías y tarjetas de producto que alternan su diseño.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#4a7c59] mt-1 text-sm">✦</span> 
-                    <span><strong>Filosofía (Nosotros):</strong> A través de un tallo que desciende por la pantalla, cuenta la historia de la maceración lenta.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#4a7c59] mt-1 text-sm">✦</span> 
-                    <span><strong>Carrito y Checkout:</strong> Un panel lateral fluido que permite gestionar productos sin perder de vista la tienda, con un modal de pago inmersivo.</span>
-                  </li>
+                <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">La Solución: Catálogo Inteligente</h3>
+                <p>
+                  Desarrollamos catálogos web interactivos con <strong>cierre directo en WhatsApp</strong>. Toda la elegancia de una tienda online, pero sin cobrarte comisiones por venta.
+                </p>
+                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
+                  <li><strong>0% Comisiones:</strong> El carrito de compras arma el pedido automáticamente y te lo envía directo a tu chat.</li>
+                  <li><strong>Filtros y Búsqueda:</strong> Tus clientes encuentran lo que buscan al instante.</li>
+                  <li><strong>Estética Premium:</strong> Diseños minimalistas que elevan el valor percibido de tu marca muy por encima de la competencia.</li>
                 </ul>
               </div>
             </div>
+          </motion.div>
+
+          {/* Caso de Exito: Esencias del Bosque */}
+          <div className="w-full max-w-[800px] mx-auto mt-12 md:mt-12 px-6 md:px-0 text-center flex flex-col items-center">
+             <h3 className="text-[28px] md:text-[40px] leading-tight text-[#d6e0d8] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)]">Caso de Éxito: Esencias del Bosque</h3>
+             <p className="text-[#7a9982] mt-2 mb-6 max-w-[600px] text-body-lg">
+               Marca de cosmética artesanal y aromaterapia. Sustituimos su antiguo PDF por un catálogo botánico interactivo que no solo expone los productos, sino que automatiza los pedidos por WhatsApp y transmite la atmósfera relajante de la marca.
+             </p>
+          </div>
+
+          {/* Boton de Visita */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="w-full flex justify-center mt-0 mb-12 md:mb-16"
+          >
+             <a 
+               href="https://escencias-del-bosque.vercel.app/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               className="inline-flex items-center justify-center border border-[#4a7c59] text-[#4a7c59] hover:bg-[#4a7c59] hover:text-[#0a120c] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(74,124,89,0.15)] hover:shadow-[0_0_30px_rgba(74,124,89,0.3)]"
+             >
+               VISITAR CATÁLOGO EN VIVO ↗
+             </a>
           </motion.div>
 
           {/* Desktop Video Showcase with Social Proof */}
@@ -203,7 +217,7 @@ export function CatalogoDetail() {
                 viewport={{ once: true }}
                 className="text-body-lg text-[#7a9982]"
               >
-                Construir una web altamente animada y gráfica suele ser un desastre en teléfonos móviles si no se planifica desde el código base. Lograr que se sintiera como una <strong>App Nativa Premium</strong> requirió una reingeniería arquitectónica:
+                Construir una web altamente animada y gráfica suele ser un desastre en teléfonos móviles si no se planifica desde el código base. Para lograr que se sintiera como una aplicación rápida y fluida (sin pedirle al cliente que descargue nada), la diseñamos a medida desde cero:
               </motion.p>
               
               <div className="flex flex-col gap-4 mt-2">
@@ -259,7 +273,7 @@ export function CatalogoDetail() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="w-full mt-12 bg-gradient-to-br from-[#1a261d] to-[#131c15] border border-[#4a7c59]/40 rounded-3xl p-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(74,124,89,0.15)]"
+            className="w-full mt-12 bg-gradient-to-br from-[#1a261d] to-[#131c15] border border-[#4a7c59]/40 rounded-3xl px-6 py-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(74,124,89,0.15)]"
           >
             <h2 className="text-[40px] md:text-[64px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#d6e0d8] uppercase">
               Eleva el prestigio <br /> <span className="text-[#4a7c59]">de tu catálogo.</span>

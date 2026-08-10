@@ -95,7 +95,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative w-full bg-obsidian text-bone py-24 md:py-[150px] overflow-hidden">
+    <section id="contact" className="relative w-full bg-obsidian text-bone py-12 md:py-[150px] overflow-hidden">
       
       {/* Background Abstract Glows */}
       <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-[#E8D4A6]/20 rounded-full blur-[150px] pointer-events-none"></div>

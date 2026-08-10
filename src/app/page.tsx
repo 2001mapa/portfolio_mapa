@@ -6,10 +6,11 @@ import { AboutSection } from "@/components/AboutSection";
 import { AliadosSection } from "@/components/AliadosSection";
 import { ContactSection } from "@/components/ContactSection";
 import { PricingSection } from "@/components/PricingSection";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 import MaintenanceScreen from "@/components/MaintenanceScreen";
 
-const IS_MAINTENANCE_MODE = true;
+const IS_MAINTENANCE_MODE = false;
 
 export default function Home() {
   if (IS_MAINTENANCE_MODE) {
@@ -18,6 +19,7 @@ export default function Home() {
 
   return (
     <>
+      <ScrollProgress />
       <div className="w-full flex flex-col divide-y divide-white/5 bg-obsidian pt-12 md:pt-24">
         <AboutSection />
         <AliadosSection />

@@ -1,25 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 
 export function LandingPageDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
+  
+  // Hero-specific scroll
+  const { scrollYProgress: heroProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
+  const heroY = useTransform(heroProgress, [0, 1], ["0%", "50%"]);
+  const heroOpacity = useTransform(heroProgress, [0, 1], [1, 0]);
 
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  // Global page scroll for the progress bar
+  const { scrollYProgress: globalProgress } = useScroll();
+  const scaleX = useSpring(globalProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
     <div className="w-full flex flex-col relative bg-[#1c140d] text-[#e0cfba]">
-      {/* Scroll Progress Bar */}
+      {/* Global Scroll Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 bg-[#d37039] z-50 origin-left"
-        style={{ scaleX: scrollYProgress }}
+        style={{ scaleX }}
       />
 
       {/* Dark Brown Header with Parallax */}
@@ -78,7 +87,7 @@ export function LandingPageDetail() {
 
       {/* Body */}
       <main className="relative z-20 w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
-        <div className="max-w-[1200px] mx-auto flex flex-col gap-24 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
+        <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
           
           {/* Section 1 & 2: Project Info & Brief */}
           <motion.div 
@@ -98,42 +107,54 @@ export function LandingPageDetail() {
               El Arte de Vender <br className="hidden md:block"/> con Estética y Precisión
             </h2>
             
-            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#a58971]">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#a58971] mt-8 md:mt-12">
               <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">1. ¿De qué trata la web?</h3>
+                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Problema: Webs que no venden</h3>
                 <p>
-                  <strong>Café Origen</strong> es una Landing Page (página de aterrizaje) diseñada para una cafetería de especialidad y panadería artesanal de alta gama en Medellín. No es un E-commerce tradicional, sino una <strong>vitrina digital inmersiva</strong> diseñada para atraer clientes físicos al local, educarlos sobre la calidad del producto y permitirles explorar la oferta gastronómica como si leyeran una revista de estilo de vida.
+                  Tener una página web "bonita" ya no es suficiente. Si tu sitio está lleno de menús confusos, textos aburridos y tarda más de 3 segundos en cargar, el usuario simplemente se irá.
                 </p>
-                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight mt-4">2. El Brief del Cliente</h3>
                 <p>
-                  El cliente quería abandonar un diseño anterior que se sentía "muy genérico y generado por IA". Buscaba una estética <strong>cruda, cálida, editorial y humana</strong>.
+                  Las plantillas genéricas carecen de alma. No logran transmitir la verdadera calidad de tus productos ni generar la confianza necesaria para que un cliente decida comprarte o visitarte.
                 </p>
-                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                  <li><strong>Cero artificialidad:</strong> Sin sombras paralelas, gradientes exagerados, ni botones invasivos.</li>
-                  <li><strong>Sofisticación Tipográfica:</strong> Contraste fuerte entre tipografía Serif (clásica/elegante) y Monospace (técnica) para datos precisos.</li>
-                  <li><strong>Objetivo Emocional:</strong> Que el visitante "sintiera el aroma del café" solo con hacer scroll, destacando su panadería de masa madre.</li>
-                </ul>
               </div>
 
               <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">3. Arquitectura Visual</h3>
-                <p>Para orquestar esta historia en una sola página (<code>page.tsx</code>), construimos:</p>
-                <ul className="flex flex-col gap-4">
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#d37039] mt-1 text-sm">✦</span> 
-                    <span><strong>Portada de Impacto:</strong> Una primera impresión masiva con el título "El Origen del Buen Café" sobre un fondo inmersivo.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#d37039] mt-1 text-sm">✦</span> 
-                    <span><strong>Historia Visual:</strong> Imágenes a pantalla completa que se entrelazan con el texto de forma elegante para contar el origen de la Finca.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-[#d37039] mt-1 text-sm">✦</span> 
-                    <span><strong>Catálogo y Menús Tipográficos:</strong> Cuadrícula elegante de granos (Geisha, Bourbon) y menús estilo restaurante de alta cocina con líneas punteadas dinámicas.</span>
-                  </li>
+                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">La Solución: Landing Inmersiva</h3>
+                <p>
+                  Desarrollamos páginas de aterrizaje de <strong>ultra-conversión</strong>. No son simples webs, son vitrinas digitales estructuradas psicológicamente para vender.
+                </p>
+                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
+                  <li><strong>Arquitectura Persuasiva:</strong> Guiamos al usuario desde el asombro inicial hasta la conversión sin distracciones.</li>
+                  <li><strong>Identidad Editorial:</strong> Diseño crudo, tipografías premium y animaciones sutiles.</li>
+                  <li><strong>Velocidad Absoluta:</strong> Código puro y optimizado que carga al instante.</li>
                 </ul>
               </div>
             </div>
+          </motion.div>
+
+          {/* Caso de Exito: Cafe Origen */}
+          <div className="w-full max-w-[800px] mx-auto mt-12 md:mt-12 px-6 md:px-0 text-center flex flex-col items-center">
+             <h3 className="text-[28px] md:text-[40px] leading-tight text-[#e0cfba] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)]">Caso de Éxito: Café Origen</h3>
+             <p className="text-[#a58971] mt-2 mb-6 max-w-[600px] text-body-lg">
+               Cafetería de especialidad y panadería artesanal. Su web anterior se sentía "generada por IA". Construimos una vitrina editorial inmersiva para que el visitante "sintiera el aroma del café" solo con hacer scroll, atrayendo más clientes físicos al local.
+             </p>
+          </div>
+
+          {/* Boton de Visita */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="w-full flex justify-center mt-0 mb-12 md:mb-16"
+          >
+             <a 
+               href="https://el-origen-cafe.vercel.app/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               className="inline-flex items-center justify-center border border-[#d37039] text-[#d37039] hover:bg-[#d37039] hover:text-[#1c140d] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(211,112,57,0.15)] hover:shadow-[0_0_30px_rgba(211,112,57,0.3)]"
+             >
+               VISITAR CAFÉ ORIGEN EN VIVO ↗
+             </a>
           </motion.div>
 
           {/* Desktop Video Showcase with Social Proof */}
@@ -163,7 +184,7 @@ export function LandingPageDetail() {
                 </div>
                 <div className="flex flex-col font-[family-name:var(--font-ibm-plex-mono)]">
                   <span className="text-[9px] md:text-xs text-[#a58971] uppercase tracking-wider">Rendimiento</span>
-                  <span className="text-xs md:text-base text-[#e0cfba] font-bold">Puntaje Lighthouse</span>
+                  <span className="text-xs md:text-base text-[#e0cfba] font-bold">Calificación de Google</span>
                 </div>
              </motion.div>
           </motion.div>
@@ -254,7 +275,7 @@ export function LandingPageDetail() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="w-full mt-12 bg-gradient-to-br from-[#2a1e15] to-[#1c140d] border border-[#d37039]/40 rounded-3xl p-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(211,112,57,0.15)]"
+            className="w-full mt-12 bg-gradient-to-br from-[#2a1e15] to-[#1c140d] border border-[#d37039]/40 rounded-3xl px-6 py-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(211,112,57,0.15)]"
           >
             <h2 className="text-[40px] md:text-[64px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#e0cfba] uppercase">
               ¿Listo para tu propio <br /> <span className="text-[#d37039]">cambio radical?</span>

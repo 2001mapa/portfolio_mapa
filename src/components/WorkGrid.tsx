@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 
 const projects = [
   { 
+    slug: "linktree", 
+    title: "ECOSISTEMA DE ENLACES", 
+    type: "PRESENCIA DIGITAL",
+    color: "from-[#1E152A]", // Purple tint
+    video: "/videos/Stylo-Escritorio.mp4"
+  },
+  { 
     slug: "landing-page", 
     title: "LANDING PAGE EXPERIENCES", 
     type: "CONVERSION DESIGN",
@@ -29,7 +36,7 @@ const projects = [
 
 export function WorkGrid() {
   return (
-    <section id="work" className="w-full bg-obsidian text-bone py-24 md:py-[120px]">
+    <section id="work" className="w-full bg-obsidian text-bone py-12 md:py-[120px]">
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col gap-12 md:gap-24">
         
         {/* Section Wordmark */}
