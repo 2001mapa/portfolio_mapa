@@ -128,7 +128,7 @@ export default function DocumentosPage() {
               </ul>
             </div>
 
-            <div>
+            <div className="break-inside-avoid">
               <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">4. INVERSIÓN TÉCNICA</h3>
               <table className="w-full text-left border-collapse mt-4">
                 <thead>
@@ -146,7 +146,7 @@ export default function DocumentosPage() {
               </table>
             </div>
 
-            <div className="mt-8 p-6 bg-gray-50 border border-gray-200">
+            <div className="mt-8 p-6 bg-gray-50 border border-gray-200 break-inside-avoid">
               <h3 className="font-bold text-lg mb-2">SIGUIENTES PASOS</h3>
               <p>Para iniciar formalmente el proyecto y agendar el espacio en el calendario de desarrollo, requerimos la aprobación de esta propuesta y el pago del 50% de anticipo (<strong>{halfValue}</strong>). Esta cotización tiene una validez de 15 días calendario.</p>
             </div>
