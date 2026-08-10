@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { Plus, Trash2, Edit2 } from 'lucide-react';
+import { Plus, Trash2, Edit2, Archive } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 type Project = {
@@ -57,6 +57,12 @@ export default function KanbanPage() {
     const { error } = await supabase.from('projects').update({ status: newStatus }).eq('id', projectId);
     if (error) {
       fetchProjects(); // Revert on error
+    }
+  };
+
+  const handleArchive = async (projectId: string) => {
+    if(confirm('¿Estás seguro de archivar este proyecto? Desaparecerá del Kanban pero seguirá en tus Finanzas.')) {
+      handleStatusChange(projectId, 'archivado');
     }
   };
 
@@ -176,7 +182,10 @@ export default function KanbanPage() {
                         >
                           <Edit2 size={16} />
                         </button>
-                        <button onClick={() => handleDelete(project.id)} className="text-slate hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onClick={() => handleArchive(project.id)} className="text-slate hover:text-green-400 opacity-0 group-hover:opacity-100 transition-opacity" title="Archivar Proyecto">
+                          <Archive size={16} />
+                        </button>
+                        <button onClick={() => handleDelete(project.id)} className="text-slate hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" title="Eliminar Permanentemente">
                           <Trash2 size={16} />
                         </button>
                       </div>
