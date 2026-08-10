@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { jwtVerify } from 'jose';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Check if the route is under /admin but NOT the login page itself
   if (request.nextUrl.pathname.startsWith('/admin') && !request.nextUrl.pathname.startsWith('/admin/login')) {
     
@@ -9,7 +10,16 @@ export function middleware(request: NextRequest) {
     const session = request.cookies.get('admin_session');
     
     // If no session exists, redirect to login page
-    if (!session || session.value !== 'authenticated') {
+    if (!session) {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+
+    try {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-key-12345');
+      // Verify the JWT mathematically
+      await jwtVerify(session.value, secret);
+    } catch (error) {
+      // If the signature is invalid or the token expired, reject it
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
   }
