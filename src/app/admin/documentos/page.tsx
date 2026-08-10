@@ -62,8 +62,8 @@ export default function DocumentosPage() {
         {/* HEADER COMPARTIDO */}
         <div className="flex justify-between items-end border-b-2 border-black pb-6 mb-10">
           <div>
-            <h1 className="text-4xl font-black tracking-tighter uppercase font-[family-name:var(--font-die-grotesk-b)]">MIGUEL ALBORNOZ</h1>
-            <p className="tracking-widest text-sm font-bold">SOFTWARE ENGINEER & CRM EXPERT</p>
+            <img src="/icon.png" alt="Miguel Albornoz" className="h-16 w-auto object-contain grayscale" />
+            <p className="tracking-widest text-[10px] font-bold mt-2 uppercase">Software Engineer & CRM Expert</p>
           </div>
           <div className="text-right text-xs">
             <p>Fecha: {new Date().toLocaleDateString('es-CO')}</p>
