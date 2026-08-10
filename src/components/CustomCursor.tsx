@@ -79,7 +79,7 @@ export function CustomCursor() {
       {/* PUNTO CENTRAL INSTANTÁNEO */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] print:hidden"
         style={{ transform: "translate(-100px, -100px)" }}
       >
         <div 
@@ -96,7 +96,7 @@ export function CustomCursor() {
       {/* HALO EXTERIOR SUAVE */}
       <div
         ref={haloRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9998]"
+        className="fixed top-0 left-0 pointer-events-none z-[9998] print:hidden"
         style={{ transform: "translate(-100px, -100px)" }}
       >
         <div 
