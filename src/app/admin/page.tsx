@@ -37,7 +37,7 @@ export default function AdminDashboard() {
             revenue += Number(project.amount_paid || 0);
             pending += (Number(project.total_value || 0) - Number(project.amount_paid || 0));
             
-            if (project.status === 'entregado') {
+            if (project.status === 'entregado' || project.status === 'archivado') {
               completed += 1;
             } else {
               active += 1;
