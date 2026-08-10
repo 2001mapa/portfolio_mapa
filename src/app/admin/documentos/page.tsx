@@ -314,10 +314,4 @@ export default function DocumentosPage() {
       </div>
     </div>
   );
-}div>
-        )}
-      </div>
-      
-    </div>
-  );
 }
