@@ -26,6 +26,12 @@ export default function DocumentosPage() {
 
   return (
     <div className="flex flex-col gap-8 h-full print:block print:h-auto">
+      <style type="text/css" media="print">
+        {`
+          @page { margin: 0; }
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        `}
+      </style>
       
       {/* NO PRINT AREA: Controls */}
       <div className="print:hidden flex flex-col gap-6 bg-[#141210] border border-white/5 rounded-2xl p-6">
@@ -79,7 +85,7 @@ export default function DocumentosPage() {
       </div>
 
       {/* PRINT AREA: The actual Document */}
-      <div className="bg-white text-black p-10 md:p-16 rounded-xl shadow-2xl print:shadow-none print:p-0 font-[family-name:var(--font-ibm-plex-mono)] mx-auto w-full max-w-[210mm] min-h-[297mm]">
+      <div className="bg-white text-black p-10 md:p-16 rounded-xl shadow-2xl print:shadow-none print:p-16 font-[family-name:var(--font-ibm-plex-mono)] mx-auto w-full max-w-[210mm] min-h-[297mm]">
         
         {/* HEADER COMPARTIDO */}
         <div className="flex justify-between items-end border-b-2 border-black pb-6 mb-10">
