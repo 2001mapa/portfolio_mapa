@@ -249,15 +249,16 @@ export default function KanbanPage() {
                   <label className="text-xs text-slate uppercase tracking-widest block mb-2">Valor Total</label>
                   <input required type="number" value={formData.total_value} onChange={e => setFormData({...formData, total_value: Number(e.target.value)})} className="w-full bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone" />
                 </div>
-                <div className="flex flex-col gap-2">
-                <label className="text-xs text-slate uppercase tracking-widest">Valor Pagado (Anticipos)</label>
-                <input 
-                  type="number" 
-                  value={formData.amount_paid} 
-                  onChange={e => setFormData({...formData, amount_paid: Number(e.target.value)})}
-                  className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone"
-                />
-              </div>
+                <div className="flex-1">
+                  <label className="text-xs text-slate uppercase tracking-widest block mb-2">Valor Pagado</label>
+                  <input 
+                    required
+                    type="number" 
+                    value={formData.amount_paid} 
+                    onChange={e => setFormData({...formData, amount_paid: Number(e.target.value)})}
+                    className="w-full bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone"
+                  />
+                </div>
               </div>
 
               <div className="flex flex-col gap-2">
