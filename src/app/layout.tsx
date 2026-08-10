@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { CustomCursor } from "@/components/CustomCursor";
 import { FloatingCTA } from "@/components/FloatingCTA";
 import { GlobalNav } from "@/components/GlobalNav";
 import { GlobalFooter } from "@/components/GlobalFooter";
@@ -60,7 +59,6 @@ export default function RootLayout({
         <GlobalNav />
 
         <main className="flex-1 flex flex-col w-full relative z-10">
-          <CustomCursor />
           {children}
           <FloatingCTA />
         </main>
