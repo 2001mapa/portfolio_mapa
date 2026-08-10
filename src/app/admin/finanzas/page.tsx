@@ -81,12 +81,12 @@ export default function FinanzasPage() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#1c1a17] border-b border-white/5 font-[family-name:var(--font-ibm-plex-mono)] text-xs uppercase tracking-widest text-slate">
-                <th className="p-4">Cliente / Proyecto</th>
-                <th className="p-4">Estado</th>
-                <th className="p-4">Valor Total</th>
-                <th className="p-4">Abonado</th>
-                <th className="p-4">Saldo Pendiente</th>
-                <th className="p-4">Progreso de Pago</th>
+                <th className="p-4 whitespace-nowrap">Cliente / Proyecto</th>
+                <th className="p-4 whitespace-nowrap">Estado</th>
+                <th className="p-4 whitespace-nowrap">Valor Total</th>
+                <th className="p-4 whitespace-nowrap">Abonado</th>
+                <th className="p-4 whitespace-nowrap">Saldo Pendiente</th>
+                <th className="p-4 whitespace-nowrap">Progreso de Pago</th>
               </tr>
             </thead>
             <tbody>
@@ -110,19 +110,19 @@ export default function FinanzasPage() {
                       key={project.id} 
                       className="border-b border-white/5 hover:bg-white/5 transition-colors"
                     >
-                      <td className="p-4">
+                      <td className="p-4 whitespace-nowrap">
                         <p className="font-bold text-bone">{project.client_name}</p>
                         <p className="text-xs text-slate">{project.project_name}</p>
                       </td>
-                      <td className="p-4">
+                      <td className="p-4 whitespace-nowrap">
                         <span className="text-[10px] uppercase tracking-widest px-2 py-1 rounded-full border border-white/10 bg-white/5 text-slate">
                           {project.status}
                         </span>
                       </td>
-                      <td className="p-4 font-[family-name:var(--font-ibm-plex-mono)] text-sm">{formatCurrency(project.total_value)}</td>
-                      <td className="p-4 font-[family-name:var(--font-ibm-plex-mono)] text-sm text-green-400">{formatCurrency(project.amount_paid)}</td>
-                      <td className="p-4 font-[family-name:var(--font-ibm-plex-mono)] text-sm text-orange-400">{formatCurrency(pending)}</td>
-                      <td className="p-4">
+                      <td className="p-4 whitespace-nowrap font-[family-name:var(--font-ibm-plex-mono)] text-sm">{formatCurrency(project.total_value)}</td>
+                      <td className="p-4 whitespace-nowrap font-[family-name:var(--font-ibm-plex-mono)] text-sm text-green-400">{formatCurrency(project.amount_paid)}</td>
+                      <td className="p-4 whitespace-nowrap font-[family-name:var(--font-ibm-plex-mono)] text-sm text-orange-400">{formatCurrency(pending)}</td>
+                      <td className="p-4 whitespace-nowrap">
                         <div className="flex items-center gap-3">
                           <div className="w-full bg-white/10 rounded-full h-2">
                             <div className="bg-green-400 h-2 rounded-full" style={{ width: `${Math.min(progress, 100)}%` }}></div>

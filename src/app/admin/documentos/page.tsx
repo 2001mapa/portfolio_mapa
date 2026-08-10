@@ -94,7 +94,7 @@ export default function DocumentosPage() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
           <div className="flex flex-col gap-2">
             <label className="text-xs text-slate uppercase tracking-widest">Tipo</label>
             <select value={docType} onChange={e => setDocType(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
@@ -150,7 +150,7 @@ export default function DocumentosPage() {
           </div>
         )}
 
-        <div className="flex gap-4 mt-4">
+        <div className="flex flex-col sm:flex-row gap-4 mt-4">
           <button onClick={handlePrint} className="flex-1 bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-center items-center gap-2">
             <Download size={18} /> Descargar PDF
           </button>

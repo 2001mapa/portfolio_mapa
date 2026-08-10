@@ -66,42 +66,44 @@ export default function AdminDashboard() {
 
   return (
     <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="text-3xl font-[family-name:var(--font-die-grotesk-b)] mb-2">Resumen Financiero</h1>
-        <p className="text-slate text-sm">Vista general del rendimiento de tu negocio freelance.</p>
+      <div className="flex justify-between items-start mb-8">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-[family-name:var(--font-die-grotesk-b)] mb-2">Resumen Financiero</h1>
+          <p className="text-slate text-sm">Vista general del rendimiento de tu negocio freelance.</p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
-          <div className="flex justify-between items-start mb-4">
-            <p className="text-slate text-sm font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-wider">Ingresos Totales</p>
-            <div className="p-2 bg-green-500/10 text-green-400 rounded-lg"><CreditCard size={20} /></div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xs text-slate uppercase tracking-widest">Ingresos Totales</h3>
+            <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400"><CreditCard size={16} /></div>
           </div>
-          <h3 className="text-3xl font-[family-name:var(--font-die-grotesk-b)]">{formatCurrency(stats.totalRevenue)}</h3>
+          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-bone break-words truncate">{formatCurrency(stats.totalRevenue)}</p>
+        </motion.div>
+
+        <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{delay:0.1}} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xs text-slate uppercase tracking-widest">Por Cobrar</h3>
+            <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400"><Clock size={16} /></div>
+          </div>
+          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-orange-400 break-words truncate">{formatCurrency(stats.totalPending)}</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
-          <div className="flex justify-between items-start mb-4">
-            <p className="text-slate text-sm font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-wider">Por Cobrar</p>
-            <div className="p-2 bg-orange-500/10 text-orange-400 rounded-lg"><Clock size={20} /></div>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xs text-slate uppercase tracking-widest">Proyectos Activos</h3>
+            <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400"><Briefcase size={16} /></div>
           </div>
-          <h3 className="text-3xl font-[family-name:var(--font-die-grotesk-b)] text-orange-400">{formatCurrency(stats.totalPending)}</h3>
+          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-bone break-words truncate">{stats.activeProjects}</p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
-          <div className="flex justify-between items-start mb-4">
-            <p className="text-slate text-sm font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-wider">Proyectos Activos</p>
-            <div className="p-2 bg-blue-500/10 text-blue-400 rounded-lg"><Briefcase size={20} /></div>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xs text-slate uppercase tracking-widest">Entregados</h3>
+            <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400"><CheckCircle size={16} /></div>
           </div>
-          <h3 className="text-3xl font-[family-name:var(--font-die-grotesk-b)]">{stats.activeProjects}</h3>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
-          <div className="flex justify-between items-start mb-4">
-            <p className="text-slate text-sm font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-wider">Entregados</p>
-            <div className="p-2 bg-purple-500/10 text-purple-400 rounded-lg"><CheckCircle size={20} /></div>
-          </div>
-          <h3 className="text-3xl font-[family-name:var(--font-die-grotesk-b)]">{stats.completedProjects}</h3>
+          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-bone break-words truncate">{stats.completedProjects}</p>
         </motion.div>
       </div>
     </div>

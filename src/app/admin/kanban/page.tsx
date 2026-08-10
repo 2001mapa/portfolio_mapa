@@ -153,13 +153,13 @@ export default function KanbanPage() {
         </div>
       </div>
 
-      <div className="flex gap-6 overflow-x-auto pb-4 h-full scrollbar-hide">
+      <div className="flex gap-6 overflow-x-auto pb-4 h-full scrollbar-hide snap-x snap-mandatory">
         {columns.map(col => (
           <div 
             key={col.id} 
             onDragOver={handleDragOver}
             onDrop={(e) => handleDrop(e, col.id)}
-            className="flex-1 min-w-[240px] max-w-[320px] flex flex-col gap-4"
+            className="flex-1 min-w-[280px] md:min-w-[320px] snap-center flex flex-col gap-4"
           >
             <div className={`p-3 rounded-lg border border-white/5 bg-[#141210] flex justify-between items-center`}>
               <h3 className="font-bold tracking-tight uppercase text-sm text-slate">{col.title}</h3>
@@ -249,11 +249,31 @@ export default function KanbanPage() {
                   <label className="text-xs text-slate uppercase tracking-widest block mb-2">Valor Total</label>
                   <input required type="number" value={formData.total_value} onChange={e => setFormData({...formData, total_value: Number(e.target.value)})} className="w-full bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone" />
                 </div>
-                <div className="flex-1">
-                  <label className="text-xs text-slate uppercase tracking-widest block mb-2">Abono Inicial</label>
-                  <input required type="number" value={formData.amount_paid} onChange={e => setFormData({...formData, amount_paid: Number(e.target.value)})} className="w-full bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone" />
-                </div>
+                <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest">Valor Pagado (Anticipos)</label>
+                <input 
+                  type="number" 
+                  value={formData.amount_paid} 
+                  onChange={e => setFormData({...formData, amount_paid: Number(e.target.value)})}
+                  className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone"
+                />
               </div>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest text-blue-400">Estado del Proyecto</label>
+                <select 
+                  value={formData.status} 
+                  onChange={e => setFormData({...formData, status: e.target.value})}
+                  className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone"
+                >
+                  <option value="cotizando" className="text-black">Cotizando / Leads</option>
+                  <option value="desarrollo" className="text-black">En Desarrollo</option>
+                  <option value="revision" className="text-black">En Revisión</option>
+                  <option value="entregado" className="text-black">Entregado</option>
+                </select>
+              </div>
+
               <div className="flex justify-end gap-4 mt-4">
                 <button type="button" onClick={() => { setIsModalOpen(false); setEditingId(null); setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' }); }} className="px-6 py-3 rounded-xl text-slate hover:text-white">Cancelar</button>
                 <button type="submit" className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors">{editingId ? 'Guardar Cambios' : 'Crear'}</button>
