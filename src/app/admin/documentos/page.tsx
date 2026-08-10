@@ -20,7 +20,7 @@ export default function DocumentosPage() {
   const halfValue = formatCurrency((Number(projectValue) / 2).toString());
 
   return (
-    <div className="flex flex-col gap-8 h-full">
+    <div className="flex flex-col gap-8 h-full print:block print:h-auto">
       
       {/* NO PRINT AREA: Controls */}
       <div className="print:hidden flex flex-col gap-6 bg-[#141210] border border-white/5 rounded-2xl p-6">

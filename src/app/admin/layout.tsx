@@ -14,9 +14,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="flex h-screen bg-obsidian text-bone font-[family-name:var(--font-ibm-plex-mono)]">
+    <div className="flex h-screen print:h-auto print:block bg-obsidian text-bone font-[family-name:var(--font-ibm-plex-mono)]">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-white/5 bg-[#141210] flex flex-col justify-between">
+      <aside className="w-64 border-r border-white/5 bg-[#141210] flex flex-col justify-between print:hidden">
         <div>
           <div className="p-6 border-b border-white/5">
             <h2 className="text-xl font-[family-name:var(--font-die-grotesk-b)] tracking-tight">MAPA ADMIN</h2>
@@ -66,8 +66,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-obsidian relative">
-        <div className="p-8 lg:p-12 max-w-7xl mx-auto">
+      <main className="flex-1 overflow-y-auto bg-obsidian relative print:overflow-visible print:bg-white">
+        <div className="p-8 lg:p-12 max-w-7xl mx-auto print:p-0 print:m-0 print:max-w-none">
           {children}
         </div>
       </main>
