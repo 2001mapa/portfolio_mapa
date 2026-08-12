@@ -218,8 +218,8 @@ export default function DocumentosPage() {
               <p className="tracking-widest text-[10px] font-bold mt-2 uppercase">Software Engineer & CRM Expert</p>
             </div>
             <div className="text-right text-xs">
-              <p>Fecha: {new Date().toLocaleDateString('es-CO')}</p>
-              <p>Cliente: <strong>{clientName}</strong></p>
+              <p>Fecha: <span contentEditable suppressContentEditableWarning className="outline-none hover:bg-gray-50 cursor-text">{new Date().toLocaleDateString('es-CO')}</span></p>
+              <p>Cliente: <strong contentEditable suppressContentEditableWarning onBlur={e => setClientName(e.currentTarget.textContent || '')} className="outline-none hover:bg-gray-50 cursor-text">{clientName}</strong></p>
               {docType === 'factura' && <p>Recibo No. {Math.floor(Math.random() * 90000) + 10000}</p>}
             </div>
           </div>
@@ -230,14 +230,14 @@ export default function DocumentosPage() {
               <h2 className="text-2xl font-black font-[family-name:var(--font-die-grotesk-b)] uppercase text-center mb-4">Propuesta Comercial Formal</h2>
               
               <div>
-                <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">1. DIAGNÓSTICO Y SOLUCIÓN</h3>
-                <p className="mb-2 text-gray-700 italic">"{problemText}"</p>
-                <p>Desarrollaremos un <strong>{projectName}</strong>. {solutionText}</p>
+                <h3 className="font-bold border-b border-gray-300 mb-2 pb-1" contentEditable suppressContentEditableWarning>1. DIAGNÓSTICO Y SOLUCIÓN</h3>
+                <p className="mb-2 text-gray-700 italic outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning onBlur={e => setProblemText(e.currentTarget.textContent || '')}>"{problemText}"</p>
+                <p className="outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning onBlur={e => setSolutionText(e.currentTarget.textContent || '')}>Desarrollaremos un <strong>{projectName}</strong>. {solutionText}</p>
               </div>
 
               <div>
-                <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">2. ALCANCE TÉCNICO Y ENTREGABLES</h3>
-                <ul className="list-disc pl-5 flex flex-col gap-2">
+                <h3 className="font-bold border-b border-gray-300 mb-2 pb-1" contentEditable suppressContentEditableWarning>2. ALCANCE TÉCNICO Y ENTREGABLES</h3>
+                <ul className="list-disc pl-5 flex flex-col gap-2 outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning onBlur={e => setDeliverablesText(e.currentTarget.innerText || '')}>
                   {deliverablesText.split('\n').map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
@@ -245,9 +245,9 @@ export default function DocumentosPage() {
               </div>
 
               <div>
-                <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">3. CRONOGRAMA DE EJECUCIÓN</h3>
-                <p className="mb-2">El tiempo comienza a correr tras la entrega total de insumos y el pago del anticipo.</p>
-                <ul className="list-disc pl-5 flex flex-col gap-1">
+                <h3 className="font-bold border-b border-gray-300 mb-2 pb-1" contentEditable suppressContentEditableWarning>3. CRONOGRAMA DE EJECUCIÓN</h3>
+                <p className="mb-2 outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning>El tiempo comienza a correr tras la entrega total de insumos y el pago del anticipo.</p>
+                <ul className="list-disc pl-5 flex flex-col gap-1 outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning onBlur={e => setTimelineText(e.currentTarget.innerText || '')}>
                   {timelineText.split('\n').map((item, index) => (
                     <li key={index}><strong>{item.split(':')[0]}:</strong> {item.split(':')[1] || ''}</li>
                   ))}
