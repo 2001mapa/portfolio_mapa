@@ -20,6 +20,7 @@ export default function DocumentosPage() {
   const [projectName, setProjectName] = useState('E-commerce Nivel 2');
   const [projectValue, setProjectValue] = useState('3000000');
   const [amountPaid, setAmountPaid] = useState('1500000');
+  const [currency, setCurrency] = useState<'COP' | 'USD'>('COP');
   
   // Campos personalizables de la propuesta
   const [problemText, setProblemText] = useState('Actualmente el proceso de ventas es manual, se pierde tiempo respondiendo mensajes y no hay un sistema centralizado.');
@@ -60,7 +61,11 @@ export default function DocumentosPage() {
   };
 
   const formatCurrency = (amount: string | number) => {
-    return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(Number(amount));
+    return new Intl.NumberFormat(currency === 'COP' ? 'es-CO' : 'en-US', { 
+      style: 'currency', 
+      currency: currency, 
+      maximumFractionDigits: currency === 'COP' ? 0 : 2 
+    }).format(Number(amount));
   };
 
   const halfValue = formatCurrency((Number(projectValue) / 2));
@@ -94,7 +99,14 @@ export default function DocumentosPage() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
+          <div className="flex flex-col gap-2">
+            <label className="text-xs text-slate uppercase tracking-widest">Moneda</label>
+            <select value={currency} onChange={e => setCurrency(e.target.value as 'COP' | 'USD')} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
+              <option value="COP">COP ($)</option>
+              <option value="USD">USD (US$)</option>
+            </select>
+          </div>
           <div className="flex flex-col gap-2">
             <label className="text-xs text-slate uppercase tracking-widest">Tipo</label>
             <select value={docType} onChange={e => setDocType(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
@@ -112,11 +124,11 @@ export default function DocumentosPage() {
             <input type="text" value={projectName} onChange={e => setProjectName(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Valor Base (COP)</label>
+            <label className="text-xs text-slate uppercase tracking-widest">Valor Base ({currency})</label>
             <input type="number" value={projectValue} onChange={e => setProjectValue(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
           </div>
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Valor Abonado (COP)</label>
+            <label className="text-xs text-slate uppercase tracking-widest">Valor Abonado ({currency})</label>
             <input type="number" value={amountPaid} onChange={e => setAmountPaid(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
           </div>
         </div>
@@ -235,7 +247,7 @@ export default function DocumentosPage() {
                   <thead>
                     <tr className="bg-gray-100">
                       <th className="p-3 border border-gray-300">Descripción del Servicio</th>
-                      <th className="p-3 border border-gray-300 w-1/3">Valor (COP)</th>
+                      <th className="p-3 border border-gray-300 w-1/3">Valor ({currency})</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -305,7 +317,7 @@ export default function DocumentosPage() {
                 <thead>
                   <tr className="bg-gray-100">
                     <th className="p-4 border border-gray-300">Descripción</th>
-                    <th className="p-4 border border-gray-300 text-right w-1/3">Monto (COP)</th>
+                    <th className="p-4 border border-gray-300 text-right w-1/3">Importe ({currency})</th>
                   </tr>
                 </thead>
                 <tbody>
