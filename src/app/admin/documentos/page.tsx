@@ -258,15 +258,22 @@ export default function DocumentosPage() {
               
               <p>Entre los suscritos, por una parte, <strong>MIGUEL ALBORNOZ</strong>, en adelante EL CONTRATISTA, y por la otra <strong>{clientName}</strong>, en adelante EL CLIENTE, hemos convenido celebrar el presente contrato:</p>
 
-              <p><strong>PRIMERA - OBJETO:</strong> EL CONTRATISTA se compromete a desarrollar y entregar un <strong>{projectName}</strong> con las especificaciones detalladas en la Propuesta Comercial previamente enviada.</p>
+              <p className="outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning><strong>PRIMERA - OBJETO:</strong> EL CONTRATISTA se compromete a desarrollar y entregar un <strong>{projectName}</strong> con las especificaciones detalladas en la Propuesta Comercial previamente enviada.</p>
 
-              <p><strong>SEGUNDA - LÍMITES:</strong> Cualquier módulo extra, página adicional o integración de pasarela de pagos que no esté expresamente descrita en la cotización inicial, será considerada fuera de alcance, cotizada y facturada de manera independiente.</p>
+              <p className="outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning><strong>SEGUNDA - LÍMITES:</strong> Cualquier módulo extra, página adicional o integración de pasarela de pagos que no esté expresamente descrita en la cotización inicial, será considerada fuera de alcance, cotizada y facturada de manera independiente.</p>
 
-              <p><strong>TERCERA - OBLIGACIONES:</strong> EL CLIENTE se compromete a entregar todos los insumos necesarios en los tiempos estipulados. Los retrasos mayores a 3 días hábiles en la entrega de material pausarán el cronograma de desarrollo. Si EL CLIENTE suspende la comunicación por 30 días, el proyecto se considerará abandonado sin devolución del anticipo (Cláusula de Abandono).</p>
+              <p className="outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning><strong>TERCERA - OBLIGACIONES:</strong> EL CLIENTE se compromete a entregar todos los insumos necesarios en los tiempos estipulados. Los retrasos mayores a 3 días hábiles en la entrega de material pausarán el cronograma de desarrollo. Si EL CLIENTE suspende la comunicación por 30 días, el proyecto se considerará abandonado sin devolución del anticipo (Cláusula de Abandono).</p>
 
-              <p><strong>CUARTA - FORMA DE PAGO:</strong> El valor total del proyecto es de <strong>{formatCurrency(projectValue)}</strong>. Se pagará 50% (<strong>{halfValue}</strong>) como anticipo no reembolsable. El 50% restante (<strong>{halfValue}</strong>) se pagará contra entrega en entorno de pruebas y <strong>estrictamente antes</strong> de la migración al dominio final o entrega del código fuente.</p>
+              <p className="outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning><strong>CUARTA - FORMA DE PAGO:</strong> El valor total del proyecto es de <strong>{formatCurrency(projectValue)}</strong>. Se pagará 50% (<strong>{halfValue}</strong>) como anticipo no reembolsable. El 50% restante (<strong>{halfValue}</strong>) se pagará contra entrega en entorno de pruebas y <strong>estrictamente antes</strong> de la migración al dominio final o entrega del código fuente.</p>
 
-              <p><strong>QUINTA - PROPIEDAD Y GARANTÍA:</strong> Tras el pago del 100%, los derechos de uso comercial pasarán a EL CLIENTE. EL CONTRATISTA se reserva el derecho de exhibir el proyecto finalizado en su portafolio. Se ofrece garantía de 15 días para la corrección de errores de código (bugs). La garantía se anula si terceros alteran el código.</p>
+              <p className="outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning><strong>QUINTA - PROPIEDAD Y GARANTÍA:</strong> Tras el pago del 100%, los derechos de uso comercial pasarán a EL CLIENTE. Se ofrece garantía de 15 días para la corrección de errores de código (bugs). La garantía se anula si terceros alteran el código.</p>
+
+              <p className="outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning><strong>SEXTA - EXHIBICIÓN EN PORTAFOLIO:</strong> EL CLIENTE marca con una "X" si autoriza a EL CONTRATISTA a exhibir piezas gráficas y mención del proyecto en su portafolio público con fines demostrativos:</p>
+              
+              <p className="pl-4 outline-none hover:bg-gray-50 cursor-text" contentEditable suppressContentEditableWarning>
+                (&nbsp;&nbsp;&nbsp;) <strong>SÍ</strong>, autorizo la exhibición. <br/>
+                (&nbsp;&nbsp;&nbsp;) <strong>NO</strong>, requiero total privacidad.
+              </p>
 
               <div className="flex justify-between mt-20 pt-4 border-t border-gray-300">
                 <div className="w-[45%] text-center">
