@@ -99,65 +99,78 @@ export default function DocumentosPage() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4">
-          <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Moneda</label>
-            <select value={currency} onChange={e => setCurrency(e.target.value as 'COP' | 'USD')} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
-              <option value="COP">COP ($)</option>
-              <option value="USD">USD (US$)</option>
-            </select>
+        <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Moneda</label>
+              <select value={currency} onChange={e => setCurrency(e.target.value as 'COP' | 'USD')} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
+                <option value="COP">COP ($)</option>
+                <option value="USD">USD (US$)</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Tipo</label>
+              <select value={docType} onChange={e => setDocType(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
+                <option value="cotizacion">Propuesta Comercial</option>
+                <option value="contrato">Contrato de Servicios</option>
+                <option value="factura">Factura / Recibo</option>
+              </select>
+            </div>
+            <div className="flex flex-col gap-2 md:col-span-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Cliente / Empresa</label>
+              <input type="text" value={clientName} onChange={e => setClientName(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
+            </div>
           </div>
-          <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Tipo</label>
-            <select value={docType} onChange={e => setDocType(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone">
-              <option value="cotizacion">Propuesta Comercial</option>
-              <option value="contrato">Contrato de Servicios</option>
-              <option value="factura">Factura / Recibo</option>
-            </select>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Cliente / Empresa</label>
-            <input type="text" value={clientName} onChange={e => setClientName(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Servicio Base</label>
-            <input type="text" value={projectName} onChange={e => setProjectName(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Valor Base ({currency})</label>
-            <input type="number" value={projectValue} onChange={e => setProjectValue(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label className="text-xs text-slate uppercase tracking-widest">Valor Abonado ({currency})</label>
-            <input type="number" value={amountPaid} onChange={e => setAmountPaid(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Servicio Base</label>
+              <input type="text" value={projectName} onChange={e => setProjectName(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Valor Base ({currency})</label>
+              <input type="number" value={projectValue} onChange={e => setProjectValue(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-xs text-slate uppercase tracking-widest">Valor Abonado ({currency})</label>
+              <input type="number" value={amountPaid} onChange={e => setAmountPaid(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
+            </div>
           </div>
         </div>
 
         {docType === 'cotizacion' && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/10 pt-6 mt-2">
-            <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest text-orange-400">El Problema / Dolor</label>
-              <textarea value={problemText} onChange={e => setProblemText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+          <div className="flex flex-col gap-4 border-t border-white/10 pt-6 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest text-orange-400">El Problema / Dolor</label>
+                <textarea value={problemText} onChange={e => setProblemText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest text-green-400">La Solución Propuesta</label>
+                <textarea value={solutionText} onChange={e => setSolutionText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest text-green-400">La Solución Propuesta</label>
-              <textarea value={solutionText} onChange={e => setSolutionText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest text-blue-400">Validez (Días)</label>
+                <input type="number" value={validityDays} onChange={e => setValidityDays(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone h-full" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest">Cronograma Fases</label>
+                <textarea value={timelineText} onChange={e => setTimelineText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest">Módulos Opcionales</label>
+                <textarea value={optionalModulesText} onChange={e => setOptionalModulesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" placeholder="Deja vacío si no hay opcionales" />
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest text-blue-400">Validez (Días)</label>
-              <input type="number" value={validityDays} onChange={e => setValidityDays(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest">Entregables Principales</label>
-              <textarea value={deliverablesText} onChange={e => setDeliverablesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest">Módulos Opcionales</label>
-              <textarea value={optionalModulesText} onChange={e => setOptionalModulesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" placeholder="Deja vacío si no hay opcionales" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate uppercase tracking-widest">Cronograma Fases</label>
-              <textarea value={timelineText} onChange={e => setTimelineText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+            
+            <div className="grid grid-cols-1 gap-4">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs text-slate uppercase tracking-widest">Entregables Principales</label>
+                <textarea value={deliverablesText} onChange={e => setDeliverablesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
+              </div>
             </div>
           </div>
         )}
