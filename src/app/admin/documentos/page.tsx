@@ -138,42 +138,7 @@ export default function DocumentosPage() {
           </div>
         </div>
 
-        {docType === 'cotizacion' && (
-          <div className="flex flex-col gap-4 border-t border-white/10 pt-6 mt-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-2">
-                <label className="text-xs text-slate uppercase tracking-widest text-orange-400">El Problema / Dolor</label>
-                <textarea value={problemText} onChange={e => setProblemText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-xs text-slate uppercase tracking-widest text-green-400">La Solución Propuesta</label>
-                <textarea value={solutionText} onChange={e => setSolutionText(e.target.value)} rows={3} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="flex flex-col gap-2">
-                <label className="text-xs text-slate uppercase tracking-widest text-blue-400">Validez (Días)</label>
-                <input type="number" value={validityDays} onChange={e => setValidityDays(e.target.value)} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone h-full" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-xs text-slate uppercase tracking-widest">Cronograma Fases</label>
-                <textarea value={timelineText} onChange={e => setTimelineText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-xs text-slate uppercase tracking-widest">Módulos Opcionales</label>
-                <textarea value={optionalModulesText} onChange={e => setOptionalModulesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" placeholder="Deja vacío si no hay opcionales" />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 gap-4">
-              <div className="flex flex-col gap-2">
-                <label className="text-xs text-slate uppercase tracking-widest">Entregables Principales</label>
-                <textarea value={deliverablesText} onChange={e => setDeliverablesText(e.target.value)} rows={4} className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone text-xs" />
-              </div>
-            </div>
-          </div>
-        )}
+
 
         <div className="flex flex-col sm:flex-row gap-4 mt-4">
           <button onClick={handlePrint} className="flex-1 bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors flex justify-center items-center gap-2">
