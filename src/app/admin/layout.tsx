@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { LayoutDashboard, FileText, Kanban, CircleDollarSign, LogOut, Menu, X, Briefcase } from 'lucide-react';
+import { LayoutDashboard, FileText, Kanban, CircleDollarSign, LogOut, Menu, X } from 'lucide-react';
 import { logoutAction } from './actions';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -80,15 +80,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <CircleDollarSign size={18} />
               <span>Finanzas</span>
             </Link>
-            <Link 
-              href="/resume"
-              onClick={() => setIsSidebarOpen(false)}
-              target="_blank"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-slate hover:bg-white/5 hover:text-bone"
-            >
-              <Briefcase size={18} />
-              <span>Mi CV</span>
-            </Link>
+
           </nav>
         </div>
 
