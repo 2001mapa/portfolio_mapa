@@ -1,3 +1,5 @@
+"use client";
+
 export default function ResumePage() {
   return (
     <div className="bg-white text-black min-h-screen p-8 md:p-16 font-sans">
