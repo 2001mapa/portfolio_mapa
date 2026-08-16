@@ -2,8 +2,15 @@
 
 export default function ResumePage() {
   return (
-    <div className="bg-white text-black min-h-screen p-8 md:p-16 font-sans">
-      <div className="max-w-4xl mx-auto bg-white" id="resume-content">
+    <>
+      <style dangerouslySetInnerHTML={{__html: `
+        @media print {
+          @page { margin: 0; size: letter; }
+          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+      `}} />
+      <div className="bg-white text-black min-h-screen p-8 md:p-16 print:py-8 print:px-12 font-sans">
+        <div className="max-w-4xl mx-auto bg-white" id="resume-content">
         
         {/* HEADER */}
         <header className="text-center border-b-2 border-black pb-4 mb-6">
@@ -26,16 +33,16 @@ export default function ResumePage() {
         </header>
 
         {/* RESUMEN PROFESIONAL */}
-        <section className="mb-6">
-          <h2 className="text-xl font-bold uppercase border-b border-black mb-3 pb-1">Resumen Profesional</h2>
+        <section className="mb-6 print:mb-4">
+          <h2 className="text-xl print:text-lg font-bold uppercase border-b border-black mb-3 print:mb-2 pb-1">Resumen Profesional</h2>
           <p className="text-justify text-sm leading-relaxed">
             Técnico Laboral en Desarrollo de Software especializado en la creación de aplicaciones web modernas, plataformas E-commerce y sistemas ERP a medida. Experiencia práctica en el stack Next.js, React, TypeScript, Tailwind CSS, Supabase y PostgreSQL, integrando herramientas de Inteligencia Artificial para optimizar flujos de desarrollo. Sólida trayectoria previa en gestión de inventarios y administración comercial, aportando una visión estratégica enfocada en resultados del negocio.
           </p>
         </section>
 
         {/* HABILIDADES TÉCNICAS */}
-        <section className="mb-6">
-          <h2 className="text-xl font-bold uppercase border-b border-black mb-3 pb-1">Habilidades Técnicas</h2>
+        <section className="mb-6 print:mb-4">
+          <h2 className="text-xl print:text-lg font-bold uppercase border-b border-black mb-3 print:mb-2 pb-1">Habilidades Técnicas</h2>
           <ul className="list-disc list-inside text-sm leading-relaxed space-y-1">
             <li><strong>Lenguajes y Frontend:</strong> JavaScript (ES6+), TypeScript, HTML5, CSS3, React.js, Next.js, Tailwind CSS.</li>
             <li><strong>Backend y Bases de Datos:</strong> Supabase, PostgreSQL, Node.js, API RESTful.</li>
@@ -45,8 +52,8 @@ export default function ResumePage() {
         </section>
 
         {/* EXPERIENCIA LABORAL */}
-        <section className="mb-6">
-          <h2 className="text-xl font-bold uppercase border-b border-black mb-3 pb-1">Experiencia Laboral</h2>
+        <section className="mb-6 print:mb-4">
+          <h2 className="text-xl print:text-lg font-bold uppercase border-b border-black mb-3 print:mb-2 pb-1">Experiencia Laboral</h2>
           
           <div className="mb-4">
             <div className="flex justify-between items-baseline mb-1">
@@ -87,8 +94,8 @@ export default function ResumePage() {
         </section>
 
         {/* EDUCACIÓN Y FORMACIÓN */}
-        <section className="mb-6">
-          <h2 className="text-xl font-bold uppercase border-b border-black mb-3 pb-1">Educación y Formación</h2>
+        <section className="mb-6 print:mb-4">
+          <h2 className="text-xl print:text-lg font-bold uppercase border-b border-black mb-3 print:mb-2 pb-1">Educación y Formación</h2>
           
           <div className="mb-3">
             <div className="flex justify-between items-baseline">
@@ -108,8 +115,8 @@ export default function ResumePage() {
         </section>
 
         {/* IDIOMAS */}
-        <section className="mb-6">
-          <h2 className="text-xl font-bold uppercase border-b border-black mb-3 pb-1">Idiomas</h2>
+        <section className="mb-6 print:mb-4">
+          <h2 className="text-xl print:text-lg font-bold uppercase border-b border-black mb-3 print:mb-2 pb-1">Idiomas</h2>
           <ul className="list-disc list-inside text-sm leading-relaxed space-y-1">
             <li><strong>Español:</strong> Nativo</li>
             <li><strong>Inglés:</strong> Lectura técnica / Intermedio en desarrollo</li>
@@ -127,6 +134,7 @@ export default function ResumePage() {
           Imprimir / Guardar como PDF
         </button>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
