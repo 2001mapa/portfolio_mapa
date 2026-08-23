@@ -32,16 +32,22 @@ export default function LoginPage() {
     const submitPin = async () => {
       if (pin.length === 4) {
         setIsPending(true);
-        const result = await loginAction(pin);
-        
-        if (result?.error) {
-          setError(result.error);
+        try {
+          const result = await loginAction(pin);
+          
+          if (result?.error) {
+            setError(result.error);
+            setPin('');
+            setShake(true);
+            setTimeout(() => setShake(false), 500);
+            setIsPending(false);
+          } else if (result?.success) {
+            window.location.href = '/admin';
+          }
+        } catch (err: any) {
+          setError(err?.message || 'Error del servidor al iniciar sesión');
           setPin('');
-          setShake(true);
-          setTimeout(() => setShake(false), 500);
           setIsPending(false);
-        } else if (result?.success) {
-          window.location.href = '/admin';
         }
       }
     };
