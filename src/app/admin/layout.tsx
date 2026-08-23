@@ -83,7 +83,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between px-4 pb-4 pt-[calc(1rem+env(safe-area-inset-top))] border-b border-white/5 bg-obsidian/90 backdrop-blur-md fixed top-0 w-full z-40 transition-all">
-        <h1 className="font-[family-name:var(--font-die-grotesk-b)] text-bone text-lg">MAPA Admin</h1>
+        <h1 className="font-[family-name:var(--font-die-grotesk-b)] text-bone text-lg">CRM</h1>
         <button 
           onClick={() => setIsSidebarOpen(true)}
           className="text-bone p-2 hover:bg-white/5 rounded-full transition-colors"
@@ -107,11 +107,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <div>
           <div className="p-6 border-b border-white/5 flex justify-between items-center">
             <div>
-              <h2 className="text-xl font-[family-name:var(--font-die-grotesk-b)] tracking-tight">MAPA ADMIN</h2>
-              <p className="text-xs text-slate mt-1">V1.0.0 // CRM SYSTEM</p>
+              <h2 className="text-xl font-[family-name:var(--font-die-grotesk-b)] tracking-tight">CRM</h2>
+              <p className="text-xs text-slate mt-1">v0.1.0 (Beta)</p>
             </div>
-            <button className="md:hidden text-slate hover:text-white" onClick={() => setIsSidebarOpen(false)}>
-              <X size={24} />
+            <button 
+              onClick={() => setIsSidebarOpen(false)}
+              className="md:hidden p-2 text-slate hover:text-white"
+            >
+              <X size={20} />
             </button>
           </div>
           
@@ -172,7 +175,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </button>
         </div>
       </aside>      {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-obsidian relative print:overflow-visible print:bg-white pt-[calc(3rem+env(safe-area-inset-top))] md:pt-0">
+      <main className="flex-1 overflow-y-auto bg-obsidian relative print:overflow-visible print:bg-white pt-[calc(5rem+env(safe-area-inset-top))] md:pt-0">
         <div className="p-4 pb-[calc(5rem+env(safe-area-inset-bottom))] md:p-8 md:pb-8 lg:p-12 max-w-7xl mx-auto print:p-0 print:m-0 print:max-w-none">
           {children}
         </div>
