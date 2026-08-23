@@ -1,20 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { projectService, Project } from '@/services/projectService';
 import { Plus, Trash2, Edit2, Archive, ArchiveRestore } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
-
-type Project = {
-  id: string;
-  client_name: string;
-  project_name: string;
-  status: string;
-  total_value: number;
-  amount_paid: number;
-  created_at: string;
-};
 
 export default function KanbanPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -42,9 +32,11 @@ export default function KanbanPage() {
 
   const fetchProjects = async () => {
     setLoading(true);
-    const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
-    if (!error && data) {
+    try {
+      const data = await projectService.getAll();
       setProjects(data);
+    } catch (error) {
+      toast.error('Error al cargar proyectos');
     }
     setLoading(false);
   };
@@ -56,9 +48,11 @@ export default function KanbanPage() {
   const handleStatusChange = async (projectId: string, newStatus: string) => {
     // Optimistic UI update
     setProjects(prev => prev.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
-    const { error } = await supabase.from('projects').update({ status: newStatus }).eq('id', projectId);
-    if (error) {
+    try {
+      await projectService.updateStatus(projectId, newStatus);
+    } catch (error) {
       fetchProjects(); // Revert on error
+      toast.error('Error al actualizar el estado');
     }
   };
 
@@ -79,8 +73,13 @@ export default function KanbanPage() {
       action: {
         label: 'Eliminar',
         onClick: async () => {
-          const { error } = await supabase.from('projects').delete().eq('id', projectId);
-          if (!error) fetchProjects();
+          try {
+            await projectService.remove(projectId);
+            fetchProjects();
+            toast.success('Proyecto eliminado');
+          } catch (error) {
+            toast.error('Error al eliminar');
+          }
         }
       },
       cancel: { label: 'Cancelar', onClick: () => {} }
@@ -89,21 +88,20 @@ export default function KanbanPage() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editingId) {
-      const { error } = await supabase.from('projects').update(formData).eq('id', editingId);
-      if (!error) {
-        setIsModalOpen(false);
-        setEditingId(null);
-        setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' });
-        fetchProjects();
+    try {
+      if (editingId) {
+        await projectService.update(editingId, formData);
+        toast.success('Proyecto actualizado');
+      } else {
+        await projectService.create(formData);
+        toast.success('Proyecto creado');
       }
-    } else {
-      const { error } = await supabase.from('projects').insert([formData]);
-      if (!error) {
-        setIsModalOpen(false);
-        setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' });
-        fetchProjects();
-      }
+      setIsModalOpen(false);
+      setEditingId(null);
+      setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' });
+      fetchProjects();
+    } catch (error) {
+      toast.error('Error al guardar el proyecto');
     }
   };
 
@@ -111,7 +109,7 @@ export default function KanbanPage() {
     return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amount);
   };
 
-  // Drag and drop handlers
+  // Drag and drop handlers (still available for desktop)
   const handleDragStart = (e: React.DragEvent, id: string) => {
     setDraggedId(id);
     e.dataTransfer.setData('projectId', id);
@@ -132,36 +130,36 @@ export default function KanbanPage() {
 
   return (
     <div className="flex flex-col gap-8 h-full">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-[family-name:var(--font-die-grotesk-b)] mb-2">Gestor de Proyectos</h1>
-          <p className="text-slate text-sm">Arrastra o mueve los clientes según su fase de desarrollo.</p>
+          <p className="text-slate text-sm">Organiza tus proyectos según su fase de desarrollo.</p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
           <button 
             onClick={() => setShowArchived(true)}
-            className={`px-4 py-3 rounded-xl font-bold flex items-center gap-2 transition-colors uppercase tracking-widest text-sm border border-white/10 text-slate hover:text-white`}
+            className="px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors uppercase tracking-widest text-sm border border-white/10 text-slate hover:text-white"
           >
             <Archive size={18} /> Ver Archivados ({projects.filter(p => p.status === 'archivado').length})
           </button>
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-white transition-colors uppercase tracking-widest text-sm"
+            className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-white transition-colors uppercase tracking-widest text-sm"
           >
             <Plus size={18} /> Nuevo Proyecto
           </button>
         </div>
       </div>
 
-      <div className="flex gap-6 overflow-x-auto pb-4 h-full scrollbar-hide snap-x snap-mandatory">
+      <div className="flex flex-col md:flex-row gap-6 md:overflow-x-auto pb-4 h-full scrollbar-hide snap-y md:snap-x md:snap-mandatory">
         {columns.map(col => (
           <div 
             key={col.id} 
             onDragOver={handleDragOver}
             onDrop={(e) => handleDrop(e, col.id)}
-            className="flex-1 min-w-[280px] md:min-w-[320px] snap-center flex flex-col gap-4"
+            className="flex-1 min-w-full md:min-w-[320px] snap-start flex flex-col gap-4"
           >
-            <div className={`p-3 rounded-lg border border-white/5 bg-[#141210] flex justify-between items-center`}>
+            <div className="p-3 rounded-lg border border-white/5 bg-[#141210] flex justify-between items-center">
               <h3 className="font-bold tracking-tight uppercase text-sm text-slate">{col.title}</h3>
               <span className={`text-xs px-2 py-1 rounded-full ${col.bg}`}>
                 {projects.filter(p => p.status === col.id).length}
@@ -198,21 +196,21 @@ export default function KanbanPage() {
                             setEditingId(project.id);
                             setIsModalOpen(true);
                           }} 
-                          className="text-slate hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="text-slate hover:text-blue-400 transition-colors p-1"
                         >
                           <Edit2 size={16} />
                         </button>
-                        <button onClick={() => handleArchive(project.id)} className="text-slate hover:text-green-400 opacity-0 group-hover:opacity-100 transition-opacity" title="Archivar Proyecto">
+                        <button onClick={() => handleArchive(project.id)} className="text-slate hover:text-green-400 transition-colors p-1" title="Archivar Proyecto">
                           <Archive size={16} />
                         </button>
-                        <button onClick={() => handleDelete(project.id)} className="text-slate hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" title="Eliminar Permanentemente">
+                        <button onClick={() => handleDelete(project.id)} className="text-slate hover:text-red-400 transition-colors p-1" title="Eliminar Permanentemente">
                           <Trash2 size={16} />
                         </button>
                       </div>
                     </div>
                     <p className="text-sm text-slate mb-4 font-[family-name:var(--font-ibm-plex-mono)]">{project.client_name}</p>
                     
-                    <div className="flex justify-between text-xs text-slate border-t border-white/5 pt-4">
+                    <div className="flex justify-between text-xs text-slate border-t border-white/5 pt-4 mb-4">
                       <div className="flex flex-col gap-1">
                         <span className="uppercase text-[10px] tracking-widest opacity-50">Total</span>
                         <span className="font-bold">{formatCurrency(project.total_value)}</span>
@@ -221,6 +219,19 @@ export default function KanbanPage() {
                         <span className="uppercase text-[10px] tracking-widest opacity-50">Pagado</span>
                         <span className="font-bold text-green-400">{formatCurrency(project.amount_paid)}</span>
                       </div>
+                    </div>
+
+                    <div className="flex flex-col gap-1 pt-3 border-t border-white/5">
+                      <label className="uppercase text-[10px] tracking-widest opacity-50 text-slate">Mover a</label>
+                      <select
+                        value={project.status}
+                        onChange={(e) => handleStatusChange(project.id, e.target.value)}
+                        className="bg-obsidian border border-white/10 rounded-lg p-2 text-xs text-bone focus:border-bone w-full"
+                      >
+                        {columns.map(c => (
+                          <option key={c.id} value={c.id} className="text-black">{c.title}</option>
+                        ))}
+                      </select>
                     </div>
                   </motion.div>
                 ))
@@ -268,15 +279,14 @@ export default function KanbanPage() {
                   onChange={e => setFormData({...formData, status: e.target.value})}
                   className="bg-obsidian border border-white/10 rounded-lg p-3 text-bone focus:border-bone"
                 >
-                  <option value="cotizando" className="text-black">Cotizando / Leads</option>
-                  <option value="desarrollo" className="text-black">En Desarrollo</option>
-                  <option value="revision" className="text-black">En Revisión</option>
-                  <option value="entregado" className="text-black">Entregado</option>
+                  {columns.map(c => (
+                    <option key={c.id} value={c.id} className="text-black">{c.title}</option>
+                  ))}
                 </select>
               </div>
 
               <div className="flex justify-end gap-4 mt-4">
-                <button type="button" onClick={() => { setIsModalOpen(false); setEditingId(null); setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' }); }} className="px-6 py-3 rounded-xl text-slate hover:text-white">Cancelar</button>
+                <button type="button" onClick={() => { setIsModalOpen(false); setEditingId(null); setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' }); }} className="px-6 py-3 rounded-xl text-slate hover:text-white transition-colors">Cancelar</button>
                 <button type="submit" className="bg-bone text-obsidian px-6 py-3 rounded-xl font-bold uppercase tracking-widest hover:bg-white transition-colors">{editingId ? 'Guardar Cambios' : 'Crear'}</button>
               </div>
             </form>
@@ -287,13 +297,13 @@ export default function KanbanPage() {
       {/* Modal Archivados */}
       {showArchived && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-[#141210] border border-white/10 rounded-2xl p-8 max-w-2xl w-full shadow-2xl flex flex-col h-[80vh]">
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-[#141210] border border-white/10 rounded-2xl p-4 md:p-8 max-w-2xl w-full shadow-2xl flex flex-col h-[80vh]">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-[family-name:var(--font-die-grotesk-b)] flex items-center gap-2">
+              <h2 className="text-xl md:text-2xl font-[family-name:var(--font-die-grotesk-b)] flex items-center gap-2">
                 <Archive size={24} className="text-slate" /> 
                 Proyectos Archivados
               </h2>
-              <button onClick={() => setShowArchived(false)} className="text-slate hover:text-white uppercase tracking-widest text-xs font-bold px-4 py-2 bg-white/5 rounded-lg">Cerrar</button>
+              <button onClick={() => setShowArchived(false)} className="text-slate hover:text-white uppercase tracking-widest text-xs font-bold px-4 py-2 bg-white/5 rounded-lg transition-colors">Cerrar</button>
             </div>
             
             <div className="flex-1 overflow-y-auto pr-2 scrollbar-hide flex flex-col gap-4">
@@ -304,7 +314,7 @@ export default function KanbanPage() {
                 </div>
               ) : (
                 projects.filter(p => p.status === 'archivado').map(project => (
-                  <div key={project.id} className="bg-[#1c1a17] border border-white/5 rounded-xl p-5 flex justify-between items-center group">
+                  <div key={project.id} className="bg-[#1c1a17] border border-white/5 rounded-xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group">
                     <div>
                       <h4 className="font-bold font-[family-name:var(--font-die-grotesk-b)] text-lg text-bone leading-tight">
                         {project.project_name}
@@ -312,7 +322,7 @@ export default function KanbanPage() {
                       <p className="text-sm text-slate mb-1 font-[family-name:var(--font-ibm-plex-mono)]">{project.client_name}</p>
                       <span className="text-xs text-green-400 font-bold">{formatCurrency(project.amount_paid)} cobrado</span>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 w-full sm:w-auto justify-end">
                       <button 
                         onClick={() => {
                           toast('¿Restaurar este proyecto?', {
@@ -324,15 +334,15 @@ export default function KanbanPage() {
                             cancel: { label: 'Cancelar', onClick: () => {} }
                           });
                         }} 
-                        className="text-slate hover:text-green-400 p-2 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" title="Restaurar al Kanban"
+                        className="text-slate hover:text-green-400 p-2 bg-white/5 rounded-lg transition-colors flex items-center justify-center gap-2 flex-1 sm:flex-none" title="Restaurar al Kanban"
                       >
-                        <ArchiveRestore size={18} />
+                        <ArchiveRestore size={18} /> <span className="sm:hidden text-xs uppercase tracking-widest">Restaurar</span>
                       </button>
                       <button 
                         onClick={() => handleDelete(project.id)} 
-                        className="text-slate hover:text-red-400 p-2 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity" title="Eliminar Permanentemente"
+                        className="text-slate hover:text-red-400 p-2 bg-white/5 rounded-lg transition-colors flex items-center justify-center gap-2 flex-1 sm:flex-none" title="Eliminar Permanentemente"
                       >
-                        <Trash2 size={18} />
+                        <Trash2 size={18} /> <span className="sm:hidden text-xs uppercase tracking-widest">Eliminar</span>
                       </button>
                     </div>
                   </div>
@@ -345,3 +355,4 @@ export default function KanbanPage() {
     </div>
   );
 }
+
