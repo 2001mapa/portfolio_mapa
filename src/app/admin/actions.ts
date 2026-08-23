@@ -10,7 +10,7 @@ export async function loginAction(prevState: any, formData: FormData) {
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (password === adminPassword) {
-    if (!process.env.JWT_SECRET) throw new Error("JWT_SECRET is missing");
+    if (!process.env.JWT_SECRET) return { error: 'Error Crítico: JWT_SECRET no está configurado en Vercel' };
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
     
     // Sign a JWT token
