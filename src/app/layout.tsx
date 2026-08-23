@@ -67,6 +67,8 @@ import { Toaster } from 'sonner';
 
 import { SmoothScroll } from "@/components/SmoothScroll";
 
+import Script from "next/script";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -78,6 +80,15 @@ export default function RootLayout({
       className={`${interGravity.variable} ${interGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-die-grotesk-b)] selection:bg-ember selection:text-bone bg-obsidian">
+        <Script id="register-sw" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js');
+              });
+            }
+          `}
+        </Script>
         <SmoothScroll />
         <GlobalNav />
 
