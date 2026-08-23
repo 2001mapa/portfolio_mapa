@@ -1,12 +1,18 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { loginAction } from '../actions';
 import { Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(loginAction, undefined);
+
+  useEffect(() => {
+    if (state?.success) {
+      window.location.href = '/admin';
+    }
+  }, [state]);
 
   return (
     <div className="min-h-screen bg-obsidian flex flex-col items-center justify-center p-6 text-bone font-[family-name:var(--font-die-grotesk-b)]">

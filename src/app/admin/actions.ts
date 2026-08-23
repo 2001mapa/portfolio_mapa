@@ -29,7 +29,7 @@ export async function loginAction(prevState: any, formData: FormData) {
       sameSite: 'strict'
     });
 
-    redirect('/admin');
+    return { success: true };
   } else {
     return { error: 'Contraseña incorrecta' };
   }
