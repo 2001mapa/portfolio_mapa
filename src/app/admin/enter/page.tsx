@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Scan, Delete } from 'lucide-react';
+import { Lock, Delete, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LoginPage() {
@@ -41,16 +41,16 @@ export default function LoginPage() {
           const result = await res.json();
           
           if (!res.ok || result.error) {
-            setError(result.error || 'Error de autenticación');
-            setPin('');
             setShake(true);
-            setTimeout(() => setShake(false), 500);
-            setIsPending(false);
+            setTimeout(() => {
+              setShake(false);
+              setPin('');
+              setIsPending(false);
+            }, 600); // Wait for shake to finish before resetting
           } else if (result.success) {
             window.location.href = '/admin';
           }
         } catch (err: any) {
-          setError(err?.message || 'Error del servidor al iniciar sesión');
           setPin('');
           setIsPending(false);
         }
@@ -61,100 +61,98 @@ export default function LoginPage() {
   }, [pin]);
 
   return (
-    <div className="min-h-screen bg-obsidian flex flex-col items-center justify-center p-6 text-bone font-[family-name:var(--font-ibm-plex-mono)]">
+    <div className="min-h-screen bg-obsidian flex flex-col items-center justify-center p-6 font-[family-name:var(--font-die-grotesk-b)] selection:bg-transparent">
       <motion.div 
-        initial={{ opacity: 0, filter: 'blur(10px)' }}
-        animate={{ opacity: 1, filter: 'blur(0px)' }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-sm flex flex-col items-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full max-w-xs flex flex-col items-center"
       >
-        <div className="flex justify-center mb-6 relative">
-          {/* Cyber scanner ring */}
-          <motion.div
-            animate={{ rotate: isPending ? 360 : 0 }}
-            transition={{ duration: 2, repeat: isPending ? Infinity : 0, ease: "linear" }}
-            className={`absolute inset-0 rounded-full border-t-2 border-r-2 ${isPending ? 'border-ember' : 'border-transparent'} w-16 h-16`}
-          />
-          <motion.div 
-            animate={{ 
-              rotateY: isPending ? [0, 360] : 0,
-            }}
-            transition={{ duration: 1, repeat: isPending ? Infinity : 0, ease: "easeInOut" }}
-            className={`w-16 h-16 rounded-full bg-[#141210] border border-white/5 flex items-center justify-center ${isPending ? 'text-ember shadow-[0_0_15px_rgba(255,68,0,0.5)]' : 'text-slate'}`}
-          >
-            <Scan size={28} />
-          </motion.div>
+        {/* Header Icon */}
+        <div className="flex justify-center mb-8 h-12">
+          <AnimatePresence mode="wait">
+            {isPending ? (
+              <motion.div
+                key="loading"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="text-slate"
+              >
+                <Loader2 size={32} className="animate-spin" strokeWidth={1.5} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="lock"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                className="text-bone"
+              >
+                <Lock size={32} strokeWidth={1.5} />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         
-        <h1 className="text-xl text-center mb-1 font-[family-name:var(--font-die-grotesk-b)] tracking-tight uppercase">Autenticación</h1>
-        <p className="text-slate text-center text-xs mb-10 tracking-[0.3em] uppercase">
-          {isPending ? 'Verificando...' : 'Sistema Bloqueado'}
+        {/* Texts */}
+        <h1 className="text-xl text-bone mb-2 tracking-wide">
+          Panel de Administración
+        </h1>
+        <p className="text-slate text-sm mb-12 font-[family-name:var(--font-ibm-plex-mono)] tracking-widest uppercase">
+          Ingresa tu PIN
         </p>
 
-        {/* PIN Lines */}
+        {/* PIN Dots (iOS Style) */}
         <motion.div 
-          className="flex gap-4 mb-8"
-          animate={shake ? { 
-            x: [-10, 10, -10, 10, -5, 5, 0],
-            skewX: [0, -20, 20, -10, 10, 0],
-            filter: ['invert(0)', 'invert(1)', 'invert(0)', 'invert(1)', 'invert(0)']
-          } : {}}
-          transition={{ duration: 0.4 }}
+          className="flex gap-6 mb-16"
+          animate={shake ? { x: [-12, 12, -10, 10, -6, 6, -3, 3, 0] } : {}}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {[0, 1, 2, 3].map((index) => (
-            <div key={index} className="relative w-8 h-1 bg-white/10 overflow-hidden">
-              <motion.div 
-                className="absolute inset-0 bg-bone"
-                initial={{ x: '-100%' }}
-                animate={{ x: pin.length > index ? '0%' : '-100%' }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            <div 
+              key={index} 
+              className={`w-3.5 h-3.5 rounded-full border border-bone transition-all duration-300 ease-out flex items-center justify-center ${shake ? 'border-red-500' : ''}`}
+            >
+              <motion.div
+                initial={false}
+                animate={{
+                  scale: pin.length > index ? 1 : 0,
+                  opacity: pin.length > index ? 1 : 0
+                }}
+                transition={{ duration: 0.2, type: "spring", stiffness: 500, damping: 30 }}
+                className={`w-full h-full rounded-full ${shake ? 'bg-red-500' : 'bg-bone'}`}
               />
             </div>
           ))}
         </motion.div>
 
-        {/* Error Message */}
-        <div className="h-6 mb-8 w-full text-center">
-          <AnimatePresence>
-            {error && (
-              <motion.p 
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-ember text-xs tracking-widest uppercase"
-              >
-                ACCESO DENEGADO
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Cyber Keypad */}
-        <div className="grid grid-cols-3 gap-3 md:gap-4 w-full max-w-[280px]">
+        {/* Elegant Keypad */}
+        <div className="grid grid-cols-3 gap-y-6 gap-x-8 w-full px-4">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
             <button
               key={num}
               onClick={() => handleNumber(num)}
               disabled={isPending}
-              className="w-full aspect-square bg-[#141210] hover:bg-white/10 active:bg-bone active:text-obsidian border border-white/5 flex items-center justify-center text-xl transition-all disabled:opacity-30 mx-auto group"
+              className="w-16 h-16 rounded-full flex items-center justify-center text-3xl font-light text-bone mx-auto transition-all duration-200 active:bg-white/10 hover:bg-white/5 active:scale-90 disabled:opacity-50"
             >
-              <span className="group-hover:scale-125 transition-transform">{num}</span>
+              {num}
             </button>
           ))}
-          <div className="w-full aspect-square mx-auto"></div>
+          <div className="w-16 h-16 mx-auto"></div>
           <button
             onClick={() => handleNumber(0)}
             disabled={isPending}
-            className="w-full aspect-square bg-[#141210] hover:bg-white/10 active:bg-bone active:text-obsidian border border-white/5 flex items-center justify-center text-xl transition-all disabled:opacity-30 mx-auto group"
+            className="w-16 h-16 rounded-full flex items-center justify-center text-3xl font-light text-bone mx-auto transition-all duration-200 active:bg-white/10 hover:bg-white/5 active:scale-90 disabled:opacity-50"
           >
-            <span className="group-hover:scale-125 transition-transform">0</span>
+            0
           </button>
           <button
             onClick={handleDelete}
             disabled={isPending || pin.length === 0}
-            className="w-full aspect-square flex items-center justify-center text-slate hover:text-ember active:scale-90 transition-all disabled:opacity-30 mx-auto"
+            className="w-16 h-16 rounded-full flex items-center justify-center text-slate mx-auto transition-all duration-200 active:bg-white/10 hover:bg-white/5 active:scale-90 disabled:opacity-30"
           >
-            <Delete size={24} />
+            <Delete size={24} strokeWidth={1.5} />
           </button>
         </div>
       </motion.div>
