@@ -42,5 +42,5 @@ export async function loginAction(pin: string) {
 export async function logoutAction() {
   const cookieStore = await cookies();
   cookieStore.delete('admin_session');
-  redirect('/admin/login');
+  redirect('/admin/enter');
 }
