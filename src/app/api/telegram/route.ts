@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { projectService } from '@/services/projectService';
+import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject } from '@/services/projectService';
 import { jsPDF } from 'jspdf';
 
 // Reemplaza con tu Telegram Chat ID para que el bot solo te escuche a ti
@@ -48,6 +48,14 @@ export async function POST(request: Request) {
     const fromId = message.from.id.toString();
     const text = message.text.trim();
 
+    // Security check 1: Telegram Secret Token (Prevents Spoofing)
+    const secretToken = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
+    if (secretToken !== process.env.TELEGRAM_SECRET_TOKEN) {
+      console.warn('Unauthorized webhook attempt');
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    // Security check 2: Only allow the admin ID
     if (MY_TELEGRAM_ID && fromId !== MY_TELEGRAM_ID) {
       await sendMessage(chatId, "⛔ Acceso denegado. No eres Miguel.");
       return NextResponse.json({ ok: true });
@@ -69,19 +77,19 @@ export async function POST(request: Request) {
           await sendMessage(chatId, "⚠️ Falta el nombre. Ej: <code>/lead Empresa S.A.</code>");
           break;
         }
-        const newProj = await projectService.create({
+        const newProj = await createProject({
           client_name: clientName,
           project_name: 'Por definir',
           status: 'cotizando',
           total_value: 0,
           amount_paid: 0
-        });
+        }, true);
         const shortIdNew = newProj.id.substring(0, 4);
         await sendMessage(chatId, `✅ <b>Lead Creado</b>\nCliente: ${clientName}\nID: <code>${shortIdNew}</code>`);
         break;
 
       case '/listar':
-        const allProjects = await projectService.getAll();
+        const allProjects = await getAllProjects(true);
         const activeProjects = allProjects.filter(p => p.status !== 'archivado');
         if (activeProjects.length === 0) {
           await sendMessage(chatId, "No hay proyectos activos.");
@@ -101,14 +109,14 @@ export async function POST(request: Request) {
         }
         const pIdPago = args[1];
         const monto = parseInt(args[2].replace(/\D/g, ''));
-        const projsPago = await projectService.getAll();
+        const projsPago = await getAllProjects(true);
         const targetPago = projsPago.find(p => p.id.startsWith(pIdPago));
         if (!targetPago) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");
           break;
         }
         const nuevoAbono = targetPago.amount_paid + monto;
-        await projectService.update(targetPago.id, { amount_paid: nuevoAbono });
+        await updateProject(targetPago.id, { amount_paid: nuevoAbono }, true);
         await sendMessage(chatId, `💰 <b>Pago Registrado</b>\nCliente: ${targetPago.client_name}\nNuevo Abono Total: $${nuevoAbono.toLocaleString()}\nSaldo Restante: $${(targetPago.total_value - nuevoAbono).toLocaleString()}`);
         break;
 
@@ -119,13 +127,13 @@ export async function POST(request: Request) {
         }
         const pIdEst = args[1];
         const fase = args[2].toLowerCase();
-        const projsEst = await projectService.getAll();
+        const projsEst = await getAllProjects(true);
         const targetEst = projsEst.find(p => p.id.startsWith(pIdEst));
         if (!targetEst) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");
           break;
         }
-        await projectService.updateStatus(targetEst.id, fase);
+        await updateProjectStatus(targetEst.id, fase, true);
         await sendMessage(chatId, `🔄 <b>Estado Actualizado</b>\n${targetEst.client_name} se movió a: ${fase.toUpperCase()}`);
         break;
 
@@ -135,13 +143,13 @@ export async function POST(request: Request) {
           break;
         }
         const pIdDel = args[1];
-        const projsDel = await projectService.getAll();
+        const projsDel = await getAllProjects(true);
         const targetDel = projsDel.find(p => p.id.startsWith(pIdDel));
         if (!targetDel) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");
           break;
         }
-        await projectService.remove(targetDel.id);
+        await removeProject(targetDel.id, true);
         await sendMessage(chatId, `🗑️ Proyecto de ${targetDel.client_name} eliminado.`);
         break;
 
@@ -151,7 +159,7 @@ export async function POST(request: Request) {
           break;
         }
         const pIdDoc = args[1];
-        const projsDoc = await projectService.getAll();
+        const projsDoc = await getAllProjects(true);
         const targetDoc = projsDoc.find(p => p.id.startsWith(pIdDoc));
         if (!targetDoc) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");

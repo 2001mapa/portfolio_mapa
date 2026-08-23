@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { LayoutDashboard, FileText, Kanban, CircleDollarSign, LogOut, Menu, X, Plus } from 'lucide-react';
 import { logoutAction } from './actions';
-import { projectService } from '@/services/projectService';
+import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject } from '@/services/projectService';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -22,7 +22,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     
     setIsSubmitting(true);
     try {
-      await projectService.create({
+      await createProject({
         client_name: quickAddName,
         project_name: "Por definir",
         status: "cotizando",

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { FileText, Download, ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { projectService, Project } from '@/services/projectService';
+import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject, type Project } from '@/services/projectService';
 
 export default function DocumentosPage() {
   const [step, setStep] = useState(1);
@@ -30,7 +30,7 @@ export default function DocumentosPage() {
   useEffect(() => {
     async function loadProjects() {
       try {
-        const data = await projectService.getAll();
+        const data = await getAllProjects();
         setProjects(data);
       } catch (error) {
         toast.error('Error al cargar proyectos');

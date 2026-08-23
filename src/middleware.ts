@@ -15,7 +15,10 @@ export async function middleware(request: NextRequest) {
     }
 
     try {
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-key-12345');
+      if (!process.env.JWT_SECRET) {
+        throw new Error("JWT_SECRET is not configured in the environment.");
+      }
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       // Verify the JWT mathematically
       await jwtVerify(session.value, secret);
     } catch (error) {

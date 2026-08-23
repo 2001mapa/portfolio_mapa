@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { projectService, Project } from '@/services/projectService';
+import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject, type Project } from '@/services/projectService';
 import { CircleDollarSign, ArrowUpRight, Activity, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -12,7 +12,7 @@ export default function FinanzasPage() {
   useEffect(() => {
     async function fetchFinances() {
       try {
-        const data = await projectService.getAll();
+        const data = await getAllProjects();
         setProjects(data);
       } catch (error) {
         console.error("Error fetching finances:", error);

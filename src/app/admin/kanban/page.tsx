@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { projectService, Project } from '@/services/projectService';
+import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject, type Project } from '@/services/projectService';
 import { Plus, Trash2, Edit2, Archive, ArchiveRestore } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
@@ -33,7 +33,7 @@ export default function KanbanPage() {
   const fetchProjects = async () => {
     setLoading(true);
     try {
-      const data = await projectService.getAll();
+      const data = await getAllProjects();
       setProjects(data);
     } catch (error) {
       toast.error('Error al cargar proyectos');
@@ -49,7 +49,7 @@ export default function KanbanPage() {
     // Optimistic UI update
     setProjects(prev => prev.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
     try {
-      await projectService.updateStatus(projectId, newStatus);
+      await updateProjectStatus(projectId, newStatus);
     } catch (error) {
       fetchProjects(); // Revert on error
       toast.error('Error al actualizar el estado');
@@ -74,7 +74,7 @@ export default function KanbanPage() {
         label: 'Eliminar',
         onClick: async () => {
           try {
-            await projectService.remove(projectId);
+            await removeProject(projectId);
             fetchProjects();
             toast.success('Proyecto eliminado');
           } catch (error) {
@@ -90,10 +90,10 @@ export default function KanbanPage() {
     e.preventDefault();
     try {
       if (editingId) {
-        await projectService.update(editingId, formData);
+        await updateProject(editingId, formData);
         toast.success('Proyecto actualizado');
       } else {
-        await projectService.create(formData);
+        await createProject(formData);
         toast.success('Proyecto creado');
       }
       setIsModalOpen(false);
