@@ -2,27 +2,20 @@ import { NextResponse } from 'next/server';
 import { dbGetAllProjects, dbUpdateProjectStatus, dbUpdateProject, dbCreateProject, dbRemoveProject } from '@/services/projectData';
 import { jsPDF } from 'jspdf';
 
-// Reemplaza con tu Telegram Chat ID para que el bot solo te escuche a ti
 const MY_TELEGRAM_ID = process.env.TELEGRAM_ADMIN_ID;
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
 async function sendMessage(chatId: number, text: string) {
   if (!BOT_TOKEN) return;
-  
   await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: text,
-      parse_mode: 'HTML'
-    })
+    body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' })
   });
 }
 
 async function sendDocument(chatId: number, pdfBuffer: ArrayBuffer, filename: string, caption: string) {
   if (!BOT_TOKEN) return;
-  
   const formData = new FormData();
   formData.append('chat_id', chatId.toString());
   formData.append('caption', caption);
@@ -36,13 +29,30 @@ async function sendDocument(chatId: number, pdfBuffer: ArrayBuffer, filename: st
 
 async function askGemini(prompt: string) {
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) return 'No tengo mente aún. Falta configurar GEMINI_API_KEY en Vercel.';
+  if (!apiKey) return 'Falta configurar GEMINI_API_KEY en Vercel.';
 
   try {
     const projs = await dbGetAllProjects();
-    const systemInstruction = 'Eres EGO, el asistente de CRM personal de Miguel Albornoz. Tu tono es profesional, conciso y de modo Dios. Tienes acceso a esta base de datos de sus proyectos: ' + JSON.stringify(projs) + ' \n\nUsa estos datos para darle resúmenes o consejos si te lo pide. Para operar, recuérdale los comandos: /lead, /listar, /pago, /estado, /borrar, /contrato.';
+    const systemInstruction = `Eres EGO, el asistente de CRM personal de Miguel Albornoz. Tu tono es natural, conversacional, como un asistente humano muy eficiente, profesional y de "modo Dios".
+    
+Tienes acceso a esta base de datos de sus proyectos: ${JSON.stringify(projs)}. 
 
-    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + apiKey, {
+El usuario te hablará de forma natural (ej. "registra un lead", "cuánto me debe Carlos", "mueve el proyecto de Tesla a entregado"). 
+
+IMPORTANTE: Si necesitas ejecutar una acción en la base de datos, DEBES responder ÚNICAMENTE con un bloque JSON estricto. NO agregues comillas invertidas ni texto adicional si envías JSON.
+Si te falta información clave para crear o modificar algo, pregúntasela al usuario con texto natural (por ejemplo: "¿Cuál es el monto del lead?").
+
+Acciones permitidas (formato JSON exacto):
+1. Crear cliente: {"action": "create_lead", "clientName": "...", "projectName": "...", "totalValue": 1000} (si no sabes el valor, pon 0, si no sabes el nombre del proyecto pon "Por definir")
+2. Listar proyectos: {"action": "list_projects"}
+3. Registrar abono: {"action": "register_payment", "projectId": "EL_ID_DEL_PROYECTO", "amount": 1000} (projectId debe ser el ID real de la base de datos)
+4. Cambiar estado: {"action": "update_status", "projectId": "EL_ID", "status": "cotizando|desarrollo|revision|entregado"}
+5. Borrar proyecto: {"action": "delete_project", "projectId": "EL_ID"}
+6. Generar contrato: {"action": "generate_contract", "projectId": "EL_ID"}
+
+Si vas a hablar normal (responder preguntas, confirmar cosas, etc), simplemente envía el texto natural.`;
+
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -52,7 +62,7 @@ async function askGemini(prompt: string) {
     });
     
     const data = await response.json();
-    return data.candidates[0].content.parts[0].text;
+    return data.candidates[0].content.parts[0].text.trim();
   } catch (e) {
     console.error('Gemini error:', e);
     return 'Mi mente está nublada por un error interno.';
@@ -62,171 +72,136 @@ async function askGemini(prompt: string) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    
-    // El webhook de Telegram puede enviar "message" (texto) o "callback_query" (botones)
     const message = body.message;
-    if (!message || !message.text) {
-      return NextResponse.json({ ok: true });
-    }
+    if (!message || !message.text) return NextResponse.json({ ok: true });
 
     const chatId = message.chat.id;
     const fromId = message.from.id.toString();
     const text = message.text.trim();
 
-    // Security check 1: Telegram Secret Token (Prevents Spoofing)
-    const secretToken = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
-    if (secretToken !== process.env.TELEGRAM_SECRET_TOKEN) {
-      console.warn('Unauthorized webhook attempt');
+    if (request.headers.get('X-Telegram-Bot-Api-Secret-Token') !== process.env.TELEGRAM_SECRET_TOKEN) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Security check 2: Only allow the admin ID
     if (MY_TELEGRAM_ID && fromId !== MY_TELEGRAM_ID) {
-      await sendMessage(chatId, "⛔ Acceso denegado. No eres Miguel.");
+      await sendMessage(chatId, "🚫 Acceso denegado. No eres Miguel.");
       return NextResponse.json({ ok: true });
     }
 
-    const args = text.split(' ');
-    const command = args[0].toLowerCase();
+    const aiResponse = await askGemini(text);
+    
+    // Clean potential markdown from JSON
+    let cleanResponse = aiResponse.trim();
+    if (cleanResponse.startsWith('```json')) {
+      cleanResponse = cleanResponse.replace(/^```json/, '').replace(/```$/, '').trim();
+    } else if (cleanResponse.startsWith('```')) {
+      cleanResponse = cleanResponse.replace(/^```/, '').replace(/```$/, '').trim();
+    }
 
-    switch (command) {
-      case '/start':
-      case '/help':
-        const helpMsg = `👋 <b>Modo Dios Activado.</b>\n\nComandos:\n<code>/lead [Nombre]</code> - Crear nuevo cliente\n<code>/listar</code> - Ver IDs de proyectos activos\n<code>/pago [ID] [Monto]</code> - Sumar abono a un proyecto\n<code>/estado [ID] [Fase]</code> - Mover en el Kanban\n<code>/contrato [ID]</code> - Generar PDF legal\n<code>/borrar [ID]</code> - Eliminar proyecto`;
-        await sendMessage(chatId, helpMsg);
-        break;
-
-      case '/lead':
-        const clientName = args.slice(1).join(' ');
-        if (!clientName) {
-          await sendMessage(chatId, "⚠️ Falta el nombre. Ej: <code>/lead Empresa S.A.</code>");
-          break;
-        }
-        const newProj = await dbCreateProject({
-          client_name: clientName,
-          project_name: 'Por definir',
-          status: 'cotizando',
-          total_value: 0,
-          amount_paid: 0
-        });
-        const shortIdNew = newProj.id.substring(0, 4);
-        await sendMessage(chatId, `✅ <b>Lead Creado</b>\nCliente: ${clientName}\nID: <code>${shortIdNew}</code>`);
-        break;
-
-      case '/listar':
-        const allProjects = await dbGetAllProjects();
-        const activeProjects = allProjects.filter(p => p.status !== 'archivado');
-        if (activeProjects.length === 0) {
-          await sendMessage(chatId, "No hay proyectos activos.");
-          break;
-        }
-        let listMsg = `📋 <b>Proyectos Activos</b>\n\n`;
-        activeProjects.forEach(p => {
-          listMsg += `ID: <code>${p.id.substring(0,4)}</code> | ${p.client_name}\nFase: ${p.status.toUpperCase()} | Deuda: $${(p.total_value - p.amount_paid).toLocaleString()}\n\n`;
-        });
-        await sendMessage(chatId, listMsg);
-        break;
-
-      case '/pago':
-        if (args.length < 3) {
-          await sendMessage(chatId, "⚠️ Formato: <code>/pago [ID] [Monto]</code>");
-          break;
-        }
-        const pIdPago = args[1];
-        const monto = parseInt(args[2].replace(/\D/g, ''));
-        const projsPago = await dbGetAllProjects();
-        const targetPago = projsPago.find(p => p.id.startsWith(pIdPago));
-        if (!targetPago) {
-          await sendMessage(chatId, "❌ Proyecto no encontrado.");
-          break;
-        }
-        const nuevoAbono = targetPago.amount_paid + monto;
-        await dbUpdateProject(targetPago.id, { amount_paid: nuevoAbono });
-        await sendMessage(chatId, `💰 <b>Pago Registrado</b>\nCliente: ${targetPago.client_name}\nNuevo Abono Total: $${nuevoAbono.toLocaleString()}\nSaldo Restante: $${(targetPago.total_value - nuevoAbono).toLocaleString()}`);
-        break;
-
-      case '/estado':
-        if (args.length < 3) {
-          await sendMessage(chatId, "⚠️ Formato: <code>/estado [ID] [fase]</code>\nFases: cotizando, desarrollo, revision, entregado");
-          break;
-        }
-        const pIdEst = args[1];
-        const fase = args[2].toLowerCase();
-        const projsEst = await dbGetAllProjects();
-        const targetEst = projsEst.find(p => p.id.startsWith(pIdEst));
-        if (!targetEst) {
-          await sendMessage(chatId, "❌ Proyecto no encontrado.");
-          break;
-        }
-        await dbUpdateProjectStatus(targetEst.id, fase);
-        await sendMessage(chatId, `🔄 <b>Estado Actualizado</b>\n${targetEst.client_name} se movió a: ${fase.toUpperCase()}`);
-        break;
-
-      case '/borrar':
-        if (args.length < 2) {
-          await sendMessage(chatId, "⚠️ Formato: <code>/borrar [ID]</code>");
-          break;
-        }
-        const pIdDel = args[1];
-        const projsDel = await dbGetAllProjects();
-        const targetDel = projsDel.find(p => p.id.startsWith(pIdDel));
-        if (!targetDel) {
-          await sendMessage(chatId, "❌ Proyecto no encontrado.");
-          break;
-        }
-        await dbRemoveProject(targetDel.id);
-        await sendMessage(chatId, `🗑️ Proyecto de ${targetDel.client_name} eliminado.`);
-        break;
-
-      case '/contrato':
-        if (args.length < 2) {
-          await sendMessage(chatId, "⚠️ Formato: <code>/contrato [ID]</code>");
-          break;
-        }
-        const pIdDoc = args[1];
-        const projsDoc = await dbGetAllProjects();
-        const targetDoc = projsDoc.find(p => p.id.startsWith(pIdDoc));
-        if (!targetDoc) {
-          await sendMessage(chatId, "❌ Proyecto no encontrado.");
-          break;
-        }
+    // Intentar parsear como JSON (Ejecutar acción)
+    if (cleanResponse.startsWith('{') && cleanResponse.endsWith('}')) {
+      try {
+        const cmd = JSON.parse(cleanResponse);
         
-        await sendMessage(chatId, "⏳ Generando documento PDF legal...");
-        
-        // Generar PDF básico en el backend
-        const doc = new jsPDF();
-        doc.setFontSize(22);
-        doc.text("CONTRATO DE DESARROLLO DE SOFTWARE", 20, 30);
-        
-        doc.setFontSize(12);
-        doc.text(`Fecha: ${new Date().toLocaleDateString('es-CO')}`, 20, 50);
-        doc.text(`Cliente: ${targetDoc.client_name}`, 20, 60);
-        doc.text(`Proyecto: ${targetDoc.project_name || 'Servicios Digitales'}`, 20, 70);
-        
-        doc.text("1. CONDICIONES FINANCIERAS:", 20, 90);
-        doc.text(`El costo total del proyecto es de $${targetDoc.total_value.toLocaleString('es-CO')}.`, 20, 100);
-        doc.text(`Abono registrado a la fecha: $${targetDoc.amount_paid.toLocaleString('es-CO')}.`, 20, 110);
-        doc.text(`Saldo pendiente: $${(targetDoc.total_value - targetDoc.amount_paid).toLocaleString('es-CO')}.`, 20, 120);
-        
-        doc.text("2. TÉRMINOS LEGALES:", 20, 140);
-        const terminos = doc.splitTextToSize("El desarrollador (Miguel Albornoz) se compromete a entregar los servicios detallados según los alcances acordados. El cliente se compromete a cumplir con los pagos en las fechas estipuladas. Todo el código fuente es propiedad intelectual hasta su liquidación total.", 170);
-        doc.text(terminos, 20, 150);
-        
-        doc.text("Firma Desarrollador:", 20, 220);
-        doc.text("Firma Cliente:", 120, 220);
-        doc.text("__________________________", 20, 240);
-        doc.text("__________________________", 120, 240);
-        doc.text("Miguel Albornoz", 20, 250);
-        doc.text(targetDoc.client_name, 120, 250);
-        
-        const pdfArrayBuffer = doc.output('arraybuffer');
-        await sendDocument(chatId, pdfArrayBuffer, `Contrato_${targetDoc.client_name.replace(/\s+/g, '_')}.pdf`, `📄 Aquí tienes el contrato para ${targetDoc.client_name}`);
-        break;
+        switch (cmd.action) {
+          case 'create_lead':
+            const newProj = await dbCreateProject({
+              client_name: cmd.clientName,
+              project_name: cmd.projectName || 'Por definir',
+              status: 'cotizando',
+              total_value: cmd.totalValue || 0,
+              amount_paid: 0
+            });
+            await sendMessage(chatId, `✅ <b>Lead Creado Exitosamente</b>\nCliente: ${cmd.clientName}\nProyecto: ${cmd.projectName || 'Por definir'}\nValor: $${(cmd.totalValue||0).toLocaleString('es-CO')}`);
+            break;
+            
+          case 'list_projects':
+            const allP = await dbGetAllProjects();
+            const actP = allP.filter(p => p.status !== 'archivado');
+            if (actP.length === 0) {
+              await sendMessage(chatId, "No tienes proyectos activos en este momento.");
+            } else {
+              let listMsg = `📊 <b>Proyectos Activos</b>\n\n`;
+              actP.forEach(p => {
+                listMsg += `• <b>${p.client_name}</b> (${p.status.toUpperCase()})\nDeuda: $${(p.total_value - p.amount_paid).toLocaleString()}\n\n`;
+              });
+              await sendMessage(chatId, listMsg);
+            }
+            break;
 
-      default:
-        const aiResponse = await askGemini(text);
-        await sendMessage(chatId, aiResponse);
-        break;
+          case 'register_payment':
+            const projsPago = await dbGetAllProjects();
+            const targetPago = projsPago.find(p => p.id === cmd.projectId);
+            if (!targetPago) {
+              await sendMessage(chatId, "❌ No pude encontrar el proyecto en la base de datos.");
+              break;
+            }
+            const nuevoAbono = targetPago.amount_paid + Number(cmd.amount);
+            await dbUpdateProject(targetPago.id, { amount_paid: nuevoAbono });
+            await sendMessage(chatId, `💰 <b>Pago Registrado</b>\nCliente: ${targetPago.client_name}\nAbono agregado: $${Number(cmd.amount).toLocaleString()}\nSaldo Restante: $${(targetPago.total_value - nuevoAbono).toLocaleString()}`);
+            break;
+
+          case 'update_status':
+            const projsEst = await dbGetAllProjects();
+            const targetEst = projsEst.find(p => p.id === cmd.projectId);
+            if (!targetEst) {
+              await sendMessage(chatId, "❌ No encontré el proyecto para actualizar el estado.");
+              break;
+            }
+            await dbUpdateProjectStatus(targetEst.id, cmd.status);
+            await sendMessage(chatId, `🔄 <b>Estado Actualizado</b>\n${targetEst.client_name} se movió a: ${cmd.status.toUpperCase()}`);
+            break;
+
+          case 'delete_project':
+            await dbRemoveProject(cmd.projectId);
+            await sendMessage(chatId, `🗑️ Proyecto eliminado correctamente de la base de datos.`);
+            break;
+
+          case 'generate_contract':
+            const projsDoc = await dbGetAllProjects();
+            const targetDoc = projsDoc.find(p => p.id === cmd.projectId);
+            if (!targetDoc) {
+              await sendMessage(chatId, "❌ Proyecto no encontrado para generar contrato.");
+              break;
+            }
+            
+            await sendMessage(chatId, "⏳ Generando contrato PDF legal...");
+            
+            const doc = new jsPDF();
+            doc.setFontSize(22);
+            doc.text("CONTRATO DE DESARROLLO DE SOFTWARE", 20, 30);
+            doc.setFontSize(12);
+            doc.text(`Fecha: ${new Date().toLocaleDateString('es-CO')}`, 20, 50);
+            doc.text(`Cliente: ${targetDoc.client_name}`, 20, 60);
+            doc.text(`Proyecto: ${targetDoc.project_name || 'Servicios Digitales'}`, 20, 70);
+            doc.text("1. CONDICIONES FINANCIERAS:", 20, 90);
+            doc.text(`El costo total del proyecto es de $${targetDoc.total_value.toLocaleString('es-CO')}.`, 20, 100);
+            doc.text(`Abono registrado a la fecha: $${targetDoc.amount_paid.toLocaleString('es-CO')}.`, 20, 110);
+            doc.text(`Saldo pendiente: $${(targetDoc.total_value - targetDoc.amount_paid).toLocaleString('es-CO')}.`, 20, 120);
+            doc.text("2. TÉRMINOS LEGALES:", 20, 140);
+            const terminos = doc.splitTextToSize("El desarrollador (Miguel Albornoz) se compromete a entregar los servicios detallados según los alcances acordados. El cliente se compromete a cumplir con los pagos en las fechas estipuladas. Todo el código fuente es propiedad intelectual hasta su liquidación total.", 170);
+            doc.text(terminos, 20, 150);
+            doc.text("Firma Desarrollador:", 20, 220);
+            doc.text("Firma Cliente:", 120, 220);
+            doc.text("__________________________", 20, 240);
+            doc.text("__________________________", 120, 240);
+            doc.text("Miguel Albornoz", 20, 250);
+            doc.text(targetDoc.client_name, 120, 250);
+            
+            const pdfArrayBuffer = doc.output('arraybuffer');
+            await sendDocument(chatId, pdfArrayBuffer, `Contrato_${targetDoc.client_name.replace(/\s+/g, '_')}.pdf`, `📄 Aquí tienes el contrato legal para ${targetDoc.client_name}`);
+            break;
+            
+          default:
+            await sendMessage(chatId, "⚠️ EGO generó una acción no reconocida.");
+        }
+      } catch (parseError) {
+        // Fallback si el JSON falla
+        await sendMessage(chatId, cleanResponse);
+      }
+    } else {
+      // Es una respuesta natural de texto, no un comando
+      await sendMessage(chatId, cleanResponse);
     }
 
     return NextResponse.json({ ok: true });
