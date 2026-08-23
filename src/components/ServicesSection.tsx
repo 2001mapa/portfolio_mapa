@@ -59,18 +59,18 @@ export function ServicesSection() {
                   className="w-full flex flex-col md:flex-row md:items-center justify-between py-8 md:py-12 group text-left gap-4 md:gap-0"
                 >
                   <div className="flex items-center gap-6 md:gap-12 w-full md:w-auto">
-                    <span className={`font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest transition-colors duration-300 ${isActive ? 'text-[#c5a67c]' : 'text-[#a39481] group-hover:text-[#c5a67c]'}`}>
+                    <span className={`font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest transition-colors duration-300 ${isActive ? 'text-[#c5a67c]' : 'text-[#a39481] md:group-hover:text-[#c5a67c]'}`}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <h3 
-                      className={`text-[28px] md:text-[56px] leading-[1.0] font-medium uppercase transition-colors duration-300 font-[family-name:var(--font-abc-gravity-variable)] tracking-tight ${isActive ? 'text-[#e8e4db]' : 'text-[#e8e4db]/50 group-hover:text-[#e8e4db]'}`}
+                      className={`text-[28px] md:text-[56px] leading-[1.0] font-medium uppercase transition-colors duration-300 font-[family-name:var(--font-abc-gravity-variable)] tracking-tight ${isActive ? 'text-[#e8e4db]' : 'text-[#e8e4db]/50 md:group-hover:text-[#e8e4db]'}`}
                     >
                       {hab.title}
                     </h3>
                   </div>
                   
                   {/* Arrow Indicator */}
-                  <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-[#2a261a] group-hover:border-[#c5a67c] transition-colors duration-300">
+                  <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-[#2a261a] md:group-hover:border-[#c5a67c] transition-colors duration-300">
                     <motion.span 
                       animate={{ rotate: isActive ? 180 : 0 }}
                       className="text-[#c5a67c]"

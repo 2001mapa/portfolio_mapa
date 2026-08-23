@@ -60,11 +60,27 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Evita el pull-to-refresh y el rebote (bounce effect) */
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     background-color: var(--color-obsidian);
     color: var(--color-bone);
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevención de selección de texto y callout menu nativo en elementos interactivos */
+  a, button, select, [role="button"] {
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Prevención del auto-zoom en iOS en inputs */
+  input, textarea, select {
+    font-size: 16px;
   }
 
   /* Font settings override */

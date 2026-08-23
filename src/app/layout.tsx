@@ -24,11 +24,27 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+export const viewport = {
+  themeColor: '#161616',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://miguel-albornoz.vercel.app"),
   title: "Miguel Albornoz | Ecosistemas Digitales",
   description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
   authors: [{ name: 'Miguel Albornoz' }],
+  appleWebApp: {
+    capable: true,
+    title: "Miguel Albornoz",
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: {
+    telephone: false,
+  },
   openGraph: {
     title: "Miguel Albornoz | Ecosistemas Digitales",
     description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",

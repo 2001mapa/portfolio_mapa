@@ -276,7 +276,7 @@ function MagneticLink({ href, children }: { href: string; children: React.ReactN
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
-      className="inline-flex items-center gap-3 font-[family-name:var(--font-die-grotesk-b)] text-body-lg text-bone hover:text-[#E8D4A6] w-fit transition-all duration-300 active:scale-95"
+      className="inline-flex items-center gap-3 font-[family-name:var(--font-die-grotesk-b)] text-body-lg text-bone md:hover:text-[#E8D4A6] active:text-[#E8D4A6] w-fit transition-all duration-300 active:scale-95"
     >
       {children}
     </motion.a>
@@ -318,7 +318,7 @@ function MagneticSubmitButton({ isSubmitting }: { isSubmitting: boolean }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ x: springX, y: springY }}
-      className={`relative overflow-hidden w-full md:w-auto px-12 py-6 rounded-full font-[family-name:var(--font-ibm-plex-mono)] font-semibold tracking-widest uppercase transition-all duration-500 bg-[#FF4C24] text-white hover:bg-[#ff6436] hover:shadow-[0_0_40px_rgba(255,76,36,0.5)] active:scale-95`}
+      className={`relative overflow-hidden w-full md:w-auto px-12 py-6 rounded-full font-[family-name:var(--font-ibm-plex-mono)] font-semibold tracking-widest uppercase transition-all duration-500 bg-[#FF4C24] text-white active:bg-[#ff6436] md:hover:bg-[#ff6436] md:hover:shadow-[0_0_40px_rgba(255,76,36,0.5)] active:scale-95`}
     >
       {isSubmitting ? (
         <span className="flex items-center gap-4">

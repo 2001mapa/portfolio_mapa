@@ -122,13 +122,13 @@ export function PricingSection() {
           <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-full p-1 backdrop-blur-md">
             <button 
               onClick={() => setCurrency('COP')}
-              className={`px-4 py-3 md:py-2 rounded-full font-[family-name:var(--font-ibm-plex-mono)] text-xs md:text-sm tracking-widest transition-all ${currency === 'COP' ? 'bg-[#E8D4A6] text-obsidian font-bold shadow-[0_0_15px_rgba(232,212,166,0.5)]' : 'text-slate hover:text-white'}`}
+              className={`px-4 py-3 md:py-2 rounded-full font-[family-name:var(--font-ibm-plex-mono)] text-xs md:text-sm tracking-widest transition-all ${currency === 'COP' ? 'bg-[#E8D4A6] text-obsidian font-bold shadow-[0_0_15px_rgba(232,212,166,0.5)]' : 'text-slate md:hover:text-white active:text-white'}`}
             >
               COP $
             </button>
             <button 
               onClick={() => setCurrency('USD')}
-              className={`px-4 py-3 md:py-2 rounded-full font-[family-name:var(--font-ibm-plex-mono)] text-xs md:text-sm tracking-widest transition-all ${currency === 'USD' ? 'bg-[#E8D4A6] text-obsidian font-bold shadow-[0_0_15px_rgba(232,212,166,0.5)]' : 'text-slate hover:text-white'}`}
+              className={`px-4 py-3 md:py-2 rounded-full font-[family-name:var(--font-ibm-plex-mono)] text-xs md:text-sm tracking-widest transition-all ${currency === 'USD' ? 'bg-[#E8D4A6] text-obsidian font-bold shadow-[0_0_15px_rgba(232,212,166,0.5)]' : 'text-slate md:hover:text-white active:text-white'}`}
             >
               USD $
             </button>

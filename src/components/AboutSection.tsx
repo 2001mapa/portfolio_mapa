@@ -99,7 +99,7 @@ export function AboutSection() {
                 const section = document.getElementById('pricing');
                 if (section) section.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-block bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] hover:bg-[#ff6436] transition-colors"
+              className="inline-block bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] active:bg-[#ff6436] md:hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] md:hover:bg-[#ff6436] transition-colors"
             >
               Quiero automatizar mis ventas
             </motion.button>
@@ -109,7 +109,7 @@ export function AboutSection() {
                 const section = document.getElementById('work');
                 if (section) section.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-block px-8 py-5 text-slate hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors"
+              className="inline-block px-8 py-5 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors"
             >
               Ver proyectos
             </button>

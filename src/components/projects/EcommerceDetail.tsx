@@ -33,7 +33,7 @@ export function EcommerceDetail() {
       <div ref={containerRef} className="relative w-full min-h-[50vh] overflow-hidden flex items-start pt-32 md:pt-40 border-b border-[#2a261a] z-20">
         <div className="relative w-full px-6 md:px-12 z-10">
           <div className="max-w-[1400px] mx-auto w-full relative h-full flex flex-col items-center justify-center pt-16 md:pt-0">
-            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#a39481] hover:text-[#e8e4db] transition-colors z-50">
+            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#a39481] md:hover:text-[#e8e4db] transition-colors z-50">
               ← REGRESAR AL HUB
             </Link>
             
@@ -296,14 +296,14 @@ export function EcommerceDetail() {
             </p>
             <Link 
               href="/#contact"
-              className="mt-4 bg-[#c5a67c] text-[#151310] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(197,166,124,0.4)] hover:shadow-[0_0_50px_rgba(197,166,124,0.6)] hover:bg-[#d4b995] hover:text-[#151310] transition-all hover:-translate-y-1"
+              className="mt-4 bg-[#c5a67c] text-[#151310] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(197,166,124,0.4)] md:hover:shadow-[0_0_50px_rgba(197,166,124,0.6)] md:hover:bg-[#d4b995] md:hover:text-[#151310] transition-all md:hover:-translate-y-1"
             >
               Cotizar mi Ecosistema
             </Link>
             
             <Link 
               href="/#work"
-              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a39481] hover:text-[#c5a67c] transition-colors border-b border-transparent hover:border-[#c5a67c] pb-1"
+              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a39481] md:hover:text-[#c5a67c] transition-colors border-b border-transparent md:hover:border-[#c5a67c] pb-1"
             >
               VOLVER AL HUB DE PROYECTOS →
             </Link>

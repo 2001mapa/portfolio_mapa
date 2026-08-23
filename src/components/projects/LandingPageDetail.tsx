@@ -38,7 +38,7 @@ export function LandingPageDetail() {
           className="relative w-full px-6 md:px-12 z-10"
         >
           <div className="max-w-[1400px] mx-auto w-full relative h-full flex flex-col items-center justify-center pt-16 md:pt-0">
-            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#a58971] hover:text-[#e0cfba] transition-colors z-50">
+            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#a58971] md:hover:text-[#e0cfba] active:text-[#e0cfba] transition-colors z-50 p-2 md:p-0">
               ← REGRESAR AL HUB
             </Link>
             
@@ -151,7 +151,7 @@ export function LandingPageDetail() {
                href="https://el-origen-cafe.vercel.app/" 
                target="_blank" 
                rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#d37039] text-[#d37039] hover:bg-[#d37039] hover:text-[#1c140d] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(211,112,57,0.15)] hover:shadow-[0_0_30px_rgba(211,112,57,0.3)]"
+               className="inline-flex items-center justify-center border border-[#d37039] text-[#d37039] active:bg-[#d37039] active:text-[#1c140d] md:hover:bg-[#d37039] md:hover:text-[#1c140d] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(211,112,57,0.15)] md:hover:shadow-[0_0_30px_rgba(211,112,57,0.3)] active:scale-95"
              >
                VISITAR CAFÉ ORIGEN EN VIVO ↗
              </a>
@@ -285,14 +285,14 @@ export function LandingPageDetail() {
             </p>
             <Link 
               href="/#contact"
-              className="mt-4 bg-[#d37039] text-[#1c140d] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(211,112,57,0.4)] hover:shadow-[0_0_50px_rgba(211,112,57,0.6)] hover:bg-[#e67a3e] hover:text-white transition-all hover:-translate-y-1"
+              className="mt-4 bg-[#d37039] text-[#1c140d] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(211,112,57,0.4)] md:hover:shadow-[0_0_50px_rgba(211,112,57,0.6)] md:hover:bg-[#e67a3e] md:hover:text-white transition-all md:hover:-translate-y-1"
             >
               Diseñar mi Experiencia
             </Link>
             
             <Link 
               href="/work/catalogo"
-              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a58971] hover:text-[#d37039] transition-colors border-b border-transparent hover:border-[#d37039] pb-1"
+              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a58971] md:hover:text-[#d37039] transition-colors border-b border-transparent md:hover:border-[#d37039] pb-1"
             >
               SIGUIENTE PROYECTO: CATÁLOGO DIGITAL →
             </Link>

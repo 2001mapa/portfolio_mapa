@@ -37,7 +37,7 @@ export function ClientHero() {
         <img 
           src="/foto-perfil.jpeg" 
           alt="Miguel - Software Engineer"
-          className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
+          className="w-full h-full object-cover filter grayscale md:hover:grayscale-0 active:grayscale-0 transition-all duration-700"
         />
         {/* Subtle inner gradient to blend with the dark background */}
         <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-60 pointer-events-none"></div>

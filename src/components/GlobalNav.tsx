@@ -18,7 +18,7 @@ export function GlobalNav() {
         <a href="#services" className="hidden md:block font-medium uppercase hover:text-fog transition-colors">Servicios</a>
         <a 
           href="#contact" 
-          className="font-medium uppercase border border-bone/30 px-4 md:px-6 py-3 md:py-2 rounded-full hover:bg-bone hover:text-obsidian transition-all duration-300 text-[10px] md:text-caption"
+          className="font-medium uppercase border border-bone/30 px-5 md:px-6 py-3 md:py-2 rounded-full active:bg-bone/20 md:hover:bg-bone active:text-white md:hover:text-obsidian transition-all duration-300 text-xs md:text-caption"
         >
           Contacto
         </a>
