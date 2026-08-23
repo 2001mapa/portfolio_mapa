@@ -27,7 +27,11 @@ async function sendDocument(chatId: number, pdfBuffer: ArrayBuffer, filename: st
   });
 }
 
-async function askGemini(prompt: string) {
+// Global memory to store conversation history across hot invocations (Serverless warm state)
+type ChatMessage = { role: 'user' | 'model'; parts: { text: string }[] };
+const chatMemory = new Map<string, ChatMessage[]>();
+
+async function askGemini(chatId: string, prompt: string) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) return 'Falta configurar GEMINI_API_KEY en Vercel.';
 
@@ -41,7 +45,7 @@ El usuario te hablará de forma natural (ej. "registra un lead", "cuánto me deb
 
 IMPORTANTE: Si necesitas ejecutar una acción en la base de datos, DEBES responder ÚNICAMENTE con un bloque JSON estricto. NO agregues comillas invertidas ni texto adicional si envías JSON.
 
-REGLA DE ORO PARA CREAR CLIENTES: NUNCA ejecutes la acción de crear cliente si te faltan datos. Si el usuario te dice "registra un lead llamado Carlos", NO generes el JSON. Respóndele en lenguaje natural preguntando: "¿De qué trata el proyecto y cuál es el valor estimado?". SOLO genera el JSON cuando ya tengas el nombre, el proyecto y el valor.
+REGLA DE ORO PARA CREAR CLIENTES: NUNCA ejecutes la acción de crear cliente si te faltan datos. Si el usuario te dice "registra un lead llamado Carlos", NO generes el JSON. Respóndele en lenguaje natural preguntando: "¿De qué trata el proyecto y cuál es el valor estimado?". SOLO genera el JSON cuando ya tengas el nombre, el proyecto y el valor en el contexto de la conversación.
 
 Acciones permitidas (formato JSON exacto):
 1. Crear cliente: {"action": "create_lead", "clientName": "...", "projectName": "...", "totalValue": 1000}
@@ -53,17 +57,28 @@ Acciones permitidas (formato JSON exacto):
 
 Si vas a hablar normal (responder preguntas, confirmar cosas, pedir más datos), simplemente envía el texto natural.`;
 
+    const history = chatMemory.get(chatId) || [];
+    history.push({ role: 'user', parts: [{ text: prompt }] });
+    
+    // Keep context window small and relevant (last 8 messages)
+    if (history.length > 8) history.splice(0, history.length - 8);
+
     const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + apiKey, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        contents: history,
         systemInstruction: { role: 'user', parts: [{ text: systemInstruction }] }
       })
     });
     
     const data = await response.json();
-    return data.candidates[0].content.parts[0].text.trim();
+    const aiResponseText = data.candidates[0].content.parts[0].text.trim();
+    
+    history.push({ role: 'model', parts: [{ text: aiResponseText }] });
+    chatMemory.set(chatId, history);
+    
+    return aiResponseText;
   } catch (e) {
     console.error('Gemini error:', e);
     return 'Mi mente está nublada por un error interno.';
@@ -89,7 +104,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true });
     }
 
-    const aiResponse = await askGemini(text);
+    const aiResponse = await askGemini(chatId.toString(), text);
     
     // Clean potential markdown from JSON
     let cleanResponse = aiResponse.trim();
