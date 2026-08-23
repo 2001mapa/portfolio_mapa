@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { loginAction } from '../actions';
 import { Lock, Delete } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -33,15 +32,21 @@ export default function LoginPage() {
       if (pin.length === 4) {
         setIsPending(true);
         try {
-          const result = await loginAction(pin);
+          const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pin }),
+          });
           
-          if (result?.error) {
-            setError(result.error);
+          const result = await res.json();
+          
+          if (!res.ok || result.error) {
+            setError(result.error || 'Error de autenticación');
             setPin('');
             setShake(true);
             setTimeout(() => setShake(false), 500);
             setIsPending(false);
-          } else if (result?.success) {
+          } else if (result.success) {
             window.location.href = '/admin';
           }
         } catch (err: any) {

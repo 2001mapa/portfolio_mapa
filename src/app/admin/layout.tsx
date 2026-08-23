@@ -43,7 +43,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   };
 
   // If we are on the login page, don't show the sidebar
-  if (pathname === '/admin/login') {
+  if (pathname === '/admin/login' || pathname === '/admin/enter') {
     return <>{children}</>;
   }
 
