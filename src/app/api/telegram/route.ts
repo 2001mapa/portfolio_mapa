@@ -42,7 +42,7 @@ async function askGemini(prompt: string) {
     const projs = await dbGetAllProjects();
     const systemInstruction = 'Eres EGO, el asistente de CRM personal de Miguel Albornoz. Tu tono es profesional, conciso y de modo Dios. Tienes acceso a esta base de datos de sus proyectos: ' + JSON.stringify(projs) + ' \n\nUsa estos datos para darle resúmenes o consejos si te lo pide. Para operar, recuérdale los comandos: /lead, /listar, /pago, /estado, /borrar, /contrato.';
 
-    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + apiKey, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
