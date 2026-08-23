@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { LayoutDashboard, FileText, Kanban, CircleDollarSign, LogOut, Menu, X, Plus, Lock } from 'lucide-react';
-import { logoutAction } from './actions';
 import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject } from '@/services/projectService';
 import { toast } from 'sonner';
 
@@ -156,12 +155,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Lock size={18} />
             <span>Cambiar PIN</span>
           </button>
-          <form action={logoutAction}>
-            <button type="submit" className="flex items-center gap-3 px-4 py-3 rounded-lg w-full text-red-400 hover:bg-red-400/10 transition-colors">
-              <LogOut size={18} />
-              <span>Cerrar Sesión</span>
-            </button>
-          </form>
+          <button 
+            onClick={async () => {
+              await fetch('/api/logout', { method: 'POST' });
+              window.location.href = '/admin/enter';
+            }}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg w-full text-red-400 hover:bg-red-400/10 transition-colors"
+          >
+            <LogOut size={18} />
+            <span>Cerrar Sesión</span>
+          </button>
         </div>
       </aside>
 
