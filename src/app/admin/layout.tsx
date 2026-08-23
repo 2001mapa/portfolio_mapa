@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { LayoutDashboard, FileText, Kanban, CircleDollarSign, LogOut, Menu, X, Plus } from 'lucide-react';
+import { LayoutDashboard, FileText, Kanban, CircleDollarSign, LogOut, Menu, X, Plus, Lock } from 'lucide-react';
 import { logoutAction } from './actions';
 import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject } from '@/services/projectService';
+import { toast } from 'sonner';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,6 +16,37 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [isQuickAddOpen, setIsQuickAddOpen] = useState(false);
   const [quickAddName, setQuickAddName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Change PIN State
+  const [isChangePinOpen, setIsChangePinOpen] = useState(false);
+  const [newPinValue, setNewPinValue] = useState('');
+  const [isSubmittingPin, setIsSubmittingPin] = useState(false);
+
+  const handleChangePin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPinValue.length !== 4) return;
+    
+    setIsSubmittingPin(true);
+    try {
+      const res = await fetch('/api/change-pin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newPin: newPinValue }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        toast.error(data.error || 'Error al cambiar PIN');
+      } else {
+        toast.success('PIN actualizado exitosamente');
+        setIsChangePinOpen(false);
+        setNewPinValue('');
+      }
+    } catch (error) {
+      toast.error('Error de conexión');
+    } finally {
+      setIsSubmittingPin(false);
+    }
+  };
 
   const handleQuickAdd = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,7 +148,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </nav>
         </div>
 
-        <div className="p-4 border-t border-white/5">
+          <button 
+            onClick={() => setIsChangePinOpen(true)}
+            className="flex items-center gap-3 px-4 py-3 rounded-lg w-full text-slate hover:bg-white/5 hover:text-bone transition-colors mb-2"
+          >
+            <Lock size={18} />
+            <span>Cambiar PIN</span>
+          </button>
           <form action={logoutAction}>
             <button type="submit" className="flex items-center gap-3 px-4 py-3 rounded-lg w-full text-red-400 hover:bg-red-400/10 transition-colors">
               <LogOut size={18} />
@@ -141,6 +179,57 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       >
         <Plus size={24} />
       </button>
+
+      {/* Change PIN Modal */}
+      {isChangePinOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm print:hidden">
+          <div className="bg-[#141210] border border-white/10 rounded-xl p-6 w-full max-w-md shadow-2xl">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-[family-name:var(--font-die-grotesk-b)] text-bone">Cambiar PIN de Acceso</h3>
+              <button onClick={() => setIsChangePinOpen(false)} className="text-slate hover:text-white transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            
+            <form onSubmit={handleChangePin}>
+              <div className="mb-6">
+                <label htmlFor="newPin" className="block text-sm text-slate mb-2">Nuevo PIN (4 dígitos)</label>
+                <input
+                  type="password"
+                  id="newPin"
+                  value={newPinValue}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, '');
+                    if (val.length <= 4) setNewPinValue(val);
+                  }}
+                  placeholder="Ej. 1234"
+                  className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-bone focus:outline-none focus:border-white/30 transition-colors tracking-[0.5em] font-bold text-center text-xl"
+                  autoFocus
+                  required
+                />
+                <p className="text-xs text-slate mt-2 text-center">Debe configurar SUPABASE_SERVICE_ROLE_KEY en Vercel para que funcione.</p>
+              </div>
+              
+              <div className="flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsChangePinOpen(false)}
+                  className="px-4 py-2 text-slate hover:text-bone transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmittingPin || newPinValue.length !== 4}
+                  className="px-6 py-2 bg-bone text-obsidian rounded-lg font-medium hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex gap-2 items-center"
+                >
+                  {isSubmittingPin ? 'Guardando...' : 'Guardar PIN'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Global Quick Add Modal */}
       {isQuickAddOpen && (

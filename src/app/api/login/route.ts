@@ -5,9 +5,29 @@ import { SignJWT } from 'jose';
 export async function POST(request: Request) {
   try {
     const { pin } = await request.json();
-    const adminPin = process.env.ADMIN_PIN || '2001';
+    let currentAdminPin = process.env.ADMIN_PIN || '2001';
 
-    if (pin !== adminPin) {
+    // Try to fetch custom PIN from database if service key is available
+    if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_URL) {
+      const { createClient } = require('@supabase/supabase-js');
+      const supabaseAdmin = createClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_SERVICE_ROLE_KEY,
+        { auth: { persistSession: false } }
+      );
+      
+      const { data } = await supabaseAdmin
+        .from('app_settings')
+        .select('value')
+        .eq('id', 'admin_pin')
+        .single();
+        
+      if (data && data.value) {
+        currentAdminPin = data.value;
+      }
+    }
+
+    if (pin !== currentAdminPin) {
       return NextResponse.json({ error: 'Contraseña incorrecta' }, { status: 401 });
     }
 
