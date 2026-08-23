@@ -285,14 +285,14 @@ export function LandingPageDetail() {
             </p>
             <Link 
               href="/#contact"
-              className="mt-4 bg-[#d37039] text-[#1c140d] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(211,112,57,0.4)] md:hover:shadow-[0_0_50px_rgba(211,112,57,0.6)] md:hover:bg-[#e67a3e] md:hover:text-white transition-all md:hover:-translate-y-1"
+              className="mt-4 bg-[#d37039] text-[#1c140d] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(211,112,57,0.4)] md:hover:shadow-[0_0_50px_rgba(211,112,57,0.6)] md:hover:bg-[#e67a3e] md:hover:text-white active:bg-[#e67a3e] active:text-white transition-all md:hover:-translate-y-1 active:scale-95"
             >
               Diseñar mi Experiencia
             </Link>
             
             <Link 
               href="/work/catalogo"
-              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a58971] md:hover:text-[#d37039] transition-colors border-b border-transparent md:hover:border-[#d37039] pb-1"
+              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a58971] md:hover:text-[#d37039] active:text-[#d37039] transition-colors border-b border-transparent md:hover:border-[#d37039] active:border-[#d37039] pb-1 p-2 md:p-0"
             >
               SIGUIENTE PROYECTO: CATÁLOGO DIGITAL →
             </Link>

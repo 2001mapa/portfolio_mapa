@@ -28,7 +28,7 @@ export function CatalogoDetail() {
       <div className="relative w-full min-h-[50vh] overflow-hidden flex items-start pt-32 md:pt-40 border-b border-[#2b3a2e] z-20">
         <div className="relative w-full px-6 md:px-12 z-10">
           <div className="max-w-[1400px] mx-auto w-full relative h-full flex flex-col items-center justify-center pt-16 md:pt-0">
-            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#7a9982] md:hover:text-[#d6e0d8] transition-colors z-50">
+            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#7a9982] md:hover:text-[#d6e0d8] active:text-[#d6e0d8] transition-colors z-50 p-2 md:p-0">
               ← REGRESAR AL HUB
             </Link>
             
@@ -148,7 +148,7 @@ export function CatalogoDetail() {
                href="https://escencias-del-bosque.vercel.app/" 
                target="_blank" 
                rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#4a7c59] text-[#4a7c59] md:hover:bg-[#4a7c59] md:hover:text-[#0a120c] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(74,124,89,0.15)] md:hover:shadow-[0_0_30px_rgba(74,124,89,0.3)]"
+               className="inline-flex items-center justify-center border border-[#4a7c59] text-[#4a7c59] md:hover:bg-[#4a7c59] md:hover:text-[#0a120c] active:bg-[#4a7c59] active:text-[#0a120c] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(74,124,89,0.15)] md:hover:shadow-[0_0_30px_rgba(74,124,89,0.3)] active:scale-95"
              >
                VISITAR CATÁLOGO EN VIVO ↗
              </a>
@@ -283,14 +283,14 @@ export function CatalogoDetail() {
             </p>
             <Link 
               href="/#contact"
-              className="mt-4 bg-[#4a7c59] text-[#131c15] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(74,124,89,0.4)] md:hover:shadow-[0_0_50px_rgba(74,124,89,0.6)] md:hover:bg-[#5b986e] md:hover:text-white transition-all md:hover:-translate-y-1"
+              className="mt-4 bg-[#4a7c59] text-[#131c15] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(74,124,89,0.4)] md:hover:shadow-[0_0_50px_rgba(74,124,89,0.6)] md:hover:bg-[#5b986e] active:bg-[#5b986e] md:hover:text-white active:text-white transition-all md:hover:-translate-y-1 active:scale-95"
             >
               Elevar mi Marca Ahora
             </Link>
             
             <Link 
               href="/work/ecommerce-erp"
-              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#7a9982] md:hover:text-[#4a7c59] transition-colors border-b border-transparent md:hover:border-[#4a7c59] pb-1"
+              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#7a9982] md:hover:text-[#4a7c59] active:text-[#4a7c59] transition-colors border-b border-transparent md:hover:border-[#4a7c59] active:border-[#4a7c59] pb-1 p-2 md:p-0"
             >
               SIGUIENTE PROYECTO: E-COMMERCE & ERP →
             </Link>

@@ -37,7 +37,7 @@ export function LinktreeDetail() {
           className="relative w-full px-6 md:px-12 z-10"
         >
           <div className="max-w-[1400px] mx-auto w-full relative h-full flex flex-col items-center justify-center pt-16 md:pt-0">
-            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#8971a5] md:hover:text-[#d6cce5] transition-colors z-50">
+            <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#8971a5] md:hover:text-[#d6cce5] active:text-[#d6cce5] transition-colors z-50 p-2 md:p-0">
               ← REGRESAR AL HUB
             </Link>
             
@@ -139,7 +139,7 @@ export function LinktreeDetail() {
                href="https://stylocaps.netlify.app/" 
                target="_blank" 
                rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#b039d3] text-[#b039d3] md:hover:bg-[#b039d3] md:hover:text-white transition-colors px-6 py-3 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold mb-4 shadow-[0_0_20px_rgba(176,57,211,0.15)] md:hover:shadow-[0_0_30px_rgba(176,57,211,0.3)]"
+               className="inline-flex items-center justify-center border border-[#b039d3] text-[#b039d3] md:hover:bg-[#b039d3] md:hover:text-white active:bg-[#b039d3] active:text-white transition-colors px-6 py-3 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold mb-4 shadow-[0_0_20px_rgba(176,57,211,0.15)] md:hover:shadow-[0_0_30px_rgba(176,57,211,0.3)] active:scale-95"
              >
                VISITAR STYLO EN VIVO ↗
              </a>
@@ -212,7 +212,7 @@ export function LinktreeDetail() {
                href="https://fullaccesorioss.netlify.app/" 
                target="_blank" 
                rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#b039d3] text-[#b039d3] md:hover:bg-[#b039d3] md:hover:text-white transition-colors px-6 py-3 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold mb-4 shadow-[0_0_20px_rgba(176,57,211,0.15)] md:hover:shadow-[0_0_30px_rgba(176,57,211,0.3)]"
+               className="inline-flex items-center justify-center border border-[#b039d3] text-[#b039d3] md:hover:bg-[#b039d3] md:hover:text-white active:bg-[#b039d3] active:text-white transition-colors px-6 py-3 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold mb-4 shadow-[0_0_20px_rgba(176,57,211,0.15)] md:hover:shadow-[0_0_30px_rgba(176,57,211,0.3)] active:scale-95"
              >
                VISITAR FULL ACCESORIOS ↗
              </a>
@@ -292,14 +292,14 @@ export function LinktreeDetail() {
             </p>
             <Link 
               href="/#pricing"
-              className="mt-4 bg-[#b039d3] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(176,57,211,0.4)] md:hover:shadow-[0_0_50px_rgba(176,57,211,0.6)] md:hover:bg-[#c945f0] transition-all md:hover:-translate-y-1"
+              className="mt-4 bg-[#b039d3] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(176,57,211,0.4)] md:hover:shadow-[0_0_50px_rgba(176,57,211,0.6)] md:hover:bg-[#c945f0] active:bg-[#c945f0] transition-all md:hover:-translate-y-1 active:scale-95"
             >
               Cotizar mi Linktree
             </Link>
             
             <Link 
               href="/work/landing-page"
-              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#8971a5] md:hover:text-[#b039d3] transition-colors border-b border-transparent md:hover:border-[#b039d3] pb-1"
+              className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#8971a5] md:hover:text-[#b039d3] active:text-[#b039d3] transition-colors border-b border-transparent md:hover:border-[#b039d3] active:border-[#b039d3] pb-1 p-2 md:p-0"
             >
               SIGUIENTE PROYECTO: LANDING PAGE →
             </Link>
