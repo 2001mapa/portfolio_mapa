@@ -98,8 +98,8 @@ export function ContactSection() {
     <section id="contact" className="relative w-full bg-obsidian text-bone py-12 md:py-[150px] overflow-hidden">
       
       {/* Background Abstract Glows */}
-      <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-[#E8D4A6]/20 rounded-full blur-[150px] pointer-events-none"></div>
-      <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-slate/20 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-[radial-gradient(circle_at_center,rgba(232,212,166,0.1)_0,transparent_70%)] rounded-full pointer-events-none"></div>
+      <div className="absolute bottom-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0,transparent_70%)] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10 flex flex-col gap-16 md:gap-24">
         
@@ -130,17 +130,9 @@ export function ContactSection() {
           >
             <div>
               <p className="font-[family-name:var(--font-ibm-plex-mono)] text-caption uppercase tracking-widest text-[#E8D4A6] mb-4">Línea Directa</p>
-              <button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  const baseUrl = typeof window !== 'undefined' ? window.atob(ENCODED_URL) : '';
-                  const phone = typeof window !== 'undefined' ? window.atob(ENCODED_PHONE) : '';
-                  window.open(`${baseUrl}${phone}`, "_blank");
-                }}
-                className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg md:text-[32px] leading-tight hover:text-white transition-colors flex items-center gap-3"
-              >
-                Hablar por WhatsApp <span className="text-[#E8D4A6] text-2xl">↗</span>
-              </button>
+              <div className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg md:text-[32px] leading-tight text-white flex items-center gap-3">
+                Llena el formulario para cotizar
+              </div>
             </div>
 
             <div>

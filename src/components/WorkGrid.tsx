@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 
 const projects = [
   { 
@@ -34,6 +35,64 @@ const projects = [
   }
 ];
 
+function ProjectCard({ project, index }: { project: any, index: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, delay: 0.1 }}
+      className="w-full aspect-[4/5] md:aspect-[21/9] flex items-center justify-center relative group"
+    >
+      <Link 
+        href={`/work/${project.slug}`} 
+        onMouseEnter={() => videoRef.current?.play().catch(()=>{})}
+        onMouseLeave={() => videoRef.current?.pause()}
+        className="relative flex flex-col justify-end w-full h-full rounded-[24px] overflow-hidden bg-obsidian border border-graphite cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.15)] transform transition-transform duration-700 hover:scale-[1.02] hover:border-[#E8D4A6]/50 hover:shadow-[0_0_30px_rgba(232,212,166,0.1)]"
+      >
+        {/* Video layer with cinematic clip-path reveal */}
+        {project.video ? (
+          <div className="absolute inset-0 z-0 transition-all duration-700 [clip-path:inset(5%)] group-hover:[clip-path:inset(0%)] opacity-60 group-hover:opacity-100">
+            <video
+              ref={videoRef}
+              src={project.video}
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="w-full h-full object-cover bg-graphite"
+            />
+          </div>
+        ) : (
+          <div className="absolute inset-0 bg-slate mix-blend-multiply opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
+        )}
+
+        {/* Custom subtle tint based on project */}
+        <div className={`absolute inset-0 bg-gradient-to-t ${project.color} via-obsidian/80 to-transparent opacity-80 z-10 transition-opacity duration-700 group-hover:opacity-60`}></div>
+        
+        <div className="relative z-20 p-6 md:p-12 flex flex-col justify-end h-full w-full">
+          <div className="flex justify-between items-end">
+            <div>
+              <span className="font-[family-name:var(--font-ibm-plex-mono)] text-label font-semibold tracking-caption uppercase text-bone opacity-50 mb-2 md:mb-4 block group-hover:opacity-100 group-hover:text-[#E8D4A6] transition-all">
+                {String(index + 1).padStart(2, '0')} // {project.type}
+              </span>
+              <h3 className="font-[family-name:var(--font-die-grotesk-b)] text-[32px] md:text-[64px] leading-[1.0] tracking-[-1px] font-medium uppercase text-bone group-hover:text-white transition-colors duration-500">
+                {project.title}
+              </h3>
+            </div>
+            {/* Visual click indicator */}
+            <div className="opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-500 mb-2 md:mb-4 hidden sm:block">
+              <span className="text-[#E8D4A6] text-3xl md:text-5xl font-light">↗</span>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
 export function WorkGrid() {
   return (
     <section id="work" className="w-full bg-obsidian text-bone py-12 md:py-[120px]">
@@ -54,45 +113,7 @@ export function WorkGrid() {
 
         <div className="flex flex-col gap-8 md:gap-16 w-full">
           {projects.map((project, index) => (
-            <motion.div 
-              key={project.slug}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="w-full aspect-[4/5] md:aspect-[21/9] flex items-center justify-center relative group"
-            >
-              <Link 
-                href={`/work/${project.slug}`} 
-                className="relative flex flex-col justify-end w-full h-full rounded-[24px] overflow-hidden bg-obsidian border border-graphite cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.15)] transform transition-transform duration-700 hover:scale-[1.02] hover:border-[#E8D4A6]/50 hover:shadow-[0_0_30px_rgba(232,212,166,0.1)]"
-              >
-                {/* Video layer */}
-                {project.video ? (
-                  <video
-                    src={project.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover z-0 opacity-80 group-hover:opacity-100 transition-opacity duration-700"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-slate mix-blend-multiply opacity-20 group-hover:opacity-40 transition-opacity duration-700"></div>
-                )}
-
-                {/* Custom subtle tint based on project */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${project.color} via-obsidian/80 to-transparent opacity-80 z-10 transition-opacity duration-700 group-hover:opacity-60`}></div>
-                
-                <div className="relative z-20 p-6 md:p-12 flex flex-col justify-end h-full w-full">
-                  <span className="font-[family-name:var(--font-ibm-plex-mono)] text-label font-semibold tracking-caption uppercase text-bone opacity-50 mb-2 md:mb-4 block group-hover:opacity-100 group-hover:text-[#E8D4A6] transition-all">
-                    {String(index + 1).padStart(2, '0')} // {project.type}
-                  </span>
-                  <h3 className="font-[family-name:var(--font-die-grotesk-b)] text-[32px] md:text-[64px] leading-[1.0] tracking-[-1px] font-medium uppercase text-bone group-hover:text-white transition-colors duration-500">
-                    {project.title}
-                  </h3>
-                </div>
-              </Link>
-            </motion.div>
+            <ProjectCard key={project.slug} project={project} index={index} />
           ))}
         </div>
       </div>

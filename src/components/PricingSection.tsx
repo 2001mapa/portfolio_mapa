@@ -101,7 +101,7 @@ export function PricingSection() {
       
       {/* Luz Ambiental Masiva que ilumina toda la sección y las tarjetas de preguntas */}
       <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-[#E8D4A6] rounded-full blur-[150px] pointer-events-none z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-[radial-gradient(circle_at_center,rgba(232,212,166,0.1)_0,transparent_70%)] rounded-full pointer-events-none z-0"
         animate={{ opacity: selectedType ? 0.05 + (powerLevel * 0.15) : 0 }}
         transition={{ duration: 1 }}
       />
@@ -111,6 +111,9 @@ export function PricingSection() {
         className="absolute inset-0 bg-white z-[5] pointer-events-none transition-opacity duration-300"
         style={{ opacity: flash ? 0.3 : 0, mixBlendMode: 'overlay' }}
       ></div>
+
+      {/* Section H2 for SEO Outline */}
+      <h2 className="sr-only">Cotizador de Proyectos y Reactor de Precios</h2>
 
       <div className="max-w-[1400px] w-full mx-auto px-6 relative z-10 flex flex-col xl:flex-row gap-20 xl:gap-16 items-center">
         

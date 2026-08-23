@@ -1,9 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
+import { MouseEvent, useRef } from "react";
 
 export function AboutSection() {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
+
+  const handleMouseMove = (e: MouseEvent<HTMLButtonElement>) => {
+    if (!btnRef.current) return;
+    const { left, top, width, height } = btnRef.current.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+    // Efecto magnético sutil
+    x.set((e.clientX - centerX) * 0.2);
+    y.set((e.clientY - centerY) * 0.2);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const titleWords = "EL MOTOR DETRÁS DE TUS VENTAS".split(" ");
+
   return (
     <section id="about" className="w-full bg-obsidian text-bone py-12 md:py-[120px]">
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row gap-12 items-center">
@@ -18,27 +43,41 @@ export function AboutSection() {
             src="/foto-perfil.jpeg" 
             alt="Miguel Albornoz Portrait" 
             fill 
+            sizes="(max-width: 768px) 100vw, 400px"
             className="object-cover object-center"
             priority
           />
         </motion.div>
 
         <div className="flex-1 flex flex-col gap-8">
-          <motion.h2 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+          <motion.h1 
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="text-[40px] md:text-[60px] leading-[1.0] font-medium tracking-[-1.2px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-fog"
+            variants={{
+              visible: { transition: { staggerChildren: 0.08 } },
+              hidden: {}
+            }}
+            className="text-[40px] md:text-[60px] leading-[1.0] font-medium tracking-[-1.2px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-fog flex flex-wrap gap-x-4"
           >
-            EL MOTOR DETRÁS DE TUS VENTAS
-          </motion.h2>
+            {titleWords.map((word, i) => (
+              <motion.span
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg leading-body-lg max-w-[500px]"
           >
             <span className="text-slate">No me conformo con páginas web que solo son folletos digitales.</span> <span className="text-bone">Transformo tus cuellos de botella operativos en sistemas automatizados y tiendas virtuales que venden 24/7.</span> Mi objetivo es que la tecnología trabaje para ti, y no al revés.
@@ -48,16 +87,31 @@ export function AboutSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
           >
-            <button 
+            <motion.button 
+              ref={btnRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ x: springX, y: springY }}
               onClick={() => {
-                const section = document.getElementById('contact');
+                const section = document.getElementById('pricing');
                 if (section) section.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-block bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] hover:bg-[#ff6436] transition-all hover:-translate-y-1"
+              className="inline-block bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] hover:bg-[#ff6436] transition-colors"
             >
               Quiero automatizar mis ventas
+            </motion.button>
+
+            <button 
+              onClick={() => {
+                const section = document.getElementById('work');
+                if (section) section.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-block px-8 py-5 text-slate hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors"
+            >
+              Ver proyectos
             </button>
           </motion.div>
         </div>

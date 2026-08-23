@@ -15,7 +15,7 @@ export function ServicesSection() {
     <section id="services" className="relative w-full bg-[#151310] text-[#e8e4db] py-12 md:py-[120px] overflow-hidden">
       
       {/* Luz tenue focal */}
-      <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[30vw] h-[30vw] bg-[#c5a67c]/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(197,166,124,0.05)_0,transparent_70%)] rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col gap-16 relative z-10">
         

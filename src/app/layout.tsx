@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://miguel-albornoz.vercel.app"),
   title: "Miguel Albornoz | Ecosistemas Digitales",
   description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
+  authors: [{ name: 'Miguel Albornoz' }],
   openGraph: {
     title: "Miguel Albornoz | Ecosistemas Digitales",
     description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
@@ -35,15 +36,20 @@ export const metadata: Metadata = {
     siteName: "Miguel Albornoz",
     locale: "es_ES",
     type: "website",
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Miguel Albornoz' }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Miguel Albornoz | Ecosistemas Digitales",
     description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
+    creator: "@miguelalbornoz",
+    images: ["/og-image.jpg"],
   },
 };
 
 import { Toaster } from 'sonner';
+
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -56,6 +62,7 @@ export default function RootLayout({
       className={`${interGravity.variable} ${interGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-[family-name:var(--font-die-grotesk-b)] selection:bg-ember selection:text-bone bg-obsidian">
+        <SmoothScroll />
         <GlobalNav />
 
         <main className="flex-1 flex flex-col w-full relative z-10">
