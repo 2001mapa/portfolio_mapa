@@ -6,6 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: 'MAPA Admin',
     description: 'Panel de Administración y CRM',
     start_url: '/admin/enter',
+    scope: '/',
     display: 'standalone',
     background_color: '#141210',
     theme_color: '#141210',
