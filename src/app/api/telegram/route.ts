@@ -34,6 +34,31 @@ async function sendDocument(chatId: number, pdfBuffer: ArrayBuffer, filename: st
   });
 }
 
+async function askGemini(prompt: string) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) return 'No tengo mente aún. Falta configurar GEMINI_API_KEY en Vercel.';
+
+  try {
+    const projs = await dbGetAllProjects();
+    const systemInstruction = 'Eres EGO, el asistente de CRM personal de Miguel Albornoz. Tu tono es profesional, conciso y de modo Dios. Tienes acceso a esta base de datos de sus proyectos: ' + JSON.stringify(projs) + ' \n\nUsa estos datos para darle resúmenes o consejos si te lo pide. Para operar, recuérdale los comandos: /lead, /listar, /pago, /estado, /borrar, /contrato.';
+
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        systemInstruction: { role: 'user', parts: [{ text: systemInstruction }] }
+      })
+    });
+    
+    const data = await response.json();
+    return data.candidates[0].content.parts[0].text;
+  } catch (e) {
+    console.error('Gemini error:', e);
+    return 'Mi mente está nublada por un error interno.';
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -199,7 +224,8 @@ export async function POST(request: Request) {
         break;
 
       default:
-        await sendMessage(chatId, "🤖 Comando desconocido. Usa /help");
+        const aiResponse = await askGemini(text);
+        await sendMessage(chatId, aiResponse);
         break;
     }
 
