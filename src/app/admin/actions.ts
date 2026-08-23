@@ -10,7 +10,8 @@ export async function loginAction(prevState: any, formData: FormData) {
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (password === adminPassword) {
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-key-12345');
+    if (!process.env.JWT_SECRET) throw new Error("JWT_SECRET is missing");
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
     
     // Sign a JWT token
     const token = await new SignJWT({ role: 'admin' })

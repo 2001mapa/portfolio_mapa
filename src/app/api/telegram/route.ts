@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject } from '@/services/projectService';
+import { dbGetAllProjects, dbUpdateProjectStatus, dbUpdateProject, dbCreateProject, dbRemoveProject } from '@/services/projectData';
 import { jsPDF } from 'jspdf';
 
 // Reemplaza con tu Telegram Chat ID para que el bot solo te escuche a ti
@@ -77,19 +77,19 @@ export async function POST(request: Request) {
           await sendMessage(chatId, "⚠️ Falta el nombre. Ej: <code>/lead Empresa S.A.</code>");
           break;
         }
-        const newProj = await createProject({
+        const newProj = await dbCreateProject({
           client_name: clientName,
           project_name: 'Por definir',
           status: 'cotizando',
           total_value: 0,
           amount_paid: 0
-        }, true);
+        });
         const shortIdNew = newProj.id.substring(0, 4);
         await sendMessage(chatId, `✅ <b>Lead Creado</b>\nCliente: ${clientName}\nID: <code>${shortIdNew}</code>`);
         break;
 
       case '/listar':
-        const allProjects = await getAllProjects(true);
+        const allProjects = await dbGetAllProjects();
         const activeProjects = allProjects.filter(p => p.status !== 'archivado');
         if (activeProjects.length === 0) {
           await sendMessage(chatId, "No hay proyectos activos.");
@@ -109,14 +109,14 @@ export async function POST(request: Request) {
         }
         const pIdPago = args[1];
         const monto = parseInt(args[2].replace(/\D/g, ''));
-        const projsPago = await getAllProjects(true);
+        const projsPago = await dbGetAllProjects();
         const targetPago = projsPago.find(p => p.id.startsWith(pIdPago));
         if (!targetPago) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");
           break;
         }
         const nuevoAbono = targetPago.amount_paid + monto;
-        await updateProject(targetPago.id, { amount_paid: nuevoAbono }, true);
+        await dbUpdateProject(targetPago.id, { amount_paid: nuevoAbono });
         await sendMessage(chatId, `💰 <b>Pago Registrado</b>\nCliente: ${targetPago.client_name}\nNuevo Abono Total: $${nuevoAbono.toLocaleString()}\nSaldo Restante: $${(targetPago.total_value - nuevoAbono).toLocaleString()}`);
         break;
 
@@ -127,13 +127,13 @@ export async function POST(request: Request) {
         }
         const pIdEst = args[1];
         const fase = args[2].toLowerCase();
-        const projsEst = await getAllProjects(true);
+        const projsEst = await dbGetAllProjects();
         const targetEst = projsEst.find(p => p.id.startsWith(pIdEst));
         if (!targetEst) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");
           break;
         }
-        await updateProjectStatus(targetEst.id, fase, true);
+        await dbUpdateProjectStatus(targetEst.id, fase);
         await sendMessage(chatId, `🔄 <b>Estado Actualizado</b>\n${targetEst.client_name} se movió a: ${fase.toUpperCase()}`);
         break;
 
@@ -143,13 +143,13 @@ export async function POST(request: Request) {
           break;
         }
         const pIdDel = args[1];
-        const projsDel = await getAllProjects(true);
+        const projsDel = await dbGetAllProjects();
         const targetDel = projsDel.find(p => p.id.startsWith(pIdDel));
         if (!targetDel) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");
           break;
         }
-        await removeProject(targetDel.id, true);
+        await dbRemoveProject(targetDel.id);
         await sendMessage(chatId, `🗑️ Proyecto de ${targetDel.client_name} eliminado.`);
         break;
 
@@ -159,7 +159,7 @@ export async function POST(request: Request) {
           break;
         }
         const pIdDoc = args[1];
-        const projsDoc = await getAllProjects(true);
+        const projsDoc = await dbGetAllProjects();
         const targetDoc = projsDoc.find(p => p.id.startsWith(pIdDoc));
         if (!targetDoc) {
           await sendMessage(chatId, "❌ Proyecto no encontrado.");

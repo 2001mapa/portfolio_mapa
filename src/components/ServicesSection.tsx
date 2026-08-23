@@ -83,10 +83,10 @@ export function ServicesSection() {
                 <AnimatePresence>
                   {isActive && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
                     >
                       <div className="pb-6 md:pb-12 md:pl-[84px] max-w-[800px] flex flex-col gap-6">
                         <p className="text-xl md:text-2xl text-[#c5a67c] font-medium">

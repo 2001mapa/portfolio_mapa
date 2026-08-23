@@ -1,15 +1,16 @@
 "use client";
 
-import { motion, useScroll, useAnimation } from "framer-motion";
+import { motion, useScroll, useAnimation, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function FloatingCTA() {
   const { scrollY } = useScroll();
   const controls = useAnimation();
+  const shouldReduceMotion = useReducedMotion();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    return scrollY.on("change", (latest) => {
+    const unsubscribe = scrollY.on("change", (latest) => {
       // Mostrar solo si ha bajado más de 500px
       if (latest > 500) {
         setIsVisible(true);
@@ -19,6 +20,7 @@ export function FloatingCTA() {
         controls.start({ opacity: 0, y: 20, scale: 0.9 });
       }
     });
+    return () => unsubscribe();
   }, [scrollY, controls]);
 
   const scrollToPricing = () => {
