@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { getAllProjects } from '@/services/projectService';
 import { Briefcase, CreditCard, Clock, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -24,8 +24,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const { data, error } = await supabase.from('projects').select('*');
-        if (error) throw error;
+        const data = await getAllProjects();
 
         if (data) {
           let revenue = 0;
