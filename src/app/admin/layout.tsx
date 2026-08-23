@@ -148,6 +148,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </nav>
         </div>
 
+        <div className="p-4 border-t border-white/5">
           <button 
             onClick={() => setIsChangePinOpen(true)}
             className="flex items-center gap-3 px-4 py-3 rounded-lg w-full text-slate hover:bg-white/5 hover:text-bone transition-colors mb-2"
