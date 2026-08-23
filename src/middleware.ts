@@ -16,14 +16,14 @@ export async function middleware(request: NextRequest) {
 
     try {
       if (!process.env.JWT_SECRET) {
-        throw new Error("JWT_SECRET is not configured in the environment.");
+        return NextResponse.redirect(new URL('/admin/login?error=missing_secret', request.url));
       }
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       // Verify the JWT mathematically
       await jwtVerify(session.value, secret);
     } catch (error) {
       // If the signature is invalid or the token expired, reject it
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      return NextResponse.redirect(new URL('/admin/login?error=invalid_token', request.url));
     }
   }
   
