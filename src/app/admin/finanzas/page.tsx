@@ -12,7 +12,7 @@ export default function FinanzasPage() {
   useEffect(() => {
     async function fetchFinances() {
       try {
-        const data = await projectService.getProjects();
+        const data = await projectService.getAll();
         setProjects(data);
       } catch (error) {
         console.error("Error fetching finances:", error);
