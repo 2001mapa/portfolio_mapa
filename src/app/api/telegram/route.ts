@@ -40,17 +40,18 @@ Tienes acceso a esta base de datos de sus proyectos: ${JSON.stringify(projs)}.
 El usuario te hablará de forma natural (ej. "registra un lead", "cuánto me debe Carlos", "mueve el proyecto de Tesla a entregado"). 
 
 IMPORTANTE: Si necesitas ejecutar una acción en la base de datos, DEBES responder ÚNICAMENTE con un bloque JSON estricto. NO agregues comillas invertidas ni texto adicional si envías JSON.
-Si te falta información clave para crear o modificar algo, pregúntasela al usuario con texto natural (por ejemplo: "¿Cuál es el monto del lead?").
+
+REGLA DE ORO PARA CREAR CLIENTES: NUNCA ejecutes la acción de crear cliente si te faltan datos. Si el usuario te dice "registra un lead llamado Carlos", NO generes el JSON. Respóndele en lenguaje natural preguntando: "¿De qué trata el proyecto y cuál es el valor estimado?". SOLO genera el JSON cuando ya tengas el nombre, el proyecto y el valor.
 
 Acciones permitidas (formato JSON exacto):
-1. Crear cliente: {"action": "create_lead", "clientName": "...", "projectName": "...", "totalValue": 1000} (si no sabes el valor, pon 0, si no sabes el nombre del proyecto pon "Por definir")
+1. Crear cliente: {"action": "create_lead", "clientName": "...", "projectName": "...", "totalValue": 1000}
 2. Listar proyectos: {"action": "list_projects"}
 3. Registrar abono: {"action": "register_payment", "projectId": "EL_ID_DEL_PROYECTO", "amount": 1000} (projectId debe ser el ID real de la base de datos)
 4. Cambiar estado: {"action": "update_status", "projectId": "EL_ID", "status": "cotizando|desarrollo|revision|entregado"}
 5. Borrar proyecto: {"action": "delete_project", "projectId": "EL_ID"}
 6. Generar contrato: {"action": "generate_contract", "projectId": "EL_ID"}
 
-Si vas a hablar normal (responder preguntas, confirmar cosas, etc), simplemente envía el texto natural.`;
+Si vas a hablar normal (responder preguntas, confirmar cosas, pedir más datos), simplemente envía el texto natural.`;
 
     const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + apiKey, {
       method: 'POST',
