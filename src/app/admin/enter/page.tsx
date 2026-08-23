@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LoginPage() {
   const [pin, setPin] = useState<string>('');
@@ -83,34 +83,26 @@ export default function LoginPage() {
 
           {[0, 1, 2, 3].map((slotIndex) => {
             const hasDigit = pin.length > slotIndex;
-            const digit = hasDigit ? parseInt(pin[slotIndex]) : -1;
-            // -1 represents the '-' character which is at index 0 in columnNumbers
-            // digit 0 is at index 1, digit 1 is at index 2, etc.
-            const targetY = hasDigit ? `-${(digit + 1) * 3}rem` : '0rem';
+            const displayChar = hasDigit ? pin[slotIndex] : '-';
 
             return (
               <div 
                 key={slotIndex} 
-                className={`w-12 h-12 bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-800 rounded flex items-center justify-center overflow-hidden border border-black shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] ${errorShake ? 'border-red-900' : ''}`}
+                className={`w-12 h-12 bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-800 rounded flex items-center justify-center overflow-hidden border border-black shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] relative ${errorShake ? 'border-red-900' : ''}`}
               >
-                <motion.div
-                  className="flex flex-col items-center"
-                  initial={false}
-                  animate={{ y: errorShake ? '0rem' : targetY }}
-                  transition={errorShake ? { type: "spring", stiffness: 200, damping: 10 } : { type: "spring", stiffness: 150, damping: 15 }}
-                >
-                  {columnNumbers.map((num, i) => (
-                    <div 
-                      key={i} 
-                      className={`h-12 w-12 flex-shrink-0 flex items-center justify-center text-2xl font-bold ${num === '-' ? 'text-neutral-500' : 'text-neutral-200'}`}
-                      style={{ 
-                        textShadow: '0 2px 2px rgba(0,0,0,0.8)'
-                      }}
-                    >
-                      {num}
-                    </div>
-                  ))}
-                </motion.div>
+                <AnimatePresence mode="popLayout">
+                  <motion.div
+                    key={errorShake ? `error-${slotIndex}` : displayChar}
+                    initial={{ y: errorShake ? 0 : -40, opacity: errorShake ? 1 : 0, filter: 'blur(4px)' }}
+                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                    exit={{ y: errorShake ? 0 : 40, opacity: errorShake ? 1 : 0, filter: 'blur(4px)' }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className={`absolute flex items-center justify-center text-2xl font-bold ${displayChar === '-' ? 'text-neutral-500' : 'text-neutral-200'}`}
+                    style={{ textShadow: '0 2px 2px rgba(0,0,0,0.8)' }}
+                  >
+                    {displayChar}
+                  </motion.div>
+                </AnimatePresence>
               </div>
             );
           })}
