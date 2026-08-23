@@ -72,37 +72,66 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
+      {/* Key Metrics Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+          className="bg-[#141210] border border-white/5 rounded-2xl p-4 sm:p-5 md:p-6"
+        >
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xs text-slate uppercase tracking-widest">Ingresos Totales</h3>
             <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400"><CreditCard size={16} /></div>
           </div>
-          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-bone break-words truncate">{formatCurrency(stats.totalRevenue)}</p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-light text-bone font-[family-name:var(--font-die-grotesk-b)] truncate w-full">
+              {formatCurrency(stats.totalRevenue)}
+            </p>
+          </div>
         </motion.div>
 
-        <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{delay:0.1}} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+          className="bg-[#141210] border border-white/5 rounded-2xl p-4 sm:p-5 md:p-6"
+        >
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xs text-slate uppercase tracking-widest">Por Cobrar</h3>
             <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400"><Clock size={16} /></div>
           </div>
-          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-orange-400 break-words truncate">{formatCurrency(stats.totalPending)}</p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-light text-orange-400 font-[family-name:var(--font-die-grotesk-b)] truncate w-full">
+              {formatCurrency(stats.totalPending)}
+            </p>
+          </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+          className="bg-[#141210] border border-white/5 rounded-2xl p-4 sm:p-5 md:p-6"
+        >
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xs text-slate uppercase tracking-widest">Proyectos Activos</h3>
             <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400"><Briefcase size={16} /></div>
           </div>
-          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-bone break-words truncate">{stats.activeProjects}</p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-light text-bone font-[family-name:var(--font-die-grotesk-b)]">
+              {stats.activeProjects}
+            </p>
+          </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="bg-[#141210] border border-white/5 rounded-2xl p-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+          className="bg-[#141210] border border-white/5 rounded-2xl p-4 sm:p-5 md:p-6"
+        >
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xs text-slate uppercase tracking-widest">Entregados</h3>
             <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400"><CheckCircle size={16} /></div>
           </div>
-          <p className="text-3xl md:text-4xl font-[family-name:var(--font-die-grotesk-b)] text-bone break-words truncate">{stats.completedProjects}</p>
+          <div className="flex items-baseline gap-2">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-light text-bone font-[family-name:var(--font-die-grotesk-b)] truncate w-full">
+              {stats.completedProjects}
+            </p>
+          </div>
         </motion.div>
       </div>
     </div>

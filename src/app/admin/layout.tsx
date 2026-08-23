@@ -81,24 +81,29 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="flex h-screen print:h-auto print:block bg-obsidian text-bone font-[family-name:var(--font-ibm-plex-mono)] overflow-hidden">
       
-      {/* Mobile Topbar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-[#141210] border-b border-white/5 flex items-center justify-between px-4 z-40 print:hidden">
-        <h2 className="text-xl font-[family-name:var(--font-die-grotesk-b)] tracking-tight">MAPA ADMIN</h2>
-        <button onClick={() => setIsSidebarOpen(true)} className="p-2 text-slate hover:text-white">
+      {/* Mobile Header */}
+      <div className="md:hidden flex items-center justify-between px-4 pb-4 pt-[calc(1rem+env(safe-area-inset-top))] border-b border-white/5 bg-obsidian/90 backdrop-blur-md fixed top-0 w-full z-40 transition-all">
+        <h1 className="font-[family-name:var(--font-die-grotesk-b)] text-bone text-lg">MAPA Admin</h1>
+        <button 
+          onClick={() => setIsSidebarOpen(true)}
+          className="text-bone p-2 hover:bg-white/5 rounded-full transition-colors"
+        >
           <Menu size={24} />
         </button>
       </div>
 
-      {/* Overlay for mobile sidebar */}
+      {/* Sidebar Overlay */}
       {isSidebarOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40" 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 md:relative md:translate-x-0 border-r border-white/5 bg-[#141210] flex flex-col justify-between print:hidden ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside 
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#141210] border-r border-white/5 flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] md:translate-x-0 ${isSidebarOpen ? 'translate-x-0 rounded-r-2xl shadow-2xl pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] md:rounded-none md:shadow-none md:pt-0 md:pb-0' : '-translate-x-full'} md:static`}
+      >
         <div>
           <div className="p-6 border-b border-white/5 flex justify-between items-center">
             <div>
@@ -166,11 +171,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <span>Cerrar Sesión</span>
           </button>
         </div>
-      </aside>
-
-      {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-obsidian relative print:overflow-visible print:bg-white pt-16 md:pt-0">
-        <div className="p-4 md:p-8 lg:p-12 max-w-7xl mx-auto print:p-0 print:m-0 print:max-w-none">
+      </aside>      {/* Main Content Area */}
+      <main className="flex-1 overflow-y-auto bg-obsidian relative print:overflow-visible print:bg-white pt-[calc(3rem+env(safe-area-inset-top))] md:pt-0">
+        <div className="p-4 pb-[calc(5rem+env(safe-area-inset-bottom))] md:p-8 md:pb-8 lg:p-12 max-w-7xl mx-auto print:p-0 print:m-0 print:max-w-none">
           {children}
         </div>
       </main>
@@ -178,7 +181,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Global Quick Add FAB */}
       <button
         onClick={() => setIsQuickAddOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-14 h-14 bg-bone text-obsidian rounded-full shadow-lg hover:scale-105 transition-transform print:hidden"
+        className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] right-4 md:bottom-6 md:right-6 z-40 flex items-center justify-center w-14 h-14 bg-bone text-obsidian rounded-full shadow-[0_4px_20px_rgba(234,229,217,0.3)] hover:scale-105 hover:bg-white transition-all print:hidden"
         title="Quick Add"
       >
         <Plus size={24} />
@@ -186,11 +189,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Change PIN Modal */}
       {isChangePinOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm print:hidden">
-          <div className="bg-[#141210] border border-white/10 rounded-xl p-6 w-full max-w-md shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-md print:hidden">
+          <div className="bg-[#141210] border border-white/10 rounded-t-3xl sm:rounded-2xl p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] sm:pb-6 w-full max-w-md shadow-2xl transition-all">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-[family-name:var(--font-die-grotesk-b)] text-bone">Cambiar PIN de Acceso</h3>
-              <button onClick={() => setIsChangePinOpen(false)} className="text-slate hover:text-white transition-colors">
+              <h3 className="text-xl font-[family-name:var(--font-die-grotesk-b)] text-bone">Cambiar PIN</h3>
+              <button onClick={() => setIsChangePinOpen(false)} className="text-slate hover:text-white transition-colors bg-white/5 rounded-full p-2">
                 <X size={20} />
               </button>
             </div>
@@ -207,25 +210,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     if (val.length <= 4) setNewPinValue(val);
                   }}
                   placeholder="Ej. 1234"
-                  className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-bone focus:outline-none focus:border-white/30 transition-colors tracking-[0.5em] font-bold text-center text-xl"
+                  className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-bone focus:outline-none focus:border-white/30 transition-colors tracking-[0.5em] font-bold text-center text-2xl"
                   autoFocus
                   required
                 />
-                <p className="text-xs text-slate mt-2 text-center">Debe configurar SUPABASE_SERVICE_ROLE_KEY en Vercel para que funcione.</p>
+                <p className="text-xs text-slate mt-3 text-center">Debe configurar SUPABASE_SERVICE_ROLE_KEY en Vercel para que funcione.</p>
               </div>
               
               <div className="flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsChangePinOpen(false)}
-                  className="px-4 py-2 text-slate hover:text-bone transition-colors"
+                  className="px-4 py-3 text-slate hover:text-bone transition-colors font-medium w-full sm:w-auto"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmittingPin || newPinValue.length !== 4}
-                  className="px-6 py-2 bg-bone text-obsidian rounded-lg font-medium hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex gap-2 items-center"
+                  className="px-6 py-3 bg-bone text-obsidian rounded-xl font-medium hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex gap-2 items-center justify-center w-full sm:w-auto shadow-lg"
                 >
                   {isSubmittingPin ? 'Guardando...' : 'Guardar PIN'}
                 </button>
@@ -237,11 +240,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Global Quick Add Modal */}
       {isQuickAddOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm print:hidden">
-          <div className="bg-[#141210] border border-white/10 rounded-xl p-6 w-full max-w-md shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-md print:hidden">
+          <div className="bg-[#141210] border border-white/10 rounded-t-3xl sm:rounded-2xl p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] sm:pb-6 w-full max-w-md shadow-2xl transition-all">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-[family-name:var(--font-die-grotesk-b)] text-bone">Añadir rápido</h3>
-              <button onClick={() => setIsQuickAddOpen(false)} className="text-slate hover:text-white transition-colors">
+              <h3 className="text-xl font-[family-name:var(--font-die-grotesk-b)] text-bone">Añadir Rápido</h3>
+              <button onClick={() => setIsQuickAddOpen(false)} className="text-slate hover:text-white transition-colors bg-white/5 rounded-full p-2">
                 <X size={20} />
               </button>
             </div>
@@ -255,24 +258,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   value={quickAddName}
                   onChange={(e) => setQuickAddName(e.target.value)}
                   placeholder="Ej. Juan Pérez"
-                  className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-bone focus:outline-none focus:border-white/30 transition-colors"
+                  className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-bone focus:outline-none focus:border-white/30 transition-colors"
                   autoFocus
                   required
                 />
               </div>
               
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-end gap-3 flex-col-reverse sm:flex-row">
                 <button
                   type="button"
                   onClick={() => setIsQuickAddOpen(false)}
-                  className="px-4 py-2 text-slate hover:text-bone transition-colors"
+                  className="px-4 py-3 text-slate hover:text-bone transition-colors font-medium w-full sm:w-auto"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting || !quickAddName.trim()}
-                  className="px-6 py-2 bg-bone text-obsidian rounded-lg font-medium hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-3 bg-bone text-obsidian rounded-xl font-medium hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto shadow-lg"
                 >
                   {isSubmitting ? 'Creando...' : 'Crear lead'}
                 </button>
