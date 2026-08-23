@@ -2,7 +2,6 @@ import { ClientHero } from "@/components/ClientHero";
 import { ClientTicker } from "@/components/ClientTicker";
 import { ServicesSection } from "@/components/ServicesSection";
 import { WorkGrid } from "@/components/WorkGrid";
-import { LabSection } from "@/components/LabSection";
 import { AboutSection } from "@/components/AboutSection";
 import { AliadosSection } from "@/components/AliadosSection";
 import { ContactSection } from "@/components/ContactSection";
@@ -25,7 +24,6 @@ export default function Home() {
         <AboutSection />
         <AliadosSection />
         <WorkGrid />
-        <LabSection />
         <ServicesSection />
         <PricingSection />
         <ContactSection />

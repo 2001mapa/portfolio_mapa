@@ -32,6 +32,13 @@ const projects = [
     type: "FULLSTACK ARCHITECTURE",
     color: "from-[#2A261A]", // Beige/Gold tint
     video: "/videos/Ecommerce-doha-desk.mp4"
+  },
+  {
+    slug: "laboratorio",
+    title: "LABORATORIO & EXPERIMENTOS",
+    type: "SIDE PROJECTS & IA",
+    color: "from-[#1A1A26]", // Dark Slate/Blue tint
+    video: ""
   }
 ];
 
