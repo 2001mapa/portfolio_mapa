@@ -86,7 +86,7 @@ export default function LoginPage() {
             const digit = hasDigit ? parseInt(pin[slotIndex]) : -1;
             // -1 represents the '-' character which is at index 0 in columnNumbers
             // digit 0 is at index 1, digit 1 is at index 2, etc.
-            const targetY = hasDigit ? (digit + 1) * -48 : 0;
+            const targetY = hasDigit ? `-${(digit + 1) * 3}rem` : '0rem';
 
             return (
               <div 
@@ -96,13 +96,13 @@ export default function LoginPage() {
                 <motion.div
                   className="flex flex-col items-center"
                   initial={false}
-                  animate={{ y: errorShake ? 0 : targetY }}
+                  animate={{ y: errorShake ? '0rem' : targetY }}
                   transition={errorShake ? { type: "spring", stiffness: 200, damping: 10 } : { type: "spring", stiffness: 150, damping: 15 }}
                 >
                   {columnNumbers.map((num, i) => (
                     <div 
                       key={i} 
-                      className={`h-12 w-12 flex items-center justify-center text-2xl font-bold ${num === '-' ? 'text-neutral-500' : 'text-neutral-200'}`}
+                      className={`h-12 w-12 flex-shrink-0 flex items-center justify-center text-2xl font-bold ${num === '-' ? 'text-neutral-500' : 'text-neutral-200'}`}
                       style={{ 
                         textShadow: '0 2px 2px rgba(0,0,0,0.8)'
                       }}
