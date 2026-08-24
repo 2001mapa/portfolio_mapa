@@ -6,6 +6,13 @@ import { useRef, useEffect } from "react";
 
 const projects = [
   { 
+    slug: "docu-mind", 
+    title: "DOCUMIND: AI PLATFORM", 
+    type: "RAG / MICRO-SAAS / FULLSTACK AI",
+    color: "from-[#4B0082]", // Indigo/Deep Purple
+    video: "" 
+  },
+  { 
     slug: "ai-crm", 
     title: "AI-DRIVEN CRM & TELEGRAM BOT", 
     type: "FULLSTACK AI INTEGRATION",
