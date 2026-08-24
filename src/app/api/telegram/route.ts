@@ -58,11 +58,22 @@ Acciones permitidas (formato JSON exacto):
 
 Si vas a hablar normal (responder preguntas, confirmar cosas, pedir más datos), simplemente envía el texto natural.`;
 
-    const history = chatMemory.get(chatId) || [];
-    history.push({ role: 'user', parts: [{ text: prompt }] });
+    let history = chatMemory.get(chatId) || [];
     
-    // Keep context window small and relevant (last 8 messages)
-    if (history.length > 8) history.splice(0, history.length - 8);
+    // Si el último mensaje también fue del usuario (ej. envió dos seguidos o falló el bot), los concatenamos
+    if (history.length > 0 && history[history.length - 1].role === 'user') {
+      history[history.length - 1].parts[0].text += `\n${prompt}`;
+    } else {
+      history.push({ role: 'user', parts: [{ text: prompt }] });
+    }
+    
+    // Mantener los últimos 8 mensajes (4 turnos) asegurando que siempre empiece con 'user'
+    while (history.length > 8) {
+      history.shift();
+    }
+    if (history.length > 0 && history[0].role === 'model') {
+      history.shift();
+    }
 
     const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + apiKey, {
       method: 'POST',
@@ -74,6 +85,12 @@ Si vas a hablar normal (responder preguntas, confirmar cosas, pedir más datos),
     });
     
     const data = await response.json();
+    
+    if (data.error) {
+      console.error('Gemini API returned error:', data.error);
+      throw new Error(data.error.message);
+    }
+    
     const aiResponseText = data.candidates[0].content.parts[0].text.trim();
     
     history.push({ role: 'model', parts: [{ text: aiResponseText }] });
