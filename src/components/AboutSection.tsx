@@ -27,7 +27,7 @@ export function AboutSection() {
     y.set(0);
   };
 
-  const titleWords = "EL MOTOR DETRÁS DE TUS VENTAS".split(" ");
+  const titleWords = "AI-DRIVEN PRODUCT ENGINEER".split(" ");
 
   return (
     <section id="about" className="w-full bg-obsidian text-bone py-12 md:py-[120px]">
@@ -80,7 +80,7 @@ export function AboutSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg leading-body-lg max-w-[500px]"
           >
-            <span className="text-slate">No me conformo con páginas web que solo son folletos digitales.</span> <span className="text-bone">Transformo tus cuellos de botella operativos en sistemas automatizados y tiendas virtuales que venden 24/7.</span> Mi objetivo es que la tecnología trabaje para ti, y no al revés.
+            <span className="text-slate">Especialista en Next.js, React y ecosistemas Serverless.</span> <span className="text-bone">Mi enfoque es la orquestación de Inteligencia Artificial para construir arquitecturas completas y escalables de extremo a extremo.</span> Diseño, conecto y despliego código listo para producción.
           </motion.p>
 
           <motion.div
@@ -96,12 +96,11 @@ export function AboutSection() {
               onMouseLeave={handleMouseLeave}
               style={{ x: springX, y: springY }}
               onClick={() => {
-                const section = document.getElementById('pricing');
-                if (section) section.scrollIntoView({ behavior: 'smooth' });
+                window.open('https://github.com/2001mapa', '_blank');
               }}
               className="inline-block bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] active:bg-[#ff6436] md:hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] md:hover:bg-[#ff6436] transition-colors"
             >
-              Quiero automatizar mis ventas
+              Ver mi GitHub
             </motion.button>
 
             <button 
@@ -111,7 +110,7 @@ export function AboutSection() {
               }}
               className="inline-block px-8 py-5 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors"
             >
-              Ver proyectos
+              Ver Arquitectura
             </button>
           </motion.div>
         </div>

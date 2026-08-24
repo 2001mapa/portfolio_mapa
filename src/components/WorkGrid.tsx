@@ -6,38 +6,38 @@ import { useRef, useEffect } from "react";
 
 const projects = [
   { 
-    slug: "linktree", 
-    title: "ECOSISTEMA DE ENLACES", 
-    type: "PRESENCIA DIGITAL",
-    color: "from-[#1E152A]", // Purple tint
-    video: "/videos/Stylo-Escritorio.mp4"
-  },
-  { 
-    slug: "landing-page", 
-    title: "LANDING PAGE EXPERIENCES", 
-    type: "CONVERSION DESIGN",
-    color: "from-[#2A1E15]", // Brown tint
-    video: "/videos/landing-page.mp4"
-  },
-  { 
-    slug: "catalogo", 
-    title: "CATÁLOGO DIGITAL", 
-    type: "INTERACTIVE SHOWCASE",
-    color: "from-[#1A261D]", // Green tint
-    video: "/videos/catalogo.mp4"
+    slug: "ai-crm", 
+    title: "AI-DRIVEN CRM & TELEGRAM BOT", 
+    type: "FULLSTACK AI INTEGRATION",
+    color: "from-[#1A1A26]", // Dark Blue
+    video: "" // Dejamos en blanco temporalmente o ponemos un GIF de telegram
   },
   { 
     slug: "ecommerce-erp", 
-    title: "E-COMMERCE & ERP", 
-    type: "FULLSTACK ARCHITECTURE",
-    color: "from-[#2A261A]", // Beige/Gold tint
+    title: "E-COMMERCE & ERP ARCHITECTURE", 
+    type: "SCALABLE SYSTEMS",
+    color: "from-[#2A261A]", // Beige/Gold
     video: "/videos/Ecommerce-doha-desk.mp4"
+  },
+  { 
+    slug: "landing-page", 
+    title: "CONVERSION OPTIMIZED FRONTEND", 
+    type: "REACT PERFORMANCE",
+    color: "from-[#2A1E15]", // Brown
+    video: "/videos/landing-page.mp4"
+  },
+  { 
+    slug: "linktree", 
+    title: "MICRO-FRONTEND ECOSYSTEM", 
+    type: "UI/UX ENGINEERING",
+    color: "from-[#1E152A]", // Purple
+    video: "/videos/Stylo-Escritorio.mp4"
   },
   {
     slug: "laboratorio",
     title: "LABORATORIO & EXPERIMENTOS",
     type: "SIDE PROJECTS & IA",
-    color: "from-[#1A1A26]", // Dark Slate/Blue tint
+    color: "from-[#1A261D]", // Green
     video: ""
   }
 ];

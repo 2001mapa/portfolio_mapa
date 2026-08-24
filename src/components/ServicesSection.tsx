@@ -28,7 +28,7 @@ export function ServicesSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-[48px] md:text-[80px] leading-[1.0] font-medium tracking-[-2px] text-[#e8e4db] font-[family-name:var(--font-abc-gravity-variable)] uppercase select-none relative z-20"
           >
-            HABILIDADES
+            COMPETENCIAS TÉCNICAS
           </motion.h2>
 
           <motion.div 
@@ -39,7 +39,7 @@ export function ServicesSection() {
             className="md:max-w-[400px] relative z-20"
           >
             <p className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg leading-body-lg text-[#a39481]">
-              Haz clic en cualquier habilidad para descubrir cómo impactará directamente en tus métricas y ventas.
+              Haz clic en cualquier competencia para conocer mi enfoque de ingeniería, herramientas y cómo estructuro arquitecturas de software modernas.
             </p>
           </motion.div>
         </div>

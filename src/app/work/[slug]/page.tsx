@@ -1,3 +1,4 @@
+import { AICRMDetail } from "@/components/projects/AICRMDetail";
 import { LinktreeDetail } from "@/components/projects/LinktreeDetail";
 import { LandingPageDetail } from "@/components/projects/LandingPageDetail";
 import { CatalogoDetail } from "@/components/projects/CatalogoDetail";
@@ -13,6 +14,8 @@ export default async function WorkDetail(props: Props) {
   const { slug } = params;
 
   switch (slug) {
+    case "ai-crm":
+      return <AICRMDetail />;
     case "linktree":
       return <LinktreeDetail />;
     case "landing-page":

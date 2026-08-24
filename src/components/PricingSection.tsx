@@ -99,6 +99,11 @@ export function PricingSection() {
   return (
     <section id="pricing" className="relative w-full min-h-screen bg-obsidian text-bone py-12 md:py-[120px] overflow-hidden flex items-center">
       
+      {/* Tech Showcase Disclaimer */}
+      <div className="absolute top-0 left-0 w-full bg-[#E8D4A6] text-obsidian text-center py-2 z-50 font-[family-name:var(--font-ibm-plex-mono)] text-xs md:text-sm font-semibold tracking-widest uppercase shadow-md">
+        ⚠️ Tech Showcase: Interactive React State & Framer Motion Physics Engine
+      </div>
+
       {/* Luz Ambiental Masiva que ilumina toda la sección y las tarjetas de preguntas */}
       <motion.div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-[radial-gradient(circle_at_center,rgba(232,212,166,0.1)_0,transparent_70%)] rounded-full pointer-events-none z-0"
