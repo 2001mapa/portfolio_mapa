@@ -118,13 +118,25 @@ export function DocuMindDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">El Mega-Proyecto: Enterprise DocHub</h2>
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">IA Aplicada a Gestión Documental Corporativa</h2>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                Este proyecto representa la consolidación de múltiples competencias de Ingeniería de Software en un solo producto monolítico: Autenticación, Seguridad (Rate Limiting), Procesamiento de Documentos y Modelos de Lenguaje (LLMs).
+                DocuMind AI es un producto SaaS B2B diseñado para resolver el problema de la extracción de información en grandes volúmenes de documentos corporativos. En lugar de utilizar motores de búsqueda tradicionales por palabras clave, la plataforma comprende el contexto de los documentos mediante procesamiento de lenguaje natural (NLP).
               </p>
-              <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed">
-                DocuMind permite a los usuarios chatear con sus documentos corporativos o crear de forma automatizada Cartas de Presentación basadas en su currículum.
-              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="prose prose-invert max-w-none"
+            >
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">Arquitectura y Flujo Técnico</h3>
+              <ul className="text-[#C5C6C7] space-y-4">
+                <li><strong className="text-white">Ingesta Paralelizada:</strong> Los documentos PDF son procesados en el servidor, fragmentados (chunking) de manera semántica y vectorizados mediante el modelo gemini-embedding-2.</li>
+                <li><strong className="text-white">Vector Store (Búsqueda Semántica):</strong> Los embeddings se almacenan en PostgreSQL (Supabase) utilizando la extensión pgvector. Cuando un usuario consulta, el sistema realiza cálculos de similitud espacial para extraer únicamente los fragmentos más relevantes.</li>
+                <li><strong className="text-white">Generación Confinada (Cero Alucinaciones):</strong> El contexto extraído se inyecta en el LLM (gemini-3.6-flash), forzando a la IA a responder estrictamente basándose en la información propietaria de la empresa y citando la página exacta de origen.</li>
+              </ul>
             </motion.div>
 
             <motion.div 
@@ -159,13 +171,12 @@ export function DocuMindDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">IA Generativa y RAG</h2>
-              <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                El verdadero poder del proyecto radica en su capacidad de leer bases de conocimiento privadas mediante <strong>RAG (Retrieval-Augmented Generation)</strong>. En lugar de depender del conocimiento público del modelo, extraigo la información del PDF, genero *embeddings* (representaciones matemáticas), y realizo búsquedas semánticas para responder al usuario con exactitud.
-              </p>
-              <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed">
-                Todo esto se orquesta detrás de un entorno seguro que previene inyecciones de prompts y abusos de API.
-              </p>
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">Seguridad y Rendimiento</h3>
+              <ul className="text-[#C5C6C7] space-y-4">
+                <li><strong className="text-white">Edge Rate Limiting:</strong> Implementación de Upstash Redis en el Middleware para proteger la API de Gemini contra abusos de cuota y ataques DDoS, manejando límites estrictos por usuario (Tenant).</li>
+                <li><strong className="text-white">Aislamiento Criptográfico:</strong> Uso de Row Level Security (RLS) nativo en la base de datos, garantizando que los vectores y documentos de un usuario sean criptográficamente invisibles para otros.</li>
+                <li><strong className="text-white">Health Score 100/100:</strong> Código altamente optimizado en Next.js 16 (App Router), con tipado estricto en TypeScript, prevención de re-renders innecesarios y animaciones aceleradas por GPU.</li>
+              </ul>
             </motion.div>
           </div>
         </div>
