@@ -8,9 +8,9 @@ export interface HabilidadData {
 
 export const habilidades: HabilidadData[] = [
   {
-    title: "AI & LLM Orchestration",
-    desc: "Integración de Inteligencia Artificial Generativa en flujos de trabajo reales.",
-    benefits: "Desarrollo agentes autónomos, RAG systems y automatizaciones usando APIs de Google Gemini y OpenAI. Sé cómo crear prompts estructurados (JSON mode), mantener memoria de contexto y conectar LLMs a bases de datos para reemplazar tareas manuales complejas.",
+    title: "Secure AI & LLM Orchestration",
+    desc: "Integración segura de Inteligencia Artificial Generativa en flujos de trabajo empresariales.",
+    benefits: "Desarrollo agentes autónomos y sistemas RAG aplicando principios de AI Security (prevención de Prompt Injection, validación estricta de salidas JSON y protección de privacidad). Conecto LLMs a bases de datos de forma segura para automatizar tareas sin exponer datos sensibles ni permitir alucinaciones destructivas.",
     color: "bg-blue-500", // Océano
     hex: "rgba(59, 130, 246, 0.4)"
   },
