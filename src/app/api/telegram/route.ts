@@ -50,10 +50,11 @@ REGLA DE ORO PARA CREAR CLIENTES: NUNCA ejecutes la acción de crear cliente si 
 Acciones permitidas (formato JSON exacto):
 1. Crear cliente: {"action": "create_lead", "clientName": "...", "projectName": "...", "totalValue": 1000}
 2. Listar proyectos: {"action": "list_projects"}
-3. Registrar abono: {"action": "register_payment", "projectId": "EL_ID_DEL_PROYECTO", "amount": 1000} (projectId debe ser el ID real de la base de datos)
+3. Registrar abono: {"action": "register_payment", "projectId": "EL_ID_DEL_PROYECTO", "amount": 1000}
 4. Cambiar estado: {"action": "update_status", "projectId": "EL_ID", "status": "cotizando|desarrollo|revision|entregado"}
 5. Borrar proyecto: {"action": "delete_project", "projectId": "EL_ID"}
-6. Generar contrato: {"action": "generate_contract", "projectId": "EL_ID"}
+6. Generar CONTRATO: {"action": "generate_contract", "projectId": "EL_ID"} (Documento legal con firmas para empezar a desarrollar)
+7. Generar PROPUESTA COMERCIAL: {"action": "generate_proposal", "projectId": "EL_ID"} (Documento de ventas para enviar al cliente cuando se está cotizando, sin términos legales ni firmas)
 
 Si vas a hablar normal (responder preguntas, confirmar cosas, pedir más datos), simplemente envía el texto natural.`;
 
@@ -206,6 +207,45 @@ export async function POST(request: Request) {
             
             const pdfArrayBuffer = doc.output('arraybuffer');
             await sendDocument(chatId, pdfArrayBuffer, `Contrato_${targetDoc.client_name.replace(/\s+/g, '_')}.pdf`, `📄 Aquí tienes el contrato legal para ${targetDoc.client_name}`);
+            break;
+
+          case 'generate_proposal':
+            const projsProp = await dbGetAllProjects();
+            const targetProp = projsProp.find(p => p.id === cmd.projectId);
+            if (!targetProp) {
+              await sendMessage(chatId, "❌ Proyecto no encontrado para generar propuesta.");
+              break;
+            }
+            
+            await sendMessage(chatId, "⏳ Generando propuesta comercial PDF...");
+            
+            const propDoc = new jsPDF();
+            propDoc.setFontSize(22);
+            propDoc.text("PROPUESTA COMERCIAL", 20, 30);
+            
+            propDoc.setFontSize(12);
+            propDoc.text(`Fecha: ${new Date().toLocaleDateString('es-CO')}`, 20, 50);
+            propDoc.text(`Cliente: ${targetProp.client_name}`, 20, 60);
+            propDoc.text(`Servicio Propuesto: ${targetProp.project_name || 'Desarrollo de Software'}`, 20, 70);
+            
+            propDoc.text("1. ALCANCE DEL PROYECTO:", 20, 90);
+            const alcance = propDoc.splitTextToSize(`Se propone la ejecución del proyecto "${targetProp.project_name || 'Desarrollo Digital'}" asegurando altos estándares de calidad, diseño responsivo y optimización SEO técnica. Se incluirá soporte inicial y garantía sobre el código entregado.`, 170);
+            propDoc.text(alcance, 20, 100);
+            
+            propDoc.text("2. INVERSIÓN ESTIMADA:", 20, 130);
+            propDoc.text(`El valor de inversión para este proyecto es de $${targetProp.total_value.toLocaleString('es-CO')}.`, 20, 140);
+            
+            propDoc.text("3. PASOS SIGUIENTES:", 20, 160);
+            propDoc.text("• Aprobación de esta propuesta.", 20, 170);
+            propDoc.text("• Firma de contrato de desarrollo.", 20, 180);
+            propDoc.text("• Pago del anticipo e inicio del proyecto.", 20, 190);
+            
+            propDoc.text("__________________________", 20, 240);
+            propDoc.text("Miguel Albornoz - Desarrollador Frontend", 20, 250);
+            propDoc.text("mapa@example.com", 20, 260); // Omitiendo teléfono real
+            
+            const pdfPropBuffer = propDoc.output('arraybuffer');
+            await sendDocument(chatId, pdfPropBuffer, `Propuesta_${targetProp.client_name.replace(/\s+/g, '_')}.pdf`, `🤝 Aquí tienes la propuesta comercial para ${targetProp.client_name}`);
             break;
             
           default:
