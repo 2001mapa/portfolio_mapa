@@ -5,7 +5,6 @@ import { WorkGrid } from "@/components/WorkGrid";
 import { AboutSection } from "@/components/AboutSection";
 import { TechStackSection } from "@/components/TechStackSection";
 import { ContactSection } from "@/components/ContactSection";
-import { PricingSection } from "@/components/PricingSection";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 import MaintenanceScreen from "@/components/MaintenanceScreen";
@@ -25,7 +24,6 @@ export default function Home() {
         <TechStackSection />
         <WorkGrid />
         <ServicesSection />
-        <PricingSection />
         <ContactSection />
       </div>
     </>
