@@ -1,3 +1,4 @@
+import { OrbitKanbanDetail } from "@/components/projects/OrbitKanbanDetail";
 import { DocuMindDetail } from "@/components/projects/DocuMindDetail";
 import { AICRMDetail } from "@/components/projects/AICRMDetail";
 import { LinktreeDetail } from "@/components/projects/LinktreeDetail";
@@ -15,6 +16,8 @@ export default async function WorkDetail(props: Props) {
   const { slug } = params;
 
   switch (slug) {
+    case "orbit-kanban":
+      return <OrbitKanbanDetail />;
     case "docu-mind":
       return <DocuMindDetail />;
     case "ai-crm":

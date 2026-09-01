@@ -13,6 +13,13 @@ const projects = [
     video: "" 
   },
   { 
+    slug: "orbit-kanban", 
+    title: "ORBIT: REALTIME KANBAN", 
+    type: "WEBSOCKETS / STATE MANAGEMENT",
+    color: "from-[#0F52BA]", // Sapphire Blue
+    video: "/videos/orbit-kanban.mp4" 
+  },
+  { 
     slug: "ai-crm", 
     title: "AI-DRIVEN CRM & TELEGRAM BOT", 
     type: "FULLSTACK AI INTEGRATION",
