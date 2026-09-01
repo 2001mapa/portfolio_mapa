@@ -86,48 +86,93 @@ export function CatalogoDetail() {
       <main className="w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
           
-          {/* Section 1: La Visión del Cliente */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col gap-8 max-w-[1200px]"
-          >
-            <div className="flex items-center gap-4 text-[#4a7c59] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
-              <span>Estudio de Caso</span>
-              <span className="w-12 h-[1px] bg-[#4a7c59]"></span>
-              <span>Esencias del Bosque</span>
-            </div>
-            
-            <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#d6e0d8] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-              Belleza Natural, <br className="hidden md:block"/> Experiencia Digital
-            </h2>
-            
-            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#7a9982] mt-8 md:mt-12">
-              <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Problema: Catálogos en PDF</h3>
-                <p>
-                  Enviar tu inventario en un PDF estático por WhatsApp es frustrante para el cliente. No puede buscar, no puede filtrar y la experiencia de compra se vuelve lenta y tediosa.
-                </p>
-                <p>
-                  Peor aún, tienes que actualizar el archivo manualmente cada vez que cambia un precio o se agota un producto, y al final pierdes ventas por la cantidad de fricción en el proceso.
-                </p>
-              </div>
+          {/* Sidebar + Section 1 Layout */}
+          <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-0">
 
-              <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">La Solución: Catálogo Inteligente</h3>
-                <p>
-                  Desarrollamos catálogos web interactivos con <strong>cierre directo en WhatsApp</strong>. Toda la elegancia de una tienda online, pero sin cobrarte comisiones por venta.
-                </p>
-                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                  <li><strong>0% Comisiones:</strong> El carrito de compras arma el pedido automáticamente y te lo envía directo a tu chat.</li>
-                  <li><strong>Filtros y Búsqueda:</strong> Tus clientes encuentran lo que buscan al instante.</li>
-                  <li><strong>Estética Premium:</strong> Diseños minimalistas que elevan el valor percibido de tu marca muy por encima de la competencia.</li>
-                </ul>
-              </div>
+            {/* Mobile: pills horizontales */}
+            <div className="flex flex-wrap gap-2 mb-4 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">Next.js 15</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">Supabase</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">URL Search Params</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">WhatsApp API</span>
             </div>
-          </motion.div>
+
+            {/* Desktop Sidebar */}
+            <div className="hidden md:flex md:w-1/4 shrink-0 flex-col gap-8 md:sticky top-32 self-start font-[family-name:var(--font-ibm-plex-mono)]">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#4a7c59] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
+                <p className="text-[#d6e0d8] text-sm">Next.js 15 (App Router), Supabase (PostgreSQL), URL Search Params API, WhatsApp Business API, Tailwind CSS.</p>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#4a7c59] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
+                <p className="text-[#d6e0d8] text-sm">Implementar filtrado multi-criterio con estado serializable en URL para que los filtros sean compartibles, y construir un carrito que genere un payload de WhatsApp con formato correcto.</p>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#4a7c59] uppercase tracking-widest text-xs font-semibold">TIPO</h4>
+                <p className="text-[#d6e0d8] text-sm">Proyecto B2B para cliente real. Plataforma en producción activa.</p>
+              </motion.div>
+            </div>
+
+            {/* Main intro */}
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex-1 flex flex-col gap-8"
+            >
+              <div className="flex items-center gap-4 text-[#4a7c59] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
+                <span>Caso de Estudio Técnico</span>
+                <span className="w-12 h-[1px] bg-[#4a7c59]"></span>
+                <span>Esencias del Bosque</span>
+              </div>
+              
+              <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#d6e0d8] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
+                Catálogo Interactivo <br className="hidden md:block"/> & WhatsApp Checkout
+              </h2>
+              
+              <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#7a9982]">
+                <div className="flex-1 flex flex-col gap-6">
+                  <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Reto Técnico Central</h3>
+                  <p>
+                    El problema real no era "reemplazar un PDF". Era construir un sistema de filtrado de estado complejo que fuera <strong className="text-[#d6e0d8]">compartible vía URL</strong>. Un cliente filtra por categoría y precio, y puede copiar la URL para compartir exactamente esa vista con otra persona.
+                  </p>
+                  <p>
+                    El estado del carrito agrega los items seleccionados y al momento del checkout, construye un mensaje formateado con <strong className="text-[#d6e0d8]">encodeURIComponent</strong> para que los caracteres especiales, emojis y saltos de línea lleguen correctamente al chat de WhatsApp Business.
+                  </p>
+                </div>
+
+                <div className="flex-1 flex flex-col gap-6">
+                  <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Decisiones de Arquitectura</h3>
+                  <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
+                    <li><strong>URL Search Params:</strong> El estado de filtros es serializado en la URL (<code className="text-[#4a7c59] text-sm bg-[#4a7c59]/10 px-1.5 py-0.5 rounded">?cat=aromas&sort=price</code>), permitiendo filtros compartibles y navegación con el botón "atrás" del navegador.</li>
+                    <li><strong>Supabase + RLS:</strong> Los productos son gestionados desde un panel de administración con Row Level Security para separar operaciones de lectura pública y escritura de admin.</li>
+                    <li><strong>Carrito sin Backend:</strong> El estado del carrito vive en React Context con persistencia en sessionStorage, eliminando la necesidad de una sesión de servidor.</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           {/* Caso de Exito: Esencias del Bosque */}
           <div className="w-full max-w-[800px] mx-auto mt-12 md:mt-12 px-6 md:px-0 text-center flex flex-col items-center">

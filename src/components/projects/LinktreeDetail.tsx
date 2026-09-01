@@ -88,47 +88,92 @@ export function LinktreeDetail() {
       <main className="relative z-20 w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
           
-          {/* Section 1 & 2: Project Info & Brief */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col gap-8 max-w-[1200px]"
-          >
-            <div className="flex items-center gap-4 text-[#b039d3] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
-              <span>Presentación del Servicio</span>
-              <span className="w-12 h-[1px] bg-[#b039d3]"></span>
-              <span>Ecosistema de Enlaces</span>
-            </div>
-            
-            <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#d6cce5] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-              Tu tarjeta de <br className="hidden md:block"/> presentación digital definitiva
-            </h2>
-            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#8971a5] mt-12 md:mt-16">
-              <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Problema de un solo enlace</h3>
-                <p>
-                  Instagram y TikTok limitan tu perfil a un solo enlace. Si tu negocio vende múltiples productos, tiene un catálogo y recibe pedidos por WhatsApp, obligar al cliente a buscar la información le genera fricción y te hace perder ventas.
-                </p>
-                <p>
-                  Las plataformas gratuitas de enlaces se ven genéricas, están llenas de publicidad de terceros y rompen por completo con la identidad y el prestigio de tu marca.
-                </p>
-              </div>
+          {/* Sidebar + Section 1 Layout */}
+          <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-16">
 
-              <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">La Solución: Ecosistema Premium</h3>
-                <p>
-                  Diseñamos <strong>Linktrees de Alto Rendimiento</strong>. Micro-sitios ultrarrápidos, programados a medida, que actúan como el embudo de conversión perfecto para tus redes sociales.
-                </p>
-                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                  <li><strong>Centralización Total:</strong> Catálogo, WhatsApp, TikTok y pagos a un solo clic.</li>
-                  <li><strong>Identidad Absoluta:</strong> 100% fiel a tu estética, sin logos ni publicidad ajena.</li>
-                  <li><strong>Mobile-First:</strong> Experiencia fluida pensada para el 95% de tráfico que viene de Instagram.</li>
-                </ul>
-              </div>
+            {/* Mobile: pills horizontales */}
+            <div className="flex flex-wrap gap-2 mb-4 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e35] text-[#8971a5]">Next.js 15</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e35] text-[#8971a5]">Framer Motion</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e35] text-[#8971a5]">Tailwind CSS</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e35] text-[#8971a5]">Vercel</span>
             </div>
-          </motion.div>
+
+            {/* Desktop Sidebar */}
+            <div className="hidden md:flex md:w-1/4 shrink-0 flex-col gap-8 md:sticky top-32 self-start font-[family-name:var(--font-ibm-plex-mono)]">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
+                <p className="text-[#d6cce5] text-sm">Next.js 15 (App Router), Framer Motion, Tailwind CSS, Vercel Edge Network.</p>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
+                <p className="text-[#d6cce5] text-sm">Alcanzar 100/100 en Google Lighthouse con animaciones a 60fps constantes y LCP por debajo de 1.2s en dispositivos de gama media.</p>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">TIPO</h4>
+                <p className="text-[#d6cce5] text-sm">Proyectos para clientes reales. Múltiples instancias en producción activa.</p>
+              </motion.div>
+            </div>
+
+            {/* Main intro */}
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex-1 flex flex-col gap-8"
+            >
+              <div className="flex items-center gap-4 text-[#b039d3] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
+                <span>Caso de Estudio Técnico</span>
+                <span className="w-12 h-[1px] bg-[#b039d3]"></span>
+                <span>Performance Frontend</span>
+              </div>
+              
+              <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#d6cce5] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
+                Link-in-Bio Platform: <br className="hidden md:block"/> Performance Extremo
+              </h2>
+              <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#8971a5]">
+                <div className="flex-1 flex flex-col gap-6">
+                  <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Objetivo de Ingeniería</h3>
+                  <p>
+                    La meta no era "hacer una página de links". El objetivo era construir un micro-sitio con <strong className="text-[#d6cce5]">Lighthouse 100/100</strong>, animaciones a 60fps constantes y un tiempo de carga inicial por debajo de 1.2 segundos (LCP), incluso en conexiones 3G.
+                  </p>
+                  <p>
+                    Todas las animaciones usan exclusivamente propiedades <strong className="text-[#d6cce5]">transform</strong> y <strong className="text-[#d6cce5]">opacity</strong> para evitar reflows del DOM. Las fuentes son cargadas con <code className="text-[#b039d3] text-sm bg-[#b039d3]/10 px-1.5 py-0.5 rounded">font-display: swap</code> y pre-conectadas al origen.
+                  </p>
+                </div>
+
+                <div className="flex-1 flex flex-col gap-6">
+                  <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Decisiones de Implementación</h3>
+                  <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
+                    <li><strong>Static Site Generation (SSG):</strong> Pre-renderizado en build time para TTFB mínimo desde el Edge de Vercel.</li>
+                    <li><strong>Framer Motion Lazy:</strong> Importación selectiva de variantes de animación para reducir el bundle JS inicial.</li>
+                    <li><strong>Mobile-First:</strong> Diseñado para el 95%+ de tráfico que llega desde Instagram/TikTok móvil.</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
                {/* Caso de Exito: Stylo */}
           <div className="w-full max-w-[800px] mx-auto mt-12 md:mt-12 px-6 md:px-0 text-center flex flex-col items-center">
              <h3 className="text-[28px] md:text-[40px] leading-tight text-[#d6cce5] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)]">Caso de Éxito: Stylo Caps</h3>
@@ -277,18 +322,18 @@ export function LinktreeDetail() {
             </div>
           </div>
 
-          {/* Invitation CTA */}
+          {/* Technical Results CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="w-full mt-12 bg-gradient-to-br from-[#1e152a] to-[#130f1c] border border-[#b039d3]/40 rounded-3xl px-6 py-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(176,57,211,0.15)]"
           >
-            <h2 className="text-[40px] md:text-[64px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#d6cce5] uppercase">
-              ¿Listo para tu primer <br /> <span className="text-[#b039d3]">paso digital?</span>
+            <h2 className="text-[32px] md:text-[48px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#d6cce5] uppercase">
+              Resultado: <br /> <span className="text-[#b039d3]">Lighthouse 100/100</span>
             </h2>
             <p className="text-body-lg text-[#8971a5] max-w-[600px]">
-              Empieza con un Ecosistema de Enlaces y profesionaliza tu presencia en redes sociales desde el día uno.
+              Performance, Accesibilidad, Mejores Prácticas y SEO: puntuación perfecta en cada categoría. La prueba de que la estética y el rendimiento no son opuestos.
             </p>
 
             <Link 

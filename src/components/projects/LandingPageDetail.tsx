@@ -89,48 +89,93 @@ export function LandingPageDetail() {
       <main className="relative z-20 w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
           
-          {/* Section 1 & 2: Project Info & Brief */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-col gap-8 max-w-[1200px]"
-          >
-            <div className="flex items-center gap-4 text-[#d37039] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
-              <span>Presentación del Proyecto</span>
-              <span className="w-12 h-[1px] bg-[#d37039]"></span>
-              <span>Café Origen</span>
-            </div>
-            
-            <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#e0cfba] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-              El Arte de Vender <br className="hidden md:block"/> con Estética y Precisión
-            </h2>
-            
-            <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#a58971] mt-8 md:mt-12">
-              <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Problema: Webs que no venden</h3>
-                <p>
-                  Tener una página web "bonita" ya no es suficiente. Si tu sitio está lleno de menús confusos, textos aburridos y tarda más de 3 segundos en cargar, el usuario simplemente se irá.
-                </p>
-                <p>
-                  Las plantillas genéricas carecen de alma. No logran transmitir la verdadera calidad de tus productos ni generar la confianza necesaria para que un cliente decida comprarte o visitarte.
-                </p>
-              </div>
+          {/* Sidebar + Section 1 Layout */}
+          <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-0">
 
-              <div className="flex-1 flex flex-col gap-6">
-                <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">La Solución: Landing Inmersiva</h3>
-                <p>
-                  Desarrollamos páginas de aterrizaje de <strong>ultra-conversión</strong>. No son simples webs, son vitrinas digitales estructuradas psicológicamente para vender.
-                </p>
-                <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                  <li><strong>Arquitectura Persuasiva:</strong> Guiamos al usuario desde el asombro inicial hasta la conversión sin distracciones.</li>
-                  <li><strong>Identidad Editorial:</strong> Diseño crudo, tipografías premium y animaciones sutiles.</li>
-                  <li><strong>Velocidad Absoluta:</strong> Código puro y optimizado que carga al instante.</li>
-                </ul>
-              </div>
+            {/* Mobile: pills horizontales */}
+            <div className="flex flex-wrap gap-2 mb-4 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Next.js 15</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Framer Motion</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Tailwind CSS</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Lighthouse 100</span>
             </div>
-          </motion.div>
+
+            {/* Desktop Sidebar */}
+            <div className="hidden md:flex md:w-1/4 shrink-0 flex-col gap-8 md:sticky top-32 self-start font-[family-name:var(--font-ibm-plex-mono)]">
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
+                <p className="text-[#e0cfba] text-sm">Next.js 15 (SSG), Framer Motion, Tailwind CSS, Vercel Edge Network, Google Lighthouse CI.</p>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
+                <p className="text-[#e0cfba] text-sm">Lograr Lighthouse 100/100 con animaciones scroll-driven a 60fps y LCP por debajo de 1.2s, manteniendo la identidad visual premium del cliente.</p>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex flex-col gap-2"
+              >
+                <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">RESULTADO</h4>
+                <p className="text-[#e0cfba] text-sm font-bold">Performance: 100 · Accesibilidad: 100 · SEO: 100 · Mejores Prácticas: 100</p>
+              </motion.div>
+            </div>
+
+            {/* Main intro */}
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex-1 flex flex-col gap-8"
+            >
+              <div className="flex items-center gap-4 text-[#d37039] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
+                <span>Caso de Estudio Técnico</span>
+                <span className="w-12 h-[1px] bg-[#d37039]"></span>
+                <span>Café Origen</span>
+              </div>
+              
+              <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#e0cfba] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
+                Frontend Performance <br className="hidden md:block"/> & Scroll Animations
+              </h2>
+              
+              <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#a58971]">
+                <div className="flex-1 flex flex-col gap-6">
+                  <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Objetivo Técnico</h3>
+                  <p>
+                    Más allá de la estética, el objetivo fue construir una landing page con <strong className="text-[#e0cfba]">Lighthouse 100/100</strong> en todas las categorías. Esto requirió decisiones deliberadas en cada capa: renderizado, carga de recursos y ejecución de animaciones.
+                  </p>
+                  <p>
+                    El sitio usa <strong className="text-[#e0cfba]">Static Site Generation (SSG)</strong> de Next.js para un Time to First Byte (TTFB) mínimo entregado desde el Edge de Vercel, sin proceso de servidor en cada petición.
+                  </p>
+                </div>
+
+                <div className="flex-1 flex flex-col gap-6">
+                  <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Implementación de Animaciones</h3>
+                  <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
+                    <li><strong>useScroll + useTransform:</strong> Animaciones dirigidas por el scroll del usuario con interpolación de valores en tiempo real, sin JavaScript en el hilo principal.</li>
+                    <li><strong>GPU Compositing:</strong> Todas las transiciones usan <code className="text-[#d37039] text-sm bg-[#d37039]/10 px-1.5 py-0.5 rounded">transform</code> y <code className="text-[#d37039] text-sm bg-[#d37039]/10 px-1.5 py-0.5 rounded">opacity</code>, propiedades que el navegador delega al GPU.</li>
+                    <li><strong>Font Optimization:</strong> Fuentes variables con <code className="text-[#d37039] text-sm bg-[#d37039]/10 px-1.5 py-0.5 rounded">font-display: swap</code> y preload para eliminar el FOUT (Flash of Unstyled Text).</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           {/* Caso de Exito: Cafe Origen */}
           <div className="w-full max-w-[800px] mx-auto mt-12 md:mt-12 px-6 md:px-0 text-center flex flex-col items-center">
