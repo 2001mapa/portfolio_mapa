@@ -10,7 +10,7 @@ const projects = [
     title: "DOCUMIND: AI PLATFORM", 
     type: "RAG / MICRO-SAAS / FULLSTACK AI",
     color: "from-[#4B0082]", // Indigo/Deep Purple
-    video: "" 
+    video: "/videos/documind.mp4" 
   },
   { 
     slug: "orbit-kanban", 

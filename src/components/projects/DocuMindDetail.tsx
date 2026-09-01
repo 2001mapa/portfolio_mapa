@@ -69,7 +69,7 @@ export function DocuMindDetail() {
                  transition={{ duration: 1, delay: 1 }}
                  className="mt-8"
               >
-                 <a href="https://docu-mindai.vercel.app/" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-[#8A2BE2] text-white rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:bg-[#9370DB] transition-colors">
+                 <a href="https://docu-mindai.vercel.app/" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-[#8A2BE2] text-white rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:bg-[#9370DB] transition-colors shadow-[0_0_20px_rgba(138,43,226,0.5)]">
                    VER PROYECTO EN VIVO
                  </a>
               </motion.div>
@@ -93,7 +93,7 @@ export function DocuMindDetail() {
               className="flex flex-col gap-2"
             >
               <h4 className="text-[#DDA0DD] uppercase tracking-widest text-xs font-semibold">ARQUITECTURA</h4>
-              <p className="text-white text-sm">Next.js 15, Google Gemini API, RAG (Retrieval-Augmented Generation), Supabase Auth, PDF Generation (jsPDF).</p>
+              <p className="text-white text-sm">Next.js 16 (App Router), React, TypeScript, Tailwind CSS, Supabase (pgvector), Gemini API.</p>
             </motion.div>
             
             <motion.div 
@@ -104,7 +104,7 @@ export function DocuMindDetail() {
               className="flex flex-col gap-2"
             >
               <h4 className="text-[#DDA0DD] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-              <p className="text-white text-sm">Crear un Micro-SaaS completo en tiempo récord que demuestre habilidades avanzadas en Inteligencia Artificial (Vectorización y RAG) acopladas a un sistema seguro de autenticación.</p>
+              <p className="text-white text-sm">Construir una arquitectura Serverless preparada para producción real, con defensas contra Prompt Injection (Indirect Prompt Injection) y aislamiento criptográfico de datos de usuarios.</p>
             </motion.div>
           </div>
 
@@ -112,15 +112,35 @@ export function DocuMindDetail() {
           <div className="w-full md:w-3/4 flex flex-col gap-12 md:gap-24 font-[family-name:var(--font-die-grotesk-b)]">
             
             <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="w-full aspect-[4/3] md:aspect-video bg-[#1F2833] rounded-[16px] overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-[#8A2BE2]/20 flex items-center justify-center mb-6"
+            >
+              <video 
+                src="/videos/documind.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+
+            <motion.div 
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">IA Aplicada a Gestión Documental Corporativa</h2>
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">Gestión Documental con Arquitectura RAG</h2>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                DocuMind AI es un producto SaaS B2B diseñado para resolver el problema de la extracción de información en grandes volúmenes de documentos corporativos. En lugar de utilizar motores de búsqueda tradicionales por palabras clave, la plataforma comprende el contexto de los documentos mediante procesamiento de lenguaje natural (NLP).
+                DocuMind AI es un producto SaaS B2B diseñado para revolucionar la forma en que los profesionales interactúan con grandes volúmenes de documentos.
+              </p>
+              <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed">
+                En lugar de utilizar búsquedas tradicionales por palabras clave, la plataforma permite "chatear" con múltiples PDFs utilizando procesamiento de lenguaje natural, extrayendo insights precisos y redactando documentos derivados (como cartas de presentación) de forma automatizada.
               </p>
             </motion.div>
 
@@ -131,11 +151,12 @@ export function DocuMindDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">Arquitectura y Flujo Técnico</h3>
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">¿Qué ofrece la plataforma?</h3>
               <ul className="text-[#C5C6C7] space-y-4">
-                <li><strong className="text-white">Ingesta Paralelizada:</strong> Los documentos PDF son procesados en el servidor, fragmentados (chunking) de manera semántica y vectorizados mediante el modelo gemini-embedding-2.</li>
-                <li><strong className="text-white">Vector Store (Búsqueda Semántica):</strong> Los embeddings se almacenan en PostgreSQL (Supabase) utilizando la extensión pgvector. Cuando un usuario consulta, el sistema realiza cálculos de similitud espacial para extraer únicamente los fragmentos más relevantes.</li>
-                <li><strong className="text-white">Generación Confinada (Cero Alucinaciones):</strong> El contexto extraído se inyecta en el LLM (gemini-3.6-flash), forzando a la IA a responder estrictamente basándose en la información propietaria de la empresa y citando la página exacta de origen.</li>
+                <li><strong className="text-white">Búsqueda Semántica de Alta Precisión:</strong> Respuestas basadas estrictamente en los documentos subidos, eliminando el riesgo de "alucinaciones" de la IA y citando siempre la fuente exacta.</li>
+                <li><strong className="text-white">Redacción Automatizada de Pipelines:</strong> Capacidad de cruzar el perfil de un candidato (CV) con una oferta laboral para generar cartas de presentación altamente persuasivas en segundos.</li>
+                <li><strong className="text-white">Escudo Anti-Fraude (Seguridad AI):</strong> Un cortafuegos a nivel de System Prompt diseñado para detectar y neutralizar ataques de Indirect Prompt Injection (ej. "Currículums de Texto Blanco" que intentan manipular los filtros automatizados de RRHH).</li>
+                <li><strong className="text-white">Gestión Segura de Tenants:</strong> Límites de cuota por usuario y aislamiento criptográfico de archivos.</li>
               </ul>
             </motion.div>
 
@@ -171,11 +192,14 @@ export function DocuMindDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">Seguridad y Rendimiento</h3>
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">El Impacto Arquitectónico</h3>
+              <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
+                Construir DocuMind AI demuestra mi capacidad para ir más allá de crear simples "clones de ChatGPT". Refleja mi experiencia resolviendo problemas de software a nivel empresarial:
+              </p>
               <ul className="text-[#C5C6C7] space-y-4">
-                <li><strong className="text-white">Edge Rate Limiting:</strong> Implementación de Upstash Redis en el Middleware para proteger la API de Gemini contra abusos de cuota y ataques DDoS, manejando límites estrictos por usuario (Tenant).</li>
-                <li><strong className="text-white">Aislamiento Criptográfico:</strong> Uso de Row Level Security (RLS) nativo en la base de datos, garantizando que los vectores y documentos de un usuario sean criptográficamente invisibles para otros.</li>
-                <li><strong className="text-white">Health Score 100/100:</strong> Código altamente optimizado en Next.js 16 (App Router), con tipado estricto en TypeScript, prevención de re-renders innecesarios y animaciones aceleradas por GPU.</li>
+                <li><strong className="text-white">Protección de Costos:</strong> Manejo avanzado de cuotas en la nube (Rate Limiting en el Edge con Upstash Redis).</li>
+                <li><strong className="text-white">Ciberseguridad:</strong> Implementación de defensas contra vulnerabilidades modernas exclusivas de la Inteligencia Artificial (Prompt Injection) y Row Level Security.</li>
+                <li><strong className="text-white">Arquitectura Escalable:</strong> Diseño Serverless preparado para producción real (Next.js 16) logrando una auditoría de rendimiento perfecta (100/100).</li>
               </ul>
             </motion.div>
           </div>
