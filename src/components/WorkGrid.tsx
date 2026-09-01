@@ -75,16 +75,21 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
     return () => observer.disconnect();
   }, []);
 
+  const isLab = project.slug === "laboratorio";
+  const Wrapper = isLab ? "div" : Link;
+  const wrapperProps = isLab ? {} : { href: `/work/${project.slug}` };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: 0.1 }}
-      className="w-full aspect-[4/5] md:aspect-[21/9] flex items-center justify-center relative group"
+      className={`w-full aspect-[4/5] md:aspect-[21/9] flex items-center justify-center relative group ${isLab ? 'opacity-70 grayscale' : ''}`}
     >
-      <Link 
-        href={`/work/${project.slug}`} 
+      {/* @ts-ignore */}
+      <Wrapper 
+        {...wrapperProps}
         onMouseEnter={() => {
           if (!window.matchMedia("(max-width: 768px)").matches) {
             videoRef.current?.play().catch(()=>{});
@@ -95,7 +100,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
             videoRef.current?.pause();
           }
         }}
-        className="relative flex flex-col justify-end w-full h-full rounded-[24px] overflow-hidden bg-obsidian border border-graphite cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.15)] transform transition-transform duration-700 md:hover:scale-[1.02] md:hover:border-[#E8D4A6]/50 md:hover:shadow-[0_0_30px_rgba(232,212,166,0.1)] active:scale-[0.98]"
+        className={`relative flex flex-col justify-end w-full h-full rounded-[24px] overflow-hidden bg-obsidian border border-graphite shadow-[0_20px_40px_rgba(0,0,0,0.15)] transform transition-transform duration-700 ${isLab ? 'cursor-not-allowed' : 'cursor-pointer md:hover:scale-[1.02] md:hover:border-[#E8D4A6]/50 md:hover:shadow-[0_0_30px_rgba(232,212,166,0.1)] active:scale-[0.98]'}`}
       >
         {/* Video layer with cinematic clip-path reveal */}
         {project.video ? (
@@ -123,17 +128,24 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
               <span className="font-[family-name:var(--font-ibm-plex-mono)] text-label font-semibold tracking-caption uppercase text-bone opacity-70 md:opacity-50 mb-2 md:mb-4 block md:group-hover:opacity-100 md:group-hover:text-[#E8D4A6] transition-all">
                 {String(index + 1).padStart(2, '0')} // {project.type}
               </span>
-              <h3 className="font-[family-name:var(--font-die-grotesk-b)] text-[32px] md:text-[64px] leading-[1.0] tracking-[-1px] font-medium uppercase text-bone md:group-hover:text-white transition-colors duration-500">
+              <h3 className="font-[family-name:var(--font-die-grotesk-b)] text-[32px] md:text-[64px] leading-[1.0] tracking-[-1px] font-medium uppercase text-bone md:group-hover:text-white transition-colors duration-500 flex items-center gap-4">
                 {project.title}
+                {isLab && (
+                  <span className="hidden md:inline-block text-sm tracking-widest font-[family-name:var(--font-ibm-plex-mono)] bg-white/10 text-white px-3 py-1 rounded-full border border-white/20">
+                    PRÓXIMAMENTE
+                  </span>
+                )}
               </h3>
             </div>
             {/* Visual click indicator */}
-            <div className="opacity-0 md:group-hover:opacity-100 transform translate-x-4 md:group-hover:translate-x-0 transition-all duration-500 mb-2 md:mb-4 hidden sm:block">
-              <span className="text-[#E8D4A6] text-3xl md:text-5xl font-light">↗</span>
-            </div>
+            {!isLab && (
+              <div className="opacity-0 md:group-hover:opacity-100 transform translate-x-4 md:group-hover:translate-x-0 transition-all duration-500 mb-2 md:mb-4 hidden sm:block">
+                <span className="text-[#E8D4A6] text-3xl md:text-5xl font-light">↗</span>
+              </div>
+            )}
           </div>
         </div>
-      </Link>
+      </Wrapper>
     </motion.div>
   );
 }
