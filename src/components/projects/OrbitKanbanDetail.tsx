@@ -118,12 +118,66 @@ export function OrbitKanbanDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">[Aquí pondremos tu descripción...]</h2>
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">Gestión de Proyectos en Tiempo Real</h2>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                Esperando el texto estratégico para la descripción del proyecto Orbit Kanban.
+                Orbit es un tablero Kanban colaborativo de alto rendimiento inspirado en herramientas como Jira y Linear. Diseñado para equipos modernos, destaca por resolver problemas arquitectónicos complejos que los tableros básicos suelen ignorar.
+              </p>
+              <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed">
+                Utiliza el algoritmo matemático LexoRank para un reordenamiento de tareas ultrarrápido, WebSockets para colaboración en vivo, y un motor de IA para convertir voz a requerimientos (este último en fase final de integración).
               </p>
             </motion.div>
 
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="prose prose-invert max-w-none"
+            >
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#4169E1] uppercase">Ingeniería y Resolución de Problemas</h3>
+              <ul className="text-[#C5C6C7] space-y-4">
+                <li><strong className="text-white">Ordenamiento Determinista (LexoRank):</strong> Implementación del mismo algoritmo matemático que utiliza Jira. Permite arrastrar y soltar (Drag & Drop) miles de tarjetas instantáneamente, calculando strings lexicográficos en lugar de reescribir índices, lo que evita masivos cuellos de botella en la base de datos PostgreSQL.</li>
+                <li><strong className="text-white">Prevención de Conflictos (Pessimistic Locking):</strong> Uso de Supabase Realtime para sincronización en vivo. Incluye un sistema visual de bloqueo: si un miembro del equipo está editando una tarjeta, esta se bloquea para los demás, previniendo la colisión de datos en entornos de alta concurrencia.</li>
+                <li><strong className="text-white">Manejo de Estado Optimista:</strong> Utilización de React Query para mutaciones optimistas. La UI reacciona instantáneamente a las acciones del usuario, actualizándose en segundo plano, lo que garantiza una sensación de velocidad absoluta incluso en redes de alta latencia.</li>
+              </ul>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="w-full aspect-[4/3] md:aspect-video bg-[#1F2833] rounded-[16px] overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-[#0F52BA]/20 p-8 flex items-center justify-center"
+            >
+              <div className="w-full h-full border border-[#0F52BA]/30 rounded-lg bg-obsidian flex flex-col overflow-hidden">
+                <div className="h-10 bg-[#1F2833] border-b border-[#0F52BA]/30 flex items-center px-4 gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <span className="ml-4 font-[family-name:var(--font-ibm-plex-mono)] text-xs text-[#4169E1]">Orbit System Events</span>
+                </div>
+                <div className="p-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm md:text-base text-[#C5C6C7] flex flex-col gap-4 overflow-y-auto">
+                  <div className="flex gap-2"><span className="text-[#0F52BA]">WSS:</span> Connected to Supabase Realtime Channel 'workspace:123'.</div>
+                  <div className="flex gap-2"><span className="text-yellow-400">Mutate:</span> Optimistic update triggered. UI updated instantly.</div>
+                  <div className="flex gap-2"><span className="text-purple-400">Drag:</span> Task ID 45 moved to 'In Progress'.</div>
+                  <div className="flex gap-2"><span className="text-green-400">LexoRank:</span> New Rank Calculated: 'aaa|aab'. Writing to Postgres...</div>
+                  <div className="flex gap-2"><span className="text-pink-400">Event:</span> 'user_2' is editing Task ID 45. Locking card for others.</div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="prose prose-invert max-w-none"
+            >
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#4169E1] uppercase">Futuro Próximo: Voice-to-Task AI</h3>
+              <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
+                El motor de Inteligencia Artificial está construido y actualmente en fase de integración (WIP). Los usuarios podrán dictar requerimientos complejos mientras la IA (Whisper + GPT-4o) se encarga de transcribir, extraer contexto, auto-etiquetar y asignar la prioridad correcta de la tarea, todo sin tocar el teclado.
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>
