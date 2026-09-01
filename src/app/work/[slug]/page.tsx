@@ -1,6 +1,5 @@
 import { OrbitKanbanDetail } from "@/components/projects/OrbitKanbanDetail";
 import { DocuMindDetail } from "@/components/projects/DocuMindDetail";
-import { AICRMDetail } from "@/components/projects/AICRMDetail";
 import { LinktreeDetail } from "@/components/projects/LinktreeDetail";
 import { LandingPageDetail } from "@/components/projects/LandingPageDetail";
 import { CatalogoDetail } from "@/components/projects/CatalogoDetail";
@@ -20,8 +19,6 @@ export default async function WorkDetail(props: Props) {
       return <OrbitKanbanDetail />;
     case "docu-mind":
       return <DocuMindDetail />;
-    case "ai-crm":
-      return <AICRMDetail />;
     case "linktree":
       return <LinktreeDetail />;
     case "landing-page":

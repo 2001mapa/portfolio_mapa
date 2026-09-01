@@ -19,13 +19,7 @@ const projects = [
     color: "from-[#0F52BA]", // Sapphire Blue
     video: "/videos/orbit-kanban.mp4" 
   },
-  { 
-    slug: "ai-crm", 
-    title: "AI-DRIVEN CRM & TELEGRAM BOT", 
-    type: "FULLSTACK AI INTEGRATION",
-    color: "from-[#1A1A26]", // Dark Blue
-    video: "" // Dejamos en blanco temporalmente o ponemos un GIF de telegram
-  },
+
   { 
     slug: "ecommerce-erp", 
     title: "E-COMMERCE & ERP ARCHITECTURE", 
