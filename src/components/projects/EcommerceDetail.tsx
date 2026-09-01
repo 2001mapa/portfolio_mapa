@@ -295,13 +295,6 @@ export function EcommerceDetail() {
               Desde una vitrina virtual de lujo hasta un sistema contable que trabaja solo. Construyamos la infraestructura digital que tu empresa necesita para escalar.
             </p>
             <Link 
-              href="/#contact"
-              className="mt-4 bg-[#c5a67c] text-[#151310] font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(197,166,124,0.4)] md:hover:shadow-[0_0_50px_rgba(197,166,124,0.6)] md:hover:bg-[#d4b995] active:bg-[#d4b995] md:hover:text-[#151310] active:text-[#151310] transition-all md:hover:-translate-y-1 active:scale-95"
-            >
-              Cotizar mi Ecosistema
-            </Link>
-            
-            <Link 
               href="/#work"
               className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#a39481] md:hover:text-[#c5a67c] active:text-[#c5a67c] transition-colors border-b border-transparent md:hover:border-[#c5a67c] active:border-[#c5a67c] pb-1 p-2 md:p-0"
             >

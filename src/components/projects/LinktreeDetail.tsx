@@ -290,13 +290,7 @@ export function LinktreeDetail() {
             <p className="text-body-lg text-[#8971a5] max-w-[600px]">
               Empieza con un Ecosistema de Enlaces y profesionaliza tu presencia en redes sociales desde el día uno.
             </p>
-            <Link 
-              href="/#pricing"
-              className="mt-4 bg-[#b039d3] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(176,57,211,0.4)] md:hover:shadow-[0_0_50px_rgba(176,57,211,0.6)] md:hover:bg-[#c945f0] active:bg-[#c945f0] transition-all md:hover:-translate-y-1 active:scale-95"
-            >
-              Cotizar mi Linktree
-            </Link>
-            
+
             <Link 
               href="/work/landing-page"
               className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#8971a5] md:hover:text-[#b039d3] active:text-[#b039d3] transition-colors border-b border-transparent md:hover:border-[#b039d3] active:border-[#b039d3] pb-1 p-2 md:p-0"
