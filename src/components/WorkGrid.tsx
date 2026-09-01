@@ -38,7 +38,7 @@ const projects: Project[] = [
     title: "E-COMMERCE & ERP", 
     type: "FULLSTACK E-COMMERCE",
     color: "from-[#1A3A1A]", // Dark Green
-    video: "",
+    video: "/videos/Ecommerce-doha-desk.mp4",
     stack: ["Next.js", "Node.js", "PostgreSQL"],
     status: "live"
   },
@@ -47,7 +47,7 @@ const projects: Project[] = [
     title: "LINKTREE PRO", 
     type: "FULLSTACK / SAAS CLONE",
     color: "from-[#1A1A26]", // Dark Blue
-    video: "",
+    video: "/videos/Stylo-Escritorio.mp4",
     stack: ["Next.js", "Vercel", "Tailwind"],
     status: "live"
   },
@@ -56,7 +56,7 @@ const projects: Project[] = [
     title: "LANDING ALTA PERFORMANCE", 
     type: "FRONTEND / CRO",
     color: "from-[#1A1A1A]", // Dark
-    video: "",
+    video: "/videos/landing-page.mp4",
     stack: ["Next.js", "Lighthouse 100"],
     status: "live"
   },
@@ -65,7 +65,7 @@ const projects: Project[] = [
     title: "CATÁLOGO DIGITAL", 
     type: "B2B / CLIENT PROJECT",
     color: "from-[#1A1A26]", // Dark Blue
-    video: "",
+    video: "/videos/catalogo.mp4",
     stack: ["Next.js", "Supabase", "Vercel"],
     status: "live"
   },
