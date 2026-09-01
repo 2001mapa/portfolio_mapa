@@ -30,7 +30,7 @@ export function EcommerceDetail() {
       />
 
       {/* Hero Header */}
-      <div ref={containerRef} className="relative w-full min-h-[50vh] overflow-hidden flex items-start pt-32 md:pt-40 border-b border-[#2a261a] z-20">
+      <div ref={containerRef} className="relative w-full min-h-[40vh] md:min-h-[50vh] overflow-hidden flex items-start pt-24 md:pt-40 border-b border-[#2a261a] z-20">
         <div className="relative w-full px-6 md:px-12 z-10">
           <div className="max-w-[1400px] mx-auto w-full relative h-full flex flex-col items-center justify-center pt-16 md:pt-0">
             <Link href="/#work" className="absolute top-0 left-0 md:-top-16 font-[family-name:var(--font-ibm-plex-mono)] text-caption font-semibold tracking-caption uppercase text-[#a39481] md:hover:text-[#e8e4db] active:text-[#e8e4db] transition-colors z-50 p-2 md:p-0">

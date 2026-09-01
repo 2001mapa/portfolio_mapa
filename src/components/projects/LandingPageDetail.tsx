@@ -32,7 +32,7 @@ export function LandingPageDetail() {
       />
 
       {/* Dark Brown Header with Parallax */}
-      <div ref={heroRef} className="relative w-full min-h-[50vh] overflow-hidden flex items-start pt-32 md:pt-40">
+      <div ref={heroRef} className="relative w-full min-h-[40vh] md:min-h-[50vh] overflow-hidden flex items-start pt-24 md:pt-40">
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
           className="relative w-full px-6 md:px-12 z-10"

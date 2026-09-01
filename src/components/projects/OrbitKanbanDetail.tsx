@@ -29,7 +29,7 @@ export function OrbitKanbanDetail() {
       />
 
       {/* Hero Section */}
-      <div ref={heroRef} className="relative w-full min-h-[50vh] overflow-hidden flex items-start pt-32 md:pt-40">
+      <div ref={heroRef} className="relative w-full min-h-[40vh] md:min-h-[50vh] overflow-hidden flex items-start pt-24 md:pt-40">
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
           className="relative w-full px-6 md:px-12 z-10"
@@ -69,9 +69,14 @@ export function OrbitKanbanDetail() {
                  transition={{ duration: 1, delay: 1 }}
                  className="mt-8"
               >
+                 <div className="flex flex-wrap justify-center md:justify-start gap-4">
                  <a href="https://orbit-kanban.vercel.app/" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-[#0F52BA] text-white rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:bg-[#4169E1] transition-colors shadow-[0_0_20px_rgba(15,82,186,0.5)]">
                    VER PROYECTO EN VIVO
                  </a>
+                 <a href="https://github.com/2001mapa" target="_blank" rel="noopener noreferrer" className="px-8 py-3 border border-white/20 text-white/60 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:border-white/50 hover:text-white transition-colors">
+                   {'{ '} Ver en GitHub {' }'}
+                 </a>
+               </div>
               </motion.div>
             </div>
           </div>
@@ -84,7 +89,15 @@ export function OrbitKanbanDetail() {
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12 md:gap-24">
           
           {/* Metadata Sidebar */}
-          <div className="w-full md:w-1/4 shrink-0 flex flex-col gap-8 md:sticky top-32 self-start font-[family-name:var(--font-ibm-plex-mono)]">
+          {/* Mobile: pills horizontales */}
+          <div className="flex flex-wrap gap-2 mb-8 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
+            <span className="text-xs px-3 py-1.5 rounded-full border border-graphite text-bone/70">Next.js</span>
+            <span className="text-xs px-3 py-1.5 rounded-full border border-graphite text-bone/70">React</span>
+            <span className="text-xs px-3 py-1.5 rounded-full border border-graphite text-bone/70">Tailwind</span>
+          </div>
+
+          {/* Desktop: sidebar sticky original */}
+          <div className="hidden md:flex md:w-1/4 shrink-0 flex-col gap-8 md:sticky top-32 self-start font-[family-name:var(--font-ibm-plex-mono)]">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}

@@ -58,7 +58,7 @@ export function AboutSection() {
               visible: { transition: { staggerChildren: 0.08 } },
               hidden: {}
             }}
-            className="text-[40px] md:text-[60px] leading-[1.0] font-medium tracking-[-1.2px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-fog flex flex-wrap gap-x-4"
+            className="text-3xl md:text-[40px] md:text-[60px] leading-[1.0] font-medium tracking-[-1.2px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-fog flex flex-wrap gap-x-4"
           >
             {titleWords.map((word, i) => (
               <motion.span

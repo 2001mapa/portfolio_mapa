@@ -110,7 +110,7 @@ export function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "0px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[10vw] md:text-[120px] leading-[0.85] font-medium tracking-[-4px] md:tracking-[-6px] font-[family-name:var(--font-abc-gravity-variable)] uppercase max-w-[1000px]"
+            className="text-[8vw] md:text-[10vw] md:text-[120px] leading-[0.85] font-medium tracking-[-4px] md:tracking-[-6px] font-[family-name:var(--font-abc-gravity-variable)] uppercase max-w-[1000px]"
           >
             ¿LISTO PARA <br />
             <span className="text-[#E8D4A6]">CONSTRUIR ALGO INCREÍBLE?</span>

@@ -34,8 +34,8 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://miguel-albornoz.vercel.app"),
-  title: "Miguel Albornoz | Ecosistemas Digitales",
-  description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
+  title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
+  description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
   authors: [{ name: 'Miguel Albornoz' }],
   appleWebApp: {
     capable: true,
@@ -46,18 +46,18 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Miguel Albornoz | Ecosistemas Digitales",
-    description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
+    title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
+    description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
     url: "https://miguel-albornoz.vercel.app",
     siteName: "Miguel Albornoz",
-    locale: "es_ES",
+    locale: "es_CO",
     type: "website",
     images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Miguel Albornoz' }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Miguel Albornoz | Ecosistemas Digitales",
-    description: "Ingeniería de Software de Alto Nivel enfocada en E-commerce, CRO y Motores de Venta.",
+    title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
+    description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
     creator: "@miguelalbornoz",
     images: ["/og-image.jpg"],
   },
