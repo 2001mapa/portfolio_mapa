@@ -71,12 +71,12 @@ const projects: Project[] = [
   },
   { 
     slug: "laboratorio", 
-    title: "LABORATORIO & EXPERIMENTOS", 
-    type: "AI EXPERIMENTS",
-    color: "from-[#261A1A]", // Dark Red/Brown
-    video: "",
-    stack: ["OpenAI", "Gemini", "Node.js"],
-    status: "wip"
+    title: "LUKA — AI FINANCE BOT", 
+    type: "AI EXPERIMENTS · TELEGRAM BOT",
+    color: "from-[#001A26]", // Dark Cyan
+    video: "/videos/luka-chatbot.mp4",
+    stack: ["Gemini API", "Supabase Realtime", "PWA"],
+    status: "live"
   }
 ];
 
@@ -95,9 +95,9 @@ function getBentoColSpan(index: number): string {
 
 function ProjectCard({ project, index, colSpan }: { project: Project; index: number; colSpan: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const isLab = project.slug === "laboratorio";
-  const Wrapper = isLab ? "div" : Link;
-  const wrapperProps = isLab ? {} : { href: `/work/${project.slug}` };
+  const isLab = false;
+  const Wrapper = Link as React.ElementType;
+  const wrapperProps = { href: `/work/${project.slug}` };
 
   useEffect(() => {
     if (!videoRef.current) return;
