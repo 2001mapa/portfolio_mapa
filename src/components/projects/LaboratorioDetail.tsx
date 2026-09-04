@@ -227,9 +227,9 @@ export function LaboratorioDetail() {
                 className="flex flex-col gap-4 p-6 rounded-xl bg-[#00E5FF]/4 border border-[#00E5FF]/15"
               >
                 <span className="font-[family-name:var(--font-ibm-plex-mono)] text-[#00E5FF] text-xs tracking-widest uppercase">Inteligencia Financiera</span>
-                <h4 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl uppercase">Regla 50/30/20 Automatizada</h4>
+                <h4 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl uppercase">Regla de Presupuesto Personalizable</h4>
                 <p className="text-white/60 text-sm leading-relaxed font-[family-name:var(--font-die-grotesk-b)] max-w-2xl">
-                  El sistema evalúa cada gasto contra la regla 50/30/20 (Necesidades/Deseos/Ahorros) y lo clasifica automáticamente. Entiende comandos complejos como <span className="text-white italic">"Préstale 100 mil a Juan de mis ahorros"</span>, descontando de la liquidez y creando una deuda activa en el panel de cuentas por cobrar.
+                  La distribución de presupuesto no es fija. La regla 50/30/20 es el punto de partida, pero los porcentajes son 100% configurables desde el panel. Actualmente corro <span className="text-[#00E5FF] font-semibold font-[family-name:var(--font-ibm-plex-mono)]">80% Necesidades · 5% Deseos · 15% Ahorros</span>. El sistema evalúa cada gasto contra esos umbrales y entiende comandos complejos como <span className="text-white italic">"Préstale 100 mil a Juan de mis ahorros"</span>, descontando de la liquidez y creando una deuda activa en el panel de cuentas por cobrar.
                 </p>
               </motion.div>
 
