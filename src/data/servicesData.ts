@@ -43,3 +43,4 @@ export const habilidades: HabilidadData[] = [
     hex: "rgba(245, 158, 11, 0.4)"
   }
 ];
+

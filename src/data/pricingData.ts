@@ -68,3 +68,4 @@ export const formatCurrency = (val: number, currency: 'COP' | 'USD' = 'COP') => 
   }
   return `$${(val / 1000).toFixed(0)}k`;
 };
+

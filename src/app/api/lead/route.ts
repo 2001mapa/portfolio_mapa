@@ -32,15 +32,23 @@ export async function POST(request: Request) {
     });
     */
 
-    // Simulación de guardado exitoso para la terminal
-    console.log("-----------------------------------------");
-    console.log("📥 NUEVO LEAD GUARDADO EN SHADOW SAVE:");
-    console.log("Nombre:", data.name);
-    console.log("Mensaje:", data.message);
-    if (data.pricingSummary) {
-      console.log("Presupuesto Base:", data.pricingSummary.totalMin, "-", data.pricingSummary.totalMax);
+    // Validate payload size (e.g. roughly less than 10KB to avoid abuse)
+    const jsonString = JSON.stringify(data);
+    if (jsonString.length > 10000) {
+      return NextResponse.json({ success: false, message: "Payload too large" }, { status: 413 });
     }
-    console.log("-----------------------------------------");
+
+    if (!data.name || typeof data.name !== 'string' || data.name.length > 100) {
+      return NextResponse.json({ success: false, message: "Invalid name" }, { status: 400 });
+    }
+
+    if (!data.message || typeof data.message !== 'string' || data.message.length > 2000) {
+      return NextResponse.json({ success: false, message: "Invalid message" }, { status: 400 });
+    }
+
+    // Shadow save simulation logic...
+    
+    console.log("📥 NUEVO LEAD PROCESADO Y VALIDADO (PII oculto).");
 
     return NextResponse.json({ success: true, message: "Lead guardado correctamente en la sombra." });
   } catch (error) {
@@ -48,3 +56,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, message: "Error interno" }, { status: 500 });
   }
 }
+

@@ -31,8 +31,8 @@ export async function loginAction(pin: string) {
       });
 
       return { success: true };
-    } catch (e: any) {
-      return { error: 'Login Error: ' + (e?.message || String(e)) };
+    } catch (e: unknown) {
+      return { error: 'Login Error: ' + (e instanceof Error ? e.message : String(e)) };
     }
   } else {
     return { error: 'Contraseña incorrecta' };
@@ -44,3 +44,4 @@ export async function logoutAction() {
   cookieStore.delete('admin_session');
   redirect('/admin/enter');
 }
+

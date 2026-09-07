@@ -1,5 +1,4 @@
-import { ClientHero } from "@/components/ClientHero";
-import { ClientTicker } from "@/components/ClientTicker";
+
 import { ServicesSection } from "@/components/ServicesSection";
 import { WorkGrid } from "@/components/WorkGrid";
 import { AboutSection } from "@/components/AboutSection";
@@ -29,3 +28,4 @@ export default function Home() {
     </>
   );
 }
+

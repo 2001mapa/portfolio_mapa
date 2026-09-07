@@ -43,3 +43,4 @@ export async function removeProject(id: string): Promise<void> {
   await verifyAdminAuth();
   return dbRemoveProject(id);
 }
+

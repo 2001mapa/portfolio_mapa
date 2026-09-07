@@ -334,3 +334,4 @@ function MagneticSubmitButton({ isSubmitting }: { isSubmitting: boolean }) {
     </motion.button>
   );
 }
+

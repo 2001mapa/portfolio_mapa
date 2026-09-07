@@ -2,14 +2,14 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'MAPA ADMIN',
-    short_name: 'MAPA Admin',
-    description: 'Panel de Administración y CRM',
-    start_url: '/admin/enter',
+    name: 'Miguel Paz | Full-Stack Engineer',
+    short_name: 'Portfolio',
+    description: 'Portafolio Profesional de Miguel Paz',
+    start_url: '/',
     scope: '/',
     display: 'standalone',
-    background_color: '#141210',
-    theme_color: '#141210',
+    background_color: '#0a0a0c',
+    theme_color: '#0a0a0c',
     orientation: 'portrait-primary',
     icons: [
       {
@@ -21,3 +21,4 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   }
 }
+

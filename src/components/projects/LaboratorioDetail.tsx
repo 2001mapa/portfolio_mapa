@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { motion, useScroll, useSpring } from "framer-motion";
@@ -181,7 +182,7 @@ export function LaboratorioDetail() {
                       className="flex flex-col gap-3 p-5 rounded-xl bg-white/3 border border-white/8"
                     >
                       <span className="font-[family-name:var(--font-ibm-plex-mono)] text-[#00E5FF] text-xs tracking-widest">
-                        {item.step} //
+                        {item.step} {'//'}
                       </span>
                       <h4 className="text-white font-semibold text-sm uppercase font-[family-name:var(--font-ibm-plex-mono)] tracking-wider">
                         {item.title}
@@ -250,3 +251,5 @@ export function LaboratorioDetail() {
     </div>
   );
 }
+
+

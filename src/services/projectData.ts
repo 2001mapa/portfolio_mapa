@@ -36,3 +36,4 @@ export async function dbRemoveProject(id: string): Promise<void> {
   const { error } = await supabase.from('projects').delete().eq('id', id);
   if (error) throw error;
 }
+

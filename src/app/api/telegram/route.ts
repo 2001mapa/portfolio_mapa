@@ -58,7 +58,7 @@ Acciones permitidas (formato JSON exacto):
 
 Si vas a hablar normal (responder preguntas, confirmar cosas, pedir más datos), simplemente envía el texto natural.`;
 
-    let history = chatMemory.get(chatId) || [];
+    const history = chatMemory.get(chatId) || [];
     
     // Si el último mensaje también fue del usuario (ej. envió dos seguidos o falló el bot), los concatenamos
     if (history.length > 0 && history[history.length - 1].role === 'user') {
@@ -284,3 +284,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+

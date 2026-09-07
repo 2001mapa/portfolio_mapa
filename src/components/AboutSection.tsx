@@ -50,28 +50,27 @@ export function AboutSection() {
         </motion.div>
 
         <div className="flex-1 flex flex-col gap-8">
-          <motion.h1 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.08 } },
-              hidden: {}
-            }}
-            className="text-3xl md:text-[40px] md:text-[60px] leading-[1.0] font-medium tracking-[-1.2px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-fog flex flex-wrap gap-x-4"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col gap-2"
           >
-            {titleWords.map((word, i) => (
-              <motion.span
-                key={i}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-                }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.h1>
+            <h2 className="text-[#00E5FF] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase font-semibold">Miguel Albornoz</h2>
+            <h1 className="text-3xl md:text-[40px] md:text-[60px] leading-[1.0] font-medium tracking-[-1.2px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-fog flex flex-wrap gap-x-4">
+              {titleWords.map((word, i) => (
+                <motion.span
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                  }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </h1>
+          </motion.div>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +79,7 @@ export function AboutSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg leading-body-lg max-w-[500px]"
           >
-            <span className="text-slate">Especialista en Next.js, React y ecosistemas Serverless.</span> <span className="text-bone">Mi enfoque es la orquestación de Inteligencia Artificial para construir arquitecturas completas y escalables de extremo a extremo.</span> Diseño, conecto y despliego código listo para producción.
+            <span className="text-slate">Desarrollador Full-Stack en Medellín, Colombia.</span> <span className="text-bone">Especializado en Next.js, React, Supabase y PostgreSQL, integrando herramientas de Inteligencia Artificial (RAG, Gemini) para construir arquitecturas escalables.</span> Abierto a nuevas oportunidades laborales.
           </motion.p>
 
           <motion.div
@@ -88,7 +87,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
+            className="flex flex-col sm:flex-row flex-wrap gap-4 items-start sm:items-center"
           >
             <motion.button 
               ref={btnRef}
@@ -98,23 +97,39 @@ export function AboutSection() {
               onClick={() => {
                 window.open('https://github.com/2001mapa', '_blank');
               }}
-              className="inline-block bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-10 py-5 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] active:bg-[#ff6436] md:hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] md:hover:bg-[#ff6436] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-8 py-4 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] active:bg-[#ff6436] md:hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] md:hover:bg-[#ff6436] transition-colors"
             >
-              Ver mi GitHub
+              GitHub
             </motion.button>
 
-            <button 
-              onClick={() => {
-                const section = document.getElementById('work');
-                if (section) section.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="inline-block px-8 py-5 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors"
+            <a 
+              href="mailto:miguelalbornoz.dev@gmail.com"
+              className="inline-flex items-center gap-2 px-6 py-4 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors border border-white/10 rounded-full md:hover:border-white/30"
             >
-              Ver Arquitectura
-            </button>
+              Email
+            </a>
+            
+            <a 
+              href="https://linkedin.com/in/miguelalbornoz" // Placeholder URL, user should update
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-4 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors border border-white/10 rounded-full md:hover:border-white/30"
+            >
+              LinkedIn
+            </a>
+            
+            <a 
+              href="/CV-MiguelAlejandroPazAlbornoz.pdf" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-4 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors border border-white/10 rounded-full md:hover:border-white/30"
+            >
+              Ver CV
+            </a>
           </motion.div>
         </div>
       </div>
     </section>
   );
 }
+

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const isLoginPage = request.nextUrl.pathname.startsWith('/admin/login') || request.nextUrl.pathname.startsWith('/admin/enter');
   
   if (request.nextUrl.pathname.startsWith('/admin') && !isLoginPage) {
@@ -35,3 +35,4 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: '/admin/:path*',
 };
+

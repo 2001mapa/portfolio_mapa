@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { SignJWT } from 'jose';
+import { createClient } from '@supabase/supabase-js';
 
 export async function POST(request: Request) {
   try {
     const { pin } = await request.json();
-    let currentAdminPin = process.env.ADMIN_PIN || '2001';
+    let currentAdminPin = process.env.ADMIN_PIN;
 
     // Try to fetch custom PIN from database if service key is available
     if (process.env.SUPABASE_SERVICE_ROLE_KEY && process.env.SUPABASE_URL) {
-      const { createClient } = require('@supabase/supabase-js');
       const supabaseAdmin = createClient(
         process.env.SUPABASE_URL,
         process.env.SUPABASE_SERVICE_ROLE_KEY,
@@ -25,6 +25,10 @@ export async function POST(request: Request) {
       if (data && data.value) {
         currentAdminPin = data.value;
       }
+    }
+
+    if (!currentAdminPin) {
+      return NextResponse.json({ error: 'System not configured' }, { status: 500 });
     }
 
     if (pin !== currentAdminPin) {
@@ -54,7 +58,8 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    return NextResponse.json({ error: 'Login Error: ' + (error?.message || String(error)) }, { status: 500 });
+  } catch (error: unknown) {
+    return NextResponse.json({ error: 'Login Error: ' + (error instanceof Error ? error.message : String(error)) }, { status: 500 });
   }
 }
+

@@ -127,7 +127,7 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
       transition={{ duration: 0.8, delay: 0.1 }}
       className={`${colSpan} w-full md:h-full h-auto aspect-[4/3] md:aspect-auto flex items-center justify-center relative group ${isLab ? 'opacity-70 grayscale' : ''}`}
     >
-      {/* @ts-ignore */}
+
       <Wrapper 
         {...wrapperProps}
         onMouseEnter={() => {
@@ -194,7 +194,7 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
               </div>
 
               <span className="font-[family-name:var(--font-ibm-plex-mono)] text-label font-semibold tracking-caption uppercase text-bone opacity-70 md:opacity-50 mb-2 md:mb-4 block md:group-hover:opacity-100 md:group-hover:text-[#E8D4A6] transition-all">
-                {String(index + 1).padStart(2, '0')} // {project.type}
+                {String(index + 1).padStart(2, '0')} {'//'} {project.type}
               </span>
               <h3 className={`font-[family-name:var(--font-die-grotesk-b)] leading-[1.0] tracking-[-1px] font-medium uppercase text-bone md:group-hover:text-white transition-colors duration-500 flex items-center gap-4 ${
                 colSpan === 'md:col-span-1' 
@@ -259,3 +259,4 @@ export function WorkGrid() {
     </section>
   );
 }
+

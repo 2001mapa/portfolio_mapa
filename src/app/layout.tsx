@@ -28,8 +28,6 @@ export const viewport = {
   themeColor: '#161616',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export const metadata: Metadata = {
@@ -52,14 +50,14 @@ export const metadata: Metadata = {
     siteName: "Miguel Albornoz",
     locale: "es_CO",
     type: "website",
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Miguel Albornoz' }],
+    images: [{ url: '/opengraph-image.jpg', width: 1200, height: 630, alt: 'Miguel Albornoz' }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
     description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
     creator: "@miguelalbornoz",
-    images: ["/og-image.jpg"],
+    images: ["/opengraph-image.jpg"],
   },
 };
 
@@ -103,3 +101,4 @@ export default function RootLayout({
     </html>
   );
 }
+

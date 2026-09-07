@@ -350,3 +350,4 @@ export function EcommerceDetail() {
     </div>
   );
 }
+
