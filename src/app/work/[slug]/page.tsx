@@ -3,7 +3,7 @@ import { DocuMindDetail } from "@/components/projects/DocuMindDetail";
 import { LinktreeDetail } from "@/components/projects/LinktreeDetail";
 import { LandingPageDetail } from "@/components/projects/LandingPageDetail";
 import { CatalogoDetail } from "@/components/projects/CatalogoDetail";
-import { EcommerceDetail } from "@/components/projects/EcommerceDetail";
+
 import { ClientProjectDetail } from "./ClientProjectDetail"; // Fallback if needed
 
 type Props = {
@@ -15,7 +15,6 @@ export async function generateMetadata({ params }: Props) {
   const titles: Record<string, string> = {
     'docu-mind': 'DocuMind AI — RAG SaaS para Gestión Documental | Miguel Albornoz',
     'orbit-kanban': 'Orbit Kanban — Plataforma Realtime con LexoRank | Miguel Albornoz',
-    'ecommerce-erp': 'E-Commerce & ERP Architecture | Miguel Albornoz',
     'linktree': 'Linktree Clone de Alto Rendimiento | Miguel Albornoz',
     'landing-page': 'Landing Page con Lighthouse 100 | Miguel Albornoz',
     'catalogo': 'Catálogo Digital B2B | Miguel Albornoz',
@@ -41,8 +40,6 @@ export default async function WorkDetail(props: Props) {
       return <LandingPageDetail />;
     case "catalogo":
       return <CatalogoDetail />;
-    case "ecommerce-erp":
-      return <EcommerceDetail />;
     default:
       return <ClientProjectDetail slug={slug} />;
   }

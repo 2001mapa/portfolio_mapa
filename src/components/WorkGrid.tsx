@@ -33,6 +33,7 @@ const projects: Project[] = [
     stack: ["Next.js 15", "Supabase Realtime", "LexoRank", "React Query"],
     status: "live"
   },
+  /* 
   { 
     slug: "ecommerce-erp", 
     title: "E-COMMERCE & ERP", 
@@ -42,6 +43,7 @@ const projects: Project[] = [
     stack: ["Next.js", "Node.js", "PostgreSQL"],
     status: "live"
   },
+  */
   { 
     slug: "linktree", 
     title: "LINKTREE PRO", 
@@ -82,13 +84,12 @@ const projects: Project[] = [
 
 function getBentoColSpan(index: number): string {
   const pattern = [
-    'md:col-span-2', // grande
-    'md:col-span-1', // pequeña
-    'md:col-span-1', // pequeña
-    'md:col-span-2', // grande
-    'md:col-span-3', // full width
-    'md:col-span-2', // grande
-    'md:col-span-1', // pequeña
+    'md:col-span-2', // docu-mind
+    'md:col-span-1', // orbit-kanban
+    'md:col-span-1', // linktree
+    'md:col-span-2', // landing-page
+    'md:col-span-1', // catalogo
+    'md:col-span-2', // laboratorio
   ];
   return pattern[index % pattern.length];
 }
