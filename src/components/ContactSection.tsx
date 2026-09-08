@@ -20,9 +20,9 @@ export function ContactSection() {
   const [pricingSummary, setPricingSummary] = useState<any>(null);
 
   // 🛡️ OFUSCACIÓN DE CONTACTO
-  // El número base64 es "584246043812" y la URL es "https://wa.me/"
+  // El número base64 es "573045461555" y la URL es "https://wa.me/"
   // Esto evita que los robots de scraping lean tu número en el código fuente.
-  const ENCODED_PHONE = "NTg0MjQ2MDQzODEy";
+  const ENCODED_PHONE = "NTczMDQ1NDYxNTU1";
   const ENCODED_URL = "aHR0cHM6Ly93YS5tZS8=";
 
   useEffect(() => {

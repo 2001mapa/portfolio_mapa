@@ -110,7 +110,7 @@ export function AboutSection() {
             </a>
             
             <a 
-              href="https://linkedin.com/in/miguelalbornoz" // Placeholder URL, user should update
+              href="https://www.linkedin.com/in/miguel-alejandro-paz-albornoz/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-4 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors border border-white/10 rounded-full md:hover:border-white/30"
