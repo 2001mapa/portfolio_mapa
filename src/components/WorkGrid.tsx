@@ -57,8 +57,8 @@ const projects: Project[] = [
     type: "FRONTEND / CRO",
     color: "from-[#1A1A1A]", // Dark
     video: "/videos/landing-page.mp4",
-    stack: ["Next.js", "Lighthouse 100"],
-    status: "live"
+    stack: ["Next.js", "Tailwind CSS"],
+    status: "personal"
   },
   { 
     slug: "catalogo", 
@@ -144,12 +144,6 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
       >
         {/* Status badge */}
         <div className="absolute top-4 right-4 z-30">
-          {project.status === 'live' && (
-            <span className="flex items-center gap-1.5 text-[9px] px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              EN VIVO
-            </span>
-          )}
           {project.status === 'wip' && (
             <span className="flex items-center gap-1.5 text-[9px] px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />

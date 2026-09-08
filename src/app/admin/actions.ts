@@ -6,10 +6,14 @@ import { redirect } from 'next/navigation';
 import { SignJWT } from 'jose';
 
 export async function loginAction(pin: string) {
-  const adminPin = process.env.ADMIN_PIN || '2001'; // Default fallback
+  const adminPin = process.env.ADMIN_PIN;
+  
+  if (!adminPin) {
+    return { error: 'Error del sistema' };
+  }
 
   if (pin === adminPin) {
-    if (!process.env.JWT_SECRET) return { error: 'Error Crítico: JWT_SECRET no está configurado en Vercel' };
+    if (!process.env.JWT_SECRET) return { error: 'Error del sistema' };
     
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);

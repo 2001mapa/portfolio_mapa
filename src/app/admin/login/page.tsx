@@ -44,8 +44,8 @@ export default function LoginPage() {
           } else if (result?.success) {
             window.location.href = '/admin';
           }
-        } catch (err: any) {
-          setError(err?.message || 'Error del servidor al iniciar sesión');
+        } catch (err: unknown) {
+          setError(err instanceof Error ? err.message : 'Error del servidor al iniciar sesión');
           setPin('');
           setIsPending(false);
         }

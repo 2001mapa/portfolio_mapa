@@ -72,10 +72,7 @@ export function OrbitKanbanDetail() {
               >
                  <div className="flex flex-wrap justify-center md:justify-start gap-4">
                  <a href="https://orbit-kanban.vercel.app/" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-[#0F52BA] text-white rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:bg-[#4169E1] transition-colors shadow-[0_0_20px_rgba(15,82,186,0.5)]">
-                   VER PROYECTO EN VIVO
-                 </a>
-                 <a href="https://github.com/2001mapa" target="_blank" rel="noopener noreferrer" className="px-8 py-3 border border-white/20 text-white/60 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:border-white/50 hover:text-white transition-colors">
-                   {'{ '} Ver en GitHub {' }'}
+                   VER PROYECTO
                  </a>
                </div>
               </motion.div>

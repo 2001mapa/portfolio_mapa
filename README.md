@@ -63,8 +63,8 @@ Professional portfolio built with Next.js 16 (App Router), React, Tailwind CSS, 
 
 - **Proxy (Middleware):** Uses Next.js 16 Proxy pattern to secure `/admin` routes using JWT validation.
 - **PWA Capabilities:** Configured with `manifest.ts` and a service worker to provide a native-like experience.
-- **Performance:** Relies on Next/Image, lazy loading for heavy animations, and respects `prefers-reduced-motion` for accessibility.
-- **Security:** Strict payload validation in API routes, and hidden fallback credentials to prevent exposure.
+- **Performance:** Relies on Next/Image and optimized assets for fast load times.
+- **Security:** Strict payload validation in API routes to prevent exposure.
 
 ## 🚀 Deployment
 

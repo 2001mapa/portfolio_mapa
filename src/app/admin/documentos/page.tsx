@@ -222,7 +222,7 @@ export default function DocumentosPage() {
                 <FileText size={40} />
               </div>
               <h2 className="text-2xl font-[family-name:var(--font-die-grotesk-b)] mb-2">¡Documento Listo!</h2>
-              <p className="text-slate mb-8 max-w-md mx-auto">Revisa que la información sea correcta. Haz clic en "Descargar PDF" para abrir la ventana de impresión (asegúrate de guardar como PDF).</p>
+              <p className="text-slate mb-8 max-w-md mx-auto">Revisa que la información sea correcta. Haz clic en &quot;Descargar PDF&quot; para abrir la ventana de impresión (asegúrate de guardar como PDF).</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button onClick={() => setStep(2)} className="text-slate border border-white/10 px-6 py-3 rounded-xl font-bold tracking-widest flex justify-center items-center gap-2 hover:bg-white/5 transition-colors">
@@ -250,7 +250,7 @@ export default function DocumentosPage() {
             <div className="text-right text-xs">
               <p>Fecha: <span>{new Date().toLocaleDateString('es-CO')}</span></p>
               <p>Cliente: <strong>{clientName || '_______________'}</strong></p>
-              {docType === 'factura' && <p>Recibo No. {Math.floor(Math.random() * 90000) + 10000}</p>}
+              {docType === 'factura' && <p>Recibo No. 0001</p>}
             </div>
           </div>
 
@@ -261,7 +261,7 @@ export default function DocumentosPage() {
               
               <div>
                 <h3 className="font-bold border-b border-gray-300 mb-2 pb-1">1. DIAGNÓSTICO Y SOLUCIÓN</h3>
-                <p className="mb-2 text-gray-700 italic">"{problemText}"</p>
+                <p className="mb-2 text-gray-700 italic">&quot;{problemText}&quot;</p>
                 <p>Desarrollaremos un <strong>{projectName || 'Servicio'}</strong>. {solutionText}</p>
               </div>
 
@@ -333,7 +333,7 @@ export default function DocumentosPage() {
 
               <p><strong>QUINTA - PROPIEDAD Y GARANTÍA:</strong> Tras el pago del 100%, los derechos de uso comercial pasarán a EL CLIENTE. Se ofrece garantía de 15 días para la corrección de errores de código (bugs). La garantía se anula si terceros alteran el código.</p>
 
-              <p><strong>SEXTA - EXHIBICIÓN EN PORTAFOLIO:</strong> EL CLIENTE marca con una "X" si autoriza a EL CONTRATISTA a exhibir piezas gráficas y mención del proyecto en su portafolio público con fines demostrativos:</p>
+              <p><strong>SEXTA - EXHIBICIÓN EN PORTAFOLIO:</strong> EL CLIENTE marca con una &quot;X&quot; si autoriza a EL CONTRATISTA a exhibir piezas gráficas y mención del proyecto en su portafolio público con fines demostrativos:</p>
               
               <p className="pl-4">
                 (&nbsp;&nbsp;&nbsp;) <strong>SÍ</strong>, autorizo la exhibición. <br/>
@@ -387,7 +387,7 @@ export default function DocumentosPage() {
               </table>
 
               <div className="mt-12 text-center text-xs text-gray-500">
-                <p>Este documento certifica la recepción de los fondos estipulados en la fila "Total Abonado".</p>
+                <p>Este documento certifica la recepción de los fondos estipulados en la fila &quot;Total Abonado&quot;.</p>
                 <p>Las obligaciones sobre el saldo pendiente se rigen bajo el Contrato de Desarrollo previamente firmado.</p>
               </div>
             </div>

@@ -156,9 +156,9 @@ export function EcommerceDetail() {
                 className="mt-2"
               >
                 <div className="flex flex-col gap-3">
-                  <a href="https://github.com/2001mapa" target="_blank" rel="noopener noreferrer" className="px-6 py-2.5 border border-[#c5a67c]/30 text-[#a39481] rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-xs hover:border-[#c5a67c] hover:text-[#c5a67c] transition-colors text-center">
+                  <span className="px-6 py-2.5 border border-[#c5a67c]/30 text-[#a39481] rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-xs text-center">
                     {'{ '} Repo Privado {' }'}
-                  </a>
+                  </span>
                 </div>
               </motion.div>
             </div>
@@ -175,9 +175,9 @@ export function EcommerceDetail() {
                 className="grid grid-cols-2 md:grid-cols-3 gap-3"
               >
                 {[
-                  { value: '+200%', label: 'Incremento en Conversión' },
-                  { value: '99', label: 'Lighthouse Score' },
-                  { value: '3x', label: 'Reducción en Gestión de Inventario' },
+                  { value: 'Next.js', label: 'App Router' },
+                  { value: 'Zustand', label: 'State Management' },
+                  { value: 'Supabase', label: 'Database & Auth' },
                 ].map((m) => (
                   <div key={m.label} className="p-4 md:p-6 border border-[#2a261a] rounded-xl bg-[#1a1815] flex flex-col gap-1">
                     <span className="text-3xl md:text-4xl font-medium text-[#c5a67c] font-[family-name:var(--font-die-grotesk-b)]">{m.value}</span>

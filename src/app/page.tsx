@@ -1,5 +1,5 @@
 
-import { ServicesSection } from "@/components/ServicesSection";
+
 import { WorkGrid } from "@/components/WorkGrid";
 import { AboutSection } from "@/components/AboutSection";
 import { TechStackSection } from "@/components/TechStackSection";
@@ -22,7 +22,7 @@ export default function Home() {
         <AboutSection />
         <TechStackSection />
         <WorkGrid />
-        <ServicesSection />
+
         <ContactSection />
       </div>
     </>

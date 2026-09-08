@@ -42,6 +42,7 @@ export default function KanbanPage() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProjects();
   }, []);
 
@@ -173,7 +174,7 @@ export default function KanbanPage() {
                 projects.filter(p => p.status === col.id).map(project => (
                   <motion.div 
                     draggable
-                    onDragStart={(e: any) => handleDragStart(e, project.id)}
+                    onDragStart={(e) => handleDragStart(e as unknown as React.DragEvent, project.id)}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     key={project.id} 

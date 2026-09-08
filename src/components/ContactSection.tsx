@@ -3,39 +3,18 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { MouseEvent, useRef, useState, useEffect } from "react";
 
-// Formateador de moneda COP (copiado de PricingSection)
-const formatCOP = (val: number) => {
-  if (val >= 1000000) {
-    return `$${(val / 1000000).toFixed(1)}M`;
-  }
-  return `$${(val / 1000).toFixed(0)}k`;
-};
-
 export function ContactSection() {
   const [formState, setFormState] = useState({
     name: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [pricingSummary, setPricingSummary] = useState<any>(null);
 
   // 🛡️ OFUSCACIÓN DE CONTACTO
   // El número base64 es "573045461555" y la URL es "https://wa.me/"
   // Esto evita que los robots de scraping lean tu número en el código fuente.
   const ENCODED_PHONE = "NTczMDQ1NDYxNTU1";
   const ENCODED_URL = "aHR0cHM6Ly93YS5tZS8=";
-
-  useEffect(() => {
-    const loadSummary = () => {
-      const data = localStorage.getItem('pricingSummary');
-      if (data) {
-        setPricingSummary(JSON.parse(data));
-      }
-    };
-    loadSummary();
-    window.addEventListener('pricingUpdated', loadSummary);
-    return () => window.removeEventListener('pricingUpdated', loadSummary);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,8 +27,7 @@ export function ContactSection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formState.name,
-          message: formState.message,
-          pricingSummary: pricingSummary
+          message: formState.message
         })
       });
     } catch (err) {
@@ -57,21 +35,6 @@ export function ContactSection() {
     }
 
     let waMessage = `Hola Miguel, mi nombre es ${formState.name}.\n\n`;
-
-    if (pricingSummary) {
-      waMessage += `*ESTADO DEL REACTOR (Cotización)*\n`;
-      waMessage += `Tipo: ${pricingSummary.type}\n`;
-      waMessage += `Rango Base: $${(pricingSummary.totalMin / 1000000).toFixed(1)}M - $${(pricingSummary.totalMax / 1000000).toFixed(1)}M COP\n`;
-      
-      if (pricingSummary.features && pricingSummary.features.length > 0) {
-        waMessage += `Módulos:\n`;
-        pricingSummary.features.forEach((f: string) => {
-          waMessage += `  - ${f}\n`;
-        });
-      }
-      waMessage += `\n*Mi mensaje adicional:*\n`;
-    }
-
     waMessage += formState.message;
 
     // Desencriptar en tiempo de ejecución (invisible para los bots)
@@ -79,10 +42,7 @@ export function ContactSection() {
     const phone = typeof window !== 'undefined' ? window.atob(ENCODED_PHONE) : '';
     const waUrl = `${baseUrl}${phone}?text=${encodeURIComponent(waMessage)}`;
     
-    window.open(waUrl, "_blank");
-
-    // Limpiar toda la cotización de memoria y reiniciar el formulario
-    window.dispatchEvent(new Event('resetPricing'));
+    window.open(waUrl, "_blank", "noopener,noreferrer");
     
     setTimeout(() => {
       setIsSubmitting(false);
@@ -160,33 +120,7 @@ export function ContactSection() {
           >
             <form onSubmit={handleSubmit} className="flex flex-col gap-12">
               
-              {/* Pricing Summary Integration */}
-              {pricingSummary && (
-                <div className="w-full bg-white/5 border border-[#E8D4A6]/50 p-6 rounded-xl backdrop-blur-md mb-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-[family-name:var(--font-ibm-plex-mono)] text-[#E8D4A6] uppercase tracking-widest text-sm font-bold">Resumen del Reactor</h4>
-                    <span className="font-[family-name:var(--font-die-grotesk-b)] text-white bg-white/10 px-3 py-1 rounded-full text-sm">
-                      {formatCOP(pricingSummary.totalMin)} - {formatCOP(pricingSummary.totalMax)} COP
-                    </span>
-                  </div>
-                  <p className="font-[family-name:var(--font-die-grotesk-b)] text-white text-lg mb-2">
-                    Proyecto: <span className="text-slate">{pricingSummary.type}</span>
-                  </p>
-                  {pricingSummary.features && pricingSummary.features.length > 0 && (
-                    <div className="mt-4">
-                      <p className="font-[family-name:var(--font-ibm-plex-mono)] text-slate text-xs uppercase tracking-widest mb-2">Módulos Seleccionados:</p>
-                      <ul className="flex flex-wrap gap-2">
-                        {pricingSummary.features.map((f: string, i: number) => (
-                          <li key={i} className="text-xs font-[family-name:var(--font-die-grotesk-b)] bg-white/10 text-slate px-3 py-1 rounded-md">
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  <p className="text-xs text-slate mt-6 italic">*Esta información se adjuntará automáticamente a tu mensaje de WhatsApp.</p>
-                </div>
-              )}
+
 
               {/* Name Input */}
               <div className="relative group">

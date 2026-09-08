@@ -70,12 +70,9 @@ export function DocuMindDetail() {
                  transition={{ duration: 1, delay: 1 }}
                  className="mt-8"
               >
-                 <div className="flex flex-wrap justify-center md:justify-start gap-4">
+               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                  <a href="https://docu-mindai.vercel.app/" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-[#8A2BE2] text-white rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:bg-[#9370DB] transition-colors shadow-[0_0_20px_rgba(138,43,226,0.5)]">
-                   VER PROYECTO EN VIVO
-                 </a>
-                 <a href="https://github.com/2001mapa" target="_blank" rel="noopener noreferrer" className="px-8 py-3 border border-white/20 text-white/60 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:border-white/50 hover:text-white transition-colors">
-                   {'{ '} Ver en GitHub {' }'}
+                   VER PROYECTO
                  </a>
                </div>
               </motion.div>
@@ -213,7 +210,7 @@ export function DocuMindDetail() {
               <ul className="text-[#C5C6C7] space-y-4">
                 <li><strong className="text-white">Protección de Costos:</strong> Manejo avanzado de cuotas en la nube (Rate Limiting en el Edge con Upstash Redis).</li>
                 <li><strong className="text-white">Ciberseguridad:</strong> Implementación de defensas contra vulnerabilidades modernas exclusivas de la Inteligencia Artificial (Prompt Injection) y Row Level Security.</li>
-                <li><strong className="text-white">Arquitectura Escalable:</strong> Diseño Serverless preparado para producción real (Next.js 16) logrando una auditoría de rendimiento perfecta (100/100).</li>
+                <li><strong className="text-white">Arquitectura Escalable:</strong> Diseño Serverless preparado para producción.</li>
               </ul>
             </motion.div>
           </div>
