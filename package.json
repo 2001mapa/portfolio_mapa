@@ -13,6 +13,7 @@
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
     "@supabase/supabase-js": "^2.112.2",
+    "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.40.0",
     "html2canvas": "^1.4.1",
     "jose": "^6.2.8",

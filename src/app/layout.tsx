@@ -67,6 +67,8 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 
 import Script from "next/script";
 
+import { Analytics } from "@vercel/analytics/react";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -97,6 +99,7 @@ export default function RootLayout({
 
         <GlobalFooter />
         <Toaster theme="dark" position="bottom-right" toastOptions={{ style: { background: '#1c1a17', border: '1px solid rgba(255,255,255,0.1)', color: '#eae5d9' } }} />
+        <Analytics />
       </body>
     </html>
   );
