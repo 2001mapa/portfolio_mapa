@@ -97,8 +97,7 @@ function getBentoColSpan(index: number): string {
 function ProjectCard({ project, index, colSpan }: { project: Project; index: number; colSpan: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const isLab = false;
-  const Wrapper = Link as React.ElementType;
-  const wrapperProps = { href: `/work/${project.slug}` };
+
 
   useEffect(() => {
     if (!videoRef.current) return;
@@ -126,11 +125,11 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: 0.1 }}
-      className={`${colSpan} w-full md:h-full h-auto aspect-[4/3] md:aspect-auto flex items-center justify-center relative group ${isLab ? 'opacity-70 grayscale' : ''}`}
+      className={`${colSpan} w-full md:h-full h-auto aspect-[4/3] md:aspect-auto flex items-center justify-center relative group`}
     >
 
-      <Wrapper 
-        {...wrapperProps}
+      <Link 
+        href={`/work/${project.slug}`}
         onMouseEnter={() => {
           if (!window.matchMedia("(max-width: 768px)").matches) {
             videoRef.current?.play().catch(()=>{});
@@ -141,7 +140,7 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
             videoRef.current?.pause();
           }
         }}
-        className={`relative flex flex-col justify-end w-full h-full rounded-[24px] overflow-hidden bg-obsidian border border-graphite shadow-[0_20px_40px_rgba(0,0,0,0.15)] transform transition-transform duration-700 ${isLab ? 'cursor-not-allowed' : 'cursor-pointer md:hover:scale-[1.02] md:hover:border-[#E8D4A6]/50 md:hover:shadow-[0_0_30px_rgba(232,212,166,0.1)] active:scale-[0.98]'}`}
+        className={`relative flex flex-col justify-end w-full h-full rounded-[24px] overflow-hidden bg-obsidian border border-graphite shadow-[0_20px_40px_rgba(0,0,0,0.15)] transform transition-transform duration-700 cursor-pointer md:hover:scale-[1.02] md:hover:border-[#E8D4A6]/50 md:hover:shadow-[0_0_30px_rgba(232,212,166,0.1)] active:scale-[0.98]`}
       >
         {/* Status badge */}
         <div className="absolute top-4 right-4 z-30">
@@ -155,7 +154,7 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
 
         {/* Video layer with cinematic clip-path reveal */}
         {project.video ? (
-          <div className="absolute inset-0 z-0 transition-all duration-700 md:[clip-path:inset(5%)] md:group-hover:[clip-path:inset(0%)] md:opacity-60 md:group-hover:opacity-100 opacity-100 [clip-path:inset(0%)]">
+          <div className="absolute inset-0 z-0 pointer-events-none transition-all duration-700 md:[clip-path:inset(5%)] md:group-hover:[clip-path:inset(0%)] md:opacity-60 md:group-hover:opacity-100 opacity-100 [clip-path:inset(0%)]">
             <video
               ref={videoRef}
               src={project.video}
@@ -163,7 +162,7 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
               muted
               playsInline
               preload="none"
-              className="w-full h-full object-cover bg-graphite"
+              className="w-full h-full object-cover bg-graphite pointer-events-none"
             />
           </div>
         ) : (
@@ -214,7 +213,7 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
             )}
           </div>
         </div>
-      </Wrapper>
+      </Link>
     </motion.div>
   );
 }
