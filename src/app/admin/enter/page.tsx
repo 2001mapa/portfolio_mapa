@@ -46,7 +46,7 @@ export default function LoginPage() {
           } else if (result.success) {
             window.location.href = '/admin';
           }
-        } catch (err) {
+        } catch {
           setPin('');
           setIsPending(false);
         }
@@ -55,9 +55,6 @@ export default function LoginPage() {
     
     submitPin();
   }, [pin]);
-
-  // Array of numbers for the odometer column
-  const columnNumbers = ['-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   return (
     <div className="min-h-screen bg-[#1c1c1c] flex flex-col items-center justify-center p-6 font-[family-name:var(--font-ibm-plex-mono)] selection:bg-transparent">

@@ -47,8 +47,8 @@ Professional portfolio built with Next.js 16 (App Router), React, Tailwind CSS, 
    JWT_SECRET=
    
    # Database (Supabase)
-   NEXT_PUBLIC_SUPABASE_URL=
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=
+   SUPABASE_URL=
+   SUPABASE_ANON_KEY=
    SUPABASE_SERVICE_ROLE_KEY=
    ```
 

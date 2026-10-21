@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props) {
     'docu-mind': 'DocuMind AI — RAG SaaS para Gestión Documental | Miguel Albornoz',
     'orbit-kanban': 'Orbit Kanban — Plataforma Realtime con LexoRank | Miguel Albornoz',
     'linktree': 'Linktree Clone de Alto Rendimiento | Miguel Albornoz',
-    'landing-page': 'Landing Page con Lighthouse 100 | Miguel Albornoz',
+    'landing-page': 'Landing Page de Alto Rendimiento | Miguel Albornoz',
     'catalogo': 'Catálogo Digital B2B | Miguel Albornoz',
   };
   return {

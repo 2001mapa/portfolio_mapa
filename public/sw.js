@@ -1,4 +1,4 @@
-self.addEventListener('install', (event) => {
+self.addEventListener('install', () => {
   self.skipWaiting();
 });
 
@@ -7,11 +7,14 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Requisito mínimo para la instalación nativa (WebAPK en Android).
-  // Solo interceptamos pero dejamos que la red haga el trabajo real.
+  // Do not intercept API calls or static assets without a cache strategy.
+  if (event.request.mode !== 'navigate') return;
   event.respondWith(
     fetch(event.request).catch(() => {
-      return new Response('Offline - No hay conexión');
+      return new Response('<!doctype html><title>Sin conexión</title><p>Sin conexión. Revisa tu red e inténtalo de nuevo.</p>', {
+        status: 503,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      });
     })
   );
 });

@@ -24,7 +24,7 @@ export const habilidades: HabilidadData[] = [
   {
     title: "Frontend & UI/UX Engineering",
     desc: "Interfaces ultra rápidas, accesibles y con físicas avanzadas.",
-    benefits: "Domino React, Tailwind CSS y Framer Motion. Construyo componentes altamente interactivos con físicas fluidas a 60fps, optimizados para SEO y Mobile-First. Me aseguro de que el código sea modular, limpio y reutilizable en toda la aplicación.",
+    benefits: "Trabajo con React, Tailwind CSS y Framer Motion para construir interfaces fluidas, accesibles, optimizadas para SEO y pensadas primero para móvil. El código queda modular, limpio y reutilizable en toda la aplicación.",
     color: "bg-emerald-400", // Esmeralda
     hex: "rgba(52, 211, 153, 0.4)"
   },

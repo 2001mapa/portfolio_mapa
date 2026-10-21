@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { LayoutDashboard, FileText, Kanban, CircleDollarSign, LogOut, Menu, X, Plus, Lock } from 'lucide-react';
-import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject } from '@/services/projectService';
+import { createProject } from '@/services/projectService';
 import { toast } from 'sonner';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -40,7 +40,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         setIsChangePinOpen(false);
         setNewPinValue('');
       }
-    } catch (error) {
+    } catch {
       toast.error('Error de conexión');
     } finally {
       setIsSubmittingPin(false);

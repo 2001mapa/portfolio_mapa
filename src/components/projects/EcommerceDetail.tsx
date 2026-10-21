@@ -1,18 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
 
 export function EcommerceDetail() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const headerScale = useTransform(heroProgress, [0, 1], [1, 1.2]);
-
   // Global page scroll for the progress bar
   const { scrollYProgress: globalProgress } = useScroll();
   const scaleX = useSpring(globalProgress, {
@@ -259,7 +252,7 @@ export function EcommerceDetail() {
                     transition={{ delay: 0.2 }}
                     className="text-body-lg text-[#a39481]"
                   >
-                    La experiencia mobile es tratada como una aplicación nativa, no como una vista reducida del desktop. Las animaciones están implementadas con <strong className="text-[#e8e4db]">transform</strong> y <strong className="text-[#e8e4db]">opacity</strong> exclusivamente, evitando reflows del DOM y manteniendo 60fps constantes en dispositivos de gama media. El gestor de estado del carrito persiste entre rutas usando Zustand con middleware de hidratación.
+                    La experiencia mobile es tratada como una aplicación nativa, no como una vista reducida del desktop. Las animaciones priorizan <strong className="text-[#e8e4db]">transform</strong> y <strong className="text-[#e8e4db]">opacity</strong> para reducir trabajo de layout y mantener una interacción fluida. El gestor de estado del carrito persiste entre rutas usando Zustand con middleware de hidratación.
                   </motion.p>
                 </div>
                 <div className="order-1 md:order-2 flex items-center justify-center">

@@ -79,7 +79,7 @@ export function AboutSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg leading-body-lg max-w-[500px]"
           >
-            <span className="text-slate">Desarrollador Full-Stack en Medellín, Colombia.</span> <span className="text-bone">Especializado en Next.js, React, Supabase y PostgreSQL, integrando herramientas de Inteligencia Artificial (RAG, Gemini) para construir arquitecturas escalables.</span> Abierto a nuevas oportunidades laborales.
+            <span className="text-slate">Desarrollador Full-Stack en Medellín, Colombia.</span> <span className="text-bone">Diseño y construyo productos digitales, catálogos B2B y herramientas internas con Next.js, React, Supabase y PostgreSQL, integrando IA cuando aporta valor real.</span>
           </motion.p>
 
           <motion.div
@@ -94,12 +94,10 @@ export function AboutSection() {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               style={{ x: springX, y: springY }}
-              onClick={() => {
-                window.open('https://github.com/2001mapa', '_blank');
-              }}
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center gap-2 bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-8 py-4 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] active:bg-[#ff6436] md:hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] md:hover:bg-[#ff6436] transition-colors"
             >
-              GitHub
+              Hablemos de tu proyecto
             </motion.button>
 
             <a 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject, type Project } from '@/services/projectService';
+import { getAllProjects, type Project } from '@/services/projectService';
 import { CircleDollarSign, ArrowUpRight, Activity, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 

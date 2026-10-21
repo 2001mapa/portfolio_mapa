@@ -14,7 +14,7 @@ async function verifyAdminAuth() {
   if (!sessionCookie) throw new Error("Unauthorized");
   try {
     await jwtVerify(sessionCookie.value, new TextEncoder().encode(secretToken));
-  } catch (e) {
+  } catch {
     throw new Error("Invalid session token");
   }
 }

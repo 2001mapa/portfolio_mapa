@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { FileText, Download, ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
-import { getAllProjects, updateProjectStatus, updateProject, createProject, removeProject, type Project } from '@/services/projectService';
+import { getAllProjects, type Project } from '@/services/projectService';
 
 export default function DocumentosPage() {
   const [step, setStep] = useState(1);
@@ -23,7 +24,7 @@ export default function DocumentosPage() {
   const [problemText, setProblemText] = useState('Actualmente el proceso de ventas es manual, se pierde tiempo respondiendo mensajes y no hay un sistema centralizado.');
   const [solutionText, setSolutionText] = useState('Una infraestructura digital de alto rendimiento diseñada para automatizar ventas 24/7 y centralizar la administración.');
   const [deliverablesText, setDeliverablesText] = useState('Diseño UI de alto impacto.\nDesarrollo frontend ultrarrápido.\nEnlace directo con WhatsApp.\nPanel administrativo básico.');
-  const [optionalModulesText, setOptionalModulesText] = useState('Dominio y Hosting anual: $ 150.000\nMantenimiento mensual: $ 80.000');
+  const optionalModulesText = 'Dominio y Hosting anual: $ 150.000\nMantenimiento mensual: $ 80.000';
   const [timelineText, setTimelineText] = useState('Fase 1 (Diseño): 3-5 días.\nFase 2 (Programación): 7-10 días.\nFase 3 (Lanzamiento): 2-3 días.');
   const [validityDays, setValidityDays] = useState('15');
 
@@ -32,7 +33,7 @@ export default function DocumentosPage() {
       try {
         const data = await getAllProjects();
         setProjects(data);
-      } catch (error) {
+      } catch {
         toast.error('Error al cargar proyectos');
       } finally {
         setIsLoading(false);
@@ -244,7 +245,7 @@ export default function DocumentosPage() {
           {/* HEADER COMPARTIDO */}
           <div className="flex justify-between items-end border-b-2 border-black pb-6 mb-10">
             <div>
-              <img src="/icon.png" alt="Miguel Albornoz" className="h-16 w-auto object-contain grayscale" />
+              <Image src="/icon.png" alt="Miguel Albornoz" width={64} height={64} className="h-16 w-auto object-contain grayscale" />
               <p className="tracking-widest text-[10px] font-bold mt-2 uppercase">Software Engineer & CRM Expert</p>
             </div>
             <div className="text-right text-xs">

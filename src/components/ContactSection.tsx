@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { MouseEvent, useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 export function ContactSection() {
   const [formState, setFormState] = useState({
@@ -16,23 +16,9 @@ export function ContactSection() {
   const ENCODED_PHONE = "NTczMDQ1NDYxNTU1";
   const ENCODED_URL = "aHR0cHM6Ly93YS5tZS8=";
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    try {
-      // 🛡️ SHADOW SAVE: Guardado Oculto
-      await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formState.name,
-          message: formState.message
-        })
-      });
-    } catch (err) {
-      console.error("Shadow save failed", err);
-    }
 
     let waMessage = `Hola Miguel, mi nombre es ${formState.name}.\n\n`;
     waMessage += formState.message;
@@ -42,7 +28,18 @@ export function ContactSection() {
     const phone = typeof window !== 'undefined' ? window.atob(ENCODED_PHONE) : '';
     const waUrl = `${baseUrl}${phone}?text=${encodeURIComponent(waMessage)}`;
     
-    window.open(waUrl, "_blank", "noopener,noreferrer");
+    // Se abre durante el gesto del usuario para evitar que el navegador bloquee la pestaña.
+    const openedWindow = window.open(waUrl, "_blank", "noopener,noreferrer");
+    if (!openedWindow) {
+      window.location.assign(waUrl);
+    }
+
+    // Validación no bloqueante: el envío real sucede en WhatsApp.
+    void fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: formState.name, message: formState.message }),
+    });
     
     setTimeout(() => {
       setIsSubmitting(false);
@@ -158,7 +155,7 @@ export function ContactSection() {
                   htmlFor="message" 
                   className="absolute left-0 top-4 text-slate text-body-lg font-[family-name:var(--font-die-grotesk-b)] transition-all duration-300 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-[#E8D4A6] peer-valid:-top-6 peer-valid:text-sm peer-valid:text-slate pointer-events-none"
                 >
-                  Háblame sobre tu equipo o vacante...
+                  Cuéntame qué necesitas construir o mejorar...
                 </label>
               </div>
 

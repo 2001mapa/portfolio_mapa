@@ -22,7 +22,7 @@ export async function proxy(request: NextRequest) {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       // Verify the JWT mathematically
       await jwtVerify(session.value, secret);
-    } catch (error) {
+    } catch {
       // If the signature is invalid or the token expired, reject it
       return NextResponse.redirect(new URL('/admin/enter?error=invalid_token', request.url));
     }

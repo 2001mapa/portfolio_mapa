@@ -98,7 +98,7 @@ export function LandingPageDetail() {
               <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Next.js 15</span>
               <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Framer Motion</span>
               <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Tailwind CSS</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Lighthouse 100</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Performance-first</span>
             </div>
 
             {/* Desktop Sidebar */}
@@ -122,7 +122,7 @@ export function LandingPageDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-                <p className="text-[#e0cfba] text-sm">Lograr Lighthouse 100/100 con animaciones scroll-driven a 60fps y LCP por debajo de 1.2s, manteniendo la identidad visual premium del cliente.</p>
+                <p className="text-[#e0cfba] text-sm">Priorizar Core Web Vitals, transiciones fluidas y una identidad visual premium sin sacrificar claridad ni velocidad percibida.</p>
               </motion.div>
 
               <motion.div 
@@ -159,7 +159,7 @@ export function LandingPageDetail() {
                 <div className="flex-1 flex flex-col gap-6">
                   <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Objetivo Técnico</h3>
                   <p>
-                    Más allá de la estética, el objetivo fue construir una landing page con <strong className="text-[#e0cfba]">Lighthouse 100/100</strong> en todas las categorías. Esto requirió decisiones deliberadas en cada capa: renderizado, carga de recursos y ejecución de animaciones.
+                    Más allá de la estética, el objetivo fue construir una landing page rápida y mantenible. Esto requirió decisiones deliberadas en cada capa: renderizado, carga de recursos y ejecución de animaciones.
                   </p>
                   <p>
                     El sitio usa <strong className="text-[#e0cfba]">Static Site Generation (SSG)</strong> de Next.js para un Time to First Byte (TTFB) mínimo entregado desde el Edge de Vercel, sin proceso de servidor en cada petición.

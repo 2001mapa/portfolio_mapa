@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://miguel-albornoz.vercel.app"),
   title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
   description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   authors: [{ name: 'Miguel Albornoz' }],
   appleWebApp: {
     capable: true,

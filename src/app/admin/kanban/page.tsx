@@ -35,7 +35,7 @@ export default function KanbanPage() {
     try {
       const data = await getAllProjects();
       setProjects(data);
-    } catch (error) {
+    } catch {
       toast.error('Error al cargar proyectos');
     }
     setLoading(false);
@@ -51,7 +51,7 @@ export default function KanbanPage() {
     setProjects(prev => prev.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
     try {
       await updateProjectStatus(projectId, newStatus);
-    } catch (error) {
+    } catch {
       fetchProjects(); // Revert on error
       toast.error('Error al actualizar el estado');
     }
@@ -78,7 +78,7 @@ export default function KanbanPage() {
             await removeProject(projectId);
             fetchProjects();
             toast.success('Proyecto eliminado');
-          } catch (error) {
+          } catch {
             toast.error('Error al eliminar');
           }
         }
@@ -101,7 +101,7 @@ export default function KanbanPage() {
       setEditingId(null);
       setFormData({ client_name: '', project_name: '', total_value: 0, amount_paid: 0, status: 'cotizando' });
       fetchProjects();
-    } catch (error) {
+    } catch {
       toast.error('Error al guardar el proyecto');
     }
   };

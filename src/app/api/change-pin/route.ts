@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
     try {
       await jwtVerify(sessionCookie.value, secret);
-    } catch (e) {
+    } catch {
       return NextResponse.json({ error: 'Token inválido' }, { status: 401 });
     }
 
@@ -47,8 +47,8 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (error: unknown) {
-    return NextResponse.json({ error: (error instanceof Error ? error.message : undefined) || 'Error del servidor' }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: 'Error del servidor' }, { status: 500 });
   }
 }
 

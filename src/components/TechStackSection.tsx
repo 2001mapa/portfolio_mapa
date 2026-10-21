@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 export function TechStackSection() {
-  const stack = ["NEXT.JS 15", "REACT", "TYPESCRIPT", "SUPABASE", "VERCEL", "TAILWIND CSS", "GEMINI AI", "POSTGRESQL", "FRAMER MOTION"];
+  const shouldReduceMotion = useReducedMotion();
+  const stack = ["NEXT.JS 16", "REACT", "TYPESCRIPT", "SUPABASE", "VERCEL", "TAILWIND CSS", "GEMINI AI", "POSTGRESQL", "FRAMER MOTION"];
 
   return (
     <section id="stack" className="w-full bg-fog text-graphite py-24 overflow-hidden border-y border-graphite">
@@ -21,8 +22,8 @@ export function TechStackSection() {
       <div className="relative flex overflow-x-hidden group">
         <motion.div 
           className="flex whitespace-nowrap items-center w-max"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
+          animate={shouldReduceMotion ? undefined : { x: ["0%", "-50%"] }}
+          transition={shouldReduceMotion ? undefined : { duration: 25, ease: "linear", repeat: Infinity }}
         >
           {[...stack, ...stack, ...stack, ...stack].map((tech, index) => (
             <div key={index} className="flex items-center text-slate font-[family-name:var(--font-die-grotesk-b)] text-[48px] mx-12 font-medium md:hover:text-[#FF4C24] transition-colors cursor-default">

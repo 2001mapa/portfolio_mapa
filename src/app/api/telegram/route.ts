@@ -139,7 +139,7 @@ export async function POST(request: Request) {
         
         switch (cmd.action) {
           case 'create_lead':
-            const newProj = await dbCreateProject({
+            await dbCreateProject({
               client_name: cmd.clientName,
               project_name: cmd.projectName || 'Por definir',
               status: 'cotizando',
@@ -268,7 +268,7 @@ export async function POST(request: Request) {
           default:
             await sendMessage(chatId, "⚠️ EGO generó una acción no reconocida.");
         }
-      } catch (parseError) {
+      } catch {
         // Fallback si el JSON falla
         await sendMessage(chatId, cleanResponse);
       }

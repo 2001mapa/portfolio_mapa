@@ -121,7 +121,7 @@ export function LinktreeDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-                <p className="text-[#d6cce5] text-sm">Alcanzar 100/100 en Google Lighthouse con animaciones a 60fps constantes y LCP por debajo de 1.2s en dispositivos de gama media.</p>
+                <p className="text-[#d6cce5] text-sm">Crear un micro-sitio ligero, claro y fluido, con una experiencia consistente en dispositivos móviles y conexiones variables.</p>
               </motion.div>
 
               <motion.div 
@@ -157,7 +157,7 @@ export function LinktreeDetail() {
                 <div className="flex-1 flex flex-col gap-6">
                   <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Objetivo de Ingeniería</h3>
                   <p>
-                    La meta no era "hacer una página de links". El objetivo era construir un micro-sitio con <strong className="text-[#d6cce5]">Lighthouse 100/100</strong>, animaciones a 60fps constantes y un tiempo de carga inicial por debajo de 1.2 segundos (LCP), incluso en conexiones 3G.
+                    La meta no era "hacer una página de links". El objetivo era construir un micro-sitio con una experiencia de carga rápida, animaciones cuidadas y una estructura que priorizara el contenido, incluso en conexiones variables.
                   </p>
                   <p>
                     Todas las animaciones usan exclusivamente propiedades <strong className="text-[#d6cce5]">transform</strong> y <strong className="text-[#d6cce5]">opacity</strong> para evitar reflows del DOM. Las fuentes son cargadas con <code className="text-[#b039d3] text-sm bg-[#b039d3]/10 px-1.5 py-0.5 rounded">font-display: swap</code> y pre-conectadas al origen.
@@ -331,7 +331,7 @@ export function LinktreeDetail() {
             className="w-full mt-12 bg-gradient-to-br from-[#1e152a] to-[#130f1c] border border-[#b039d3]/40 rounded-3xl px-6 py-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(176,57,211,0.15)]"
           >
             <h2 className="text-[32px] md:text-[48px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#d6cce5] uppercase">
-              Resultado: <br /> <span className="text-[#b039d3]">Lighthouse 100/100</span>
+              Resultado: <br /> <span className="text-[#b039d3]">Experiencia optimizada</span>
             </h2>
             <p className="text-body-lg text-[#8971a5] max-w-[600px]">
               Performance, Accesibilidad, Mejores Prácticas y SEO: puntuación perfecta en cada categoría. La prueba de que la estética y el rendimiento no son opuestos.
