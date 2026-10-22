@@ -118,7 +118,7 @@ export function ContactSection() {
             transition={{ duration: 1, delay: 0.4 }}
             className="w-full lg:w-2/3 max-w-[700px] order-1 lg:order-2"
           >
-            <form onSubmit={handleSubmit} className="flex flex-col gap-12">
+            <form id="contact-form" onSubmit={handleSubmit} className="flex flex-col gap-12">
               
 
 

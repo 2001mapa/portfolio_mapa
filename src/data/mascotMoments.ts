@@ -31,8 +31,8 @@ export const mascotMoments: MascotMoment[] = [
   {
     id: "contact",
     message: "Podemos empezar por el problema que más te pesa.",
-    action: "Hablemos",
-    href: "#contact",
+    action: "Cuéntame tu idea",
+    href: "#contact-form",
     side: "left",
   },
 ];
