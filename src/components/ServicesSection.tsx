@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MobileMascotNote } from "./MobileMascotNote";
 
 const services = [
   {
@@ -37,7 +36,6 @@ export function ServicesSection() {
           </div>
         </div>
 
-        <MobileMascotNote id="services" />
 
         <div className="mt-3 divide-y divide-white/15">
           {services.map((service, index) => (

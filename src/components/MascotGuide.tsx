@@ -5,14 +5,15 @@ import { useEffect, useRef, useState } from "react";
 import { mascotMoments, type MascotMoment } from "@/data/mascotMoments";
 import { MascotSprite } from "./MascotSprite";
 
-const DISMISSED_KEY = "portfolio-mascot-dismissed";
-const SEEN_KEY = "portfolio-mascot-seen";
+const DISMISSED_KEY = "portfolio-mascot-dismissed-v2";
+const SEEN_KEY = "portfolio-mascot-seen-v2";
 
 export function MascotGuide() {
   const [moment, setMoment] = useState<MascotMoment | null>(null);
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [isScrolling, setIsScrolling] = useState(false);
   const activeIdRef = useRef<string | null>(null);
   const shown = useRef(new Set<string>());
 
@@ -25,21 +26,18 @@ export function MascotGuide() {
     }
 
     let frame = 0;
+    let idleTimer = 0;
     const desktopMedia = window.matchMedia("(min-width: 768px)");
     const update = () => {
       frame = 0;
-      if (!desktopMedia.matches) {
-        activeIdRef.current = null;
-        setActiveId(null);
-        setVisible(false);
-        return;
-      }
       const readingLine = window.innerHeight * 0.42;
       const current = mascotMoments.find(({ id }) => {
         const bounds = document.getElementById(id)?.getBoundingClientRect();
         return bounds && bounds.top <= readingLine && bounds.bottom > readingLine;
       });
-      const nextId = current?.id ?? null;
+      const nextId = !desktopMedia.matches && window.scrollY < 160 && current?.id === "about"
+        ? null
+        : current?.id ?? null;
       if (nextId !== activeIdRef.current) {
         activeIdRef.current = nextId;
         setActiveId(nextId);
@@ -48,6 +46,13 @@ export function MascotGuide() {
     };
 
     const onScroll = () => {
+      setVisible(false);
+      setIsScrolling(true);
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        update();
+        setIsScrolling(false);
+      }, 650);
       if (!frame) frame = window.requestAnimationFrame(update);
     };
 
@@ -71,10 +76,12 @@ export function MascotGuide() {
       window.removeEventListener("resize", update);
       document.removeEventListener("focusin", onFocusIn);
       window.cancelAnimationFrame(frame);
+      window.clearTimeout(idleTimer);
     };
   }, [dismissed]);
 
   useEffect(() => {
+    if (isScrolling) return;
     const showTimer = window.setTimeout(() => {
       const current = mascotMoments.find(({ id }) => id === activeId);
       if (!current || dismissed || shown.current.has(current.id) || document.hidden) return;
@@ -84,13 +91,13 @@ export function MascotGuide() {
       window.sessionStorage.setItem(SEEN_KEY, JSON.stringify([...shown.current]));
       setMoment(current);
       setVisible(true);
-    }, activeId === "about" ? 1500 : 700);
+    }, activeId === "about" ? 1200 : 500);
 
     return () => window.clearTimeout(showTimer);
-  }, [activeId, dismissed]);
+  }, [activeId, dismissed, isScrolling]);
 
   useEffect(() => {
-    const hideTimer = window.setTimeout(() => setVisible(false), 6500);
+    const hideTimer = window.setTimeout(() => setVisible(false), window.matchMedia("(min-width: 768px)").matches ? 6500 : 4800);
     return () => window.clearTimeout(hideTimer);
   }, [moment]);
 
@@ -107,7 +114,7 @@ export function MascotGuide() {
       aria-label="Sugerencia de NULL"
       aria-hidden={!visible}
       inert={!visible}
-      className={`pointer-events-none fixed z-40 hidden w-[22rem] transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none md:block print:hidden ${moment.id === "about" ? "md:right-6 md:top-28" : moment.side === "left" ? "md:bottom-8 md:left-6" : "md:bottom-28 md:right-6"} ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+      className={`pointer-events-none fixed bottom-24 right-3 z-40 w-[calc(100vw-1.5rem)] max-w-[20rem] transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none md:w-[22rem] md:max-w-none print:hidden ${moment.id === "about" ? "md:bottom-auto md:right-6 md:top-28" : moment.side === "left" ? "md:bottom-8 md:left-6 md:right-auto" : "md:bottom-28 md:right-6"} ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
     >
       <div className={`flex items-end gap-1 ${moment.side === "left" ? "md:flex-row-reverse" : ""}`}>
         <div className="pointer-events-auto relative min-w-0 flex-1 rounded-2xl border border-white/15 bg-[#1d1d20]/95 px-4 py-3 text-white shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md">

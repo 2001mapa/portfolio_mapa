@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { videoUrl } from "@/data/media";
-import { MobileMascotNote } from "./MobileMascotNote";
 
 type Project = {
   slug: string;
@@ -240,7 +239,6 @@ export function WorkGrid() {
           </p>
         </motion.div>
 
-        <MobileMascotNote id="work" />
         
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 md:auto-rows-[380px]">

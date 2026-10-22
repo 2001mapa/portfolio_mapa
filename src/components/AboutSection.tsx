@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MobileMascotNote } from "./MobileMascotNote";
 
 const outcomes = [
   "Menos tareas repetitivas",
@@ -57,7 +56,6 @@ export function AboutSection() {
             </a>
           </motion.div>
 
-          <MobileMascotNote id="about" />
         </div>
 
         <motion.aside
