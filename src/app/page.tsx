@@ -7,6 +7,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ProcessSection } from "@/components/ProcessSection";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { MascotGuide } from "@/components/MascotGuide";
 
 import MaintenanceScreen from "@/components/MaintenanceScreen";
 
@@ -25,6 +26,7 @@ export default function Home() {
   return (
     <>
       <ScrollProgress />
+      <MascotGuide />
       <div className="w-full flex flex-col bg-obsidian pt-12 md:pt-16">
         <AboutSection />
         <ProcessSection />
