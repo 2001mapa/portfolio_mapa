@@ -59,9 +59,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/social-preview.png",
-        width: 1734,
-        height: 907,
+        url: "/social-preview.jpg",
+        width: 1200,
+        height: 630,
         alt: "Miguel Albornoz — Soluciones digitales y automatización",
       },
     ],
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     title: shareTitle,
     description: shareDescription,
     creator: "@miguelalbornoz",
-    images: ["/social-preview.png"],
+    images: ["/social-preview.jpg"],
   },
 };
 
