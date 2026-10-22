@@ -57,21 +57,12 @@ export const metadata: Metadata = {
     siteName: "Miguel Albornoz",
     locale: "es_CO",
     type: "website",
-    images: [
-      {
-        url: "/social-preview.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Miguel Albornoz — Soluciones digitales y automatización",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: shareTitle,
     description: shareDescription,
     creator: "@miguelalbornoz",
-    images: ["/social-preview.jpg"],
   },
 };
 
