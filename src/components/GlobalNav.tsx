@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function GlobalNav() {
   return (
-    <nav className="absolute top-0 z-50 flex w-full items-center justify-between gap-3 px-4 py-4 text-caption leading-caption tracking-caption text-bone print:hidden sm:px-6">
+    <nav className="absolute top-0 z-50 flex w-full items-center justify-between gap-3 border-b border-white/5 bg-obsidian/90 px-4 py-4 text-caption leading-caption tracking-caption text-bone backdrop-blur-md print:hidden sm:px-6 md:border-transparent md:bg-transparent md:backdrop-blur-none">
       <Link href="/" className="min-w-0 max-w-[142px] truncate font-medium uppercase md:max-w-none">Miguel Albornoz<span className="text-ember">.</span></Link>
       <div className="flex shrink-0 items-center gap-2 md:gap-6">
         <Link href="/#process" className="hidden md:block font-medium uppercase hover:text-fog transition-colors">Enfoque</Link>
