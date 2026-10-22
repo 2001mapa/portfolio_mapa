@@ -4,7 +4,7 @@ const siteUrl = "https://miguel-albornoz.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/", disallow: "/admin/" },
+    rules: { userAgent: "*", allow: "/" },
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

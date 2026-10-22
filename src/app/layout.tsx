@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://miguel-albornoz.vercel.app"),
   title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
   description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
-  alternates: { canonical: "/" },
+  alternates: { canonical: "https://miguel-albornoz.vercel.app/" },
   robots: { index: true, follow: true },
   authors: [{ name: 'Miguel Albornoz' }],
   appleWebApp: {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
     description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
-    url: "https://miguel-albornoz.vercel.app",
+    url: "https://miguel-albornoz.vercel.app/",
     siteName: "Miguel Albornoz",
     locale: "es_CO",
     type: "website",
@@ -62,10 +62,6 @@ export const metadata: Metadata = {
     images: ["/opengraph-image.jpg"],
   },
 };
-
-import { Toaster } from 'sonner';
-
-import { SmoothScroll } from "@/components/SmoothScroll";
 
 import Script from "next/script";
 
@@ -91,7 +87,6 @@ export default function RootLayout({
             }
           `}
         </Script>
-        <SmoothScroll />
         <GlobalNav />
 
         <main className="flex-1 flex flex-col w-full relative z-10">
@@ -100,7 +95,6 @@ export default function RootLayout({
         </main>
 
         <GlobalFooter />
-        <Toaster theme="dark" position="bottom-right" toastOptions={{ style: { background: '#1c1a17', border: '1px solid rgba(255,255,255,0.1)', color: '#eae5d9' } }} />
         <Analytics />
       </body>
     </html>

@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { videoUrl } from "@/data/media";
 
 export function OrbitKanbanDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -146,7 +147,7 @@ export function OrbitKanbanDetail() {
               className="w-full aspect-[4/3] md:aspect-video bg-[#1F2833] rounded-[16px] overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-[#0F52BA]/20 flex items-center justify-center"
             >
               <video 
-                src="/videos/orbit-kanban.mp4" 
+              src={videoUrl("orbit-kanban.mp4")}
                 autoPlay 
                 loop 
                 muted 

@@ -4,6 +4,7 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
+import { videoUrl } from "@/data/media";
 
 export function LaboratorioDetail() {
   useEffect(() => {
@@ -138,7 +139,7 @@ export function LaboratorioDetail() {
                 className="w-full rounded-2xl overflow-hidden border border-[#00E5FF]/15 shadow-[0_0_60px_rgba(0,229,255,0.07)] bg-[#0d0f14]"
               >
                 <video
-                  src="/videos/luka-chatbot.mp4"
+                  src={videoUrl("luka-chatbot.mp4")}
                   autoPlay
                   loop
                   muted

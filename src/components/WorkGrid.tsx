@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { videoUrl } from "@/data/media";
 
 type Project = {
   slug: string;
@@ -20,7 +21,7 @@ const projects: Project[] = [
     title: "DOCUMIND AI", 
     type: "RAG / MICRO-SAAS / FULLSTACK AI",
     color: "from-[#4B0082]", // Indigo/Deep Purple
-    video: "/videos/documind.mp4",
+    video: videoUrl("documind.mp4"),
     stack: ["Next.js 16", "Supabase", "pgvector", "Gemini"],
     status: "live"
   },
@@ -29,7 +30,7 @@ const projects: Project[] = [
     title: "ORBIT KANBAN", 
     type: "WEBSOCKETS / STATE MANAGEMENT",
     color: "from-[#0F52BA]", // Sapphire Blue
-    video: "/videos/orbit-kanban.mp4",
+    video: videoUrl("orbit-kanban.mp4"),
     stack: ["Next.js 15", "Supabase Realtime", "LexoRank", "React Query"],
     status: "live"
   },
@@ -39,7 +40,7 @@ const projects: Project[] = [
     title: "E-COMMERCE & ERP", 
     type: "FULLSTACK E-COMMERCE",
     color: "from-[#1A3A1A]", // Dark Green
-    video: "/videos/Ecommerce-doha-desk.mp4",
+    video: videoUrl("Ecommerce-doha-desk.mp4"),
     stack: ["Next.js", "Node.js", "PostgreSQL"],
     status: "live"
   },
@@ -49,7 +50,7 @@ const projects: Project[] = [
     title: "LINKTREE PRO", 
     type: "FULLSTACK / SAAS CLONE",
     color: "from-[#1A1A26]", // Dark Blue
-    video: "/videos/Stylo-Escritorio.mp4",
+    video: videoUrl("Stylo-Escritorio.mp4"),
     stack: ["Next.js", "Vercel", "Tailwind"],
     status: "live"
   },
@@ -58,7 +59,7 @@ const projects: Project[] = [
     title: "LANDING ALTA PERFORMANCE", 
     type: "FRONTEND / CRO",
     color: "from-[#1A1A1A]", // Dark
-    video: "/videos/landing-page.mp4",
+    video: videoUrl("landing-page.mp4"),
     stack: ["Next.js", "Tailwind CSS"],
     status: "personal"
   },
@@ -67,7 +68,7 @@ const projects: Project[] = [
     title: "CATÁLOGO DIGITAL", 
     type: "B2B / CLIENT PROJECT",
     color: "from-[#1A1A26]", // Dark Blue
-    video: "/videos/catalogo.mp4",
+    video: videoUrl("catalogo.mp4"),
     stack: ["Next.js", "Supabase", "Vercel"],
     status: "live"
   },
@@ -76,7 +77,7 @@ const projects: Project[] = [
     title: "LUKA — AI FINANCE BOT", 
     type: "AI EXPERIMENTS · TELEGRAM BOT",
     color: "from-[#001A26]", // Dark Cyan
-    video: "/videos/luka-chatbot.mp4",
+    video: videoUrl("luka-chatbot.mp4"),
     stack: ["Gemini API", "Supabase Realtime", "PWA"],
     status: "live"
   }

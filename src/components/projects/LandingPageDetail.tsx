@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { videoUrl } from "@/data/media";
 
 export function LandingPageDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -212,7 +213,7 @@ export function LandingPageDetail() {
             className="w-full aspect-video bg-[#2a1e15] rounded-[24px] md:rounded-[40px] border border-[#d37039]/20 shadow-[0_0_60px_rgba(211,112,57,0.1)] overflow-hidden flex items-center justify-center relative group"
           >
              <video 
-               src="/videos/landing-page.mp4" 
+               src={videoUrl("landing-page.mp4")}
                autoPlay loop muted playsInline 
                className="w-full h-full object-cover" 
              />
@@ -244,7 +245,7 @@ export function LandingPageDetail() {
               className="mx-auto w-full max-w-[360px] relative drop-shadow-[0_0_40px_rgba(211,112,57,0.3)] flex items-center justify-center rounded-[40px] overflow-hidden border-[6px] md:border-[8px] border-[#2a1e15] bg-[#1c140d]"
             >
                <video 
-                 src="/videos/landing-mobile.mp4" 
+                 src={videoUrl("landing-mobile.mp4")}
                  autoPlay loop muted playsInline 
                  className="w-full h-auto rounded-[32px]" 
                />

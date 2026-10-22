@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { videoUrl } from "@/data/media";
 
 export function DocuMindDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -130,7 +131,7 @@ export function DocuMindDetail() {
               className="w-full aspect-[4/3] md:aspect-video bg-[#1F2833] rounded-[16px] overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-[#8A2BE2]/20 flex items-center justify-center mb-6"
             >
               <video 
-                src="/videos/documind.mp4" 
+                src={videoUrl("documind.mp4")}
                 autoPlay 
                 loop 
                 muted 

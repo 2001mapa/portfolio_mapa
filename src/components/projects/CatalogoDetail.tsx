@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { videoUrl } from "@/data/media";
 
 export function CatalogoDetail() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -209,7 +210,7 @@ export function CatalogoDetail() {
             className="w-full aspect-video bg-[#1a261d] rounded-[24px] md:rounded-[40px] border border-[#4a7c59]/20 shadow-[0_0_60px_rgba(74,124,89,0.1)] overflow-hidden flex items-center justify-center relative group"
           >
              <video 
-               src="/videos/catalogo.mp4" 
+               src={videoUrl("catalogo.mp4")}
                autoPlay loop muted playsInline 
                className="w-full h-full object-cover" 
              />
@@ -241,7 +242,7 @@ export function CatalogoDetail() {
             >
               <div className="w-full max-w-[360px] relative drop-shadow-[0_0_40px_rgba(74,124,89,0.3)] flex items-center justify-center mx-auto md:mx-0 rounded-[40px] overflow-hidden border-[6px] md:border-[8px] border-[#1a261d] bg-[#131c15]">
                  <video 
-                   src="/videos/ecommerce-mobile.mp4" 
+                   src={videoUrl("ecommerce-mobile.mp4")}
                    autoPlay loop muted playsInline 
                    className="w-full h-auto rounded-[32px]" 
                  />

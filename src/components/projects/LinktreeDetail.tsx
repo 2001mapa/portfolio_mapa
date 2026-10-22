@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { videoUrl } from "@/data/media";
 
 export function LinktreeDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -217,7 +218,7 @@ export function LinktreeDetail() {
                 className="relative z-10 w-full aspect-video bg-[#1e152a] rounded-[16px] md:rounded-[24px] overflow-hidden border border-[#b039d3]/30 shadow-[0_0_50px_rgba(176,57,211,0.2)]"
               >
                 <video 
-                  src="/videos/Stylo-Escritorio.mp4" 
+                src={videoUrl("Stylo-Escritorio.mp4")}
                   autoPlay loop muted playsInline 
                   className="w-full h-full object-cover" 
                 />
@@ -239,7 +240,7 @@ export function LinktreeDetail() {
                 className="absolute z-20 top-1/2 left-1/2 h-[160%] md:h-[110%] w-auto drop-shadow-[0_30px_80px_rgba(176,57,211,0.5)] flex items-center justify-center"
               >
                 <video 
-                  src="/videos/Stylo-mobil.mp4" 
+                  src={videoUrl("Stylo-mobil.mp4")}
                   autoPlay loop muted playsInline 
                   className="h-full w-auto object-contain rounded-[14px] md:rounded-[30px] overflow-hidden" 
                 />
@@ -291,7 +292,7 @@ export function LinktreeDetail() {
                 className="relative z-10 w-full aspect-video bg-[#1e152a] rounded-[16px] md:rounded-[24px] overflow-hidden border border-[#b039d3]/30 shadow-[0_0_50px_rgba(176,57,211,0.2)]"
               >
                 <video 
-                  src="/videos/Full_Escritorio.mp4" 
+                src={videoUrl("Full_Escritorio.mp4")}
                   autoPlay loop muted playsInline 
                   className="w-full h-full object-cover" 
                 />
@@ -314,7 +315,7 @@ export function LinktreeDetail() {
                 className="absolute z-20 top-1/2 left-1/2 h-[160%] md:h-[110%] w-auto drop-shadow-[0_30px_80px_rgba(176,57,211,0.5)] flex items-center justify-center"
               >
                 <video 
-                  src="/videos/Full_Mobil.mp4" 
+                  src={videoUrl("Full_Mobil.mp4")}
                   autoPlay loop muted playsInline 
                   className="h-full w-auto object-contain rounded-[14px] md:rounded-[30px] overflow-hidden" 
                 />

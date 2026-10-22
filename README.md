@@ -1,6 +1,6 @@
 # Miguel Albornoz - Software Engineer Portfolio
 
-Professional portfolio built with Next.js 16 (App Router), React, Tailwind CSS, and Framer Motion. Showcases full-stack engineering capabilities, real-time architectures, and AI integrations.
+Professional portfolio built with Next.js 16 (App Router), React, Tailwind CSS, and Framer Motion. Showcases full-stack engineering capabilities and client work.
 
 ## 🚀 Tech Stack
 
@@ -14,11 +14,9 @@ Professional portfolio built with Next.js 16 (App Router), React, Tailwind CSS, 
 ```
 ├── public/                 # Static assets (images, videos, manifest, service worker)
 ├── src/
-│   ├── app/                # Next.js App Router (Pages, Layouts, API routes, Proxy)
+│   ├── app/                # Next.js App Router (pages, layouts and public API routes)
 │   ├── components/         # Reusable React components (UI, layout, sections)
-│   ├── data/               # Static data structures
-│   └── lib/                # Utility functions
-└── proxy.ts                # Next.js 16 Proxy (formerly middleware) for admin route protection
+│   └── data/               # Static data structures
 ```
 
 ## 🛠️ Prerequisites
@@ -42,14 +40,7 @@ Professional portfolio built with Next.js 16 (App Router), React, Tailwind CSS, 
 3. **Environment Variables:**
    Create a `.env.local` file in the root directory and add the following keys. Do not commit actual secrets.
    ```env
-   # Admin Authentication (Optional, for admin panel access)
-   ADMIN_PIN=
-   JWT_SECRET=
-   
-   # Database (Supabase)
-   SUPABASE_URL=
-   SUPABASE_ANON_KEY=
-   SUPABASE_SERVICE_ROLE_KEY=
+   # Add public integrations here only when the portfolio requires them.
    ```
 
 ## 🚀 Scripts
@@ -61,7 +52,6 @@ Professional portfolio built with Next.js 16 (App Router), React, Tailwind CSS, 
 
 ## 🏗️ Architecture Decisions
 
-- **Proxy (Middleware):** Uses Next.js 16 Proxy pattern to secure `/admin` routes using JWT validation.
 - **PWA Capabilities:** Configured with `manifest.ts` and a service worker to provide a native-like experience.
 - **Performance:** Relies on Next/Image and optimized assets for fast load times.
 - **Security:** Strict payload validation in API routes to prevent exposure.

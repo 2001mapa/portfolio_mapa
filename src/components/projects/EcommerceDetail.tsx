@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { videoUrl } from "@/data/media";
 
 export function EcommerceDetail() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -228,7 +229,7 @@ export function EcommerceDetail() {
                 className="w-full aspect-video bg-[#1a1815] rounded-[24px] md:rounded-[40px] border border-[#c5a67c]/20 shadow-[0_0_60px_rgba(197,166,124,0.1)] overflow-hidden flex items-center justify-center relative group"
               >
                  <video 
-                   src="/videos/Ecommerce-doha-desk.mp4" 
+                 src={videoUrl("Ecommerce-doha-desk.mp4")}
                    autoPlay loop muted playsInline 
                    className="w-full h-full object-cover" 
                  />
@@ -263,7 +264,7 @@ export function EcommerceDetail() {
                     className="relative w-[240px] h-[480px] md:w-[280px] md:h-[560px] bg-[#1a1815] rounded-[40px] border border-[#c5a67c]/30 overflow-hidden shadow-[0_0_40px_rgba(197,166,124,0.15)]"
                   >
                     <video 
-                      src="/videos/Doha-mobil.mp4" 
+                    src={videoUrl("Doha-mobil.mp4")}
                       autoPlay loop muted playsInline 
                       className="w-full h-full object-cover"
                     />
@@ -301,7 +302,7 @@ export function EcommerceDetail() {
                   className="w-full aspect-video bg-[#1a1815] rounded-[24px] md:rounded-[40px] border border-[#c5a67c]/20 overflow-hidden"
                 >
                   <video 
-                    src="/videos/ERP-Doha.mp4" 
+                  src={videoUrl("ERP-Doha.mp4")}
                     autoPlay loop muted playsInline 
                     className="w-full h-full object-cover" 
                   />
