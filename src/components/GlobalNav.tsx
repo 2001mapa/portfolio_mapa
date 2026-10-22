@@ -3,8 +3,9 @@ import Link from "next/link";
 export function GlobalNav() {
   return (
     <nav className="absolute top-0 w-full flex justify-between items-center px-6 py-4 z-50 text-caption leading-caption tracking-caption text-bone print:hidden">
-      <div className="font-medium uppercase truncate max-w-[150px] md:max-w-none">Miguel Albornoz</div>
+      <Link href="/" className="font-medium uppercase truncate max-w-[150px] md:max-w-none">Miguel Albornoz<span className="text-ember">.</span></Link>
       <div className="flex gap-4 md:gap-6 items-center">
+        <Link href="/#process" className="hidden md:block font-medium uppercase hover:text-fog transition-colors">Enfoque</Link>
         <Link href="/#work" className="hidden md:block font-medium uppercase hover:text-fog transition-colors">Proyectos</Link>
         <Link href="/#services" className="hidden md:block font-medium uppercase hover:text-fog transition-colors">Servicios</Link>
         <Link

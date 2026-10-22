@@ -69,8 +69,8 @@ export function ContactSection() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[8vw] md:text-[10vw] md:text-[120px] leading-[0.85] font-medium tracking-[-4px] md:tracking-[-6px] font-[family-name:var(--font-abc-gravity-variable)] uppercase max-w-[1000px]"
           >
-            ¿LISTO PARA <br />
-            <span className="text-[#E8D4A6]">CONSTRUIR ALGO INCREÍBLE?</span>
+            ¿HAY UN PROCESO <br />
+            <span className="text-ember">QUE PODRÍA FUNCIONAR MEJOR?</span>
           </motion.h2>
         </div>
 
@@ -88,7 +88,7 @@ export function ContactSection() {
             <div>
               <p className="font-[family-name:var(--font-ibm-plex-mono)] text-caption uppercase tracking-widest text-[#E8D4A6] mb-4">Línea Directa</p>
               <div className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg md:text-[32px] leading-tight text-white flex items-center gap-3">
-                Hablemos de código y arquitectura
+                Cuéntame qué parte del trabajo hoy te quita más tiempo.
               </div>
             </div>
 
@@ -155,7 +155,7 @@ export function ContactSection() {
                   htmlFor="message" 
                   className="absolute left-0 top-4 text-slate text-body-lg font-[family-name:var(--font-die-grotesk-b)] transition-all duration-300 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-[#E8D4A6] peer-valid:-top-6 peer-valid:text-sm peer-valid:text-slate pointer-events-none"
                 >
-                  Cuéntame qué necesitas construir o mejorar...
+                  Ejemplo: pedidos manuales, información dispersa, clientes sin seguimiento...
                 </label>
               </div>
 

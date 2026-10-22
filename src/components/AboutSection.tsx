@@ -1,133 +1,84 @@
 "use client";
 
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { MouseEvent, useRef } from "react";
+
+const outcomes = [
+  "Menos tareas repetitivas",
+  "Información clara para decidir",
+  "Experiencias simples para tu equipo y clientes",
+];
 
 export function AboutSection() {
-  const btnRef = useRef<HTMLButtonElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springConfig = { damping: 15, stiffness: 150, mass: 0.1 };
-  const springX = useSpring(x, springConfig);
-  const springY = useSpring(y, springConfig);
-
-  const handleMouseMove = (e: MouseEvent<HTMLButtonElement>) => {
-    if (!btnRef.current) return;
-    const { left, top, width, height } = btnRef.current.getBoundingClientRect();
-    const centerX = left + width / 2;
-    const centerY = top + height / 2;
-    // Efecto magnético sutil
-    x.set((e.clientX - centerX) * 0.2);
-    y.set((e.clientY - centerY) * 0.2);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  const titleWords = "AI-DRIVEN PRODUCT ENGINEER".split(" ");
-
   return (
-    <section id="about" className="w-full bg-obsidian text-bone py-12 md:py-[120px]">
-      <div className="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row gap-12 items-center">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full md:flex-1 aspect-[3/4] max-w-[400px] bg-graphite rounded-[14.4px] overflow-hidden shadow-2xl shadow-black/50"
-        >
-          <Image 
-            src="/foto-perfil.jpeg" 
-            alt="Miguel Albornoz Portrait" 
-            fill 
-            sizes="(max-width: 768px) 100vw, 400px"
-            className="object-cover object-center"
-            priority
-          />
-        </motion.div>
+    <section id="about" className="relative overflow-hidden bg-obsidian pb-16 pt-28 text-bone md:pb-28 md:pt-40">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(ellipse_at_82%_15%,rgba(255,76,36,0.20),transparent_54%)]" />
+      <div className="relative mx-auto grid max-w-[1280px] gap-12 px-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-end lg:gap-16">
+        <div>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+            className="mb-7 flex items-center gap-3 font-[family-name:var(--font-ibm-plex-mono)] text-[11px] font-semibold uppercase tracking-[0.16em] text-ember"
+          >
+            <span className="h-px w-8 bg-ember" /> Medellín · Colombia · Disponible para colaborar
+          </motion.p>
 
-        <div className="flex-1 flex flex-col gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-2"
+          <motion.h1
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            className="max-w-4xl font-[family-name:var(--font-abc-gravity-variable)] text-[clamp(3rem,8vw,7.25rem)] font-medium leading-[0.91] tracking-[-0.065em] text-fog"
           >
-            <h2 className="text-[#00E5FF] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase font-semibold">Miguel Albornoz</h2>
-            <h1 className="text-3xl md:text-[40px] md:text-[60px] leading-[1.0] font-medium tracking-[-1.2px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-fog flex flex-wrap gap-x-4">
-              {titleWords.map((word, i) => (
-                <motion.span
-                  key={i}
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-                  }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </h1>
-          </motion.div>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-[family-name:var(--font-die-grotesk-b)] text-body-lg leading-body-lg max-w-[500px]"
+            Convierto procesos que frenan tu negocio en <span className="text-ember">productos digitales útiles.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.16 }}
+            className="mt-7 max-w-2xl text-lg leading-relaxed text-mist md:text-xl"
           >
-            <span className="text-slate">Desarrollador Full-Stack en Medellín, Colombia.</span> <span className="text-bone">Diseño y construyo productos digitales, catálogos B2B y herramientas internas con Next.js, React, Supabase y PostgreSQL, integrando IA cuando aporta valor real.</span>
+            Soy Miguel Albornoz. Diseño y desarrollo sistemas web, automatizaciones e interfaces que hacen más fácil vender, organizar y operar. La tecnología es el medio; el resultado es un proceso más claro para las personas que lo usan.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row flex-wrap gap-4 items-start sm:items-center"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.24 }}
+            className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
-            <motion.button 
-              ref={btnRef}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              style={{ x: springX, y: springY }}
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="inline-flex items-center gap-2 bg-[#FF4C24] text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest px-8 py-4 rounded-full font-bold shadow-[0_0_30px_rgba(255,76,36,0.3)] active:bg-[#ff6436] md:hover:shadow-[0_0_50px_rgba(255,76,36,0.6)] md:hover:bg-[#ff6436] transition-colors"
-            >
-              Hablemos de tu proyecto
-            </motion.button>
-
-            <a 
-              href="mailto:miguelalbornoz.dev@gmail.com"
-              className="inline-flex items-center gap-2 px-6 py-4 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors border border-white/10 rounded-full md:hover:border-white/30"
-            >
-              Email
+            <a href="#contact" className="inline-flex min-h-12 items-center justify-center rounded-full bg-ember px-6 font-[family-name:var(--font-ibm-plex-mono)] text-xs font-bold uppercase tracking-[0.12em] text-white transition-colors hover:bg-tangerine">
+              Hablemos de tu proceso <span className="ml-3 text-base">↗</span>
             </a>
-            
-            <a 
-              href="https://www.linkedin.com/in/miguel-alejandro-paz-albornoz/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-4 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors border border-white/10 rounded-full md:hover:border-white/30"
-            >
-              LinkedIn
-            </a>
-            
-            <a 
-              href="/CV-MiguelAlejandroPazAlbornoz.pdf" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-4 text-slate active:text-white md:hover:text-white font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest transition-colors border border-white/10 rounded-full md:hover:border-white/30"
-            >
-              Ver CV
+            <a href="#work" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 px-6 font-[family-name:var(--font-ibm-plex-mono)] text-xs font-semibold uppercase tracking-[0.12em] text-fog transition-colors hover:border-white/50 hover:bg-white/5">
+              Ver casos de estudio
             </a>
           </motion.div>
         </div>
+
+        <motion.aside
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.14 }}
+          className="relative overflow-hidden rounded-3xl border border-white/10 bg-graphite/30 p-5 backdrop-blur-sm"
+        >
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-graphite">
+            <Image src="/foto-perfil.jpeg" alt="Miguel Albornoz" fill sizes="(max-width: 1024px) 100vw, 360px" className="object-cover object-center grayscale-[0.15]" priority />
+            <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
+            <p className="absolute bottom-5 left-5 right-5 font-[family-name:var(--font-ibm-plex-mono)] text-[10px] uppercase tracking-[0.13em] text-white/70">Estrategia, diseño y desarrollo en un mismo proceso.</p>
+          </div>
+        </motion.aside>
       </div>
+
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.38 }} className="relative mx-auto mt-12 grid max-w-[1280px] gap-px overflow-hidden border-y border-white/10 bg-white/10 px-6 sm:grid-cols-3">
+        {outcomes.map((outcome, index) => (
+          <div key={outcome} className="bg-obsidian py-5 pr-6 sm:px-6">
+            <p className="font-[family-name:var(--font-ibm-plex-mono)] text-[10px] uppercase tracking-[0.14em] text-ember">0{index + 1}</p>
+            <p className="mt-2 text-sm font-medium text-fog md:text-base">{outcome}</p>
+          </div>
+        ))}
+      </motion.div>
     </section>
   );
 }
-

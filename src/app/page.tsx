@@ -5,6 +5,7 @@ import { AboutSection } from "@/components/AboutSection";
 import { TechStackSection } from "@/components/TechStackSection";
 import { ContactSection } from "@/components/ContactSection";
 import { ServicesSection } from "@/components/ServicesSection";
+import { ProcessSection } from "@/components/ProcessSection";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 import MaintenanceScreen from "@/components/MaintenanceScreen";
@@ -19,11 +20,12 @@ export default function Home() {
   return (
     <>
       <ScrollProgress />
-      <div className="w-full flex flex-col divide-y divide-white/5 bg-obsidian pt-12 md:pt-24">
+      <div className="w-full flex flex-col bg-obsidian pt-12 md:pt-16">
         <AboutSection />
-        <TechStackSection />
+        <ProcessSection />
         <WorkGrid />
         <ServicesSection />
+        <TechStackSection />
         <ContactSection />
       </div>
     </>

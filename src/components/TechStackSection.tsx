@@ -2,12 +2,13 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
+const STACK = ["NEXT.JS", "REACT", "TYPESCRIPT", "POSTGRESQL", "SUPABASE", "AUTOMATIZACIONES", "IA APLICADA", "VERCEL"];
+
 export function TechStackSection() {
   const shouldReduceMotion = useReducedMotion();
-  const stack = ["NEXT.JS 16", "REACT", "TYPESCRIPT", "SUPABASE", "VERCEL", "TAILWIND CSS", "GEMINI AI", "POSTGRESQL", "FRAMER MOTION"];
 
   return (
-    <section id="stack" className="w-full bg-fog text-graphite py-24 overflow-hidden border-y border-graphite">
+    <section id="stack" className="w-full bg-fog text-graphite py-16 md:py-20 overflow-hidden border-y border-graphite">
       <div className="max-w-[1200px] mx-auto px-6 mb-12">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -15,7 +16,7 @@ export function TechStackSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="text-[48px] leading-[1.0] font-medium tracking-[-0.96px] font-[family-name:var(--font-abc-gravity-variable)] uppercase text-graphite"
         >
-          STACK TECNOLÓGICO
+          Tecnología al servicio de un proceso mejor
         </motion.h2>
       </div>
 
@@ -25,12 +26,12 @@ export function TechStackSection() {
           animate={shouldReduceMotion ? undefined : { x: ["0%", "-50%"] }}
           transition={shouldReduceMotion ? undefined : { duration: 25, ease: "linear", repeat: Infinity }}
         >
-          {[...stack, ...stack, ...stack, ...stack].map((tech, index) => (
-            <div key={index} className="flex items-center text-slate font-[family-name:var(--font-die-grotesk-b)] text-[48px] mx-12 font-medium md:hover:text-[#FF4C24] transition-colors cursor-default">
+          {Array.from({ length: 4 }, (_, repeat) => STACK.map((tech) => (
+            <div key={`${tech}-${repeat}`} className="flex items-center text-slate font-[family-name:var(--font-die-grotesk-b)] text-[48px] mx-12 font-medium md:hover:text-[#FF4C24] transition-colors cursor-default">
               <span>{tech}</span>
               <div className="w-[2px] h-12 bg-graphite transform rotate-[15deg] ml-24"></div>
             </div>
-          ))}
+          ))) }
         </motion.div>
       </div>
     </section>

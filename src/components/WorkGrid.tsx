@@ -232,10 +232,10 @@ export function WorkGrid() {
         >
           <h2 className="text-[#E8D4A6] uppercase tracking-widest text-sm font-semibold font-[family-name:var(--font-ibm-plex-mono)] flex items-center gap-4">
             <span className="w-8 h-[1px] bg-[#E8D4A6]"></span>
-            CASOS DE ESTUDIO
+            SOLUCIONES EN CONTEXTO
           </h2>
-          <p className="text-3xl md:text-5xl font-[family-name:var(--font-die-grotesk-b)] text-bone uppercase tracking-[-1px] md:tracking-[-2px] leading-[0.9]">
-            PROYECTOS <span className="text-white">DESTACADOS</span>
+          <p className="max-w-3xl text-3xl md:text-5xl font-[family-name:var(--font-die-grotesk-b)] text-bone tracking-[-1px] md:tracking-[-2px] leading-[0.95]">
+            Productos digitales construidos para <span className="text-ember">resolver una necesidad concreta.</span>
           </p>
         </motion.div>
         
