@@ -89,3 +89,27 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+@keyframes project-loader-cascade {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scaleX(0.22);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.project-loader-bar {
+  animation: project-loader-cascade 900ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-loader-bar {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

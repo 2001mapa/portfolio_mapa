@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { videoUrl } from "@/data/media";
 import { CaseStudyBrief } from "./CaseStudyBrief";
+import { ProjectHeroGlow } from "./ProjectHeroGlow";
 
 export function LaboratorioDetail() {
   useEffect(() => {
@@ -29,6 +30,7 @@ export function LaboratorioDetail() {
 
       {/* Hero */}
       <section className="relative w-full min-h-[45vh] md:min-h-[60vh] flex items-center justify-center overflow-hidden border-b border-white/5">
+        <ProjectHeroGlow color="0, 229, 255" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,229,255,0.06)_0,transparent_70%)]" />
 
         <div className="max-w-[1400px] mx-auto w-full px-6 relative z-10 flex flex-col items-center justify-center py-32 text-center">

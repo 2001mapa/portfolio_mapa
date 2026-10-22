@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { ProjectHeroGlow } from "@/components/projects/ProjectHeroGlow";
 
 export function ClientProjectDetail({ slug }: { slug: string }) {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -24,6 +25,7 @@ export function ClientProjectDetail({ slug }: { slug: string }) {
 
       {/* Dark Header with Parallax */}
       <div ref={heroRef} className="relative w-full min-h-[80vh] overflow-hidden bg-obsidian text-bone">
+        <ProjectHeroGlow color="255, 76, 36" />
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
           className="absolute inset-0 flex flex-col justify-end pb-12 pt-32 px-6 z-10"

@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { CaseStudyBrief } from "./CaseStudyBrief";
 import { videoUrl } from "@/data/media";
+import { ProjectHeroGlow } from "./ProjectHeroGlow";
 
 export function LinktreeDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -35,6 +36,7 @@ export function LinktreeDetail() {
 
       {/* Dark Purple Header with Parallax */}
       <div ref={heroRef} className="relative w-full min-h-[40vh] md:min-h-[50vh] overflow-hidden flex items-start pt-24 md:pt-40">
+        <ProjectHeroGlow color="176, 57, 211" />
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
           className="relative w-full px-6 md:px-12 z-10"

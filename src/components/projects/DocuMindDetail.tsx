@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { videoUrl } from "@/data/media";
 import { CaseStudyBrief } from "./CaseStudyBrief";
+import { ProjectHeroGlow } from "./ProjectHeroGlow";
 
 export function DocuMindDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -33,6 +34,7 @@ export function DocuMindDetail() {
 
       {/* Hero Section */}
       <div ref={heroRef} className="relative w-full min-h-[40vh] md:min-h-[50vh] overflow-hidden flex items-start pt-24 md:pt-40">
+        <ProjectHeroGlow color="138, 43, 226" />
         <motion.div 
           style={{ y: heroY, opacity: heroOpacity }}
           className="relative w-full px-6 md:px-12 z-10"

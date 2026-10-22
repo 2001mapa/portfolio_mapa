@@ -73,7 +73,7 @@ export function AboutSection() {
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.38 }} className="relative mx-auto mt-12 grid max-w-[1280px] gap-px overflow-hidden border-y border-white/10 bg-white/10 px-6 sm:grid-cols-3">
         {outcomes.map((outcome, index) => (
-          <div key={outcome} className="bg-obsidian py-5 pr-6 sm:px-6">
+          <div key={outcome} className="bg-obsidian px-6 py-5">
             <p className="font-[family-name:var(--font-ibm-plex-mono)] text-[10px] uppercase tracking-[0.14em] text-ember">0{index + 1}</p>
             <p className="mt-2 text-sm font-medium text-fog md:text-base">{outcome}</p>
           </div>
