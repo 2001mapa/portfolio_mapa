@@ -6,30 +6,19 @@ import { mascotMoments, type MascotMoment } from "@/data/mascotMoments";
 import { MascotSprite } from "./MascotSprite";
 
 const DISMISSED_KEY = "portfolio-mascot-dismissed-v2";
-const SEEN_KEY = "portfolio-mascot-seen-v2";
 
 export function MascotGuide() {
   const [moment, setMoment] = useState<MascotMoment | null>(null);
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [isScrolling, setIsScrolling] = useState(false);
   const activeIdRef = useRef<string | null>(null);
   const shown = useRef(new Set<string>());
 
   useEffect(() => {
-    try {
-      const seen = JSON.parse(window.sessionStorage.getItem(SEEN_KEY) ?? "[]");
-      if (Array.isArray(seen)) shown.current = new Set(seen);
-    } catch {
-      window.sessionStorage.removeItem(SEEN_KEY);
-    }
-
-    let frame = 0;
     let idleTimer = 0;
     const desktopMedia = window.matchMedia("(min-width: 768px)");
     const update = () => {
-      frame = 0;
       const readingLine = window.innerHeight * 0.42;
       const current = mascotMoments.find(({ id }) => {
         const bounds = document.getElementById(id)?.getBoundingClientRect();
@@ -46,14 +35,8 @@ export function MascotGuide() {
     };
 
     const onScroll = () => {
-      setVisible(false);
-      setIsScrolling(true);
       window.clearTimeout(idleTimer);
-      idleTimer = window.setTimeout(() => {
-        update();
-        setIsScrolling(false);
-      }, 650);
-      if (!frame) frame = window.requestAnimationFrame(update);
+      idleTimer = window.setTimeout(update, 850);
     };
 
     const onFocusIn = (event: FocusEvent) => {
@@ -75,29 +58,26 @@ export function MascotGuide() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", update);
       document.removeEventListener("focusin", onFocusIn);
-      window.cancelAnimationFrame(frame);
       window.clearTimeout(idleTimer);
     };
   }, [dismissed]);
 
   useEffect(() => {
-    if (isScrolling) return;
     const showTimer = window.setTimeout(() => {
       const current = mascotMoments.find(({ id }) => id === activeId);
       if (!current || dismissed || shown.current.has(current.id) || document.hidden) return;
       if (document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement) return;
 
       shown.current.add(current.id);
-      window.sessionStorage.setItem(SEEN_KEY, JSON.stringify([...shown.current]));
       setMoment(current);
       setVisible(true);
-    }, activeId === "about" ? 1200 : 500);
+    }, activeId === "about" ? 500 : 300);
 
     return () => window.clearTimeout(showTimer);
-  }, [activeId, dismissed, isScrolling]);
+  }, [activeId, dismissed]);
 
   useEffect(() => {
-    const hideTimer = window.setTimeout(() => setVisible(false), window.matchMedia("(min-width: 768px)").matches ? 6500 : 4800);
+    const hideTimer = window.setTimeout(() => setVisible(false), window.matchMedia("(min-width: 768px)").matches ? 6500 : 3600);
     return () => window.clearTimeout(hideTimer);
   }, [moment]);
 
