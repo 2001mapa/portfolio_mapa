@@ -115,6 +115,44 @@
   animation: mascot-float 3.4s ease-in-out infinite;
 }
 
+.mascot-face {
+  position: absolute;
+  top: 41%;
+  left: 21%;
+  width: 58%;
+  height: 20%;
+  display: grid;
+  place-items: center;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mascot-face svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes mascot-smile {
+  0%, 22%, 48%, 100% { opacity: 0; }
+  23%, 47% { opacity: 1; }
+}
+
+@keyframes mascot-think {
+  0%, 49%, 74%, 100% { opacity: 0; }
+  50%, 73% { opacity: 1; }
+}
+
+@keyframes mascot-wink {
+  0%, 75%, 98%, 100% { opacity: 0; }
+  76%, 97% { opacity: 1; }
+}
+
+.mascot-face-smile { animation: mascot-smile 12s steps(1, end) infinite; }
+.mascot-face-think { animation: mascot-think 12s steps(1, end) infinite; }
+.mascot-face-wink { animation: mascot-wink 12s steps(1, end) infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   .project-loader-bar {
     animation: none;
@@ -125,4 +163,7 @@
   .mascot-float {
     animation: none;
   }
+
+  .mascot-face { animation: none; }
+  .mascot-face-smile { opacity: 1; }
 }

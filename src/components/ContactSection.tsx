@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
+import { MobileMascotNote } from "./MobileMascotNote";
 
 export function ContactSection() {
   const [formState, setFormState] = useState({
@@ -73,6 +74,8 @@ export function ContactSection() {
             <span className="text-ember">QUE PODRÍA FUNCIONAR MEJOR?</span>
           </motion.h2>
         </div>
+
+        <MobileMascotNote id="contact" />
 
         {/* Content Layout */}
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 justify-between">

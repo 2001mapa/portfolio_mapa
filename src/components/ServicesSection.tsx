@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { MobileMascotNote } from "./MobileMascotNote";
 
 const services = [
   {
@@ -35,6 +36,8 @@ export function ServicesSection() {
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-ash md:text-lg">Cada servicio se adapta al problema. Podemos empezar pequeño, validar el flujo y evolucionar con datos reales.</p>
           </div>
         </div>
+
+        <MobileMascotNote id="services" />
 
         <div className="mt-3 divide-y divide-white/15">
           {services.map((service, index) => (
