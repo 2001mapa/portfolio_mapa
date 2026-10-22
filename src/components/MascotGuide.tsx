@@ -107,7 +107,7 @@ export function MascotGuide() {
       aria-label="Sugerencia de NULL"
       aria-hidden={!visible}
       inert={!visible}
-      className={`pointer-events-none fixed z-40 hidden w-[22rem] transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none md:bottom-8 md:block print:hidden ${moment.side === "left" ? "md:left-6" : "md:bottom-28 md:right-6"} ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+      className={`pointer-events-none fixed z-40 hidden w-[22rem] transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none md:block print:hidden ${moment.id === "about" ? "md:right-6 md:top-28" : moment.side === "left" ? "md:bottom-8 md:left-6" : "md:bottom-28 md:right-6"} ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
     >
       <div className={`flex items-end gap-1 ${moment.side === "left" ? "md:flex-row-reverse" : ""}`}>
         <div className="pointer-events-auto relative min-w-0 flex-1 rounded-2xl border border-white/15 bg-[#1d1d20]/95 px-4 py-3 text-white shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md">
