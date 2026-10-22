@@ -30,11 +30,16 @@ export const viewport = {
   initialScale: 1,
 };
 
+const siteUrl = "https://miguelalbornozdev.vercel.app";
+const shareTitle = "Miguel Albornoz · Soluciones digitales y automatización";
+const shareDescription =
+  "Sistemas web, automatizaciones e interfaces para vender, organizar y operar mejor.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://miguel-albornoz.vercel.app"),
-  title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
-  description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
-  alternates: { canonical: "https://miguel-albornoz.vercel.app/" },
+  metadataBase: new URL(siteUrl),
+  title: shareTitle,
+  description: shareDescription,
+  alternates: { canonical: `${siteUrl}/` },
   robots: { index: true, follow: true },
   authors: [{ name: 'Miguel Albornoz' }],
   appleWebApp: {
@@ -46,20 +51,27 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
-    description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
-    url: "https://miguel-albornoz.vercel.app/",
+    title: shareTitle,
+    description: shareDescription,
+    url: `${siteUrl}/`,
     siteName: "Miguel Albornoz",
     locale: "es_CO",
     type: "website",
-    images: [{ url: '/opengraph-image.jpg', width: 1200, height: 630, alt: 'Miguel Albornoz' }],
+    images: [
+      {
+        url: "/social-preview.png",
+        width: 1734,
+        height: 907,
+        alt: "Miguel Albornoz — Soluciones digitales y automatización",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Miguel Albornoz | Software Engineer & Desarrollador Fullstack en Medellín",
-    description: "Desarrollador Fullstack en Medellín especializado en Next.js, React, Inteligencia Artificial (RAG) y arquitecturas Serverless. Construyo productos SaaS de alto rendimiento listos para producción.",
+    title: shareTitle,
+    description: shareDescription,
     creator: "@miguelalbornoz",
-    images: ["/opengraph-image.jpg"],
+    images: ["/social-preview.png"],
   },
 };
 
