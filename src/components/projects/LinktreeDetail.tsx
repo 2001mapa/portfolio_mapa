@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { CaseStudyBrief } from "./CaseStudyBrief";
 import { videoUrl } from "@/data/media";
 
 export function LinktreeDetail() {
@@ -85,6 +86,13 @@ export function LinktreeDetail() {
         {/* Parallax Background */}
         <motion.div style={{ y: heroY }} className="absolute inset-0 bg-[#1e152a] opacity-30 z-0"></motion.div>
       </div>
+
+      <CaseStudyBrief
+        accent="#b88be5"
+        problem="Una marca con enlaces y canales dispersos obliga a sus visitantes a adivinar dónde hacer clic."
+        solution="Una página de enlaces rápida, personalizable y coherente con la identidad de la marca."
+        outcome="Un punto de entrada único que ordena la presencia digital y reduce la fricción para contactar o comprar."
+      />
 
       {/* Body */}
       <main className="relative z-20 w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">

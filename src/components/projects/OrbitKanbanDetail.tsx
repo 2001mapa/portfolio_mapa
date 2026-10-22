@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { videoUrl } from "@/data/media";
+import { CaseStudyBrief } from "./CaseStudyBrief";
 
 export function OrbitKanbanDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -83,6 +84,13 @@ export function OrbitKanbanDetail() {
         
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0F52BA]/20 via-[#0B0C10]/80 to-[#0B0C10] mix-blend-multiply pointer-events-none"></div>
       </div>
+
+      <CaseStudyBrief
+        accent="#77A5E8"
+        problem="Cuando las tareas cambian rápido, el equipo pierde prioridad, contexto y visibilidad sobre lo que está bloqueado."
+        solution="Un tablero en tiempo real con orden persistente, estados claros y colaboración sin recargar la información."
+        outcome="Un flujo de trabajo que permite decidir qué sigue y detectar bloqueos antes de que frenen al equipo."
+      />
 
       <div className="relative w-full px-6 md:px-12 pb-24 md:pb-40 z-20">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12 md:gap-24">

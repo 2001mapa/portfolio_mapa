@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { videoUrl } from "@/data/media";
+import { CaseStudyBrief } from "./CaseStudyBrief";
 
 export function DocuMindDetail() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -83,6 +84,13 @@ export function DocuMindDetail() {
         
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#4B0082]/20 via-[#0B0C10]/80 to-[#0B0C10] mix-blend-multiply pointer-events-none"></div>
       </div>
+
+      <CaseStudyBrief
+        accent="#DDA0DD"
+        problem="Información repartida en documentos y respuestas repetitivas que hacen lenta la consulta."
+        solution="Un asistente RAG que recupera contexto relevante y responde desde una base documental controlada."
+        outcome="Consultas más rápidas, trazables y sin obligar al equipo a revisar archivos uno por uno."
+      />
 
       <div className="relative w-full px-6 md:px-12 pb-24 md:pb-40 z-20">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12 md:gap-24">

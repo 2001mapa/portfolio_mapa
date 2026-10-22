@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { videoUrl } from "@/data/media";
+import { CaseStudyBrief } from "./CaseStudyBrief";
 
 export function CatalogoDetail() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -84,6 +85,13 @@ export function CatalogoDetail() {
           </div>
         </div>
       </div>
+
+      <CaseStudyBrief
+        accent="#7a9982"
+        problem="Un catálogo B2B necesita mostrar muchas referencias sin depender de mensajes, fotos sueltas o búsquedas manuales."
+        solution="Un catálogo navegable con filtros, información centralizada y un camino directo para solicitar productos."
+        outcome="Una experiencia de compra más clara para clientes y menos trabajo operativo para el equipo comercial."
+      />
 
       <main className="w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">

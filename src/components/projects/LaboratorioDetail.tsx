@@ -5,6 +5,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
 import { videoUrl } from "@/data/media";
+import { CaseStudyBrief } from "./CaseStudyBrief";
 
 export function LaboratorioDetail() {
   useEffect(() => {
@@ -56,6 +57,13 @@ export function LaboratorioDetail() {
           </motion.div>
         </div>
       </section>
+
+      <CaseStudyBrief
+        accent="#00E5FF"
+        problem="Registrar y consultar información financiera desde distintos canales genera pasos repetitivos y poca visibilidad."
+        solution="Un asistente que conecta conversación, datos estructurados y un panel en tiempo real."
+        outcome="Una exploración de cómo la IA puede reducir tareas manuales sin quitar control a las personas."
+      />
 
       {/* Main Content */}
       <main className="w-full py-16 md:py-24 px-6">

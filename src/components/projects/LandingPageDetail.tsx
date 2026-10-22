@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { CaseStudyBrief } from "./CaseStudyBrief";
 import { videoUrl } from "@/data/media";
 
 export function LandingPageDetail() {
@@ -86,6 +87,13 @@ export function LandingPageDetail() {
         {/* Parallax Background */}
         <motion.div style={{ y: heroY }} className="absolute inset-0 bg-[#2a1e15] opacity-30 z-0"></motion.div>
       </div>
+
+      <CaseStudyBrief
+        accent="#e09c6f"
+        problem="Una oferta valiosa pierde oportunidades si su mensaje, beneficios y siguiente paso no se entienden en segundos."
+        solution="Una landing enfocada en jerarquía, velocidad y llamadas a la acción que guían la decisión."
+        outcome="Una primera impresión más clara que convierte atención en conversaciones comerciales."
+      />
 
       {/* Body */}
       <main className="relative z-20 w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
