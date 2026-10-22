@@ -52,7 +52,7 @@ export function LaboratorioDetail() {
               LUKA
             </h1>
             <p className="font-[family-name:var(--font-ibm-plex-mono)] text-sm md:text-base text-white/50 max-w-lg mx-auto tracking-wide">
-              AI Financial Assistant · Telegram Bot · Realtime PWA
+              Asistente de IA para organizar información financiera
             </p>
           </motion.div>
         </div>

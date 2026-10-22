@@ -63,7 +63,7 @@ export function LandingPageDetail() {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   className="text-[40px] md:text-[64px] leading-[0.9] tracking-[-1px] font-medium uppercase text-[#d37039] font-[family-name:var(--font-abc-gravity-variable)] text-center"
                 >
-                  EXPERIENCES
+                  QUE CONVIERTE
                 </motion.h1>
               </div>
             </div>

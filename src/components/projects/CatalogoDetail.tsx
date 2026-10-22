@@ -63,7 +63,7 @@ export function CatalogoDetail() {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   className="text-[40px] md:text-[64px] leading-[0.9] tracking-[-1px] font-medium uppercase text-[#4a7c59] font-[family-name:var(--font-abc-gravity-variable)] text-center"
                 >
-                  DIGITAL
+                  PARA VENTAS B2B
                 </motion.h1>
               </div>
             </div>

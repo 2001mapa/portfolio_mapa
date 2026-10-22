@@ -19,7 +19,7 @@ const projects: Project[] = [
   { 
     slug: "docu-mind", 
     title: "DOCUMIND AI", 
-    type: "RAG / MICRO-SAAS / FULLSTACK AI",
+    type: "ASISTENTE DE IA PARA DOCUMENTOS",
     color: "from-[#4B0082]", // Indigo/Deep Purple
     video: videoUrl("documind.mp4"),
     stack: ["Next.js 16", "Supabase", "pgvector", "Gemini"],
@@ -28,7 +28,7 @@ const projects: Project[] = [
   { 
     slug: "orbit-kanban", 
     title: "ORBIT KANBAN", 
-    type: "WEBSOCKETS / STATE MANAGEMENT",
+    type: "TABLERO PARA ORGANIZAR EQUIPOS",
     color: "from-[#0F52BA]", // Sapphire Blue
     video: videoUrl("orbit-kanban.mp4"),
     stack: ["Next.js 15", "Supabase Realtime", "LexoRank", "React Query"],
@@ -38,7 +38,7 @@ const projects: Project[] = [
   { 
     slug: "ecommerce-erp", 
     title: "E-COMMERCE & ERP", 
-    type: "FULLSTACK E-COMMERCE",
+    type: "VENTA ONLINE Y OPERACIÓN",
     color: "from-[#1A3A1A]", // Dark Green
     video: videoUrl("Ecommerce-doha-desk.mp4"),
     stack: ["Next.js", "Node.js", "PostgreSQL"],
@@ -48,7 +48,7 @@ const projects: Project[] = [
   { 
     slug: "linktree", 
     title: "LINKTREE PRO", 
-    type: "FULLSTACK / SAAS CLONE",
+    type: "PÁGINA DE ENLACES PARA MARCAS",
     color: "from-[#1A1A26]", // Dark Blue
     video: videoUrl("Stylo-Escritorio.mp4"),
     stack: ["Next.js", "Vercel", "Tailwind"],
@@ -57,7 +57,7 @@ const projects: Project[] = [
   { 
     slug: "landing-page", 
     title: "LANDING ALTA PERFORMANCE", 
-    type: "FRONTEND / CRO",
+    type: "PÁGINA PARA CONSEGUIR CONTACTOS",
     color: "from-[#1A1A1A]", // Dark
     video: videoUrl("landing-page.mp4"),
     stack: ["Next.js", "Tailwind CSS"],
@@ -66,7 +66,7 @@ const projects: Project[] = [
   { 
     slug: "catalogo", 
     title: "CATÁLOGO DIGITAL", 
-    type: "B2B / CLIENT PROJECT",
+    type: "CATÁLOGO PARA VENTAS B2B",
     color: "from-[#1A1A26]", // Dark Blue
     video: videoUrl("catalogo.mp4"),
     stack: ["Next.js", "Supabase", "Vercel"],
@@ -75,7 +75,7 @@ const projects: Project[] = [
   { 
     slug: "laboratorio", 
     title: "LUKA — AI FINANCE BOT", 
-    type: "AI EXPERIMENTS · TELEGRAM BOT",
+    type: "ASISTENTE FINANCIERO CON IA",
     color: "from-[#001A26]", // Dark Cyan
     video: videoUrl("luka-chatbot.mp4"),
     stack: ["Gemini API", "Supabase Realtime", "PWA"],

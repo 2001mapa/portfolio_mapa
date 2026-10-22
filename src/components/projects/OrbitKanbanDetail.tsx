@@ -61,7 +61,7 @@ export function OrbitKanbanDetail() {
               >
                 <div className="h-[1px] w-12 bg-[#0F52BA]"></div>
                 <span className="font-[family-name:var(--font-ibm-plex-mono)] tracking-widest text-[#4169E1] text-sm md:text-base uppercase text-center">
-                  Realtime Workspace & Sockets
+                  Tablero colaborativo para organizar el trabajo
                 </span>
                 <div className="h-[1px] w-12 bg-[#0F52BA]"></div>
               </motion.div>

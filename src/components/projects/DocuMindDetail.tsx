@@ -61,7 +61,7 @@ export function DocuMindDetail() {
               >
                 <div className="h-[1px] w-12 bg-[#8A2BE2]"></div>
                 <span className="font-[family-name:var(--font-ibm-plex-mono)] tracking-widest text-[#DDA0DD] text-sm md:text-base uppercase text-center">
-                  RAG Chatbot & Cover Letter Generator
+                  Asistente de IA para consultar documentos
                 </span>
                 <div className="h-[1px] w-12 bg-[#8A2BE2]"></div>
               </motion.div>
