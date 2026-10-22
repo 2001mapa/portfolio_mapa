@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const steps = [
   {
     number: "01",
@@ -33,20 +29,16 @@ export function ProcessSection() {
         </div>
 
         <div className="mt-2 grid divide-y divide-obsidian/15 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
-          {steps.map((step, index) => (
-            <motion.article
+          {steps.map((step) => (
+            <article
               key={step.number}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.45, delay: index * 0.07 }}
               className="group py-8 lg:px-8 lg:py-12 first:pl-0 last:pr-0"
             >
               <span className="font-[family-name:var(--font-ibm-plex-mono)] text-xs font-semibold tracking-[0.12em] text-ember">{step.number}</span>
               <h3 className="mt-12 max-w-xs text-2xl font-medium leading-tight tracking-[-0.04em] md:text-3xl">{step.title}</h3>
               <p className="mt-4 max-w-sm leading-relaxed text-slate">{step.description}</p>
-              <div className="mt-8 h-px w-9 bg-ember transition-all duration-300 group-hover:w-16" />
-            </motion.article>
+              <div className="mt-8 h-px w-9 bg-ember transition-[width] duration-300 group-hover:w-16" />
+            </article>
           ))}
         </div>
       </div>

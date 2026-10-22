@@ -12,6 +12,11 @@ import MaintenanceScreen from "@/components/MaintenanceScreen";
 
 const IS_MAINTENANCE_MODE = false;
 
+export const metadata: Metadata = {
+  title: "Soluciones digitales y automatización | Miguel Albornoz",
+  description: "Diseño y desarrollo sistemas web, automatizaciones y experiencias digitales para mejorar procesos de negocio.",
+};
+
 export default function Home() {
   if (IS_MAINTENANCE_MODE) {
     return <MaintenanceScreen />;
@@ -32,3 +37,4 @@ export default function Home() {
   );
 }
 
+import type { Metadata } from "next";
