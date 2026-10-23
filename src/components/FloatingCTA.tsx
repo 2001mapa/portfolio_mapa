@@ -11,8 +11,11 @@ export function FloatingCTA() {
 
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
-      // Mostrar solo si ha bajado más de 500px
-      if (latest > 500) {
+      const contactSection = document.getElementById("contact");
+      const reachedContact = contactSection
+        ? contactSection.getBoundingClientRect().top <= window.innerHeight * 0.75
+        : false;
+      if (latest > 500 && !reachedContact) {
         setIsVisible(true);
         controls.start(shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 });
       } else {
