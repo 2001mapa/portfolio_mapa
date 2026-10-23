@@ -17,6 +17,7 @@ type GuideMode = "intro" | "menu" | "collapsed";
 export function MascotGuide() {
   const [ready, setReady] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [atContact, setAtContact] = useState(false);
   const [mode, setMode] = useState<GuideMode>("intro");
 
   useEffect(() => {
@@ -42,7 +43,33 @@ export function MascotGuide() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mode]);
 
-  if (!ready || dismissed) return null;
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      const contact = document.getElementById("contact");
+      if (!contact) return;
+      const reachedContact = contact.getBoundingClientRect().top <= window.innerHeight * 0.75;
+      setAtContact(reachedContact);
+      if (reachedContact) setMode("collapsed");
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  if (!ready || dismissed || atContact) return null;
 
   const onDismiss = () => {
     window.sessionStorage.setItem(DISMISSED_KEY, "true");
@@ -52,7 +79,7 @@ export function MascotGuide() {
   return (
     <aside
       aria-label="NULL, guía del portafolio"
-      className="pointer-events-none fixed right-0 top-[50dvh] z-40 w-[min(18rem,calc(100vw-0.75rem))] -translate-y-1/2 text-white print:hidden md:bottom-7 md:right-7 md:top-auto md:w-[19rem] md:translate-y-0"
+      className={`pointer-events-none fixed right-0 z-40 w-[min(18rem,calc(100vw-0.75rem))] text-white print:hidden md:right-7 md:top-28 md:w-[19rem] md:translate-y-0 ${mode === "intro" ? "top-[max(9.5rem,18dvh)] translate-y-0" : "top-[50dvh] -translate-y-1/2"}`}
     >
       {mode === "collapsed" ? (
         <button
