@@ -20,8 +20,11 @@ export function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    let waMessage = `Hola Miguel, mi nombre es ${formState.name}.\n\n`;
-    waMessage += formState.message;
+    const waMessage = [
+      `Hola Miguel, soy ${formState.name.trim()}. 👋`,
+      `*Mi idea o necesidad:*\n${formState.message.trim()}`,
+      "Te escribo desde tu portafolio.",
+    ].join("\n\n");
 
     // Desencriptar en tiempo de ejecución (invisible para los bots)
     const baseUrl = typeof window !== 'undefined' ? window.atob(ENCODED_URL) : '';
