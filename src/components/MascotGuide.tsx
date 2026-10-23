@@ -79,7 +79,7 @@ export function MascotGuide() {
   return (
     <aside
       aria-label="NULL, guía del portafolio"
-      className={`pointer-events-none fixed right-0 z-40 w-[min(18rem,calc(100vw-0.75rem))] text-white print:hidden md:right-7 md:top-28 md:w-[19rem] md:translate-y-0 ${mode === "intro" ? "top-[max(9.5rem,18dvh)] translate-y-0" : "top-[50dvh] -translate-y-1/2"}`}
+      className={`pointer-events-none fixed right-0 z-40 w-[min(18rem,calc(100vw-0.75rem))] text-white print:hidden md:right-7 md:top-28 md:w-[19rem] md:translate-y-0 ${mode === "intro" ? "top-20 translate-y-0" : "top-[50dvh] -translate-y-1/2"}`}
     >
       {mode === "collapsed" ? (
         <button
@@ -93,7 +93,7 @@ export function MascotGuide() {
         </button>
       ) : (
         <div className="pointer-events-auto flex items-end gap-1 pr-2 md:pr-0">
-          <div className="relative max-h-[calc(100dvh-2rem)] min-w-0 flex-1 overflow-y-auto rounded-2xl border border-white/15 bg-[#1d1d20]/95 px-3 py-3 shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md md:px-4">
+          <div className={`relative max-h-[calc(100dvh-2rem)] min-w-0 flex-1 overflow-y-auto rounded-2xl border border-white/15 bg-[#1d1d20]/95 px-3 shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md md:px-4 ${mode === "intro" ? "py-2" : "py-3"}`}>
             <button
               type="button"
               aria-label="Ocultar a NULL por esta visita"
@@ -108,10 +108,10 @@ export function MascotGuide() {
                 type="button"
                 onClick={() => setMode("menu")}
                 aria-expanded={false}
-                className="mt-2 block w-full rounded-lg text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember"
+                className="mt-1 block w-full rounded-lg text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember"
               >
-                <span className="block text-[13px] font-medium leading-snug text-fog">¿Buscas una web o quieres mejorar un proceso?</span>
-                <span className="mt-2 block text-xs font-semibold text-[#ff896a]">Tócame y te guío →</span>
+                <span className="block text-[13px] font-medium leading-snug text-fog">¿Necesitas una web o mejorar un proceso?</span>
+                <span className="mt-1 block text-xs font-semibold text-[#ff896a]">Tócame y te guío →</span>
               </button>
             ) : (
               <div id="null-guide-options" className="mt-2">
