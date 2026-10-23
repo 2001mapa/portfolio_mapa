@@ -52,21 +52,21 @@ export function MascotGuide() {
   return (
     <aside
       aria-label="NULL, guía del portafolio"
-      className="fixed bottom-4 right-3 z-40 w-[min(18rem,calc(100vw-1.5rem))] text-white print:hidden md:bottom-7 md:right-7 md:w-[19rem]"
+      className="pointer-events-none fixed right-0 top-[50dvh] z-40 w-[min(18rem,calc(100vw-0.75rem))] -translate-y-1/2 text-white print:hidden md:bottom-7 md:right-7 md:top-auto md:w-[19rem] md:translate-y-0"
     >
       {mode === "collapsed" ? (
         <button
           type="button"
           aria-label="Abrir guía de NULL"
           onClick={() => setMode("menu")}
-          className="ml-auto flex min-h-14 items-end gap-2 rounded-2xl border border-white/15 bg-[#1d1d20]/95 px-3 py-1.5 shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md transition-transform hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember motion-reduce:transition-none"
+          className="pointer-events-auto ml-auto flex min-h-14 items-end gap-1.5 rounded-l-2xl border border-r-0 border-white/15 bg-[#1d1d20]/90 py-1 pl-3 pr-1 shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md transition-transform hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ember motion-reduce:transition-none md:rounded-2xl md:border-r md:px-3"
         >
-          <span className="self-center text-xs font-semibold text-fog">¿Te guío?</span>
+          <span className="self-center text-[11px] font-semibold text-fog md:text-xs">¿Te guío?</span>
           <MascotSprite size="small" />
         </button>
       ) : (
-        <div className="flex items-end gap-1">
-          <div className="relative min-w-0 flex-1 rounded-2xl border border-white/15 bg-[#1d1d20]/95 px-3 py-3 shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md md:px-4">
+        <div className="pointer-events-auto flex items-end gap-1 pr-2 md:pr-0">
+          <div className="relative max-h-[calc(100dvh-2rem)] min-w-0 flex-1 overflow-y-auto rounded-2xl border border-white/15 bg-[#1d1d20]/95 px-3 py-3 shadow-[0_18px_45px_rgba(0,0,0,0.38)] backdrop-blur-md md:px-4">
             <button
               type="button"
               aria-label="Ocultar a NULL por esta visita"
