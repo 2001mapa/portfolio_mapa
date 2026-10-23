@@ -4,7 +4,7 @@ export function MascotSprite({ size = "medium" }: { size?: "small" | "medium" })
   return (
     <span
       aria-hidden="true"
-      className={`mascot-float relative block shrink-0 [image-rendering:pixelated] drop-shadow-[0_0_12px_rgba(255,76,36,0.42)] ${size === "small" ? "h-[70px] w-[38px]" : "h-[70px] w-[38px] md:h-24 md:w-[52px]"}`}
+      className={`mascot-float relative block shrink-0 [image-rendering:pixelated] drop-shadow-[0_0_12px_rgba(255,76,36,0.42)] ${size === "small" ? "h-[58px] w-[31px]" : "h-[70px] w-[38px] md:h-24 md:w-[52px]"}`}
     >
       <Image src="/mascot-null-v2.png" alt="" width={296} height={545} unoptimized className="h-full w-full" />
       <span className="mascot-face mascot-face-smile">
