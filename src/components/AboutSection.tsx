@@ -13,7 +13,7 @@ export function AboutSection() {
   return (
     <section id="about" className="relative overflow-hidden bg-obsidian pb-16 pt-28 text-bone md:pb-28 md:pt-40">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(ellipse_at_82%_15%,rgba(255,76,36,0.20),transparent_54%)]" />
-      <div className="relative mx-auto grid max-w-[1280px] gap-12 px-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-end lg:gap-16">
+      <div className="relative mx-auto grid max-w-[1280px] gap-12 px-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-start lg:gap-16">
         <div>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -62,13 +62,14 @@ export function AboutSection() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.14 }}
-          className="relative overflow-hidden rounded-3xl border border-white/10 bg-graphite/30 p-5 backdrop-blur-sm"
+          className="relative overflow-hidden rounded-[1.75rem] border border-white/15 bg-graphite/30 p-2 shadow-[0_28px_70px_rgba(0,0,0,0.32)] lg:mt-12"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-graphite">
-            <Image src="/foto-perfil.jpeg" alt="Miguel Albornoz" fill sizes="(max-width: 1024px) 100vw, 360px" className="object-cover object-center grayscale-[0.15]" priority />
-            <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.35rem] bg-graphite">
+            <Image src="/foto-portafolio.jpg" alt="Retrato de Miguel Albornoz" fill sizes="(max-width: 1024px) calc(100vw - 3rem), 400px" className="object-cover object-center" priority />
+            <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-transparent" />
             <p className="absolute bottom-5 left-5 right-5 font-[family-name:var(--font-ibm-plex-mono)] text-[10px] uppercase tracking-[0.13em] text-white/70">Estrategia, diseño y desarrollo en un mismo proceso.</p>
           </div>
+          <span aria-hidden="true" className="absolute right-7 top-2 h-px w-16 bg-ember/80" />
         </motion.aside>
       </div>
 

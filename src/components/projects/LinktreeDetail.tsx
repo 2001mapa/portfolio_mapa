@@ -192,14 +192,6 @@ export function LinktreeDetail() {
              <p className="text-[#8971a5] mt-2 mb-6 max-w-[500px] text-body-lg">
                Emprendimiento de accesorios. Centralizamos su catálogo y canales de contacto en un solo micro-sitio para eliminar la fricción de ventas.
              </p>
-             <a 
-               href="https://stylocaps.netlify.app/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#b039d3] text-[#b039d3] md:hover:bg-[#b039d3] md:hover:text-white active:bg-[#b039d3] active:text-white transition-colors px-6 py-3 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold mb-4 shadow-[0_0_20px_rgba(176,57,211,0.15)] md:hover:shadow-[0_0_30px_rgba(176,57,211,0.3)] active:scale-95"
-             >
-               VISITAR STYLO EN VIVO ↗
-             </a>
           </div>
 
           {/* Animated Video Showcase 1 (Stylo) */}
@@ -265,14 +257,6 @@ export function LinktreeDetail() {
              <p className="text-[#8971a5] mt-2 mb-6 max-w-[550px] text-body-lg">
                Tienda de bisutería fina. Sus clientas saturaban el DM pidiendo el catálogo, precios y el WhatsApp por separado. Diseñamos un ecosistema para centralizar toda su operativa de forma elegante.
              </p>
-             <a 
-               href="https://fullaccesorioss.netlify.app/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#b039d3] text-[#b039d3] md:hover:bg-[#b039d3] md:hover:text-white active:bg-[#b039d3] active:text-white transition-colors px-6 py-3 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold mb-4 shadow-[0_0_20px_rgba(176,57,211,0.15)] md:hover:shadow-[0_0_30px_rgba(176,57,211,0.3)] active:scale-95"
-             >
-               VISITAR FULL ACCESORIOS ↗
-             </a>
           </div>
 
           {/* Animated Video Showcase 2 (Full) */}

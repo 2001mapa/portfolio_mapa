@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 const siteUrl = "https://miguelalbornozdev.vercel.app";
-const publicRoutes = ["", "/work/docu-mind", "/work/orbit-kanban", "/work/linktree", "/work/landing-page", "/work/catalogo", "/work/laboratorio"];
+const publicRoutes = ["", "/work/docu-mind", "/work/orbit-kanban", "/work/ecommerce-erp", "/work/linktree", "/work/landing-page", "/work/catalogo", "/work/laboratorio"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return publicRoutes.map((route) => ({

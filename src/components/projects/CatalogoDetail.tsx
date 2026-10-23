@@ -194,23 +194,6 @@ export function CatalogoDetail() {
              </p>
           </div>
 
-          {/* Boton de Visita */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="w-full flex justify-center mt-0 mb-12 md:mb-16"
-          >
-             <a 
-               href="https://escencias-del-bosque.vercel.app/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#4a7c59] text-[#4a7c59] md:hover:bg-[#4a7c59] md:hover:text-[#0a120c] active:bg-[#4a7c59] active:text-[#0a120c] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(74,124,89,0.15)] md:hover:shadow-[0_0_30px_rgba(74,124,89,0.3)] active:scale-95"
-             >
-               VISITAR CATÁLOGO EN VIVO ↗
-             </a>
-          </motion.div>
-
           {/* Desktop Video Showcase with Social Proof */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}

@@ -197,23 +197,6 @@ export function LandingPageDetail() {
              </p>
           </div>
 
-          {/* Boton de Visita */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="w-full flex justify-center mt-0 mb-12 md:mb-16"
-          >
-             <a 
-               href="https://el-origen-cafe.vercel.app/" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               className="inline-flex items-center justify-center border border-[#d37039] text-[#d37039] active:bg-[#d37039] active:text-[#1c140d] md:hover:bg-[#d37039] md:hover:text-[#1c140d] transition-colors px-8 py-4 rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase text-sm tracking-widest font-semibold shadow-[0_0_20px_rgba(211,112,57,0.15)] md:hover:shadow-[0_0_30px_rgba(211,112,57,0.3)] active:scale-95"
-             >
-               VISITAR CAFÉ ORIGEN EN VIVO ↗
-             </a>
-          </motion.div>
-
           {/* Desktop Video Showcase with Social Proof */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}

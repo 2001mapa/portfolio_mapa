@@ -68,18 +68,6 @@ export function OrbitKanbanDetail() {
                 <div className="h-[1px] w-12 bg-[#0F52BA]"></div>
               </motion.div>
               
-              <motion.div
-                 initial={{ opacity: 0, y: 20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 1, delay: 1 }}
-                 className="mt-8"
-              >
-                 <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                 <a href="https://orbit-kanban.vercel.app/" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-[#0F52BA] text-white rounded-full font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-widest text-sm hover:bg-[#4169E1] transition-colors shadow-[0_0_20px_rgba(15,82,186,0.5)]">
-                   VER PROYECTO
-                 </a>
-               </div>
-              </motion.div>
             </div>
           </div>
         </motion.div>
