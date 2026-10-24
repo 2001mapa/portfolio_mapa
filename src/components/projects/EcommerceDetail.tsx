@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
 import { videoUrl } from "@/data/media";
+import { CaseStudyBrief } from "./CaseStudyBrief";
 
 export function EcommerceDetail() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export function EcommerceDetail() {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="text-[48px] md:text-[80px] leading-[0.9] tracking-[-1px] md:tracking-[-2px] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)] text-center text-[#e8e4db]"
                 >
-                  E-COMMERCE
+                  TIENDA VIRTUAL
                 </motion.h1>
               </div>
               <div className="overflow-hidden">
@@ -59,18 +60,18 @@ export function EcommerceDetail() {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   className="text-[40px] md:text-[64px] leading-[0.9] tracking-[-1px] font-medium uppercase text-[#c5a67c] font-[family-name:var(--font-abc-gravity-variable)] text-center"
                 >
-                  & ERP DASHBOARD
+                  Y PANEL DE CONTROL
                 </motion.h1>
               </div>
 
-              {/* Subtitle técnico */}
+              {/* Project summary */}
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
                 className="mt-6 text-[#a39481] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase text-center"
               >
-                Full-Stack Platform · Dual Auth · Real-time Inventory · Payment Gateway
+                DOHA · TIENDA VIRTUAL CON PAGOS EN LÍNEA POR WOMPI
               </motion.p>
             </div>
 
@@ -81,7 +82,7 @@ export function EcommerceDetail() {
               transition={{ delay: 1, duration: 1 }}
               className="flex flex-col items-center gap-3 text-[#a39481] z-20 pointer-events-none mt-12"
             >
-              <span className="font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-[0.2em] uppercase">Explorar Arquitectura</span>
+              <span className="font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-[0.2em] uppercase">Conoce el proyecto</span>
               <motion.div 
                 animate={{ y: [0, 15, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -92,6 +93,13 @@ export function EcommerceDetail() {
         </div>
       </div>
 
+      <CaseStudyBrief
+        accent="#c5a67c"
+        problem="Vender por internet y controlar productos y pedidos en lugares separados complica el trabajo diario."
+        solution="Una tienda con catálogo, carrito y pagos en línea con Wompi, conectada a un panel privado de administración."
+        outcome="El comprador puede completar su pedido y el equipo puede gestionar ventas e inventario desde el mismo sistema."
+      />
+
       <main className="w-full pt-16 pb-24 md:pt-20 md:pb-32 px-6">
         <div className="max-w-[1200px] mx-auto flex flex-col gap-16 md:gap-32 font-[family-name:var(--font-die-grotesk-b)]">
           
@@ -100,11 +108,9 @@ export function EcommerceDetail() {
 
             {/* Mobile: pills horizontales */}
             <div className="flex flex-wrap gap-2 mb-4 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">Next.js 15</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">Node.js</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">PostgreSQL</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">Supabase Auth</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">Zustand</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">Tienda virtual</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">Pagos</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a261a] text-[#a39481]">Inventario</span>
             </div>
 
             {/* Desktop Sidebar */}
@@ -116,8 +122,8 @@ export function EcommerceDetail() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col gap-2"
               >
-                <h4 className="text-[#c5a67c] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
-                <p className="text-[#e8e4db] text-sm">Next.js 15 (App Router), Node.js, PostgreSQL, Supabase Auth (RBAC), Zustand, Tailwind CSS, pasarela de pagos integrada.</p>
+                <h4 className="text-[#c5a67c] uppercase tracking-widest text-xs font-semibold">QUÉ INCLUYE</h4>
+                <p className="text-[#e8e4db] text-sm">Tienda para compradores, carrito, pagos en línea con Wompi y un panel privado para administrar productos, pedidos e inventario.</p>
               </motion.div>
               
               <motion.div 
@@ -128,7 +134,7 @@ export function EcommerceDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#c5a67c] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-                <p className="text-[#e8e4db] text-sm">Construir un sistema dual: un e-commerce de alto rendimiento para usuarios finales y un ERP interno para administradores, compartiendo la misma base de datos con control de acceso por roles (RBAC) y sincronización de inventario en tiempo real.</p>
+                <p className="text-[#e8e4db] text-sm">Conectar lo que ve el cliente con lo que necesita el equipo: precios, disponibilidad y pedidos actualizados desde un mismo sistema.</p>
               </motion.div>
 
               <motion.div 
@@ -139,7 +145,7 @@ export function EcommerceDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#c5a67c] uppercase tracking-widest text-xs font-semibold">TIPO</h4>
-                <p className="text-[#e8e4db] text-sm">Proyecto B2B para cliente real. Plataforma en producción activa.</p>
+                <p className="text-[#e8e4db] text-sm">Proyecto desarrollado para un cliente. Los videos muestran la tienda y su panel de administración.</p>
               </motion.div>
 
               <motion.div
@@ -160,7 +166,7 @@ export function EcommerceDetail() {
             {/* Main Content */}
             <div className="w-full md:w-3/4 flex flex-col gap-16 font-[family-name:var(--font-die-grotesk-b)]">
               
-              {/* Métricas de impacto */}
+              {/* Project capabilities */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -169,9 +175,9 @@ export function EcommerceDetail() {
                 className="grid grid-cols-2 md:grid-cols-3 gap-3"
               >
                 {[
-                  { value: 'Next.js', label: 'App Router' },
-                  { value: 'Zustand', label: 'State Management' },
-                  { value: 'Supabase', label: 'Database & Auth' },
+                  { value: 'Tienda', label: 'Catálogo y carrito' },
+                  { value: 'Pagos', label: 'Compra en línea' },
+                  { value: 'Control', label: 'Pedidos e inventario' },
                 ].map((m) => (
                   <div key={m.label} className="p-4 md:p-6 border border-[#2a261a] rounded-xl bg-[#1a1815] flex flex-col gap-1">
                     <span className="text-3xl md:text-4xl font-medium text-[#c5a67c] font-[family-name:var(--font-die-grotesk-b)]">{m.value}</span>
@@ -189,31 +195,31 @@ export function EcommerceDetail() {
                 className="flex flex-col gap-8 max-w-[1000px]"
               >
                 <div className="flex items-center gap-4 text-[#c5a67c] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
-                  <span>Arquitectura del Sistema</span>
+                  <span>Cómo funciona</span>
                   <span className="w-12 h-[1px] bg-[#c5a67c]"></span>
-                  <span>Full-Stack Platform</span>
+                  <span>Doha</span>
                 </div>
                 <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#e8e4db] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-                  Dos Sistemas,<br className="hidden md:block"/> Una Sola Arquitectura
+                  Una tienda para comprar.<br className="hidden md:block"/> Un panel para gestionar.
                 </h2>
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-body-lg text-[#a39481]">
                   <p className="flex-1">
-                    La plataforma unifica un e-commerce de cara al público y un ERP interno para el equipo de operaciones en la misma base de código. El estado del carrito de compras es manejado globalmente con <strong className="text-[#e8e4db]">Zustand</strong>, con persistencia en localStorage y revalidación automática de stock mediante <strong className="text-[#e8e4db]">Next.js Server Actions</strong>.
+                    El cliente puede explorar el catálogo, añadir productos al carrito y pagar en línea con Wompi. Al mismo tiempo, el equipo administra productos, disponibilidad y pedidos desde un panel privado. La selección del carrito se conserva mientras el comprador recorre la tienda y las existencias se comprueban antes de confirmar.
                   </p>
                   <div className="flex-1 flex flex-col gap-4">
-                    <strong className="text-[#e8e4db]">Decisiones de Ingeniería Clave:</strong>
+                    <strong className="text-[#e8e4db]">Lo que resuelve cada parte:</strong>
                     <ul className="flex flex-col gap-3">
                       <li className="flex items-start gap-3">
                         <span className="text-[#c5a67c] mt-1 text-sm">✦</span> 
-                        <span><strong>Control de Acceso (RBAC):</strong> Supabase Auth maneja dos roles diferenciados: compradores regulares y administradores mayoristas, con Row Level Security (RLS) en PostgreSQL para aislar los datos.</span>
+                        <span><strong>Accesos separados:</strong> los compradores ven la tienda; solo las personas autorizadas pueden entrar al panel y modificar información del negocio.</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-[#c5a67c] mt-1 text-sm">✦</span> 
-                        <span><strong>Checkout Integrado:</strong> Pasarela de pagos con webhooks para actualizar el estado de la orden en tiempo real sin polling al servidor.</span>
+                        <span><strong>Pago y confirmación:</strong> el cliente paga en línea con Wompi. Cuando la pasarela confirma el resultado, el pedido se actualiza automáticamente, sin que el equipo tenga que revisarlo a mano.</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="text-[#c5a67c] mt-1 text-sm">✦</span> 
-                        <span><strong>Portal Mayorista Dual:</strong> Clientes regulares ven precios de retail; administradores autenticados acceden a un catálogo de descuentos con SKUs y reportes de inventario.</span>
+                        <span><strong>Precios y referencias:</strong> la tienda muestra los productos al comprador y el panel permite al equipo organizar referencias, descuentos e inventario.</span>
                       </li>
                     </ul>
                   </div>
@@ -244,7 +250,7 @@ export function EcommerceDetail() {
                     viewport={{ once: true }}
                     className="text-[32px] md:text-[48px] leading-[1.0] tracking-[-1.5px] uppercase text-[#c5a67c] font-medium font-[family-name:var(--font-abc-gravity-variable)]"
                   >
-                    Mobile-First: <br/> Experiencia Nativa
+                    Comprar desde el celular
                   </motion.h2>
                   <motion.p 
                     initial={{ opacity: 0, y: 20 }}
@@ -253,7 +259,7 @@ export function EcommerceDetail() {
                     transition={{ delay: 0.2 }}
                     className="text-body-lg text-[#a39481]"
                   >
-                    La experiencia mobile es tratada como una aplicación nativa, no como una vista reducida del desktop. Las animaciones priorizan <strong className="text-[#e8e4db]">transform</strong> y <strong className="text-[#e8e4db]">opacity</strong> para reducir trabajo de layout y mantener una interacción fluida. El gestor de estado del carrito persiste entre rutas usando Zustand con middleware de hidratación.
+                    La tienda se adapta al teléfono para que sea fácil recorrer productos, revisar el carrito y continuar la compra. Si el cliente cambia de sección, los productos que eligió permanecen en su carrito.
                   </motion.p>
                 </div>
                 <div className="order-1 md:order-2 flex items-center justify-center">
@@ -284,13 +290,13 @@ export function EcommerceDetail() {
                   <div className="flex items-center gap-4 text-[#c5a67c] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
                     <span>Módulo 2</span>
                     <span className="w-12 h-[1px] bg-[#c5a67c]"></span>
-                    <span>Panel de Control ERP</span>
+                    <span>Panel para el negocio</span>
                   </div>
                   <h2 className="text-[28px] md:text-[48px] leading-[1.1] uppercase text-[#e8e4db] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-                    ERP Custom: <br className="hidden md:block"/> Inventario & Finanzas
+                    Productos, pedidos<br className="hidden md:block"/> e inventario
                   </h2>
                   <p className="text-body-lg text-[#a39481]">
-                    El panel de administración es una SPA (Single Page Application) construida con componentes de datos reactivos. Las transacciones de inventario son operaciones ACID sobre PostgreSQL para garantizar consistencia en pedidos concurrentes. El dashboard incluye reportes de ventas en tiempo real, gestión de SKUs y exportación de datos.
+                    Desde el panel, el equipo puede organizar referencias, consultar ventas y exportar información. Los cambios de inventario se registran de forma controlada para evitar que dos pedidos simultáneos descuenten mal las existencias.
                   </p>
                 </motion.div>
 
@@ -317,10 +323,10 @@ export function EcommerceDetail() {
                 className="w-full mt-4 bg-gradient-to-br from-[#1a1815] to-[#151310] border border-[#c5a67c]/40 rounded-3xl px-6 py-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(197,166,124,0.15)]"
               >
                 <h2 className="text-3xl md:text-[40px] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#e8e4db] uppercase">
-                  ¿Tienes un proyecto de <br/><span className="text-[#c5a67c]">arquitectura similar?</span>
+                  ¿Tu negocio necesita una <br/><span className="text-[#c5a67c]">tienda y un panel como este?</span>
                 </h2>
                 <p className="text-body-lg text-[#a39481] max-w-[500px]">
-                  Estoy disponible para roles de Fullstack Engineer o Product Engineer donde pueda construir sistemas de este nivel de complejidad.
+                  Podemos conversar sobre tu catálogo, cómo recibir pagos y qué necesita controlar tu equipo después de cada venta.
                 </p>
                 <Link 
                   href="/#contact"

@@ -17,7 +17,7 @@ export function CaseStudyBrief({ problem, solution, outcome, accent = "#ff4c24" 
         <BriefItem label="Problema" text={problem} />
         <BriefItem label="Solución" text={solution} />
         <div>
-          <BriefItem label="Impacto" text={outcome} />
+          <BriefItem label="Qué aporta" text={outcome} />
           <Link href="/#contact" className="mt-5 inline-flex items-center gap-2 font-[family-name:var(--font-ibm-plex-mono)] text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:text-white/65">
             ¿Tienes algo parecido? <span style={{ color: accent }}>↗</span>
           </Link>

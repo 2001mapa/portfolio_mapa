@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -78,7 +77,7 @@ export function OrbitKanbanDetail() {
       <CaseStudyBrief
         accent="#77A5E8"
         problem="Cuando las tareas cambian rápido, el equipo pierde prioridad, contexto y visibilidad sobre lo que está bloqueado."
-        solution="Un tablero en tiempo real con orden persistente, estados claros y colaboración sin recargar la información."
+        solution="Un tablero compartido que muestra las tareas, sus responsables y sus cambios sin tener que actualizar la página."
         outcome="Un flujo de trabajo que permite decidir qué sigue y detectar bloqueos antes de que frenen al equipo."
       />
 
@@ -102,8 +101,8 @@ export function OrbitKanbanDetail() {
               transition={{ duration: 0.6 }}
               className="flex flex-col gap-2"
             >
-              <h4 className="text-[#4169E1] uppercase tracking-widest text-xs font-semibold">ARQUITECTURA</h4>
-              <p className="text-white text-sm">Next.js 15, WebSockets (Supabase Realtime), Drag & Drop (@hello-pangea/dnd), PostgreSQL.</p>
+              <h4 className="text-[#4169E1] uppercase tracking-widest text-xs font-semibold">QUÉ HACE</h4>
+              <p className="text-white text-sm">Organiza las tareas por etapas, permite moverlas fácilmente y muestra los cambios al resto del equipo.</p>
             </motion.div>
             
             <motion.div 
@@ -114,7 +113,7 @@ export function OrbitKanbanDetail() {
               className="flex flex-col gap-2"
             >
               <h4 className="text-[#4169E1] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-              <p className="text-white text-sm">Construir una plataforma de gestión de tareas que sincronice el estado entre múltiples usuarios e interfaces al instante, sin recargar la página, gestionando conflictos de concurrencia.</p>
+              <p className="text-white text-sm">Ayudar a varias personas a trabajar sobre el mismo tablero sin perder cambios ni confundirse sobre qué tarea sigue.</p>
             </motion.div>
           </div>
 
@@ -128,12 +127,12 @@ export function OrbitKanbanDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">Gestión de Proyectos en Tiempo Real</h2>
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">El trabajo del equipo, a la vista</h2>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                Orbit es un tablero Kanban colaborativo de alto rendimiento inspirado en herramientas como Jira y Linear. Diseñado para equipos modernos, destaca por resolver problemas arquitectónicos complejos que los tableros básicos suelen ignorar.
+                Orbit reúne las tareas de un equipo en un tablero visual. Cada tarjeta muestra qué hay que hacer y en qué etapa se encuentra, para que todos sepan qué está pendiente, en curso o terminado.
               </p>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed">
-                Utiliza el algoritmo matemático LexoRank para un reordenamiento de tareas ultrarrápido, WebSockets para colaboración en vivo, y un motor de IA para convertir voz a requerimientos (este último en fase final de integración).
+                Las tarjetas se pueden arrastrar para cambiar su prioridad. Cuando alguien mueve o edita una tarea, los demás ven el cambio sin recargar. La creación de tareas por voz es una función futura y todavía no forma parte de la experiencia terminada.
               </p>
             </motion.div>
 
@@ -161,11 +160,11 @@ export function OrbitKanbanDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#4169E1] uppercase">Ingeniería y Resolución de Problemas</h3>
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#4169E1] uppercase">Cómo ayuda al equipo</h3>
               <ul className="text-[#C5C6C7] space-y-4">
-                <li><strong className="text-white">Ordenamiento Determinista (LexoRank):</strong> Implementación del mismo algoritmo matemático que utiliza Jira. Permite arrastrar y soltar (Drag & Drop) miles de tarjetas instantáneamente, calculando strings lexicográficos en lugar de reescribir índices, lo que evita masivos cuellos de botella en la base de datos PostgreSQL.</li>
-                <li><strong className="text-white">Prevención de Conflictos (Pessimistic Locking):</strong> Uso de Supabase Realtime para sincronización en vivo. Incluye un sistema visual de bloqueo: si un miembro del equipo está editando una tarjeta, esta se bloquea para los demás, previniendo la colisión de datos en entornos de alta concurrencia.</li>
-                <li><strong className="text-white">Manejo de Estado Optimista:</strong> Utilización de React Query para mutaciones optimistas. La UI reacciona instantáneamente a las acciones del usuario, actualizándose en segundo plano, lo que garantiza una sensación de velocidad absoluta incluso en redes de alta latencia.</li>
+                <li><strong className="text-white">Prioridades fáciles de cambiar:</strong> basta con arrastrar una tarjeta. El nuevo orden se guarda para que todos vean la misma lista.</li>
+                <li><strong className="text-white">Menos cambios perdidos:</strong> cuando una persona edita una tarea, el tablero lo indica para evitar que otra sobrescriba su trabajo.</li>
+                <li><strong className="text-white">Respuesta inmediata:</strong> el tablero muestra la acción en pantalla mientras termina de guardarla, para que la interacción se sienta fluida.</li>
               </ul>
             </motion.div>
 
@@ -181,14 +180,13 @@ export function OrbitKanbanDetail() {
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="ml-4 font-[family-name:var(--font-ibm-plex-mono)] text-xs text-[#4169E1]">Orbit System Events</span>
+                  <span className="ml-4 font-[family-name:var(--font-ibm-plex-mono)] text-xs text-[#4169E1]">Un cambio de tarea, paso a paso</span>
                 </div>
                 <div className="p-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm md:text-base text-[#C5C6C7] flex flex-col gap-4 overflow-y-auto">
-                  <div className="flex gap-2"><span className="text-[#0F52BA]">WSS:</span> Connected to Supabase Realtime Channel 'workspace:123'.</div>
-                  <div className="flex gap-2"><span className="text-yellow-400">Mutate:</span> Optimistic update triggered. UI updated instantly.</div>
-                  <div className="flex gap-2"><span className="text-purple-400">Drag:</span> Task ID 45 moved to 'In Progress'.</div>
-                  <div className="flex gap-2"><span className="text-green-400">LexoRank:</span> New Rank Calculated: 'aaa|aab'. Writing to Postgres...</div>
-                  <div className="flex gap-2"><span className="text-pink-400">Event:</span> 'user_2' is editing Task ID 45. Locking card for others.</div>
+                  <div className="flex gap-2"><span className="text-[#0F52BA]">01:</span> Una persona mueve la tarea a «En progreso».</div>
+                  <div className="flex gap-2"><span className="text-yellow-400">02:</span> El tablero muestra el cambio al instante.</div>
+                  <div className="flex gap-2"><span className="text-purple-400">03:</span> Se guarda su nueva posición.</div>
+                  <div className="flex gap-2"><span className="text-green-400">04:</span> El resto del equipo ve la misma información.</div>
                 </div>
               </div>
             </motion.div>
@@ -200,9 +198,9 @@ export function OrbitKanbanDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#4169E1] uppercase">Futuro Próximo: Voice-to-Task AI</h3>
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#4169E1] uppercase">Próximo paso: crear tareas con la voz</h3>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                El motor de Inteligencia Artificial está construido y actualmente en fase de integración (WIP). Los usuarios podrán dictar requerimientos complejos mientras la IA (Whisper + GPT-4o) se encarga de transcribir, extraer contexto, auto-etiquetar y asignar la prioridad correcta de la tarea, todo sin tocar el teclado.
+                Esta función sigue en desarrollo. La idea es que una persona pueda dictar lo que necesita y que el sistema prepare una tarea con su descripción y prioridad para revisarla antes de guardarla.
               </p>
             </motion.div>
           </div>

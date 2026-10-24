@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -65,7 +64,7 @@ export function CatalogoDetail() {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   className="text-[40px] md:text-[64px] leading-[0.9] tracking-[-1px] font-medium uppercase text-[#4a7c59] font-[family-name:var(--font-abc-gravity-variable)] text-center"
                 >
-                  PARA VENTAS B2B
+                  PARA MAYORISTAS
                 </motion.h1>
               </div>
             </div>
@@ -90,7 +89,7 @@ export function CatalogoDetail() {
 
       <CaseStudyBrief
         accent="#7a9982"
-        problem="Un catálogo B2B necesita mostrar muchas referencias sin depender de mensajes, fotos sueltas o búsquedas manuales."
+        problem="Mostrar muchas referencias por fotos y mensajes sueltos hace difícil encontrar productos y preparar un pedido."
         solution="Un catálogo navegable con filtros, información centralizada y un camino directo para solicitar productos."
         outcome="Una experiencia de compra más clara para clientes y menos trabajo operativo para el equipo comercial."
       />
@@ -103,10 +102,9 @@ export function CatalogoDetail() {
 
             {/* Mobile: pills horizontales */}
             <div className="flex flex-wrap gap-2 mb-4 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">Next.js 15</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">Supabase</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">URL Search Params</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">WhatsApp API</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">Productos y filtros</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">Carrito</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#1a2a1e] text-[#7a9982]">Pedido por WhatsApp</span>
             </div>
 
             {/* Desktop Sidebar */}
@@ -118,8 +116,8 @@ export function CatalogoDetail() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col gap-2"
               >
-                <h4 className="text-[#4a7c59] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
-                <p className="text-[#d6e0d8] text-sm">Next.js 15 (App Router), Supabase (PostgreSQL), URL Search Params API, WhatsApp Business API, Tailwind CSS.</p>
+                <h4 className="text-[#4a7c59] uppercase tracking-widest text-xs font-semibold">QUÉ INCLUYE</h4>
+                <p className="text-[#d6e0d8] text-sm">Un catálogo con categorías y filtros, carrito de selección y envío del pedido por WhatsApp.</p>
               </motion.div>
               
               <motion.div 
@@ -130,7 +128,7 @@ export function CatalogoDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#4a7c59] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-                <p className="text-[#d6e0d8] text-sm">Implementar filtrado multi-criterio con estado serializable en URL para que los filtros sean compartibles, y construir un carrito que genere un payload de WhatsApp con formato correcto.</p>
+                <p className="text-[#d6e0d8] text-sm">Permitir que el cliente encuentre referencias sin pedir fotos una por una y envíe su selección en un mensaje claro.</p>
               </motion.div>
 
               <motion.div 
@@ -141,7 +139,7 @@ export function CatalogoDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#4a7c59] uppercase tracking-widest text-xs font-semibold">TIPO</h4>
-                <p className="text-[#d6e0d8] text-sm">Proyecto B2B para cliente real. Plataforma en producción activa.</p>
+                <p className="text-[#d6e0d8] text-sm">Catálogo desarrollado para una marca; los videos muestran su experiencia de compra.</p>
               </motion.div>
             </div>
 
@@ -154,32 +152,32 @@ export function CatalogoDetail() {
               className="flex-1 flex flex-col gap-8"
             >
               <div className="flex items-center gap-4 text-[#4a7c59] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
-                <span>Caso de Estudio Técnico</span>
+                <span>El proyecto</span>
                 <span className="w-12 h-[1px] bg-[#4a7c59]"></span>
                 <span>Esencias del Bosque</span>
               </div>
               
               <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#d6e0d8] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-                Catálogo Interactivo <br className="hidden md:block"/> & WhatsApp Checkout
+                Del catálogo <br className="hidden md:block"/> al pedido por WhatsApp
               </h2>
               
               <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#7a9982]">
                 <div className="flex-1 flex flex-col gap-6">
-                  <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Reto Técnico Central</h3>
+                  <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El problema</h3>
                   <p>
-                    El problema real no era "reemplazar un PDF". Era construir un sistema de filtrado de estado complejo que fuera <strong className="text-[#d6e0d8]">compartible vía URL</strong>. Un cliente filtra por categoría y precio, y puede copiar la URL para compartir exactamente esa vista con otra persona.
+                    Buscar una referencia en un PDF o entre muchas fotos puede tomar tiempo. Aquí el cliente filtra por categoría y precio, encuentra lo que le interesa y puede compartir un enlace que conserva esa selección de filtros.
                   </p>
                   <p>
-                    El estado del carrito agrega los items seleccionados y al momento del checkout, construye un mensaje formateado con <strong className="text-[#d6e0d8]">encodeURIComponent</strong> para que los caracteres especiales, emojis y saltos de línea lleguen correctamente al chat de WhatsApp Business.
+                    Después añade los productos al carrito. Al terminar, el catálogo prepara un mensaje con las referencias elegidas para enviarlo por WhatsApp. <strong className="text-[#d6e0d8]">La solicitud se conversa y confirma allí; no es un pago en línea.</strong>
                   </p>
                 </div>
 
                 <div className="flex-1 flex flex-col gap-6">
-                  <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Decisiones de Arquitectura</h3>
+                  <h3 className="text-[#4a7c59] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Cómo funciona</h3>
                   <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                    <li><strong>URL Search Params:</strong> El estado de filtros es serializado en la URL (<code className="text-[#4a7c59] text-sm bg-[#4a7c59]/10 px-1.5 py-0.5 rounded">?cat=aromas&sort=price</code>), permitiendo filtros compartibles y navegación con el botón "atrás" del navegador.</li>
-                    <li><strong>Supabase + RLS:</strong> Los productos son gestionados desde un panel de administración con Row Level Security para separar operaciones de lectura pública y escritura de admin.</li>
-                    <li><strong>Carrito sin Backend:</strong> El estado del carrito vive en React Context con persistencia en sessionStorage, eliminando la necesidad de una sesión de servidor.</li>
+                    <li><strong>Filtros fáciles de compartir:</strong> al copiar el enlace, otra persona puede abrir el catálogo con la misma categoría y el mismo orden.</li>
+                    <li><strong>Productos administrables:</strong> el equipo puede actualizar la información desde un panel; los visitantes solo ven el catálogo público.</li>
+                    <li><strong>Selección conservada:</strong> los productos elegidos permanecen en el carrito mientras el cliente recorre la página.</li>
                   </ul>
                 </div>
               </div>
@@ -188,9 +186,9 @@ export function CatalogoDetail() {
 
           {/* Caso de Exito: Esencias del Bosque */}
           <div className="w-full max-w-[800px] mx-auto mt-12 md:mt-12 px-6 md:px-0 text-center flex flex-col items-center">
-             <h3 className="text-[28px] md:text-[40px] leading-tight text-[#d6e0d8] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)]">Caso de Éxito: Esencias del Bosque</h3>
+             <h3 className="text-[28px] md:text-[40px] leading-tight text-[#d6e0d8] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)]">El catálogo de Esencias del Bosque</h3>
              <p className="text-[#7a9982] mt-2 mb-6 max-w-[600px] text-body-lg">
-               Marca de cosmética artesanal y aromaterapia. Sustituimos su antiguo PDF por un catálogo botánico interactivo que no solo expone los productos, sino que automatiza los pedidos por WhatsApp y transmite la atmósfera relajante de la marca.
+               Una vitrina digital para una marca de cosmética artesanal y aromaterapia. Reúne los productos en un lugar fácil de explorar y prepara la selección del cliente para continuar el pedido por WhatsApp.
              </p>
           </div>
 
@@ -216,12 +214,12 @@ export function CatalogoDetail() {
                 transition={{ delay: 0.8 }}
                 className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-[#131c15]/80 backdrop-blur-md border border-[#4a7c59]/30 rounded-xl md:rounded-2xl p-2 md:p-4 flex items-center gap-2 md:gap-4 drop-shadow-2xl scale-90 md:scale-100 origin-bottom-right"
              >
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#4a7c59]/20 flex items-center justify-center text-[#4a7c59] font-bold text-sm md:text-base">
-                  2s
+                <div className="min-w-8 h-8 px-2 md:min-w-10 md:h-10 rounded-full bg-[#4a7c59]/20 flex items-center justify-center text-[#4a7c59] font-bold text-sm md:text-base">
+                  Fácil
                 </div>
                 <div className="flex flex-col font-[family-name:var(--font-ibm-plex-mono)]">
-                  <span className="text-[9px] md:text-xs text-[#7a9982] uppercase tracking-wider">Velocidad</span>
-                  <span className="text-xs md:text-base text-[#d6e0d8] font-bold">Carga de Catálogo</span>
+                  <span className="text-[9px] md:text-xs text-[#7a9982] uppercase tracking-wider">Catálogo</span>
+                  <span className="text-xs md:text-base text-[#d6e0d8] font-bold">Encuentra tus productos</span>
                 </div>
              </motion.div>
           </motion.div>
@@ -249,7 +247,7 @@ export function CatalogoDetail() {
                 viewport={{ once: true }}
                 className="text-[32px] md:text-[48px] leading-[1.0] tracking-[-1.5px] uppercase text-[#4a7c59] font-medium font-[family-name:var(--font-abc-gravity-variable)]"
               >
-                3. Ingeniería Mobile-First
+                Fácil de usar en el celular
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -257,7 +255,7 @@ export function CatalogoDetail() {
                 viewport={{ once: true }}
                 className="text-body-lg text-[#7a9982]"
               >
-                Construir una web altamente animada y gráfica suele ser un desastre en teléfonos móviles si no se planifica desde el código base. Para lograr que se sintiera como una aplicación rápida y fluida (sin pedirle al cliente que descargue nada), la diseñamos a medida desde cero:
+                El cliente puede explorar el catálogo y preparar su pedido desde el teléfono sin instalar una aplicación:
               </motion.p>
               
               <div className="flex flex-col gap-4 mt-2">
@@ -269,7 +267,7 @@ export function CatalogoDetail() {
                   className="p-5 border border-[#4a7c59]/30 bg-[#1a261d]/50 rounded-2xl"
                 >
                   <h4 className="text-[#d6e0d8] font-bold mb-1">1. Lectura sin Esfuerzo</h4>
-                  <p className="text-[#7a9982] text-sm">Las fuentes se adaptan mágicamente. El texto es compacto en el celular para no saturar, y masivo en la computadora para impactar.</p>
+                  <p className="text-[#7a9982] text-sm">Los nombres, precios y descripciones se adaptan al tamaño de la pantalla.</p>
                 </motion.div>
 
                 <motion.div
@@ -280,7 +278,7 @@ export function CatalogoDetail() {
                   className="p-5 border border-[#4a7c59]/30 bg-[#1a261d]/50 rounded-2xl"
                 >
                   <h4 className="text-[#d6e0d8] font-bold mb-1">2. Botones para Pulgares</h4>
-                  <p className="text-[#7a9982] text-sm">Escondimos los menús estorbosos y pusimos la navegación en la parte inferior, justo donde descansa el pulgar, como en las mejores apps.</p>
+                  <p className="text-[#7a9982] text-sm">La navegación y las acciones principales quedan cómodas para usar con una mano.</p>
                 </motion.div>
 
                 <motion.div
@@ -291,7 +289,7 @@ export function CatalogoDetail() {
                   className="p-5 border border-[#4a7c59]/30 bg-[#1a261d]/50 rounded-2xl"
                 >
                   <h4 className="text-[#d6e0d8] font-bold mb-1">3. Distribución Inteligente</h4>
-                  <p className="text-[#7a9982] text-sm">La información se apila perfectamente en vertical cuando se detecta un celular, garantizando que el usuario entienda todo a primera vista.</p>
+                  <p className="text-[#7a9982] text-sm">Los productos se ordenan en vertical para que se puedan revisar sin desplazarse hacia los lados.</p>
                 </motion.div>
 
                 <motion.div
@@ -302,7 +300,7 @@ export function CatalogoDetail() {
                   className="p-5 border border-[#4a7c59]/30 bg-[#1a261d]/50 rounded-2xl"
                 >
                   <h4 className="text-[#d6e0d8] font-bold mb-1">4. Animaciones Inmersivas</h4>
-                  <p className="text-[#7a9982] text-sm">Las imágenes y productos aparecen suavemente justo cuando el usuario hace scroll, guiando su atención de forma natural hacia la compra.</p>
+                  <p className="text-[#7a9982] text-sm">Las imágenes acompañan el recorrido sin quitarle protagonismo a la información del producto.</p>
                 </motion.div>
               </div>
             </div>
@@ -319,7 +317,7 @@ export function CatalogoDetail() {
               Eleva el prestigio <br /> <span className="text-[#4a7c59]">de tu catálogo.</span>
             </h2>
             <p className="text-body-lg text-[#7a9982] max-w-[600px]">
-              Vender online no debería sentirse barato. Transformamos tiendas comunes en galerías digitales de alto impacto que fidelizan clientes y justifican precios premium.
+              Podemos organizar tus productos en un catálogo que sea fácil de explorar y te ayude a recibir solicitudes más claras.
             </p>
             <Link 
               href="/#contact"
@@ -332,7 +330,7 @@ export function CatalogoDetail() {
               href="/work/ecommerce-erp"
               className="mt-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest text-[#7a9982] md:hover:text-[#4a7c59] active:text-[#4a7c59] transition-colors border-b border-transparent md:hover:border-[#4a7c59] active:border-[#4a7c59] pb-1 p-2 md:p-0"
             >
-              SIGUIENTE PROYECTO: E-COMMERCE & ERP →
+              VER TAMBIÉN: LA TIENDA VIRTUAL DOHA →
             </Link>
           </motion.div>
 

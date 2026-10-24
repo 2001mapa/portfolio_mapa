@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -78,7 +77,7 @@ export function DocuMindDetail() {
       <CaseStudyBrief
         accent="#DDA0DD"
         problem="Información repartida en documentos y respuestas repetitivas que hacen lenta la consulta."
-        solution="Un asistente RAG que recupera contexto relevante y responde desde una base documental controlada."
+        solution="Un asistente que busca dentro de los archivos y responde indicando de dónde obtuvo la información."
         outcome="Consultas más rápidas, trazables y sin obligar al equipo a revisar archivos uno por uno."
       />
 
@@ -102,8 +101,8 @@ export function DocuMindDetail() {
               transition={{ duration: 0.6 }}
               className="flex flex-col gap-2"
             >
-              <h4 className="text-[#DDA0DD] uppercase tracking-widest text-xs font-semibold">ARQUITECTURA</h4>
-              <p className="text-white text-sm">Next.js 16 (App Router), React, TypeScript, Tailwind CSS, Supabase (pgvector), Gemini API.</p>
+              <h4 className="text-[#DDA0DD] uppercase tracking-widest text-xs font-semibold">QUÉ HACE</h4>
+              <p className="text-white text-sm">Permite hacer preguntas sobre varios documentos, encontrar respuestas con su fuente y crear borradores a partir de la información disponible.</p>
             </motion.div>
             
             <motion.div 
@@ -114,7 +113,7 @@ export function DocuMindDetail() {
               className="flex flex-col gap-2"
             >
               <h4 className="text-[#DDA0DD] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-              <p className="text-white text-sm">Construir una arquitectura Serverless preparada para producción real, con defensas contra Prompt Injection (Indirect Prompt Injection) y aislamiento criptográfico de datos de usuarios.</p>
+              <p className="text-white text-sm">Hacer que consultar muchos archivos sea sencillo sin perder de vista la privacidad ni la procedencia de cada respuesta.</p>
             </motion.div>
           </div>
 
@@ -145,12 +144,12 @@ export function DocuMindDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">Gestión Documental con Arquitectura RAG</h2>
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 text-white uppercase">Pregúntale a tus documentos</h2>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                DocuMind AI es un producto SaaS B2B diseñado para revolucionar la forma en que los profesionales interactúan con grandes volúmenes de documentos.
+                DocuMind AI ayuda a encontrar información cuando está repartida entre muchos archivos. En lugar de abrir cada PDF y buscar página por página, la persona puede hacer una pregunta en lenguaje cotidiano.
               </p>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed">
-                En lugar de utilizar búsquedas tradicionales por palabras clave, la plataforma permite "chatear" con múltiples PDFs utilizando procesamiento de lenguaje natural, extrayendo insights precisos y redactando documentos derivados (como cartas de presentación) de forma automatizada.
+                El asistente consulta los documentos cargados, muestra de dónde sale la respuesta y puede preparar borradores, como una carta de presentación basada en un currículum y una oferta laboral.
               </p>
             </motion.div>
 
@@ -163,10 +162,10 @@ export function DocuMindDetail() {
             >
               <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">¿Qué ofrece la plataforma?</h3>
               <ul className="text-[#C5C6C7] space-y-4">
-                <li><strong className="text-white">Búsqueda Semántica de Alta Precisión:</strong> Respuestas basadas estrictamente en los documentos subidos, eliminando el riesgo de "alucinaciones" de la IA y citando siempre la fuente exacta.</li>
-                <li><strong className="text-white">Redacción Automatizada de Pipelines:</strong> Capacidad de cruzar el perfil de un candidato (CV) con una oferta laboral para generar cartas de presentación altamente persuasivas en segundos.</li>
-                <li><strong className="text-white">Escudo Anti-Fraude (Seguridad AI):</strong> Un cortafuegos a nivel de System Prompt diseñado para detectar y neutralizar ataques de Indirect Prompt Injection (ej. "Currículums de Texto Blanco" que intentan manipular los filtros automatizados de RRHH).</li>
-                <li><strong className="text-white">Gestión Segura de Tenants:</strong> Límites de cuota por usuario y aislamiento criptográfico de archivos.</li>
+                <li><strong className="text-white">Respuestas que se pueden comprobar:</strong> muestra el documento de origen para que la persona revise la información antes de usarla. Como cualquier IA, sus respuestas deben verificarse.</li>
+                <li><strong className="text-white">Borradores a partir de tus archivos:</strong> puede relacionar un currículum con una oferta de trabajo y proponer una carta de presentación para revisar y ajustar.</li>
+                <li><strong className="text-white">Protección frente a instrucciones engañosas:</strong> incorpora controles para que el contenido de un archivo no cambie las reglas con las que trabaja el asistente.</li>
+                <li><strong className="text-white">Espacios separados:</strong> cada usuario consulta sus propios archivos y tiene límites de uso para cuidar la privacidad y los recursos.</li>
               </ul>
             </motion.div>
 
@@ -182,15 +181,13 @@ export function DocuMindDetail() {
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="ml-4 font-[family-name:var(--font-ibm-plex-mono)] text-xs text-[#DDA0DD]">Architecture Overview</span>
+                  <span className="ml-4 font-[family-name:var(--font-ibm-plex-mono)] text-xs text-[#DDA0DD]">Así responde DocuMind</span>
                 </div>
                 <div className="p-6 font-[family-name:var(--font-ibm-plex-mono)] text-sm md:text-base text-[#C5C6C7] flex flex-col gap-4 overflow-y-auto">
-                  <div className="flex gap-2"><span className="text-[#8A2BE2]">Sec:</span> [Supabase Auth] JWT Token Validated.</div>
-                  <div className="flex gap-2"><span className="text-[#8A2BE2]">Sec:</span> [Upstash Redis] Rate Limit Check: PASS (3/10 reqs).</div>
-                  <div className="flex gap-2"><span className="text-yellow-400">RAG:</span> Extracting text from PDF upload...</div>
-                  <div className="flex gap-2"><span className="text-yellow-400">RAG:</span> Chunking content & generating embeddings via Gemini...</div>
-                  <div className="flex gap-2"><span className="text-green-400">DB:</span> Storing vectors in pgvector (PostgreSQL).</div>
-                  <div className="flex gap-2"><span className="text-purple-400">AI:</span> Similarity search executed. Context injected into LLM.</div>
+                  <div className="flex gap-2"><span className="text-[#8A2BE2]">01:</span> Identifica al usuario y sus documentos.</div>
+                  <div className="flex gap-2"><span className="text-yellow-400">02:</span> Busca los fragmentos relacionados con la pregunta.</div>
+                  <div className="flex gap-2"><span className="text-green-400">03:</span> Redacta una respuesta basada en esos fragmentos.</div>
+                  <div className="flex gap-2"><span className="text-purple-400">04:</span> Señala la fuente para poder comprobarla.</div>
                 </div>
               </div>
             </motion.div>
@@ -202,14 +199,14 @@ export function DocuMindDetail() {
               transition={{ duration: 0.8 }}
               className="prose prose-invert max-w-none"
             >
-              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">El Impacto Arquitectónico</h3>
+              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-6 text-[#DDA0DD] uppercase">Lo que hay detrás de una respuesta útil</h3>
               <p className="text-lg md:text-2xl text-[#C5C6C7] leading-relaxed mb-6">
-                Construir DocuMind AI demuestra mi capacidad para ir más allá de crear simples "clones de ChatGPT". Refleja mi experiencia resolviendo problemas de software a nivel empresarial:
+                Para que el asistente sea útil en un proceso de trabajo, no basta con que genere texto. También debe indicar sus fuentes, separar la información de cada persona y controlar el uso.
               </p>
               <ul className="text-[#C5C6C7] space-y-4">
-                <li><strong className="text-white">Protección de Costos:</strong> Manejo avanzado de cuotas en la nube (Rate Limiting en el Edge con Upstash Redis).</li>
-                <li><strong className="text-white">Ciberseguridad:</strong> Implementación de defensas contra vulnerabilidades modernas exclusivas de la Inteligencia Artificial (Prompt Injection) y Row Level Security.</li>
-                <li><strong className="text-white">Arquitectura Escalable:</strong> Diseño Serverless preparado para producción.</li>
+                <li><strong className="text-white">Uso controlado:</strong> limita la cantidad de consultas para evitar consumos inesperados.</li>
+                <li><strong className="text-white">Datos protegidos:</strong> establece permisos para que cada usuario acceda solo a su información.</li>
+                <li><strong className="text-white">Información verificable:</strong> permite volver al archivo original antes de tomar una decisión.</li>
               </ul>
             </motion.div>
           </div>

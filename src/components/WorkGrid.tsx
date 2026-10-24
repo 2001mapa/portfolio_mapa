@@ -11,7 +11,7 @@ type Project = {
   type: string;
   color: string;
   video: string;
-  stack: string[];
+  highlights: string[];
   status: 'live' | 'wip' | 'personal';
 };
 
@@ -22,7 +22,7 @@ const projects: Project[] = [
     type: "ASISTENTE DE IA PARA DOCUMENTOS",
     color: "from-[#4B0082]", // Indigo/Deep Purple
     video: videoUrl("documind.mp4"),
-    stack: ["Next.js 16", "Supabase", "pgvector", "Gemini"],
+    highlights: ["Consulta documentos", "Respuestas con fuentes", "IA"],
     status: "live"
   },
   { 
@@ -31,16 +31,16 @@ const projects: Project[] = [
     type: "TABLERO PARA ORGANIZAR EQUIPOS",
     color: "from-[#0F52BA]", // Sapphire Blue
     video: videoUrl("orbit-kanban.mp4"),
-    stack: ["Next.js 15", "Supabase Realtime", "LexoRank", "React Query"],
+    highlights: ["Organiza tareas", "Equipo sincronizado", "Prioridades claras"],
     status: "live"
   },
   { 
     slug: "ecommerce-erp", 
-    title: "DOHA — E-COMMERCE & ERP",
+    title: "DOHA — TIENDA VIRTUAL",
     type: "VENTA ONLINE Y OPERACIÓN",
     color: "from-[#1A3A1A]", // Dark Green
     video: videoUrl("Ecommerce-doha-desk.mp4"),
-    stack: ["Next.js", "Node.js", "PostgreSQL"],
+    highlights: ["Catálogo y carrito", "Pagos", "Control de inventario"],
     status: "live"
   },
   { 
@@ -49,34 +49,34 @@ const projects: Project[] = [
     type: "PÁGINA DE ENLACES PARA MARCAS",
     color: "from-[#1A1A26]", // Dark Blue
     video: videoUrl("Stylo-Escritorio.mp4"),
-    stack: ["Next.js", "Vercel", "Tailwind"],
+    highlights: ["Enlaces en un lugar", "Diseño móvil", "Contacto fácil"],
     status: "live"
   },
   { 
     slug: "landing-page", 
-    title: "LANDING ALTA PERFORMANCE", 
+    title: "WEB PARA CAFÉ ORIGEN",
     type: "PÁGINA PARA CONSEGUIR CONTACTOS",
     color: "from-[#1A1A1A]", // Dark
     video: videoUrl("landing-page.mp4"),
-    stack: ["Next.js", "Tailwind CSS"],
+    highlights: ["Marca clara", "Diseño móvil", "Contacto"],
     status: "personal"
   },
   { 
     slug: "catalogo", 
     title: "CATÁLOGO DIGITAL", 
-    type: "CATÁLOGO PARA VENTAS B2B",
+    type: "CATÁLOGO PARA VENTAS MAYORISTAS",
     color: "from-[#1A1A26]", // Dark Blue
     video: videoUrl("catalogo.mp4"),
-    stack: ["Next.js", "Supabase", "Vercel"],
+    highlights: ["Filtros", "Pedido por WhatsApp", "Administración"],
     status: "live"
   },
   { 
     slug: "laboratorio", 
-    title: "LUKA — AI FINANCE BOT", 
+    title: "LUKA — ASISTENTE FINANCIERO",
     type: "ASISTENTE FINANCIERO CON IA",
     color: "from-[#001A26]", // Dark Cyan
     video: videoUrl("luka-chatbot.mp4"),
-    stack: ["Gemini API", "Supabase Realtime", "PWA"],
+    highlights: ["Gastos por chat", "Presupuestos", "Panel actualizado"],
     status: "live"
   }
 ];
@@ -174,14 +174,14 @@ function ProjectCard({ project, index, colSpan }: { project: Project; index: num
         <div className="relative z-20 p-6 md:p-12 flex flex-col justify-end h-full w-full">
           <div className="flex justify-between items-end">
             <div>
-              {/* Stack badges */}
+              {/* Project benefits */}
               <div className="flex flex-wrap gap-1.5 mb-3 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
-                {project.stack.slice(0, 3).map((tech) => (
+                {project.highlights.map((highlight) => (
                   <span
-                    key={tech}
+                    key={highlight}
                     className="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-white/60 font-[family-name:var(--font-ibm-plex-mono)] uppercase tracking-wider border border-white/10"
                   >
-                    {tech}
+                    {highlight}
                   </span>
                 ))}
               </div>

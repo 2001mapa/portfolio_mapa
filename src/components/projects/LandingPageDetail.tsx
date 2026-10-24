@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -55,7 +54,7 @@ export function LandingPageDetail() {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="text-[48px] md:text-[80px] leading-[0.9] tracking-[-1px] md:tracking-[-2px] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)] text-center"
                 >
-                  LANDING
+                  CAFÉ
                 </motion.h1>
               </div>
               <div className="overflow-hidden">
@@ -65,7 +64,7 @@ export function LandingPageDetail() {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
                   className="text-[40px] md:text-[64px] leading-[0.9] tracking-[-1px] font-medium uppercase text-[#d37039] font-[family-name:var(--font-abc-gravity-variable)] text-center"
                 >
-                  QUE CONVIERTE
+                  ORIGEN
                 </motion.h1>
               </div>
             </div>
@@ -93,8 +92,8 @@ export function LandingPageDetail() {
       <CaseStudyBrief
         accent="#e09c6f"
         problem="Una oferta valiosa pierde oportunidades si su mensaje, beneficios y siguiente paso no se entienden en segundos."
-        solution="Una landing enfocada en jerarquía, velocidad y llamadas a la acción que guían la decisión."
-        outcome="Una primera impresión más clara que convierte atención en conversaciones comerciales."
+        solution="Una web que presenta la marca, destaca lo que ofrece y facilita el siguiente paso para el visitante."
+        outcome="Una primera impresión más clara y un camino sencillo para conocer o contactar al negocio."
       />
 
       {/* Body */}
@@ -106,10 +105,9 @@ export function LandingPageDetail() {
 
             {/* Mobile: pills horizontales */}
             <div className="flex flex-wrap gap-2 mb-4 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Next.js 15</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Framer Motion</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Tailwind CSS</span>
-              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Performance-first</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Presentación de marca</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Diseño móvil</span>
+              <span className="text-xs px-3 py-1.5 rounded-full border border-[#2a1e15] text-[#a58971]">Contacto</span>
             </div>
 
             {/* Desktop Sidebar */}
@@ -121,8 +119,8 @@ export function LandingPageDetail() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col gap-2"
               >
-                <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
-                <p className="text-[#e0cfba] text-sm">Next.js 15 (SSG), Framer Motion, Tailwind CSS, Vercel Edge Network, Google Lighthouse CI.</p>
+                <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">QUÉ INCLUYE</h4>
+                <p className="text-[#e0cfba] text-sm">Una página para presentar la cafetería, sus productos y la experiencia de la marca en computador y celular.</p>
               </motion.div>
               
               <motion.div 
@@ -133,7 +131,7 @@ export function LandingPageDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-                <p className="text-[#e0cfba] text-sm">Priorizar Core Web Vitals, transiciones fluidas y una identidad visual premium sin sacrificar claridad ni velocidad percibida.</p>
+                <p className="text-[#e0cfba] text-sm">Transmitir la personalidad de Café Origen sin que el diseño dificulte leer, navegar o encontrar cómo visitarlos.</p>
               </motion.div>
 
               <motion.div 
@@ -144,7 +142,7 @@ export function LandingPageDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#d37039] uppercase tracking-widest text-xs font-semibold">RESULTADO</h4>
-                <p className="text-[#e0cfba] text-sm font-bold">Performance: 100 · Accesibilidad: 100 · SEO: 100 · Mejores Prácticas: 100</p>
+                <p className="text-[#e0cfba] text-sm">Una presentación visual coherente con la marca, cómoda de explorar también desde el celular.</p>
               </motion.div>
             </div>
 
@@ -157,32 +155,32 @@ export function LandingPageDetail() {
               className="flex-1 flex flex-col gap-8"
             >
               <div className="flex items-center gap-4 text-[#d37039] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
-                <span>Caso de Estudio Técnico</span>
+                <span>El proyecto</span>
                 <span className="w-12 h-[1px] bg-[#d37039]"></span>
                 <span>Café Origen</span>
               </div>
               
               <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#e0cfba] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-                Frontend Performance <br className="hidden md:block"/> & Scroll Animations
+                Una web que se siente <br className="hidden md:block"/> como Café Origen
               </h2>
               
               <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#a58971]">
                 <div className="flex-1 flex flex-col gap-6">
-                  <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Objetivo Técnico</h3>
+                  <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El objetivo</h3>
                   <p>
-                    Más allá de la estética, el objetivo fue construir una landing page rápida y mantenible. Esto requirió decisiones deliberadas en cada capa: renderizado, carga de recursos y ejecución de animaciones.
+                    La página debía mostrar qué hace especial a la cafetería: sus productos, su ambiente y la forma de encontrarla o ponerse en contacto. Todo tenía que entenderse sin esfuerzo desde el primer vistazo.
                   </p>
                   <p>
-                    El sitio usa <strong className="text-[#e0cfba]">Static Site Generation (SSG)</strong> de Next.js para un Time to First Byte (TTFB) mínimo entregado desde el Edge de Vercel, sin proceso de servidor en cada petición.
+                    Organicé el contenido para que el visitante pueda descubrir la marca, explorar la propuesta y llegar a la acción que le interese sin perderse en la página.
                   </p>
                 </div>
 
                 <div className="flex-1 flex flex-col gap-6">
-                  <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Implementación de Animaciones</h3>
+                  <h3 className="text-[#d37039] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">La experiencia</h3>
                   <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                    <li><strong>useScroll + useTransform:</strong> Animaciones dirigidas por el scroll del usuario con interpolación de valores en tiempo real, sin JavaScript en el hilo principal.</li>
-                    <li><strong>GPU Compositing:</strong> Todas las transiciones usan <code className="text-[#d37039] text-sm bg-[#d37039]/10 px-1.5 py-0.5 rounded">transform</code> y <code className="text-[#d37039] text-sm bg-[#d37039]/10 px-1.5 py-0.5 rounded">opacity</code>, propiedades que el navegador delega al GPU.</li>
-                    <li><strong>Font Optimization:</strong> Fuentes variables con <code className="text-[#d37039] text-sm bg-[#d37039]/10 px-1.5 py-0.5 rounded">font-display: swap</code> y preload para eliminar el FOUT (Flash of Unstyled Text).</li>
+                    <li><strong>Recorrido visual:</strong> las imágenes y los textos aparecen conforme se avanza, ayudando a contar la historia de la marca.</li>
+                    <li><strong>Navegación fluida:</strong> las transiciones acompañan el contenido sin estorbar la lectura.</li>
+                    <li><strong>Lectura clara:</strong> tipografía y espacios adaptados a distintos tamaños de pantalla.</li>
                   </ul>
                 </div>
               </div>
@@ -191,9 +189,9 @@ export function LandingPageDetail() {
 
           {/* Caso de Exito: Cafe Origen */}
           <div className="w-full max-w-[800px] mx-auto mt-12 md:mt-12 px-6 md:px-0 text-center flex flex-col items-center">
-             <h3 className="text-[28px] md:text-[40px] leading-tight text-[#e0cfba] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)]">Caso de Éxito: Café Origen</h3>
+             <h3 className="text-[28px] md:text-[40px] leading-tight text-[#e0cfba] font-medium uppercase font-[family-name:var(--font-abc-gravity-variable)]">Café Origen en pantalla</h3>
              <p className="text-[#a58971] mt-2 mb-6 max-w-[600px] text-body-lg">
-               Cafetería de especialidad y panadería artesanal. Su web anterior se sentía "generada por IA". Construimos una vitrina editorial inmersiva para que el visitante "sintiera el aroma del café" solo con hacer scroll, atrayendo más clientes físicos al local.
+               Una propuesta visual para una cafetería de especialidad y panadería artesanal. El diseño busca transmitir el ambiente del lugar y facilitar que una persona conozca sus productos y se anime a visitarlo.
              </p>
           </div>
 
@@ -219,12 +217,12 @@ export function LandingPageDetail() {
                 transition={{ delay: 0.8 }}
                 className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-[#1c140d]/80 backdrop-blur-md border border-[#d37039]/30 rounded-xl md:rounded-2xl p-2 md:p-4 flex items-center gap-2 md:gap-4 drop-shadow-2xl scale-90 md:scale-100 origin-bottom-right"
              >
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#d37039]/20 flex items-center justify-center text-[#d37039] font-bold text-sm md:text-base">
-                  99
+                <div className="min-w-8 h-8 px-2 md:min-w-10 md:h-10 rounded-full bg-[#d37039]/20 flex items-center justify-center text-[#d37039] font-bold text-sm md:text-base">
+                  Café
                 </div>
                 <div className="flex flex-col font-[family-name:var(--font-ibm-plex-mono)]">
-                  <span className="text-[9px] md:text-xs text-[#a58971] uppercase tracking-wider">Rendimiento</span>
-                  <span className="text-xs md:text-base text-[#e0cfba] font-bold">Calificación de Google</span>
+                  <span className="text-[9px] md:text-xs text-[#a58971] uppercase tracking-wider">La marca</span>
+                  <span className="text-xs md:text-base text-[#e0cfba] font-bold">Desde el primer vistazo</span>
                 </div>
              </motion.div>
           </motion.div>
@@ -251,7 +249,7 @@ export function LandingPageDetail() {
                 viewport={{ once: true }}
                 className="text-[32px] md:text-[48px] leading-[1.0] tracking-[-1.5px] uppercase text-[#d37039] font-medium font-[family-name:var(--font-abc-gravity-variable)]"
               >
-                4. Ingeniería Mobile-First
+                Diseñada para el celular
               </motion.h2>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -259,7 +257,7 @@ export function LandingPageDetail() {
                 viewport={{ once: true }}
                 className="text-body-lg text-[#a58971]"
               >
-                Para que esta experiencia no se rompiera en un celular y se sintiera como una <strong>App Nativa</strong>, implementamos cuatro estrategias técnicas rigurosas:
+                Muchas personas conocerán la cafetería desde su teléfono. Por eso, el contenido, los botones y las imágenes se adaptan a una pantalla pequeña:
               </motion.p>
               
               <div className="flex flex-col gap-4 mt-2">
@@ -271,7 +269,7 @@ export function LandingPageDetail() {
                   className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
                 >
                   <h4 className="text-[#e0cfba] font-bold mb-1">1. Lectura sin Esfuerzo</h4>
-                  <p className="text-[#a58971] text-sm">Los textos se adaptan mágicamente a cualquier pantalla. Tus clientes jamás tendrán que hacer "zoom" con los dedos para poder leer tu oferta.</p>
+                  <p className="text-[#a58971] text-sm">Los textos cambian de tamaño y mantienen espacio suficiente para leerse sin ampliar la pantalla.</p>
                 </motion.div>
 
                 <motion.div
@@ -282,7 +280,7 @@ export function LandingPageDetail() {
                   className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
                 >
                   <h4 className="text-[#e0cfba] font-bold mb-1">2. Control de Pantalla</h4>
-                  <p className="text-[#a58971] text-sm">Eliminamos los molestos desplazamientos horizontales accidentales. La navegación se siente sólida y firme, guiando al usuario hacia la compra.</p>
+                  <p className="text-[#a58971] text-sm">La página se ajusta al ancho del teléfono para evitar desplazamientos laterales que interrumpan la lectura.</p>
                 </motion.div>
 
                 <motion.div
@@ -293,7 +291,7 @@ export function LandingPageDetail() {
                   className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
                 >
                   <h4 className="text-[#e0cfba] font-bold mb-1">3. Botones para Pulgares</h4>
-                  <p className="text-[#a58971] text-sm">Ubicamos la botonera principal en la parte inferior de la pantalla, justo donde descansa el pulgar del usuario, al igual que en Instagram o WhatsApp.</p>
+                  <p className="text-[#a58971] text-sm">Las acciones principales quedan en lugares cómodos de tocar mientras se navega con una mano.</p>
                 </motion.div>
 
                 <motion.div
@@ -304,7 +302,7 @@ export function LandingPageDetail() {
                   className="p-5 border border-[#d37039]/30 bg-[#2a1e15]/50 rounded-2xl"
                 >
                   <h4 className="text-[#e0cfba] font-bold mb-1">4. Sensación de Velocidad</h4>
-                  <p className="text-[#a58971] text-sm">La página se anticipa al usuario y carga el contenido justo antes de que haga scroll, creando una sensación de inmersión y velocidad extrema.</p>
+                  <p className="text-[#a58971] text-sm">El contenido aparece de manera progresiva para que el recorrido se sienta fluido.</p>
                 </motion.div>
               </div>
             </div>
@@ -318,10 +316,10 @@ export function LandingPageDetail() {
             className="w-full mt-12 bg-gradient-to-br from-[#2a1e15] to-[#1c140d] border border-[#d37039]/40 rounded-3xl px-6 py-12 md:p-24 flex flex-col items-center text-center gap-8 shadow-[0_0_80px_rgba(211,112,57,0.15)]"
           >
             <h2 className="text-[40px] md:text-[64px] leading-[1.0] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)] text-[#e0cfba] uppercase">
-              ¿Listo para tu propio <br /> <span className="text-[#d37039]">cambio radical?</span>
+              ¿Cómo debería sentirse <br /> <span className="text-[#d37039]">tu marca en pantalla?</span>
             </h2>
             <p className="text-body-lg text-[#a58971] max-w-[600px]">
-              Al igual que Café Origen, tu negocio no merece una plantilla genérica. Construimos experiencias digitales crudas, rentables y diseñadas con ingeniería milimétrica para vender.
+              Podemos crear una web que explique lo que ofreces, refleje la personalidad de tu negocio y facilite que las personas den el siguiente paso.
             </p>
             <Link 
               href="/#contact"

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -120,8 +119,8 @@ export function LinktreeDetail() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col gap-2"
               >
-                <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
-                <p className="text-[#d6cce5] text-sm">Next.js 15 (App Router), Framer Motion, Tailwind CSS, Vercel Edge Network.</p>
+              <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">QUÉ INCLUYE</h4>
+              <p className="text-[#d6cce5] text-sm">Una página para reunir catálogo, redes sociales y formas de contacto en un solo enlace fácil de compartir.</p>
               </motion.div>
               
               <motion.div 
@@ -132,7 +131,7 @@ export function LinktreeDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-                <p className="text-[#d6cce5] text-sm">Crear un micro-sitio ligero, claro y fluido, con una experiencia consistente en dispositivos móviles y conexiones variables.</p>
+                <p className="text-[#d6cce5] text-sm">Evitar que una persona interesada tenga que buscar el catálogo, los precios y el WhatsApp en diferentes lugares.</p>
               </motion.div>
 
               <motion.div 
@@ -143,7 +142,7 @@ export function LinktreeDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#b039d3] uppercase tracking-widest text-xs font-semibold">TIPO</h4>
-                <p className="text-[#d6cce5] text-sm">Proyectos para clientes reales. Múltiples instancias en producción activa.</p>
+                <p className="text-[#d6cce5] text-sm">Ejemplos creados para Stylo Caps y Full Accesorios.</p>
               </motion.div>
             </div>
 
@@ -156,31 +155,31 @@ export function LinktreeDetail() {
               className="flex-1 flex flex-col gap-8"
             >
               <div className="flex items-center gap-4 text-[#b039d3] font-[family-name:var(--font-ibm-plex-mono)] text-sm tracking-widest uppercase">
-                <span>Caso de Estudio Técnico</span>
+                <span>El proyecto</span>
                 <span className="w-12 h-[1px] bg-[#b039d3]"></span>
-                <span>Performance Frontend</span>
+                <span>Páginas de enlaces</span>
               </div>
               
               <h2 className="text-[32px] md:text-[56px] leading-[1.1] uppercase text-[#d6cce5] font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
-                Link-in-Bio Platform: <br className="hidden md:block"/> Performance Extremo
+                Todo lo importante <br className="hidden md:block"/> en un solo enlace
               </h2>
               <div className="flex flex-col md:flex-row gap-12 md:gap-16 text-body-lg text-[#8971a5]">
                 <div className="flex-1 flex flex-col gap-6">
-                  <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El Objetivo de Ingeniería</h3>
+                  <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">El objetivo</h3>
                   <p>
-                    La meta no era "hacer una página de links". El objetivo era construir un micro-sitio con una experiencia de carga rápida, animaciones cuidadas y una estructura que priorizara el contenido, incluso en conexiones variables.
+                    Cuando una marca comparte su perfil en redes, el visitante necesita encontrar enseguida qué vende y cómo contactarla. Por eso reunimos sus destinos principales en una página breve, clara y adaptada al celular.
                   </p>
                   <p>
-                    Todas las animaciones usan exclusivamente propiedades <strong className="text-[#d6cce5]">transform</strong> y <strong className="text-[#d6cce5]">opacity</strong> para evitar reflows del DOM. Las fuentes son cargadas con <code className="text-[#b039d3] text-sm bg-[#b039d3]/10 px-1.5 py-0.5 rounded">font-display: swap</code> y pre-conectadas al origen.
+                    Cada página mantiene los colores y el estilo de su marca. Las animaciones acompañan la navegación sin distraer del catálogo ni de los botones de contacto.
                   </p>
                 </div>
 
                 <div className="flex-1 flex flex-col gap-6">
-                  <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Decisiones de Implementación</h3>
+                  <h3 className="text-[#b039d3] font-medium text-xl uppercase font-[family-name:var(--font-abc-gravity-variable)] tracking-tight">Cómo ayuda</h3>
                   <ul className="list-disc pl-5 flex flex-col gap-2 mt-2">
-                    <li><strong>Static Site Generation (SSG):</strong> Pre-renderizado en build time para TTFB mínimo desde el Edge de Vercel.</li>
-                    <li><strong>Framer Motion Lazy:</strong> Importación selectiva de variantes de animación para reducir el bundle JS inicial.</li>
-                    <li><strong>Mobile-First:</strong> Diseñado para el 95%+ de tráfico que llega desde Instagram/TikTok móvil.</li>
+                    <li><strong>Un destino para compartir:</strong> el mismo enlace lleva al catálogo, las redes y el contacto.</li>
+                    <li><strong>Menos pasos:</strong> quien llega desde Instagram o TikTok puede encontrar lo que busca sin saltar entre varios perfiles.</li>
+                    <li><strong>Fácil de usar en el celular:</strong> textos y botones pensados para pantallas pequeñas.</li>
                   </ul>
                 </div>
               </div>
@@ -329,7 +328,7 @@ export function LinktreeDetail() {
               Resultado: <br /> <span className="text-[#b039d3]">Experiencia optimizada</span>
             </h2>
             <p className="text-body-lg text-[#8971a5] max-w-[600px]">
-              Performance, Accesibilidad, Mejores Prácticas y SEO: puntuación perfecta en cada categoría. La prueba de que la estética y el rendimiento no son opuestos.
+              Dos ejemplos de cómo una página sencilla puede presentar mejor una marca y facilitar el camino hacia sus productos y canales de contacto.
             </p>
 
             <Link 

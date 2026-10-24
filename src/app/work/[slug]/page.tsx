@@ -14,16 +14,28 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const titles: Record<string, string> = {
-    'docu-mind': 'DocuMind AI — RAG SaaS para Gestión Documental | Miguel Albornoz',
-    'orbit-kanban': 'Orbit Kanban — Plataforma Realtime con LexoRank | Miguel Albornoz',
-    'linktree': 'Linktree Clone de Alto Rendimiento | Miguel Albornoz',
-    'landing-page': 'Landing Page de Alto Rendimiento | Miguel Albornoz',
-    'catalogo': 'Catálogo Digital B2B | Miguel Albornoz',
-    'ecommerce-erp': 'Doha — E-commerce y ERP | Miguel Albornoz',
+    'docu-mind': 'DocuMind AI — Consulta documentos con IA | Miguel Albornoz',
+    'orbit-kanban': 'Orbit Kanban — Organiza el trabajo en equipo | Miguel Albornoz',
+    'linktree': 'Páginas de enlaces para marcas | Miguel Albornoz',
+    'landing-page': 'Café Origen — Una web que presenta la marca | Miguel Albornoz',
+    'catalogo': 'Catálogo digital para ventas mayoristas | Miguel Albornoz',
+    'ecommerce-erp': 'Doha — Tienda virtual y control del negocio | Miguel Albornoz',
   };
+  const descriptions: Record<string, string> = {
+    'docu-mind': 'Un asistente que encuentra respuestas en tus documentos y muestra sus fuentes.',
+    'orbit-kanban': 'Un tablero compartido para organizar tareas y ver los cambios del equipo al momento.',
+    'linktree': 'Páginas que reúnen catálogo, redes y contacto de una marca en un solo enlace.',
+    'landing-page': 'Una web para mostrar la personalidad de Café Origen y facilitar que las personas lo conozcan.',
+    'catalogo': 'Un catálogo fácil de explorar que prepara los productos elegidos para pedirlos por WhatsApp.',
+    'ecommerce-erp': 'Conoce la tienda virtual de Doha: catálogo, carrito y pagos en línea con Wompi, conectados con un panel para gestionar pedidos e inventario.',
+  };
+  const title = titles[slug] ?? 'Proyecto | Miguel Albornoz';
+  const description = descriptions[slug] ?? 'Conoce el problema, la solución y cómo funciona este proyecto de Miguel Albornoz.';
   return {
-    title: titles[slug] ?? 'Proyecto | Miguel Albornoz',
-    description: 'Caso de estudio técnico en el portafolio de Miguel Albornoz, Desarrollador Fullstack en Medellín.',
+    title,
+    description,
+    openGraph: { title, description, url: `https://miguelalbornozdev.vercel.app/work/${slug}` },
+    twitter: { title, description },
   };
 }
 

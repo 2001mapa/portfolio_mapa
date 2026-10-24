@@ -83,8 +83,8 @@ export function LaboratorioDetail() {
                 transition={{ duration: 0.6 }}
                 className="flex flex-col gap-2"
               >
-                <h4 className="text-[#00E5FF] uppercase tracking-widest text-xs font-semibold">STACK TÉCNICO</h4>
-                <p className="text-white/70 text-sm">Next.js 14, Supabase Realtime (WebSockets), Google Gemini API, Telegram Bot API, PostgreSQL (RLS), Vercel Serverless.</p>
+                <h4 className="text-[#00E5FF] uppercase tracking-widest text-xs font-semibold">QUÉ HACE</h4>
+                <p className="text-white/70 text-sm">Permite registrar gastos por Telegram con texto o voz y consultarlos desde un panel en el celular.</p>
               </motion.div>
 
               <motion.div
@@ -95,7 +95,7 @@ export function LaboratorioDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#00E5FF] uppercase tracking-widest text-xs font-semibold">EL RETO</h4>
-                <p className="text-white/70 text-sm">Orquestar un pipeline multimodal (texto + audio) entre la API de Telegram y Gemini, con Structured JSON Output para escritura sin errores en la base de datos y sincronización en tiempo real al panel web.</p>
+                <p className="text-white/70 text-sm">Convertir un mensaje cotidiano en un registro financiero claro, sin pedir que la persona llene un formulario cada vez.</p>
               </motion.div>
 
               <motion.div
@@ -106,7 +106,7 @@ export function LaboratorioDetail() {
                 className="flex flex-col gap-2"
               >
                 <h4 className="text-[#00E5FF] uppercase tracking-widest text-xs font-semibold">TIPO</h4>
-                <p className="text-white/70 text-sm">Proyecto personal en producción. Uso diario activo.</p>
+                <p className="text-white/70 text-sm">Proyecto personal creado para explorar formas más sencillas de llevar un presupuesto.</p>
               </motion.div>
             </div>
 
@@ -115,7 +115,7 @@ export function LaboratorioDetail() {
 
               {/* Mobile pills */}
               <div className="flex flex-wrap gap-2 md:hidden font-[family-name:var(--font-ibm-plex-mono)]">
-                {["Next.js 14", "Gemini API", "Supabase Realtime", "Telegram Bot", "PWA"].map((t) => (
+                {["Gastos por chat", "Mensajes de voz", "Presupuestos", "Panel móvil"].map((t) => (
                   <span key={t} className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-white/50">{t}</span>
                 ))}
               </div>
@@ -130,13 +130,13 @@ export function LaboratorioDetail() {
                 <div className="flex items-center gap-4 text-[#00E5FF] font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-widest uppercase">
                   <span>Experimento Personal</span>
                   <span className="w-10 h-[1px] bg-[#00E5FF]" />
-                  <span>AI + Finanzas</span>
+                  <span>IA y finanzas personales</span>
                 </div>
                 <h2 className="text-[28px] md:text-[48px] leading-[1.05] uppercase text-white font-medium tracking-tight font-[family-name:var(--font-abc-gravity-variable)]">
                   Rastrear mis gastos era aburrido.<br className="hidden md:block" /> Así que construí mi propio asistente.
                 </h2>
                 <p className="text-white/50 font-[family-name:var(--font-die-grotesk-b)] text-body-lg max-w-2xl">
-                  <strong className="text-white">Luka</strong> es un asistente financiero que vive en Telegram, entiende voz y texto en lenguaje natural, y sincroniza cada transacción en tiempo real con un panel web progresivo (PWA) mediante WebSockets.
+                  <strong className="text-white">Luka</strong> funciona desde Telegram: le escribes o le envías una nota de voz sobre un gasto y lo registra. Después puedes revisar tus movimientos y presupuesto en un panel web que se actualiza sin recargar.
                 </p>
               </motion.div>
 
@@ -167,25 +167,25 @@ export function LaboratorioDetail() {
                 className="flex flex-col gap-6"
               >
                 <h3 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl md:text-2xl uppercase tracking-tight">
-                  El Pipeline de Inteligencia Artificial
+                  De un mensaje a un gasto registrado
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[
                     {
                       step: "01",
-                      title: "Context Injection",
-                      body: "Antes de llamar a Gemini, el webhook consulta la DB e inyecta el patrimonio, presupuestos y deudas activas del usuario directamente en el System Prompt. La IA tiene consciencia del estado financiero completo en cada mensaje.",
+                      title: "Consulta el contexto",
+                      body: "Revisa las categorías y presupuestos configurados para interpretar mejor lo que escribiste.",
                     },
                     {
                       step: "02",
-                      title: "Structured JSON Output",
-                      body: "Configuré un responseSchema estricto en el SDK de Gemini para que el modelo responda exclusivamente con objetos JSON tipados (action_type, amount, category). Cero alucinaciones, inserción directa a PostgreSQL.",
+                      title: "Organiza la información",
+                      body: "Separa el monto, el tipo de movimiento y la categoría antes de guardarlos. Si la interpretación no es correcta, debe revisarse.",
                     },
                     {
                       step: "03",
-                      title: "Multimodal Nativo",
-                      body: "Si el mensaje es una nota de voz, el webhook descarga el .ogg de Telegram, lo convierte a Base64 y lo envía al modelo multimodal. Audio transcrito, clasificado y registrado en un solo viaje de red.",
+                      title: "También entiende voz",
+                      body: "Puedes enviar una nota de voz en lugar de escribir; Luka extrae los datos necesarios para registrar el movimiento.",
                     },
                   ].map((item) => (
                     <div
@@ -215,17 +215,17 @@ export function LaboratorioDetail() {
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
                 <div className="flex flex-col gap-4 p-6 rounded-xl bg-white/3 border border-white/8">
-                  <span className="font-[family-name:var(--font-ibm-plex-mono)] text-[#00E5FF] text-xs tracking-widest uppercase">Realtime Sync</span>
-                  <h4 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl uppercase">WebSockets via Supabase</h4>
+                  <span className="font-[family-name:var(--font-ibm-plex-mono)] text-[#00E5FF] text-xs tracking-widest uppercase">Información actualizada</span>
+                  <h4 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl uppercase">Del chat al panel</h4>
                   <p className="text-white/50 text-sm leading-relaxed font-[family-name:var(--font-die-grotesk-b)]">
-                    Si la app está abierta y registro un gasto en Telegram, el panel se actualiza instantáneamente sin recargar la página. Supabase Realtime transmite los eventos de la base de datos vía WebSockets directamente a los Client Components de React, esquivando las cachés estáticas del servidor.
+                    Si el panel está abierto y registras un gasto en Telegram, verás el movimiento allí sin tener que actualizar la página.
                   </p>
                 </div>
                 <div className="flex flex-col gap-4 p-6 rounded-xl bg-white/3 border border-white/8">
-                  <span className="font-[family-name:var(--font-ibm-plex-mono)] text-[#00E5FF] text-xs tracking-widest uppercase">Progressive Web App</span>
-                  <h4 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl uppercase">Nativa en iOS & Android</h4>
+                  <span className="font-[family-name:var(--font-ibm-plex-mono)] text-[#00E5FF] text-xs tracking-widest uppercase">Acceso desde el celular</span>
+                  <h4 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl uppercase">A mano cuando la necesites</h4>
                   <p className="text-white/50 text-sm leading-relaxed font-[family-name:var(--font-die-grotesk-b)]">
-                    Instalable desde el navegador como una app nativa: icono propio, sin barra de navegación de Safari/Chrome y tema de color dinámico que tiñe el status bar del celular. Mobile-First y diseñada para uso diario real.
+                    El panel se puede abrir desde el navegador del teléfono y añadir a la pantalla de inicio para acceder a él con mayor facilidad.
                   </p>
                 </div>
               </motion.div>
@@ -241,7 +241,7 @@ export function LaboratorioDetail() {
                 <span className="font-[family-name:var(--font-ibm-plex-mono)] text-[#00E5FF] text-xs tracking-widest uppercase">Inteligencia Financiera</span>
                 <h4 className="text-white font-[family-name:var(--font-abc-gravity-variable)] text-xl uppercase">Regla de Presupuesto Personalizable</h4>
                 <p className="text-white/60 text-sm leading-relaxed font-[family-name:var(--font-die-grotesk-b)] max-w-2xl">
-                  La distribución de presupuesto no es fija. La regla 50/30/20 es el punto de partida, pero los porcentajes son 100% configurables desde el panel. Actualmente corro <span className="text-[#00E5FF] font-semibold font-[family-name:var(--font-ibm-plex-mono)]">80% Necesidades · 5% Deseos · 15% Ahorros</span>. El sistema evalúa cada gasto contra esos umbrales y entiende comandos complejos como <span className="text-white italic">"Préstale 100 mil a Juan de mis ahorros"</span>, descontando de la liquidez y creando una deuda activa en el panel de cuentas por cobrar.
+                  Puedes repartir tu presupuesto entre necesidades, deseos y ahorros con porcentajes que tú decides. Luka compara los gastos con esos límites y también puede interpretar movimientos como <span className="text-white italic">"Presté 100 mil de mis ahorros"</span> para reflejarlos en el panel.
                 </p>
               </motion.div>
 
